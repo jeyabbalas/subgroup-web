@@ -9,9 +9,44 @@
  "fixtures": [
   {
    "file": "tasks/titanic-binary-wracc-apriori-d2-k5.json",
-   "sha256": "21390ec68f7dd07de5f7c25a9978bdc1f8d5f3967a030f6d71dd7f485ea260c9",
+   "sha256": "5e5d8fca996cf580c9f92591d443e749a3e8731b5e755d92848652a18a313faa",
    "results": 5,
-   "elapsed_seconds": 0.004
+   "elapsed_seconds": 0.0042
+  },
+  {
+   "file": "spaces/titanic-nb5-iv.json",
+   "sha256": "8203cd5a338a778e2e9c08a8a92f40b7687428f41d709643ea22692656b32743",
+   "selectors": 365
+  },
+  {
+   "file": "spaces/titanic-nb5-noiv.json",
+   "sha256": "bc00a0a4148fddf29c223be088f58060753d8536a6c5cab91fbd167334b7587d",
+   "selectors": 377
+  },
+  {
+   "file": "spaces/titanic-nb10-iv.json",
+   "sha256": "7118a8f7f487de3ae2b8543c6ad29baf61846e80016d68e8d9a91983a8cd8dff",
+   "selectors": 381
+  },
+  {
+   "file": "spaces/creditg-nb5-iv.json",
+   "sha256": "16003dfffd8a6c0fb0fdba983fe0df1a4ee81f059afc9cf98229ec60c75ddc6f",
+   "selectors": 83
+  },
+  {
+   "file": "spaces/creditg-nb5-noiv.json",
+   "sha256": "aa846c07a227a6cb9b5e4a40c690ee84172ea88fcae619f95234eeac7cc53c4a",
+   "selectors": 92
+  },
+  {
+   "file": "spaces/creditg-nb10-iv.json",
+   "sha256": "114763971a980b80d11afdc4d309f375246e2b7dd5cd350a5170528958aeb323",
+   "selectors": 98
+  },
+  {
+   "file": "binning.json",
+   "sha256": "ee18a8b5be00953efa154883d0dad1a1e48dff06d5c6926326da60908f876166",
+   "cases": 8
   }
  ]
 }

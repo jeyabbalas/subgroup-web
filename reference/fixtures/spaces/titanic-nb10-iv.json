@@ -1,28 +1,13 @@
 {
- "id": "titanic-binary-wracc-apriori-d2-k5",
- "cell": {
-  "id": "titanic-binary-wracc-apriori-d2-k5",
+ "id": "titanic-nb10-iv",
+ "config": {
+  "id": "titanic-nb10-iv",
   "dataset": "titanic",
-  "target": {
-   "type": "binary",
-   "attribute": "Survived",
-   "value": 1
-  },
-  "space": {
-   "ignore": [
-    "Survived"
-   ],
-   "nbins": 5,
-   "intervalsOnly": true,
-   "negations": false
-  },
-  "qf": {
-   "name": "wracc"
-  },
-  "algorithm": "apriori",
-  "depth": 2,
-  "k": 5,
-  "minQuality": 0
+  "nbins": 10,
+  "intervals_only": true,
+  "ignore": [
+   "Survived"
+  ]
  },
  "versions": {
   "pysubgroup": "0.9.0",
@@ -30,11 +15,21 @@
   "numpy": "1.26.4",
   "scipy": "1.17.1"
  },
- "data_shape": [
-  156,
-  12
- ],
- "search_space": [
+ "dtypes": {
+  "PassengerId": "int64",
+  "Survived": "int64",
+  "Pclass": "int64",
+  "Name": "object",
+  "Sex": "object",
+  "Age": "float64",
+  "SibSp": "int64",
+  "Parch": "int64",
+  "Ticket": "object",
+  "Fare": "float64",
+  "Cabin": "object",
+  "Embarked": "object"
+ },
+ "selectors": [
   {
    "kind": "equality",
    "attribute": "Name",
@@ -3403,25 +3398,53 @@
     "int": false
    },
    "hi": {
+    "value": 16,
+    "int": true
+   },
+   "repr": "PassengerId<16",
+   "str": "PassengerId<16"
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 16,
+    "int": true
+   },
+   "hi": {
     "value": 32,
     "int": true
    },
-   "repr": "PassengerId<32",
-   "str": "PassengerId<32"
+   "repr": "PassengerId: [16:32[",
+   "str": "PassengerId: [16:32["
   },
   {
    "kind": "interval",
    "attribute": "PassengerId",
    "lo": {
     "value": 32,
+    "int": true
+   },
+   "hi": {
+    "value": 47,
+    "int": true
+   },
+   "repr": "PassengerId: [32:47[",
+   "str": "PassengerId: [32:47["
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 47,
     "int": true
    },
    "hi": {
     "value": 63,
     "int": true
    },
-   "repr": "PassengerId: [32:63[",
-   "str": "PassengerId: [32:63["
+   "repr": "PassengerId: [47:63[",
+   "str": "PassengerId: [47:63["
   },
   {
    "kind": "interval",
@@ -3431,11 +3454,25 @@
     "int": true
    },
    "hi": {
+    "value": 79,
+    "int": true
+   },
+   "repr": "PassengerId: [63:79[",
+   "str": "PassengerId: [63:79["
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 79,
+    "int": true
+   },
+   "hi": {
     "value": 94,
     "int": true
    },
-   "repr": "PassengerId: [63:94[",
-   "str": "PassengerId: [63:94["
+   "repr": "PassengerId: [79:94[",
+   "str": "PassengerId: [79:94["
   },
   {
    "kind": "interval",
@@ -3445,17 +3482,45 @@
     "int": true
    },
    "hi": {
+    "value": 110,
+    "int": true
+   },
+   "repr": "PassengerId: [94:110[",
+   "str": "PassengerId: [94:110["
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 110,
+    "int": true
+   },
+   "hi": {
     "value": 125,
     "int": true
    },
-   "repr": "PassengerId: [94:125[",
-   "str": "PassengerId: [94:125["
+   "repr": "PassengerId: [110:125[",
+   "str": "PassengerId: [110:125["
   },
   {
    "kind": "interval",
    "attribute": "PassengerId",
    "lo": {
     "value": 125,
+    "int": true
+   },
+   "hi": {
+    "value": 141,
+    "int": true
+   },
+   "repr": "PassengerId: [125:141[",
+   "str": "PassengerId: [125:141["
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 141,
     "int": true
    },
    "hi": {
@@ -3464,8 +3529,8 @@
     },
     "int": false
    },
-   "repr": "PassengerId>=125",
-   "str": "PassengerId>=125"
+   "repr": "PassengerId>=141",
+   "str": "PassengerId>=141"
   },
   {
    "kind": "equality",
@@ -3525,25 +3590,53 @@
     "int": false
    },
    "hi": {
+    "value": 12.0,
+    "int": false
+   },
+   "repr": "Age<12.0",
+   "str": "Age<12.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 12.0,
+    "int": false
+   },
+   "hi": {
     "value": 18.0,
     "int": false
    },
-   "repr": "Age<18.0",
-   "str": "Age<18.0"
+   "repr": "Age: [12.0:18.0[",
+   "str": "Age: [12.0:18.0["
   },
   {
    "kind": "interval",
    "attribute": "Age",
    "lo": {
     "value": 18.0,
+    "int": false
+   },
+   "hi": {
+    "value": 21.0,
+    "int": false
+   },
+   "repr": "Age: [18.0:21.0[",
+   "str": "Age: [18.0:21.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 21.0,
     "int": false
    },
    "hi": {
     "value": 22.0,
     "int": false
    },
-   "repr": "Age: [18.0:22.0[",
-   "str": "Age: [18.0:22.0["
+   "repr": "Age: [21.0:22.0[",
+   "str": "Age: [21.0:22.0["
   },
   {
    "kind": "interval",
@@ -3553,11 +3646,25 @@
     "int": false
    },
    "hi": {
+    "value": 26.0,
+    "int": false
+   },
+   "repr": "Age: [22.0:26.0[",
+   "str": "Age: [22.0:26.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 26.0,
+    "int": false
+   },
+   "hi": {
     "value": 29.0,
     "int": false
    },
-   "repr": "Age: [22.0:29.0[",
-   "str": "Age: [22.0:29.0["
+   "repr": "Age: [26.0:29.0[",
+   "str": "Age: [26.0:29.0["
   },
   {
    "kind": "interval",
@@ -3567,17 +3674,45 @@
     "int": false
    },
    "hi": {
+    "value": 33.0,
+    "int": false
+   },
+   "repr": "Age: [29.0:33.0[",
+   "str": "Age: [29.0:33.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 33.0,
+    "int": false
+   },
+   "hi": {
     "value": 38.0,
     "int": false
    },
-   "repr": "Age: [29.0:38.0[",
-   "str": "Age: [29.0:38.0["
+   "repr": "Age: [33.0:38.0[",
+   "str": "Age: [33.0:38.0["
   },
   {
    "kind": "interval",
    "attribute": "Age",
    "lo": {
     "value": 38.0,
+    "int": false
+   },
+   "hi": {
+    "value": 49.0,
+    "int": false
+   },
+   "repr": "Age: [38.0:49.0[",
+   "str": "Age: [38.0:49.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 49.0,
     "int": false
    },
    "hi": {
@@ -3586,82 +3721,86 @@
     },
     "int": false
    },
-   "repr": "Age>=38.0",
-   "str": "Age>=38.0"
+   "repr": "Age>=49.0",
+   "str": "Age>=49.0"
   },
   {
-   "kind": "interval",
+   "kind": "equality",
    "attribute": "SibSp",
-   "lo": {
-    "value": {
-     "$f": "-inf"
-    },
-    "int": false
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 0,
+     "int": true
+    }
    },
-   "hi": {
-    "value": 0,
-    "int": true
-   },
-   "repr": "SibSp<0",
-   "str": "SibSp<0"
+   "repr": "SibSp==0",
+   "str": "SibSp==0"
   },
   {
-   "kind": "interval",
+   "kind": "equality",
    "attribute": "SibSp",
-   "lo": {
-    "value": 0,
-    "int": true
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1,
+     "int": true
+    }
    },
-   "hi": {
-    "value": 1,
-    "int": true
-   },
-   "repr": "SibSp: [0:1[",
-   "str": "SibSp: [0:1["
+   "repr": "SibSp==1",
+   "str": "SibSp==1"
   },
   {
-   "kind": "interval",
+   "kind": "equality",
    "attribute": "SibSp",
-   "lo": {
-    "value": 1,
-    "int": true
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2,
+     "int": true
+    }
    },
-   "hi": {
-    "value": 2,
-    "int": true
-   },
-   "repr": "SibSp: [1:2[",
-   "str": "SibSp: [1:2["
+   "repr": "SibSp==2",
+   "str": "SibSp==2"
   },
   {
-   "kind": "interval",
+   "kind": "equality",
    "attribute": "SibSp",
-   "lo": {
-    "value": 2,
-    "int": true
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3,
+     "int": true
+    }
    },
-   "hi": {
-    "value": 3,
-    "int": true
-   },
-   "repr": "SibSp: [2:3[",
-   "str": "SibSp: [2:3["
+   "repr": "SibSp==3",
+   "str": "SibSp==3"
   },
   {
-   "kind": "interval",
+   "kind": "equality",
    "attribute": "SibSp",
-   "lo": {
-    "value": 3,
-    "int": true
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 4,
+     "int": true
+    }
    },
-   "hi": {
-    "value": {
-     "$f": "inf"
-    },
-    "int": false
+   "repr": "SibSp==4",
+   "str": "SibSp==4"
+  },
+  {
+   "kind": "equality",
+   "attribute": "SibSp",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 5,
+     "int": true
+    }
    },
-   "repr": "SibSp>=3",
-   "str": "SibSp>=3"
+   "repr": "SibSp==5",
+   "str": "SibSp==5"
   },
   {
    "kind": "equality",
@@ -3738,25 +3877,53 @@
     "int": false
    },
    "hi": {
+    "value": 7.75,
+    "int": false
+   },
+   "repr": "Fare<7.75",
+   "str": "Fare<7.75"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 7.75,
+    "int": false
+   },
+   "hi": {
     "value": 7.8958,
     "int": false
    },
-   "repr": "Fare<7.8958",
-   "str": "Fare<7.90"
+   "repr": "Fare: [7.75:7.8958[",
+   "str": "Fare: [7.75:7.90["
   },
   {
    "kind": "interval",
    "attribute": "Fare",
    "lo": {
     "value": 7.8958,
+    "int": false
+   },
+   "hi": {
+    "value": 8.05,
+    "int": false
+   },
+   "repr": "Fare: [7.8958:8.05[",
+   "str": "Fare: [7.90:8.05["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 8.05,
     "int": false
    },
    "hi": {
     "value": 10.5,
     "int": false
    },
-   "repr": "Fare: [7.8958:10.5[",
-   "str": "Fare: [7.90:10.50["
+   "repr": "Fare: [8.05:10.5[",
+   "str": "Fare: [8.05:10.50["
   },
   {
    "kind": "interval",
@@ -3766,11 +3933,25 @@
     "int": false
    },
    "hi": {
+    "value": 14.4542,
+    "int": false
+   },
+   "repr": "Fare: [10.5:14.4542[",
+   "str": "Fare: [10.50:14.45["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 14.4542,
+    "int": false
+   },
+   "hi": {
     "value": 20.575,
     "int": false
    },
-   "repr": "Fare: [10.5:20.575[",
-   "str": "Fare: [10.50:20.57["
+   "repr": "Fare: [14.4542:20.575[",
+   "str": "Fare: [14.45:20.57["
   },
   {
    "kind": "interval",
@@ -3780,17 +3961,45 @@
     "int": false
    },
    "hi": {
+    "value": 27.7208,
+    "int": false
+   },
+   "repr": "Fare: [20.575:27.7208[",
+   "str": "Fare: [20.57:27.72["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 27.7208,
+    "int": false
+   },
+   "hi": {
     "value": 35.5,
     "int": false
    },
-   "repr": "Fare: [20.575:35.5[",
-   "str": "Fare: [20.57:35.50["
+   "repr": "Fare: [27.7208:35.5[",
+   "str": "Fare: [27.72:35.50["
   },
   {
    "kind": "interval",
    "attribute": "Fare",
    "lo": {
     "value": 35.5,
+    "int": false
+   },
+   "hi": {
+    "value": 63.3583,
+    "int": false
+   },
+   "repr": "Fare: [35.5:63.3583[",
+   "str": "Fare: [35.50:63.36["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 63.3583,
     "int": false
    },
    "hi": {
@@ -3799,227 +4008,8 @@
     },
     "int": false
    },
-   "repr": "Fare>=35.5",
-   "str": "Fare>=35.50"
-  }
- ],
- "elapsed_seconds": 0.004247708013281226,
- "results": [
-  {
-   "quality": 0.13214990138067062,
-   "description": {
-    "repr": "(Sex=='female')",
-    "str": "Sex=='female'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "Sex",
-      "value": {
-       "t": "str",
-       "v": "female"
-      },
-      "repr": "Sex=='female'",
-      "str": "Sex=='female'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 56,
-    "size_dataset": 156,
-    "positives_sg": 40,
-    "positives_dataset": 54,
-    "size_complement": 100,
-    "relative_size_sg": 0.358974358974359,
-    "relative_size_complement": 0.6410256410256411,
-    "coverage_sg": 0.7407407407407407,
-    "coverage_complement": 0.25925925925925924,
-    "target_share_sg": 0.7142857142857143,
-    "target_share_complement": 0.14,
-    "target_share_dataset": 0.34615384615384615,
-    "lift": 2.0634920634920637
-   }
-  },
-  {
-   "quality": 0.10133136094674557,
-   "description": {
-    "repr": "(Parch==0 and Sex=='female')",
-    "str": "Parch==0 AND Sex=='female'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "Parch",
-      "value": {
-       "t": "num",
-       "v": {
-        "value": 0,
-        "int": true
-       }
-      },
-      "repr": "Parch==0",
-      "str": "Parch==0"
-     },
-     {
-      "kind": "equality",
-      "attribute": "Sex",
-      "value": {
-       "t": "str",
-       "v": "female"
-      },
-      "repr": "Sex=='female'",
-      "str": "Sex=='female'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 41,
-    "size_dataset": 156,
-    "positives_sg": 30,
-    "positives_dataset": 54,
-    "size_complement": 115,
-    "relative_size_sg": 0.26282051282051283,
-    "relative_size_complement": 0.7371794871794872,
-    "coverage_sg": 0.5555555555555556,
-    "coverage_complement": 0.4444444444444444,
-    "target_share_sg": 0.7317073170731707,
-    "target_share_complement": 0.20869565217391303,
-    "target_share_dataset": 0.34615384615384615,
-    "lift": 2.113821138211382
-   }
-  },
-  {
-   "quality": 0.07914201183431953,
-   "description": {
-    "repr": "(Sex=='female' and SibSp: [0:1[)",
-    "str": "Sex=='female' AND SibSp: [0:1[",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "Sex",
-      "value": {
-       "t": "str",
-       "v": "female"
-      },
-      "repr": "Sex=='female'",
-      "str": "Sex=='female'"
-     },
-     {
-      "kind": "interval",
-      "attribute": "SibSp",
-      "lo": {
-       "value": 0,
-       "int": true
-      },
-      "hi": {
-       "value": 1,
-       "int": true
-      },
-      "repr": "SibSp: [0:1[",
-      "str": "SibSp: [0:1["
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 25,
-    "size_dataset": 156,
-    "positives_sg": 21,
-    "positives_dataset": 54,
-    "size_complement": 131,
-    "relative_size_sg": 0.16025641025641027,
-    "relative_size_complement": 0.8397435897435898,
-    "coverage_sg": 0.3888888888888889,
-    "coverage_complement": 0.6111111111111112,
-    "target_share_sg": 0.84,
-    "target_share_complement": 0.25190839694656486,
-    "target_share_dataset": 0.34615384615384615,
-    "lift": 2.4266666666666667
-   }
-  },
-  {
-   "quality": 0.07766272189349113,
-   "description": {
-    "repr": "(Cabin.isnull() and Sex=='female')",
-    "str": "Cabin.isnull() AND Sex=='female'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "Cabin",
-      "value": {
-       "t": "nan"
-      },
-      "repr": "Cabin.isnull()",
-      "str": "Cabin.isnull()"
-     },
-     {
-      "kind": "equality",
-      "attribute": "Sex",
-      "value": {
-       "t": "str",
-       "v": "female"
-      },
-      "repr": "Sex=='female'",
-      "str": "Sex=='female'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 43,
-    "size_dataset": 156,
-    "positives_sg": 27,
-    "positives_dataset": 54,
-    "size_complement": 113,
-    "relative_size_sg": 0.27564102564102566,
-    "relative_size_complement": 0.7243589743589743,
-    "coverage_sg": 0.5,
-    "coverage_complement": 0.5,
-    "target_share_sg": 0.627906976744186,
-    "target_share_complement": 0.23893805309734514,
-    "target_share_dataset": 0.34615384615384615,
-    "lift": 1.8139534883720931
-   }
-  },
-  {
-   "quality": 0.07174556213017752,
-   "description": {
-    "repr": "(Embarked=='S' and Sex=='female')",
-    "str": "Embarked=='S' AND Sex=='female'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "Embarked",
-      "value": {
-       "t": "str",
-       "v": "S"
-      },
-      "repr": "Embarked=='S'",
-      "str": "Embarked=='S'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "Sex",
-      "value": {
-       "t": "str",
-       "v": "female"
-      },
-      "repr": "Sex=='female'",
-      "str": "Sex=='female'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 37,
-    "size_dataset": 156,
-    "positives_sg": 24,
-    "positives_dataset": 54,
-    "size_complement": 119,
-    "relative_size_sg": 0.23717948717948717,
-    "relative_size_complement": 0.7628205128205128,
-    "coverage_sg": 0.4444444444444444,
-    "coverage_complement": 0.5555555555555556,
-    "target_share_sg": 0.6486486486486487,
-    "target_share_complement": 0.25210084033613445,
-    "target_share_dataset": 0.34615384615384615,
-    "lift": 1.873873873873874
-   }
+   "repr": "Fare>=63.3583",
+   "str": "Fare>=63.36"
   }
  ]
 }

@@ -1,0 +1,1149 @@
+{
+ "id": "creditg-nb5-noiv",
+ "config": {
+  "id": "creditg-nb5-noiv",
+  "dataset": "credit-g",
+  "nbins": 5,
+  "intervals_only": false,
+  "ignore": [
+   "class"
+  ]
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "dtypes": {
+  "checking_status": "object",
+  "duration": "float64",
+  "credit_history": "object",
+  "purpose": "object",
+  "credit_amount": "float64",
+  "savings_status": "object",
+  "employment": "object",
+  "installment_commitment": "float64",
+  "personal_status": "object",
+  "other_parties": "object",
+  "residence_since": "float64",
+  "property_magnitude": "object",
+  "age": "float64",
+  "other_payment_plans": "object",
+  "housing": "object",
+  "existing_credits": "float64",
+  "job": "object",
+  "num_dependents": "float64",
+  "own_telephone": "object",
+  "foreign_worker": "object",
+  "class": "object"
+ },
+ "selectors": [
+  {
+   "kind": "equality",
+   "attribute": "checking_status",
+   "value": {
+    "t": "str",
+    "v": "<0"
+   },
+   "repr": "checking_status=='<0'",
+   "str": "checking_status=='<0'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "checking_status",
+   "value": {
+    "t": "str",
+    "v": "0<=X<200"
+   },
+   "repr": "checking_status=='0<=X<200'",
+   "str": "checking_status=='0<=X<200'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "checking_status",
+   "value": {
+    "t": "str",
+    "v": "no checking"
+   },
+   "repr": "checking_status=='no checking'",
+   "str": "checking_status=='no checking'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "checking_status",
+   "value": {
+    "t": "str",
+    "v": ">=200"
+   },
+   "repr": "checking_status=='>=200'",
+   "str": "checking_status=='>=200'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "credit_history",
+   "value": {
+    "t": "str",
+    "v": "critical/other existing credit"
+   },
+   "repr": "credit_history=='critical/other existing credit'",
+   "str": "credit_history=='critical/other existing credit'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "credit_history",
+   "value": {
+    "t": "str",
+    "v": "existing paid"
+   },
+   "repr": "credit_history=='existing paid'",
+   "str": "credit_history=='existing paid'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "credit_history",
+   "value": {
+    "t": "str",
+    "v": "delayed previously"
+   },
+   "repr": "credit_history=='delayed previously'",
+   "str": "credit_history=='delayed previously'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "credit_history",
+   "value": {
+    "t": "str",
+    "v": "no credits/all paid"
+   },
+   "repr": "credit_history=='no credits/all paid'",
+   "str": "credit_history=='no credits/all paid'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "credit_history",
+   "value": {
+    "t": "str",
+    "v": "all paid"
+   },
+   "repr": "credit_history=='all paid'",
+   "str": "credit_history=='all paid'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "radio/tv"
+   },
+   "repr": "purpose=='radio/tv'",
+   "str": "purpose=='radio/tv'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "education"
+   },
+   "repr": "purpose=='education'",
+   "str": "purpose=='education'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "furniture/equipment"
+   },
+   "repr": "purpose=='furniture/equipment'",
+   "str": "purpose=='furniture/equipment'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "new car"
+   },
+   "repr": "purpose=='new car'",
+   "str": "purpose=='new car'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "used car"
+   },
+   "repr": "purpose=='used car'",
+   "str": "purpose=='used car'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "business"
+   },
+   "repr": "purpose=='business'",
+   "str": "purpose=='business'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "domestic appliance"
+   },
+   "repr": "purpose=='domestic appliance'",
+   "str": "purpose=='domestic appliance'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "repairs"
+   },
+   "repr": "purpose=='repairs'",
+   "str": "purpose=='repairs'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "other"
+   },
+   "repr": "purpose=='other'",
+   "str": "purpose=='other'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "purpose",
+   "value": {
+    "t": "str",
+    "v": "retraining"
+   },
+   "repr": "purpose=='retraining'",
+   "str": "purpose=='retraining'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "savings_status",
+   "value": {
+    "t": "str",
+    "v": "no known savings"
+   },
+   "repr": "savings_status=='no known savings'",
+   "str": "savings_status=='no known savings'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "savings_status",
+   "value": {
+    "t": "str",
+    "v": "<100"
+   },
+   "repr": "savings_status=='<100'",
+   "str": "savings_status=='<100'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "savings_status",
+   "value": {
+    "t": "str",
+    "v": "500<=X<1000"
+   },
+   "repr": "savings_status=='500<=X<1000'",
+   "str": "savings_status=='500<=X<1000'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "savings_status",
+   "value": {
+    "t": "str",
+    "v": ">=1000"
+   },
+   "repr": "savings_status=='>=1000'",
+   "str": "savings_status=='>=1000'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "savings_status",
+   "value": {
+    "t": "str",
+    "v": "100<=X<500"
+   },
+   "repr": "savings_status=='100<=X<500'",
+   "str": "savings_status=='100<=X<500'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "employment",
+   "value": {
+    "t": "str",
+    "v": ">=7"
+   },
+   "repr": "employment=='>=7'",
+   "str": "employment=='>=7'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "employment",
+   "value": {
+    "t": "str",
+    "v": "1<=X<4"
+   },
+   "repr": "employment=='1<=X<4'",
+   "str": "employment=='1<=X<4'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "employment",
+   "value": {
+    "t": "str",
+    "v": "4<=X<7"
+   },
+   "repr": "employment=='4<=X<7'",
+   "str": "employment=='4<=X<7'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "employment",
+   "value": {
+    "t": "str",
+    "v": "unemployed"
+   },
+   "repr": "employment=='unemployed'",
+   "str": "employment=='unemployed'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "employment",
+   "value": {
+    "t": "str",
+    "v": "<1"
+   },
+   "repr": "employment=='<1'",
+   "str": "employment=='<1'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "personal_status",
+   "value": {
+    "t": "str",
+    "v": "male single"
+   },
+   "repr": "personal_status=='male single'",
+   "str": "personal_status=='male single'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "personal_status",
+   "value": {
+    "t": "str",
+    "v": "female div/dep/mar"
+   },
+   "repr": "personal_status=='female div/dep/mar'",
+   "str": "personal_status=='female div/dep/mar'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "personal_status",
+   "value": {
+    "t": "str",
+    "v": "male div/sep"
+   },
+   "repr": "personal_status=='male div/sep'",
+   "str": "personal_status=='male div/sep'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "personal_status",
+   "value": {
+    "t": "str",
+    "v": "male mar/wid"
+   },
+   "repr": "personal_status=='male mar/wid'",
+   "str": "personal_status=='male mar/wid'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "other_parties",
+   "value": {
+    "t": "str",
+    "v": "none"
+   },
+   "repr": "other_parties=='none'",
+   "str": "other_parties=='none'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "other_parties",
+   "value": {
+    "t": "str",
+    "v": "guarantor"
+   },
+   "repr": "other_parties=='guarantor'",
+   "str": "other_parties=='guarantor'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "other_parties",
+   "value": {
+    "t": "str",
+    "v": "co applicant"
+   },
+   "repr": "other_parties=='co applicant'",
+   "str": "other_parties=='co applicant'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "property_magnitude",
+   "value": {
+    "t": "str",
+    "v": "real estate"
+   },
+   "repr": "property_magnitude=='real estate'",
+   "str": "property_magnitude=='real estate'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "property_magnitude",
+   "value": {
+    "t": "str",
+    "v": "life insurance"
+   },
+   "repr": "property_magnitude=='life insurance'",
+   "str": "property_magnitude=='life insurance'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "property_magnitude",
+   "value": {
+    "t": "str",
+    "v": "no known property"
+   },
+   "repr": "property_magnitude=='no known property'",
+   "str": "property_magnitude=='no known property'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "property_magnitude",
+   "value": {
+    "t": "str",
+    "v": "car"
+   },
+   "repr": "property_magnitude=='car'",
+   "str": "property_magnitude=='car'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "other_payment_plans",
+   "value": {
+    "t": "str",
+    "v": "none"
+   },
+   "repr": "other_payment_plans=='none'",
+   "str": "other_payment_plans=='none'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "other_payment_plans",
+   "value": {
+    "t": "str",
+    "v": "bank"
+   },
+   "repr": "other_payment_plans=='bank'",
+   "str": "other_payment_plans=='bank'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "other_payment_plans",
+   "value": {
+    "t": "str",
+    "v": "stores"
+   },
+   "repr": "other_payment_plans=='stores'",
+   "str": "other_payment_plans=='stores'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "housing",
+   "value": {
+    "t": "str",
+    "v": "own"
+   },
+   "repr": "housing=='own'",
+   "str": "housing=='own'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "housing",
+   "value": {
+    "t": "str",
+    "v": "for free"
+   },
+   "repr": "housing=='for free'",
+   "str": "housing=='for free'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "housing",
+   "value": {
+    "t": "str",
+    "v": "rent"
+   },
+   "repr": "housing=='rent'",
+   "str": "housing=='rent'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "job",
+   "value": {
+    "t": "str",
+    "v": "skilled"
+   },
+   "repr": "job=='skilled'",
+   "str": "job=='skilled'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "job",
+   "value": {
+    "t": "str",
+    "v": "unskilled resident"
+   },
+   "repr": "job=='unskilled resident'",
+   "str": "job=='unskilled resident'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "job",
+   "value": {
+    "t": "str",
+    "v": "high qualif/self emp/mgmt"
+   },
+   "repr": "job=='high qualif/self emp/mgmt'",
+   "str": "job=='high qualif/self emp/mgmt'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "job",
+   "value": {
+    "t": "str",
+    "v": "unemp/unskilled non res"
+   },
+   "repr": "job=='unemp/unskilled non res'",
+   "str": "job=='unemp/unskilled non res'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "own_telephone",
+   "value": {
+    "t": "str",
+    "v": "yes"
+   },
+   "repr": "own_telephone=='yes'",
+   "str": "own_telephone=='yes'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "own_telephone",
+   "value": {
+    "t": "str",
+    "v": "none"
+   },
+   "repr": "own_telephone=='none'",
+   "str": "own_telephone=='none'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "foreign_worker",
+   "value": {
+    "t": "str",
+    "v": "yes"
+   },
+   "repr": "foreign_worker=='yes'",
+   "str": "foreign_worker=='yes'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "foreign_worker",
+   "value": {
+    "t": "str",
+    "v": "no"
+   },
+   "repr": "foreign_worker=='no'",
+   "str": "foreign_worker=='no'"
+  },
+  {
+   "kind": "interval",
+   "attribute": "duration",
+   "lo": {
+    "value": 12.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "duration>=12.0",
+   "str": "duration>=12.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "duration",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 12.0,
+    "int": false
+   },
+   "repr": "duration<12.0",
+   "str": "duration<12.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "duration",
+   "lo": {
+    "value": 15.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "duration>=15.0",
+   "str": "duration>=15.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "duration",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 15.0,
+    "int": false
+   },
+   "repr": "duration<15.0",
+   "str": "duration<15.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "duration",
+   "lo": {
+    "value": 24.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "duration>=24.0",
+   "str": "duration>=24.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "duration",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 24.0,
+    "int": false
+   },
+   "repr": "duration<24.0",
+   "str": "duration<24.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "duration",
+   "lo": {
+    "value": 30.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "duration>=30.0",
+   "str": "duration>=30.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "duration",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 30.0,
+    "int": false
+   },
+   "repr": "duration<30.0",
+   "str": "duration<30.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "credit_amount",
+   "lo": {
+    "value": 1262.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "credit_amount>=1262.0",
+   "str": "credit_amount>=1262.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "credit_amount",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 1262.0,
+    "int": false
+   },
+   "repr": "credit_amount<1262.0",
+   "str": "credit_amount<1262.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "credit_amount",
+   "lo": {
+    "value": 1908.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "credit_amount>=1908.0",
+   "str": "credit_amount>=1908.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "credit_amount",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 1908.0,
+    "int": false
+   },
+   "repr": "credit_amount<1908.0",
+   "str": "credit_amount<1908.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "credit_amount",
+   "lo": {
+    "value": 2859.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "credit_amount>=2859.0",
+   "str": "credit_amount>=2859.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "credit_amount",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 2859.0,
+    "int": false
+   },
+   "repr": "credit_amount<2859.0",
+   "str": "credit_amount<2859.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "credit_amount",
+   "lo": {
+    "value": 4736.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "credit_amount>=4736.0",
+   "str": "credit_amount>=4736.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "credit_amount",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 4736.0,
+    "int": false
+   },
+   "repr": "credit_amount<4736.0",
+   "str": "credit_amount<4736.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "installment_commitment",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1.0,
+     "int": false
+    }
+   },
+   "repr": "installment_commitment==1.0",
+   "str": "installment_commitment==1.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "installment_commitment",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2.0,
+     "int": false
+    }
+   },
+   "repr": "installment_commitment==2.0",
+   "str": "installment_commitment==2.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "installment_commitment",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3.0,
+     "int": false
+    }
+   },
+   "repr": "installment_commitment==3.0",
+   "str": "installment_commitment==3.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "installment_commitment",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 4.0,
+     "int": false
+    }
+   },
+   "repr": "installment_commitment==4.0",
+   "str": "installment_commitment==4.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "residence_since",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1.0,
+     "int": false
+    }
+   },
+   "repr": "residence_since==1.0",
+   "str": "residence_since==1.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "residence_since",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2.0,
+     "int": false
+    }
+   },
+   "repr": "residence_since==2.0",
+   "str": "residence_since==2.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "residence_since",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3.0,
+     "int": false
+    }
+   },
+   "repr": "residence_since==3.0",
+   "str": "residence_since==3.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "residence_since",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 4.0,
+     "int": false
+    }
+   },
+   "repr": "residence_since==4.0",
+   "str": "residence_since==4.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "age",
+   "lo": {
+    "value": 26.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "age>=26.0",
+   "str": "age>=26.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "age",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 26.0,
+    "int": false
+   },
+   "repr": "age<26.0",
+   "str": "age<26.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "age",
+   "lo": {
+    "value": 30.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "age>=30.0",
+   "str": "age>=30.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "age",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 30.0,
+    "int": false
+   },
+   "repr": "age<30.0",
+   "str": "age<30.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "age",
+   "lo": {
+    "value": 36.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "age>=36.0",
+   "str": "age>=36.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "age",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 36.0,
+    "int": false
+   },
+   "repr": "age<36.0",
+   "str": "age<36.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "age",
+   "lo": {
+    "value": 45.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "age>=45.0",
+   "str": "age>=45.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "age",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 45.0,
+    "int": false
+   },
+   "repr": "age<45.0",
+   "str": "age<45.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "existing_credits",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1.0,
+     "int": false
+    }
+   },
+   "repr": "existing_credits==1.0",
+   "str": "existing_credits==1.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "existing_credits",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2.0,
+     "int": false
+    }
+   },
+   "repr": "existing_credits==2.0",
+   "str": "existing_credits==2.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "existing_credits",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3.0,
+     "int": false
+    }
+   },
+   "repr": "existing_credits==3.0",
+   "str": "existing_credits==3.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "existing_credits",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 4.0,
+     "int": false
+    }
+   },
+   "repr": "existing_credits==4.0",
+   "str": "existing_credits==4.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "num_dependents",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1.0,
+     "int": false
+    }
+   },
+   "repr": "num_dependents==1.0",
+   "str": "num_dependents==1.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "num_dependents",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2.0,
+     "int": false
+    }
+   },
+   "repr": "num_dependents==2.0",
+   "str": "num_dependents==2.0"
+  }
+ ]
+}

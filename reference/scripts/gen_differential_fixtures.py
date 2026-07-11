@@ -238,6 +238,64 @@ def run_cell(cell):
     }
 
 
+# --- selector-space fixtures (spec §4 parity: builder semantics + order) ---
+
+SPACE_CONFIGS = [
+    {"id": "titanic-nb5-iv", "dataset": "titanic", "nbins": 5, "intervals_only": True, "ignore": ["Survived"]},
+    {"id": "titanic-nb5-noiv", "dataset": "titanic", "nbins": 5, "intervals_only": False, "ignore": ["Survived"]},
+    {"id": "titanic-nb10-iv", "dataset": "titanic", "nbins": 10, "intervals_only": True, "ignore": ["Survived"]},
+    {"id": "creditg-nb5-iv", "dataset": "credit-g", "nbins": 5, "intervals_only": True, "ignore": ["class"]},
+    {"id": "creditg-nb5-noiv", "dataset": "credit-g", "nbins": 5, "intervals_only": False, "ignore": ["class"]},
+    {"id": "creditg-nb10-iv", "dataset": "credit-g", "nbins": 10, "intervals_only": True, "ignore": ["class"]},
+]
+
+
+def gen_space_fixture(cfg):
+    data = load_dataset(cfg["dataset"])
+    sels = ps.create_selectors(
+        data, nbins=cfg["nbins"], intervals_only=cfg["intervals_only"], ignore=cfg["ignore"]
+    )
+    return {
+        "id": cfg["id"],
+        "config": cfg,
+        "versions": versions(),
+        "dtypes": {c: str(data[c].dtype) for c in data.columns},
+        "selectors": [sel_to_json(s) for s in sels],
+    }
+
+
+# --- equal-frequency binning edge fixtures (BRIEF §22-A8) ---
+
+BINNING_CASES = [
+    {"id": "uniform-ints", "values": list(range(1, 11)), "nbins": 5},
+    {"id": "heavy-dups", "values": [1, 1, 1, 1, 2, 2, 2, 3, 3, 10], "nbins": 5},
+    {"id": "all-same", "values": [7] * 8, "nbins": 3},
+    {"id": "front-loaded", "values": [0] * 6 + list(range(1, 10)) + [9, 9, 9], "nbins": 4},
+    {"id": "floats-dups", "values": [0.5, 1.5, 1.5, 2.25, 3.75, 3.75, 3.75, 8.5], "nbins": 3},
+    {"id": "tail-dups", "values": [1, 2, 3, 4, 5, 5, 5, 5, 5, 5], "nbins": 5},
+    {"id": "two-values", "values": [1, 1, 1, 1, 1, 2, 2, 2, 2, 2], "nbins": 4},
+    {"id": "nbins10-small", "values": [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5, 8, 9, 7], "nbins": 10},
+]
+
+
+def gen_binning_fixture():
+    import pandas as pd
+
+    cases = []
+    for case in BINNING_CASES:
+        df = pd.DataFrame({"x": case["values"]})
+        cuts = ps.equal_frequency_discretization(df, "x", nbins=case["nbins"])
+        cases.append(
+            {
+                "id": case["id"],
+                "values": case["values"],
+                "nbins": case["nbins"],
+                "cutpoints": [encode_bound(c) for c in cuts],
+            }
+        )
+    return {"id": "equal-frequency-binning", "versions": versions(), "cases": cases}
+
+
 def main():
     import json
 
@@ -271,6 +329,29 @@ def main():
         )
 
     if not only:
+        spaces_dir = os.path.join(FIXTURES, "spaces")
+        os.makedirs(spaces_dir, exist_ok=True)
+        for cfg in SPACE_CONFIGS:
+            fixture = gen_space_fixture(cfg)
+            out_path = os.path.join(spaces_dir, f"{cfg['id']}.json")
+            dump_json(out_path, fixture)
+            manifest_entries.append(
+                {
+                    "file": f"spaces/{cfg['id']}.json",
+                    "sha256": sha256_file(out_path),
+                    "selectors": len(fixture["selectors"]),
+                }
+            )
+            print(f"space {cfg['id']}: {len(fixture['selectors'])} selectors")
+
+        binning = gen_binning_fixture()
+        out_path = os.path.join(FIXTURES, "binning.json")
+        dump_json(out_path, binning)
+        manifest_entries.append(
+            {"file": "binning.json", "sha256": sha256_file(out_path), "cases": len(binning["cases"])}
+        )
+        print(f"binning: {len(binning['cases'])} cases")
+
         manifest = {
             "generator": "reference/scripts/gen_differential_fixtures.py",
             "versions": versions(),
