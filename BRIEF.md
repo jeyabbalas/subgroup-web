@@ -256,7 +256,7 @@ pnpm (corepack); TypeScript `strict` + `noUncheckedIndexedAccess` (targeted, com
 | `pnpm test:browser` | Playwright: GPU exactness + backend-identity cells + demo smoke |
 | `pnpm bench` / `bench:gates` | full suite / gate subset; regenerates BENCHMARKS.md |
 | `pnpm demo:dev` / `demo:build` / `demo:preview` | Vite (build uses `BASE_PATH=/subgroup-web/`) |
-| `pnpm docs` | TypeDoc |
+| `pnpm run docs` | TypeDoc (use `run`: bare `pnpm docs` forwards to `npm docs`) |
 | `pnpm pack:test` | `npm pack` → temp-dir install → Node ESM smoke: titanic apriori, assert exact expected top-3 |
 | `pnpm check:deps` / `check:noskip` | zero-runtime-deps assert / fail on `.skip`/`.only`/`todo` in gate suites (also `allowOnly: false`) |
 | `pnpm gate` | check:deps → check:noskip → typecheck → lint → build → test → pack:test → test:browser → bench:gates → print PARITY.md + COMPATIBILITY.md summary + BENCHMARKS.md + final `GATE: PASS/FAIL` line |

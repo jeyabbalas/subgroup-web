@@ -81,7 +81,7 @@
   },
   {
    "file": "tasks/synth-na-stress-wracc-apriori-d2-k10.json",
-   "sha256": "61476a32da16a64c8911c58923e940db0f511397ccdda9af87511b6c3ca0b38e",
+   "sha256": "a02ad886b89b4b81ca8c1d71e94246771e63998a63ee02da9e40afde76626013",
    "results": 10,
    "elapsed_seconds": 0.0012
   },

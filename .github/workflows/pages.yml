@@ -28,7 +28,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
       - run: BASE_PATH=/subgroup-web/ pnpm -C demo build
-      - run: pnpm docs
+      - run: pnpm run docs
       - name: Assemble pages artifact
         run: |
           rm -rf dist-pages

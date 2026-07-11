@@ -51,7 +51,12 @@ export class Pcg32 {
     }
   }
 
-  /** Standard normal via Box–Muller (deterministic, no cached spare). */
+  /**
+   * Standard normal via Box–Muller using native Math (no cached spare).
+   * Deterministic for a fixed JS engine but NOT byte-portable across engines
+   * (native Math.log/Math.cos disagree by an ulp) — never freeze its output as
+   * a committed fixture; use `nextGaussianPortable` for anything hash-checked.
+   */
   nextGaussian(): number {
     let u1 = this.nextFloat();
     if (u1 === 0) u1 = 2.3283064365386963e-10; // 2^-32: avoid log(0)
@@ -61,10 +66,12 @@ export class Pcg32 {
 
   /**
    * Standard normal via Box–Muller over PORTABLE transcendentals
-   * (util/math.ts): byte-identical output across JS engines. Used by
-   * generators whose output is hash-pinned and regenerated per environment
-   * (synth-2M, BRIEF §6.4/§21). `nextGaussian` keeps the native-Math form
-   * because the small planted fixtures were frozen with it.
+   * (util/math.ts): byte-identical output across JS engines. Used by every
+   * generator whose output is hash-pinned as a fixture — the committed
+   * planted + stress CSVs and the regenerated synth-2M datasets (BRIEF
+   * §6.4/§21) — so the frozen bytes reproduce on any engine (Node, Chromium)
+   * and CI stays green. Consumes the same two `nextFloat` draws as
+   * `nextGaussian`, so swapping between them never shifts the PCG32 stream.
    */
   nextGaussianPortable(): number {
     let u1 = this.nextFloat();

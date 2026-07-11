@@ -43,7 +43,7 @@
       },
       "plant": "b1=='u' AND b2=='m'",
       "rows": 3000,
-      "sha256": "7c5528188b076dcfe50a31d2d319410e144044d61e996cc4bcf030f0f92d2816"
+      "sha256": "23d31eee68c32e1d310c53564b58d24793b1d6a5fc9b8ddf682ea8d5b51a947c"
     },
     {
       "name": "planted-numeric-500",
@@ -57,7 +57,7 @@
       },
       "plant": "b1=='u' AND b2=='m'",
       "rows": 500,
-      "sha256": "5e0ead60ad50e0a576cf7cce86c7c6682615490fe4025cb3db2c7a12189daf16"
+      "sha256": "3b228d84c29586510bf594770a350bf56ed0e059028bcffd00fae90504eb5b53"
     },
     {
       "name": "tie-stress",
@@ -78,7 +78,7 @@
         "seed": 821
       },
       "rows": 240,
-      "sha256": "87ae4566fa10b746873ff473cc7c5b87de739ec5d9c217f3eb54367cbba184f1"
+      "sha256": "2022b27d8439e217452d2b15b45149874d5f1fbc236a21b51da52e6c22a729a0"
     },
     {
       "name": "dup-rows",

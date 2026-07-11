@@ -85,6 +85,6 @@ for (const recipe of RECIPES) {
 }
 fs.writeFileSync(
   path.join(REPO, "test", "fixtures", "synth-manifest.json"),
-  `${JSON.stringify(manifest, null, 1)}\n`,
+  `${JSON.stringify(manifest, null, 2)}\n`,
 );
 console.log(`wrote ${manifest.fixtures.length} fixtures + manifest`);

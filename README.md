@@ -146,7 +146,7 @@ the GPU exactness band).
 
 A full explorer (dataset picker, CSV upload — parsed locally, target/QF
 builders, live progress, sortable results, ROC-space and subgroup-bars views,
-export, backend toggle) ships in [`demo/`](demo/) and deploys to GitHub Pages:
+export, backend toggle) ships in [`demo/`](https://github.com/jeyabbalas/subgroup-web/tree/main/demo) and deploys to GitHub Pages:
 <https://jeyabbalas.github.io/subgroup-web/> (API docs under `/api`).
 
 ```sh

@@ -104,7 +104,7 @@ export function plantedNumeric(options: PlantedNumericOptions): PlantedDataset {
     b1[i] = v1;
     b2[i] = v2;
     const inPocket = v1 === "u" && v2 === "m";
-    t[i] = rng.nextGaussian() + (inPocket ? shift : 0);
+    t[i] = rng.nextGaussianPortable() + (inPocket ? shift : 0);
     for (let m = 0; m < noiseAttributes; m++) {
       noise[m]![i] = `v${rng.nextBounded(noiseCardinality)}`;
     }

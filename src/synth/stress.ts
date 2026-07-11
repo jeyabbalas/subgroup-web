@@ -60,8 +60,8 @@ export function naStress(n: number, seed: bigint | number): DataTable {
     g1[i] = v1;
     g2[i] = v1 === "γ" || rng.nextFloat() < 0.25 ? null : G2[rng.nextBounded(2)]!;
     x1[i] = rng.nextFloat() < 0.3 ? Number.NaN : rng.nextBounded(5);
-    x2[i] = rng.nextGaussian();
-    t[i] = rng.nextGaussian() + (g2[i] === "hi" ? 1.5 : 0);
+    x2[i] = rng.nextGaussianPortable();
+    t[i] = rng.nextGaussianPortable() + (g2[i] === "hi" ? 1.5 : 0);
     const pPos = (v1 === "α" ? 0.7 : 0.3) + (x1[i]! >= 3 ? 0.2 : 0);
     y[i] = rng.nextFloat() < pPos ? 1 : 0;
   }
