@@ -5,15 +5,15 @@
  * through `resolveEvaluator` (engine.ts) when `backend: 'webgpu' | 'auto'`.
  */
 
-import type { SelectorAtlas } from "../bitset/atlas.js";
-import type { NumericStatsPlan } from "../targets/stats.js";
-import type { PreparedTarget } from "../targets/types.js";
+import type { PreparedTask } from "../search/task.js";
 import type { BatchEvaluator } from "./types.js";
 
 export interface GpuFactoryRequest {
-  atlas: SelectorAtlas;
-  prepared: PreparedTarget;
-  plan: NumericStatsPlan | null;
+  /**
+   * The prepared task. `task.atlas` is a LAZY build — GPU evaluators that
+   * can construct their atlas on-device (codes mode) must not touch it.
+   */
+  task: PreparedTask;
   /** Injected GPUDevice (Node/Dawn or an app-managed device); optional. */
   device?: GPUDevice;
 }

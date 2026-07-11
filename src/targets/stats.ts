@@ -274,6 +274,69 @@ export function numericStatsFromBits(
   };
 }
 
+/**
+ * Fused variant of the streaming branch of `numericStatsFromBits`: the cover
+ * word m = a op b (or just b when a = null) is computed on the fly — no
+ * materialization (BRIEF §11 hot path). Bit-identical to materialize-then-
+ * scan by construction: identical ascending word/bit visit order, identical
+ * accumulation arithmetic. Callers must ensure the plan has no
+ * median/order/std needs (those gather + sort — use the materialized path).
+ */
+export function numericStatsFromCombinedBits(
+  prep: PreparedNumeric,
+  plan: NumericStatsPlan,
+  a: Uint32Array | null,
+  aOff: number,
+  b: Uint32Array,
+  bOff: number,
+  len: number,
+  op: "and" | "or",
+): NumericCoverStats {
+  const values = prep.values;
+  const dir = plan.direction;
+  const c0 = plan.centroid === "mean" ? prep.mean : prep.median;
+  const needTails = plan.needExcess || plan.needTail;
+  let size = 0;
+  let sum = 0;
+  let excessSum = 0;
+  let tailCount = 0;
+  let tailExtreme = Number.NEGATIVE_INFINITY;
+  for (let w = 0; w < len; w++) {
+    let x =
+      a === null
+        ? b[bOff + w]!
+        : op === "and"
+          ? a[aOff + w]! & b[bOff + w]!
+          : a[aOff + w]! | b[bOff + w]!;
+    const base = w << 5;
+    while (x !== 0) {
+      const isolated = x & -x;
+      const v = values[base + (31 - Math.clz32(isolated))]!;
+      x ^= isolated;
+      size++;
+      sum += v;
+      if (needTails) {
+        const excess = dir * (v - c0);
+        if (excess > 0) {
+          excessSum += excess;
+          tailCount++;
+          if (excess > tailExtreme) tailExtreme = excess;
+        }
+      }
+    }
+  }
+  return {
+    size,
+    sum,
+    std: Number.NaN,
+    median: Number.NaN,
+    excessSum,
+    tailCount,
+    tailExtreme,
+    orderEstimate: Number.NEGATIVE_INFINITY,
+  };
+}
+
 /** The reference's 14-field numeric statistics table (spec §5.2). */
 export function numericStatsTable(
   prep: PreparedNumeric,

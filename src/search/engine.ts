@@ -17,7 +17,7 @@ import { CoverEvalContext } from "../qf/context.js";
 import { buildResults, type SubgroupResults } from "../results/result.js";
 import { type BatchScorer, makeScorer } from "./scorer.js";
 import type { PreparedTask } from "./task.js";
-import { TopK } from "./topk.js";
+import { TopK, type TopKItem } from "./topk.js";
 
 /** Options shared by the optimized engines (BRIEF §5.4). */
 export interface SearchOptions {
@@ -73,11 +73,7 @@ async function resolveEvaluator(
         );
       }
     } else if (requested === "webgpu" || heavy) {
-      const req: Parameters<typeof factory>[0] = {
-        atlas: task.atlas,
-        prepared: task.prepared,
-        plan: task.qf.kind === "numeric" ? task.qf.plan : null,
-      };
+      const req: Parameters<typeof factory>[0] = { task };
       if (options.device !== undefined) req.device = options.device;
       const gpu = await factory(req);
       if (gpu !== null) return { evaluator: gpu, note: null };
@@ -197,6 +193,18 @@ export class SearchRun {
     return new SearchRun(task, options, evaluator, note, descriptionOp);
   }
 
+  /**
+   * Admission-time statistics payload for result materialization
+   * (binary/FI targets; see TopKItem.aux). Numeric/EMM statistic tables
+   * need gathered values, so their results recompute covers.
+   */
+  auxFor(batch: { size: Uint32Array; positives: Uint32Array | null }, i: number): TopKItem["aux"] {
+    const kind = this.task.prepared.kind;
+    if (kind === "binary") return { size: batch.size[i]!, positives: batch.positives![i]! };
+    if (kind === "fi") return { size: batch.size[i]! };
+    return undefined;
+  }
+
   /** §3.3 membership: all constraints must accept the candidate. */
   membershipOk(size: number): boolean {
     if (this.task.minSupportRows > 0 && size < this.task.minSupportRows) return false;
@@ -234,12 +242,12 @@ export class SearchRun {
    * candidate whose upper bound cannot enter is dropped (its exact quality
    * is ≤ the bound, so the drop is sound).
    */
-  admit(quality: number, tuple: ArrayLike<number>): boolean {
-    return this.admitInto(this.topk, quality, tuple);
+  admit(quality: number, tuple: ArrayLike<number>, aux?: TopKItem["aux"]): boolean {
+    return this.admitInto(this.topk, quality, tuple, aux);
   }
 
   /** `admit` against a caller-owned TopK (beamSearch's width-w pool). */
-  admitInto(topk: TopK, quality: number, tuple: ArrayLike<number>): boolean {
+  admitInto(topk: TopK, quality: number, tuple: ArrayLike<number>, aux?: TopKItem["aux"]): boolean {
     let q = quality;
     if (this.rescorer !== null) {
       this.screenedAdmissions++;
@@ -247,7 +255,7 @@ export class SearchRun {
       q = this.rescoreExact(tuple);
       this.rescoredAdmissions++;
     }
-    return topk.add(q, tuple);
+    return topk.add(q, tuple, aux);
   }
 
   /** Exact f64 quality of a candidate via the CPU kernels (band re-score). */

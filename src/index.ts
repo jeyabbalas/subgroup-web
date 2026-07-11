@@ -17,7 +17,11 @@ export const VERSION = "0.1.0";
 
 export { allocBatch, CpuEvaluator } from "./backends/cpu/evaluator.js";
 export type { WorkerPoolOptions } from "./backends/cpu/pool.js";
-export { sharedMemoryAvailable, WorkerPoolEvaluator } from "./backends/cpu/pool.js";
+export {
+  sharedMemoryAvailable,
+  terminateCachedWorkers,
+  WorkerPoolEvaluator,
+} from "./backends/cpu/pool.js";
 export type { GpuEvaluatorFactory, GpuFactoryRequest } from "./backends/registry.js";
 export { getGpuEvaluatorFactory, registerGpuEvaluatorFactory } from "./backends/registry.js";
 // Backends
@@ -157,6 +161,8 @@ export { patternTree } from "./search/patterntree.js";
 export type { Constraint, PreparedTask, SearchProgress, SubgroupTask } from "./search/task.js";
 export { minSupport, prepareTask } from "./search/task.js";
 export { compareItems, TopK, type TopKItem } from "./search/topk.js";
+export type { Synth2MOptions } from "./synth/big.js";
+export { datasetContentHash, headRows, synth2MBinary, synth2MNumeric } from "./synth/big.js";
 // Synthetic data
 export type {
   PlantedBinaryOptions,

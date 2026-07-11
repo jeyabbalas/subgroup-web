@@ -177,7 +177,9 @@ export async function patternTree(
       qf.kind === "binary"
         ? qf.evaluate(size, positives, prep as never)
         : qf.evaluate({ size, depth }, prep as never);
-    if (run.membershipOk(size)) run.topk.add(quality, tuple);
+    if (run.membershipOk(size)) {
+      run.topk.add(quality, tuple, prep.kind === "binary" ? { size, positives } : { size });
+    }
     if (!run.canPrune) return Number.POSITIVE_INFINITY;
     if (qf.kind === "binary" && qf.optimisticEstimate) {
       return qf.optimisticEstimate(size, positives, prep as never);

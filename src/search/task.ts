@@ -89,6 +89,12 @@ export interface PreparedTask {
   readonly qf: QF;
   /** Deduplicated selectors in canonical §2.2 order (spec §7.1). */
   readonly selectors: readonly Selector[];
+  /**
+   * The selector-bitset atlas, built LAZILY on first access (memoized).
+   * Engines that never materialize CPU covers — the GPU codes-mode fast
+   * path with stats-carrying results (BRIEF §12/§8 P2) — skip the build
+   * entirely; every other consumer is unaffected.
+   */
   readonly atlas: SelectorAtlas;
   readonly k: number;
   readonly depth: number;
@@ -162,13 +168,17 @@ export function prepareTask(task: SubgroupTask): PreparedTask {
     if (resolver) minSupportRows = Math.max(minSupportRows, resolver(table.nRows));
   }
 
+  let atlas: SelectorAtlas | null = null;
   return {
     table,
     target: task.target,
     prepared,
     qf: task.qf,
     selectors,
-    atlas: buildAtlas(table, selectors),
+    get atlas(): SelectorAtlas {
+      if (atlas === null) atlas = buildAtlas(table, selectors);
+      return atlas;
+    },
     k,
     depth,
     minQuality: task.minQuality ?? Number.NEGATIVE_INFINITY,

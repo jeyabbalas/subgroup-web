@@ -37,6 +37,9 @@ export type WireTarget =
 
 export interface InitMessage {
   type: "init";
+  /** Globally unique (echoed by ReadyReply — worker processes are cached
+   * and re-initialized across pools; stale replies must not match). */
+  id: number;
   nRows: number;
   /** Selector-major atlas bit matrix (possibly SAB-backed). */
   bits: Uint32Array;
@@ -64,6 +67,7 @@ export type PoolRequest = InitMessage | TuplesMessage | ExtensionsMessage;
 
 export interface ReadyReply {
   type: "ready";
+  id: number;
 }
 
 export interface StatsReply {

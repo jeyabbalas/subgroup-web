@@ -1,0 +1,31 @@
+{
+ "generator": "reference/scripts/bench_reference.py",
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "timings": [
+  {
+   "task": "p1-adult-apriori-d3-std05-k100",
+   "selectors": 132,
+   "runs": [
+    0.315600625006482,
+    0.30276595801115036,
+    0.3156933749560267
+   ],
+   "median_seconds": 0.315600625006482
+  },
+  {
+   "task": "info-titanic-apriori-d3-wracc",
+   "selectors": 365,
+   "runs": [
+    0.003945834003388882,
+    0.0041769579984247684,
+    0.004042790969833732
+   ],
+   "median_seconds": 0.004042790969833732
+  }
+ ]
+}

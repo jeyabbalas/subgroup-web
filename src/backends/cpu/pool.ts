@@ -12,6 +12,13 @@
  *   the atlas + target vectors are copied into SABs once and shared.
  * - Non-SAB (GitHub Pages, BRIEF §15): the init message clones the buffers
  *   into each worker once; per-batch traffic is still tuples in / stats out.
+ *
+ * Worker PROCESSES are cached at module level and re-initialized per task
+ * (classic thread-pool design): spawning threads costs 10–20 ms each, which
+ * would otherwise dominate short searches. Cached idle workers are unref'd
+ * in Node so they never hold the process open; message ids are globally
+ * unique so late replies from a previous task can never be mistaken for
+ * current ones.
  */
 
 import type { SelectorAtlas } from "../../bitset/atlas.js";
@@ -33,18 +40,40 @@ export interface WorkerPoolOptions {
   sharedMemory?: boolean;
   /** Batches with ≤ this many candidates run on the main thread (default 256). */
   localThreshold?: number;
+  /** Milliseconds to wait for worker startup before failing (default 30000). */
+  spawnTimeoutMs?: number;
+  /** Bypass the process-level worker cache (spawn fresh, terminate on dispose). */
+  noCache?: boolean;
 }
 
 interface WorkerHandle {
   post(msg: PoolRequest, transfer?: ArrayBuffer[]): void;
-  onMessage(handler: (msg: PoolReply) => void): void;
-  onError(handler: (err: Error) => void): void;
+  setHandlers(
+    onMessage: ((msg: PoolReply) => void) | null,
+    onError: ((err: Error) => void) | null,
+  ): void;
+  ref(): void;
+  unref(): void;
   terminate(): void;
 }
 
 interface Pending {
   resolve(batch: StatsBatch): void;
   reject(err: Error): void;
+}
+
+/** Globally unique message ids (workers are reused across pools). */
+let nextMessageId = 1;
+
+/** Idle spawned workers by script key (returned by dispose, unref'd). */
+const workerCache = new Map<string, WorkerHandle[]>();
+
+/** Terminate every cached idle worker (bench teardown / leak audits). */
+export function terminateCachedWorkers(): void {
+  for (const [, handles] of workerCache) {
+    for (const h of handles) h.terminate();
+  }
+  workerCache.clear();
 }
 
 function isNode(): boolean {
@@ -104,22 +133,34 @@ async function spawnWorker(script: string | URL): Promise<WorkerHandle> {
   if (isNode()) {
     const { Worker } = await import("node:worker_threads");
     const w = new Worker(script);
+    let onMessage: ((msg: PoolReply) => void) | null = null;
+    let onError: ((err: Error) => void) | null = null;
+    w.on("message", (m: PoolReply) => onMessage?.(m));
+    w.on("error", (e: Error) => onError?.(e));
     return {
-      post: (msg, transfer) => w.postMessage(msg, transfer as readonly ArrayBuffer[]),
-      onMessage: (handler) => w.on("message", handler),
-      onError: (handler) => w.on("error", handler),
+      post: (msg, transfer) => w.postMessage(msg, (transfer ?? []) as readonly ArrayBuffer[]),
+      setHandlers: (m, e) => {
+        onMessage = m;
+        onError = e;
+      },
+      ref: () => w.ref(),
+      unref: () => w.unref(),
       terminate: () => void w.terminate(),
     };
   }
   const w = new Worker(script, { type: "module" });
+  let onMessage: ((msg: PoolReply) => void) | null = null;
+  let onError: ((err: Error) => void) | null = null;
+  w.onmessage = (ev: MessageEvent) => onMessage?.(ev.data as PoolReply);
+  w.onerror = (ev: ErrorEvent) => onError?.(new Error(ev.message || "worker error"));
   return {
     post: (msg, transfer) => w.postMessage(msg, transfer ?? []),
-    onMessage: (handler) => {
-      w.onmessage = (ev: MessageEvent) => handler(ev.data as PoolReply);
+    setHandlers: (m, e) => {
+      onMessage = m;
+      onError = e;
     },
-    onError: (handler) => {
-      w.onerror = (ev: ErrorEvent) => handler(new Error(ev.message || "worker error"));
-    },
+    ref: () => {},
+    unref: () => {},
     terminate: () => w.terminate(),
   };
 }
@@ -158,17 +199,20 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
   readonly workerCount: number;
   readonly sharedMemory: boolean;
   private readonly handles: WorkerHandle[];
+  private readonly scriptKey: string;
+  private readonly cacheable: boolean;
   private readonly local: CpuEvaluator;
   private readonly localThreshold: number;
   private readonly prepared: PreparedTarget;
   private readonly plan: NumericStatsPlan | null;
   private readonly pending = new Map<number, Pending>();
-  private seq = 0;
   private dead: Error | null = null;
   private disposed = false;
 
   private constructor(
     handles: WorkerHandle[],
+    scriptKey: string,
+    cacheable: boolean,
     local: CpuEvaluator,
     prepared: PreparedTarget,
     plan: NumericStatsPlan | null,
@@ -176,6 +220,8 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
     localThreshold: number,
   ) {
     this.handles = handles;
+    this.scriptKey = scriptKey;
+    this.cacheable = cacheable;
     this.local = local;
     this.prepared = prepared;
     this.plan = plan;
@@ -184,12 +230,15 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
     this.localThreshold = localThreshold;
     this.name = `cpu-workers(${handles.length}${sharedMemory ? ",sab" : ""})`;
     for (const h of handles) {
-      h.onMessage((msg) => this.onReply(msg));
-      h.onError((err) => this.fail(new BackendError(`worker crashed: ${err.message}`)));
+      h.ref();
+      h.setHandlers(
+        (msg) => this.onReply(msg),
+        (err) => this.fail(new BackendError(`worker crashed: ${err.message}`)),
+      );
     }
   }
 
-  /** Spawn + initialize the pool (workers ack before this resolves). */
+  /** Spawn/reuse + initialize the pool (workers ack before this resolves). */
   static async create(
     atlas: SelectorAtlas,
     prepared: PreparedTarget,
@@ -202,7 +251,15 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
       throw new BackendError("workers.sharedMemory: SharedArrayBuffer is not available here");
     }
     const script = await resolveWorkerScript(options.script);
-    const handles = await Promise.all(Array.from({ length: count }, () => spawnWorker(script)));
+    const scriptKey = String(script);
+    const cacheable = options.noCache !== true;
+    const handles: WorkerHandle[] = [];
+    if (cacheable) {
+      const idle = workerCache.get(scriptKey) ?? [];
+      while (handles.length < count && idle.length > 0) handles.push(idle.pop()!);
+      workerCache.set(scriptKey, idle);
+    }
+    while (handles.length < count) handles.push(await spawnWorker(script));
 
     let bits = atlas.bits;
     let wire = toWireTarget(prepared);
@@ -212,46 +269,57 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
     }
     const pool = new WorkerPoolEvaluator(
       handles,
+      scriptKey,
+      cacheable,
       new CpuEvaluator(atlas, prepared, plan),
       prepared,
       plan,
       sharedMemory,
       options.localThreshold ?? 256,
     );
-    await Promise.all(
-      handles.map(
-        (h, i) =>
-          new Promise<void>((resolve, reject) => {
-            pool.pending.set(-1 - i, {
-              resolve: () => resolve(),
-              reject,
-            } as unknown as Pending);
-            h.post({ type: "init", nRows: atlas.nRows, bits, target: wire, plan });
-          }),
-      ),
-    );
+    const spawnTimeoutMs = options.spawnTimeoutMs ?? 30_000;
+    const timer = setTimeout(() => {
+      pool.fail(
+        new BackendError(
+          `worker pool startup timed out after ${spawnTimeoutMs} ms — the worker script ` +
+            `(${scriptKey}) may be unreachable or failing to load`,
+        ),
+      );
+    }, spawnTimeoutMs);
+    try {
+      await Promise.all(
+        handles.map(
+          (h) =>
+            new Promise<void>((resolve, reject) => {
+              const id = nextMessageId++;
+              pool.pending.set(id, {
+                resolve: () => resolve(),
+                reject,
+              } as unknown as Pending);
+              h.post({ type: "init", id, nRows: atlas.nRows, bits, target: wire, plan });
+            }),
+        ),
+      );
+    } catch (err) {
+      pool.dispose();
+      throw err;
+    } finally {
+      clearTimeout(timer);
+    }
     return pool;
   }
 
   private onReply(msg: PoolReply): void {
-    if (msg.type === "ready") {
-      // Resolve the first outstanding init slot (negative ids).
-      for (const [id, p] of this.pending) {
-        if (id < 0) {
-          this.pending.delete(id);
-          (p.resolve as () => void)();
-          return;
-        }
-      }
-      return;
-    }
     if (msg.type === "error") {
       this.fail(new BackendError(`worker error: ${msg.message}`));
       return;
     }
     const p = this.pending.get(msg.id);
-    if (p !== undefined) {
-      this.pending.delete(msg.id);
+    if (p === undefined) return; // stale reply from a previous task — ignore
+    this.pending.delete(msg.id);
+    if (msg.type === "ready") {
+      (p.resolve as unknown as () => void)();
+    } else {
       p.resolve(msg.batch);
     }
   }
@@ -322,7 +390,7 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
         const slice = tuples.slice(s.start * arity, (s.start + s.count) * arity);
         return this.call(
           i % this.workerCount,
-          { type: "tuples", id: ++this.seq, tuples: slice, arity, count: s.count },
+          { type: "tuples", id: nextMessageId++, tuples: slice, arity, count: s.count },
           [slice.buffer as ArrayBuffer],
         );
       }),
@@ -352,7 +420,7 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
         if (parentCopy !== null) transfer.push(parentCopy.buffer as ArrayBuffer);
         return this.call(
           i % this.workerCount,
-          { type: "extensions", id: ++this.seq, parent: parentCopy, extensions: slice, op },
+          { type: "extensions", id: nextMessageId++, parent: parentCopy, extensions: slice, op },
           transfer,
         );
       }),
@@ -367,7 +435,18 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
   dispose(): void {
     if (this.disposed) return;
     this.disposed = true;
+    const healthy = this.dead === null;
     this.fail(new BackendError("worker pool disposed"));
-    for (const h of this.handles) h.terminate();
+    if (healthy && this.cacheable) {
+      const idle = workerCache.get(this.scriptKey) ?? [];
+      for (const h of this.handles) {
+        h.setHandlers(null, null);
+        h.unref();
+        idle.push(h);
+      }
+      workerCache.set(this.scriptKey, idle);
+    } else {
+      for (const h of this.handles) h.terminate();
+    }
   }
 }

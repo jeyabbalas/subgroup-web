@@ -18,6 +18,13 @@ export interface TopKItem {
   quality: number;
   /** Ascending selector indices over the task's canonical selector list. */
   tuple: Uint16Array;
+  /**
+   * Optional per-candidate statistics captured at admission (size, and
+   * positives for binary targets). Lets buildResults emit statistic tables
+   * without recomputing covers — decisive on the P2 GPU fast path where no
+   * CPU cover ever exists (BRIEF §8/§12). Pure payload: never compared.
+   */
+  aux?: { size: number; positives?: number };
 }
 
 /** quality desc → depth asc → lex tuple asc; total order for distinct tuples. */
@@ -84,9 +91,10 @@ export class TopK {
 
   /**
    * Offer a candidate. `tuple` may be a scratch buffer — it is copied only
-   * when the candidate is retained. Returns true iff retained.
+   * when the candidate is retained. `aux` is retained verbatim (payload
+   * only, never compared). Returns true iff retained.
    */
-  add(quality: number, tuple: ArrayLike<number>): boolean {
+  add(quality: number, tuple: ArrayLike<number>, aux?: TopKItem["aux"]): boolean {
     if (!(quality > this.minQuality)) return false; // strict; drops NaN
     const items = this.items;
     if (this.full) {
@@ -102,7 +110,11 @@ export class TopK {
       if (compareItems(quality, tuple, m.quality, m.tuple) < 0) hi = mid;
       else lo = mid + 1;
     }
-    items.splice(lo, 0, { quality, tuple: Uint16Array.from(tuple as ArrayLike<number>) });
+    items.splice(lo, 0, {
+      quality,
+      tuple: Uint16Array.from(tuple as ArrayLike<number>),
+      ...(aux !== undefined ? { aux } : {}),
+    });
     if (items.length > this.k) items.pop();
     return lo < this.k;
   }

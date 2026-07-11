@@ -66,7 +66,11 @@ async function aprioriRun(task: PreparedTask, run: SearchRun): Promise<SubgroupR
       for (let i = 0; i < bCount; i++) {
         const gi = start + i;
         if (run.membershipOk(sizes[gi]!)) {
-          run.admit(quality[gi]!, tuples.subarray(gi * arity, gi * arity + arity));
+          run.admit(
+            quality[gi]!,
+            tuples.subarray(gi * arity, gi * arity + arity),
+            run.auxFor(batch, i),
+          );
         }
       }
       await run.tick(bCount, arity);

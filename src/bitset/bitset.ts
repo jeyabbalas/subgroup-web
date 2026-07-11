@@ -101,6 +101,92 @@ export function andCount3(
   return total;
 }
 
+/** popcount(a OR b) without materializing the union. */
+export function orCount(
+  a: Uint32Array,
+  aOff: number,
+  b: Uint32Array,
+  bOff: number,
+  len: number,
+): number {
+  let total = 0;
+  for (let i = 0; i < len; i++) {
+    let x = a[aOff + i]! | b[bOff + i]!;
+    x = x - ((x >>> 1) & 0x55555555);
+    x = (x & 0x33333333) + ((x >>> 2) & 0x33333333);
+    x = (x + (x >>> 4)) & 0x0f0f0f0f;
+    total += (x * 0x01010101) >>> 24;
+  }
+  return total;
+}
+
+/**
+ * Fused binary-target counts in ONE pass, no cover materialization
+ * (BRIEF §11 hot path): m = a op b per word; counts[0] += popcount(m),
+ * counts[1] += popcount(m ∧ pos). Pass a = null for the single-row case
+ * (m = b). Counts are integers — identical to the materialize-then-count
+ * path by associativity of popcount over words.
+ */
+export function fusedBinaryCounts(
+  counts: Uint32Array,
+  a: Uint32Array | null,
+  aOff: number,
+  b: Uint32Array,
+  bOff: number,
+  pos: Uint32Array,
+  posOff: number,
+  len: number,
+  op: "and" | "or",
+): void {
+  let size = 0;
+  let positives = 0;
+  if (a === null) {
+    for (let i = 0; i < len; i++) {
+      const m = b[bOff + i]!;
+      let x = m;
+      x = x - ((x >>> 1) & 0x55555555);
+      x = (x & 0x33333333) + ((x >>> 2) & 0x33333333);
+      x = (x + (x >>> 4)) & 0x0f0f0f0f;
+      size += (x * 0x01010101) >>> 24;
+      let y = m & pos[posOff + i]!;
+      y = y - ((y >>> 1) & 0x55555555);
+      y = (y & 0x33333333) + ((y >>> 2) & 0x33333333);
+      y = (y + (y >>> 4)) & 0x0f0f0f0f;
+      positives += (y * 0x01010101) >>> 24;
+    }
+  } else if (op === "and") {
+    for (let i = 0; i < len; i++) {
+      const m = a[aOff + i]! & b[bOff + i]!;
+      let x = m;
+      x = x - ((x >>> 1) & 0x55555555);
+      x = (x & 0x33333333) + ((x >>> 2) & 0x33333333);
+      x = (x + (x >>> 4)) & 0x0f0f0f0f;
+      size += (x * 0x01010101) >>> 24;
+      let y = m & pos[posOff + i]!;
+      y = y - ((y >>> 1) & 0x55555555);
+      y = (y & 0x33333333) + ((y >>> 2) & 0x33333333);
+      y = (y + (y >>> 4)) & 0x0f0f0f0f;
+      positives += (y * 0x01010101) >>> 24;
+    }
+  } else {
+    for (let i = 0; i < len; i++) {
+      const m = a[aOff + i]! | b[bOff + i]!;
+      let x = m;
+      x = x - ((x >>> 1) & 0x55555555);
+      x = (x & 0x33333333) + ((x >>> 2) & 0x33333333);
+      x = (x + (x >>> 4)) & 0x0f0f0f0f;
+      size += (x * 0x01010101) >>> 24;
+      let y = m & pos[posOff + i]!;
+      y = y - ((y >>> 1) & 0x55555555);
+      y = (y & 0x33333333) + ((y >>> 2) & 0x33333333);
+      y = (y + (y >>> 4)) & 0x0f0f0f0f;
+      positives += (y * 0x01010101) >>> 24;
+    }
+  }
+  counts[0] = size;
+  counts[1] = positives;
+}
+
 /**
  * Iterate set bits of words[off, off+len), calling fn(rowIndex).
  * ctz(x) = 31 - clz32(x & -x) on the isolated lowest set bit.

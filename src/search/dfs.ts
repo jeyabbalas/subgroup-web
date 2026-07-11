@@ -90,7 +90,7 @@ async function dfsRun(task: PreparedTask, run: SearchRun): Promise<SubgroupResul
         if (run.membershipOk(sizes[gi]!)) {
           for (let d = 0; d < prefixLen; d++) tupleScratch[d] = path[d]!;
           tupleScratch[prefixLen] = children[gi]!;
-          run.admit(quality[gi]!, tupleScratch.subarray(0, childDepth));
+          run.admit(quality[gi]!, tupleScratch.subarray(0, childDepth), run.auxFor(batch, i));
         }
       }
       await run.tick(bCount, childDepth);

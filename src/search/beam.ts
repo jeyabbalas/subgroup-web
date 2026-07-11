@@ -125,7 +125,7 @@ async function beamRun(
       run.scorer.scoreBatch(batch, childDepth, (i) => childTuples[start + i]!, quality, null);
       for (let i = 0; i < bCount; i++) {
         if (run.membershipOk(batch.size[i]!)) {
-          run.admitInto(beam, quality[i]!, childTuples[start + i]!);
+          run.admitInto(beam, quality[i]!, childTuples[start + i]!, run.auxFor(batch, i));
         }
       }
       await run.tick(bCount, childDepth);

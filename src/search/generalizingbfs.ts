@@ -135,7 +135,7 @@ async function gbfsRun(
         tupleScratch[prefixLen] = id;
         const tuple = tupleScratch.subarray(0, childDepth);
         if (run.membershipOk(batch.size[i]!)) {
-          run.admit(quality[i]!, tuple);
+          run.admit(quality[i]!, tuple, run.auxFor(batch, i));
         }
         if (expandable && id < nSel - 1) {
           let childOe = Number.POSITIVE_INFINITY;

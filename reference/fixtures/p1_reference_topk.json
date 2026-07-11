@@ -1,0 +1,4004 @@
+{
+ "generator": "reference/scripts/bench_reference.py",
+ "task": "p1-adult-apriori-d3-std05-k100",
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "results": [
+  {
+   "quality": 0.1768392640164608,
+   "description": {
+    "repr": "(education-num>=13 and marital-status=='Married-civ-spouse')",
+    "str": "education-num>=13 AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.17050047739680543,
+   "description": {
+    "repr": "(education-num>=13 and marital-status=='Married-civ-spouse' and race=='White')",
+    "str": "education-num>=13 AND marital-status=='Married-civ-spouse' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.17037864225618668,
+   "description": {
+    "repr": "(education-num>=13 and marital-status=='Married-civ-spouse' and native-country=='United-States')",
+    "str": "education-num>=13 AND marital-status=='Married-civ-spouse' AND native-country=='United-States'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.16738457195951678,
+   "description": {
+    "repr": "(education-num>=13 and relationship=='Husband')",
+    "str": "education-num>=13 AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.16738457195951678,
+   "description": {
+    "repr": "(education-num>=13 and relationship=='Husband' and sex=='Male')",
+    "str": "education-num>=13 AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.16732333671593747,
+   "description": {
+    "repr": "(education-num>=13 and marital-status=='Married-civ-spouse' and relationship=='Husband')",
+    "str": "education-num>=13 AND marital-status=='Married-civ-spouse' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1670120806455196,
+   "description": {
+    "repr": "(education-num>=13 and marital-status=='Married-civ-spouse' and sex=='Male')",
+    "str": "education-num>=13 AND marital-status=='Married-civ-spouse' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.16147365420493448,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and education-num>=13 and marital-status=='Married-civ-spouse')",
+    "str": "capital-loss: [0:155[ AND education-num>=13 AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.16137405355749995,
+   "description": {
+    "repr": "(education-num>=13 and race=='White' and relationship=='Husband')",
+    "str": "education-num>=13 AND race=='White' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1609846323132835,
+   "description": {
+    "repr": "(education-num>=13 and native-country=='United-States' and relationship=='Husband')",
+    "str": "education-num>=13 AND native-country=='United-States' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.15275377296725004,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and education-num>=13 and relationship=='Husband')",
+    "str": "capital-loss: [0:155[ AND education-num>=13 AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.14654705059399145,
+   "description": {
+    "repr": "(capital-gain: [0:114[ and education-num>=13 and marital-status=='Married-civ-spouse')",
+    "str": "capital-gain: [0:114[ AND education-num>=13 AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 114,
+       "int": true
+      },
+      "repr": "capital-gain: [0:114[",
+      "str": "capital-gain: [0:114["
+     },
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1400169969787289,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse')",
+    "str": "marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13931845596963624,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and native-country=='United-States')",
+    "str": "marital-status=='Married-civ-spouse' AND native-country=='United-States'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13892560320621686,
+   "description": {
+    "repr": "(education-num>=13 and sex=='Male')",
+    "str": "education-num>=13 AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1385451666591014,
+   "description": {
+    "repr": "(capital-gain: [0:114[ and education-num>=13 and relationship=='Husband')",
+    "str": "capital-gain: [0:114[ AND education-num>=13 AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 114,
+       "int": true
+      },
+      "repr": "capital-gain: [0:114[",
+      "str": "capital-gain: [0:114["
+     },
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13821175506036465,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and native-country=='United-States' and race=='White')",
+    "str": "marital-status=='Married-civ-spouse' AND native-country=='United-States' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13763958772231094,
+   "description": {
+    "repr": "(education-num>=13 and marital-status=='Married-civ-spouse' and workclass=='Private')",
+    "str": "education-num>=13 AND marital-status=='Married-civ-spouse' AND workclass=='Private'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "workclass",
+      "value": {
+       "t": "str",
+       "v": "Private"
+      },
+      "repr": "workclass=='Private'",
+      "str": "workclass=='Private'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13750512258718825,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and race=='White')",
+    "str": "marital-status=='Married-civ-spouse' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1360302986004375,
+   "description": {
+    "repr": "(education-num>=13 and race=='White' and sex=='Male')",
+    "str": "education-num>=13 AND race=='White' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13409909361063035,
+   "description": {
+    "repr": "(education-num>=13 and native-country=='United-States' and sex=='Male')",
+    "str": "education-num>=13 AND native-country=='United-States' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13305063830034944,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and relationship=='Husband' and sex=='Male')",
+    "str": "marital-status=='Married-civ-spouse' AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13304651067452936,
+   "description": {
+    "repr": "(relationship=='Husband' and sex=='Male')",
+    "str": "relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13303954880387336,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and relationship=='Husband')",
+    "str": "marital-status=='Married-civ-spouse' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13303542568535887,
+   "description": {
+    "repr": "(relationship=='Husband')",
+    "str": "relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13188376727631795,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and sex=='Male')",
+    "str": "marital-status=='Married-civ-spouse' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13170869049881,
+   "description": {
+    "repr": "(native-country=='United-States' and relationship=='Husband' and sex=='Male')",
+    "str": "native-country=='United-States' AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13170306628980474,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and native-country=='United-States' and relationship=='Husband')",
+    "str": "marital-status=='Married-civ-spouse' AND native-country=='United-States' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1316968462010565,
+   "description": {
+    "repr": "(native-country=='United-States' and relationship=='Husband')",
+    "str": "native-country=='United-States' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1315167912379265,
+   "description": {
+    "repr": "(education-num>=13 and relationship=='Husband' and workclass=='Private')",
+    "str": "education-num>=13 AND relationship=='Husband' AND workclass=='Private'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "workclass",
+      "value": {
+       "t": "str",
+       "v": "Private"
+      },
+      "repr": "workclass=='Private'",
+      "str": "workclass=='Private'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.13101291024944,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and native-country=='United-States' and sex=='Male')",
+    "str": "marital-status=='Married-civ-spouse' AND native-country=='United-States' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.130263764705396,
+   "description": {
+    "repr": "(native-country=='United-States' and race=='White' and relationship=='Husband')",
+    "str": "native-country=='United-States' AND race=='White' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1298277772925985,
+   "description": {
+    "repr": "(race=='White' and relationship=='Husband' and sex=='Male')",
+    "str": "race=='White' AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12981604015938245,
+   "description": {
+    "repr": "(race=='White' and relationship=='Husband')",
+    "str": "race=='White' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12979796775119895,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and race=='White' and relationship=='Husband')",
+    "str": "marital-status=='Married-civ-spouse' AND race=='White' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12896768578617937,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and race=='White' and sex=='Male')",
+    "str": "marital-status=='Married-civ-spouse' AND race=='White' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12596394512985984,
+   "description": {
+    "repr": "(education=='Bachelors' and marital-status=='Married-civ-spouse')",
+    "str": "education=='Bachelors' AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12596394512985984,
+   "description": {
+    "repr": "(education-num>=13 and education=='Bachelors' and marital-status=='Married-civ-spouse')",
+    "str": "education-num>=13 AND education=='Bachelors' AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1250990719662648,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and education-num>=13 and sex=='Male')",
+    "str": "capital-loss: [0:155[ AND education-num>=13 AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12389092111100038,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and marital-status=='Married-civ-spouse')",
+    "str": "capital-loss: [0:155[ AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12375145087350117,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and marital-status=='Married-civ-spouse' and native-country=='United-States')",
+    "str": "capital-loss: [0:155[ AND marital-status=='Married-civ-spouse' AND native-country=='United-States'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12320893392059687,
+   "description": {
+    "repr": "(education-num>=13 and hours-per-week>=48 and marital-status=='Married-civ-spouse')",
+    "str": "education-num>=13 AND hours-per-week>=48 AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1224343418870867,
+   "description": {
+    "repr": "(education=='Bachelors' and marital-status=='Married-civ-spouse' and native-country=='United-States')",
+    "str": "education=='Bachelors' AND marital-status=='Married-civ-spouse' AND native-country=='United-States'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12205696273592809,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and marital-status=='Married-civ-spouse' and race=='White')",
+    "str": "capital-loss: [0:155[ AND marital-status=='Married-civ-spouse' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.12137012738865254,
+   "description": {
+    "repr": "(education=='Bachelors' and marital-status=='Married-civ-spouse' and race=='White')",
+    "str": "education=='Bachelors' AND marital-status=='Married-civ-spouse' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1201588276724057,
+   "description": {
+    "repr": "(education-num>=13)",
+    "str": "education-num>=13",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11987702644700744,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and occupation=='Exec-managerial')",
+    "str": "marital-status=='Married-civ-spouse' AND occupation=='Exec-managerial'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11987457322236202,
+   "description": {
+    "repr": "(education-num>=13 and hours-per-week>=48 and relationship=='Husband')",
+    "str": "education-num>=13 AND hours-per-week>=48 AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11972868358505301,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and occupation=='Prof-specialty')",
+    "str": "marital-status=='Married-civ-spouse' AND occupation=='Prof-specialty'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Prof-specialty"
+      },
+      "repr": "occupation=='Prof-specialty'",
+      "str": "occupation=='Prof-specialty'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11946113362238243,
+   "description": {
+    "repr": "(education=='Bachelors' and relationship=='Husband')",
+    "str": "education=='Bachelors' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11946113362238243,
+   "description": {
+    "repr": "(education=='Bachelors' and relationship=='Husband' and sex=='Male')",
+    "str": "education=='Bachelors' AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11946113362238243,
+   "description": {
+    "repr": "(education-num>=13 and education=='Bachelors' and relationship=='Husband')",
+    "str": "education-num>=13 AND education=='Bachelors' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11945565304639348,
+   "description": {
+    "repr": "(education-num>=13 and race=='White')",
+    "str": "education-num>=13 AND race=='White'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.119379802664645,
+   "description": {
+    "repr": "(education=='Bachelors' and marital-status=='Married-civ-spouse' and relationship=='Husband')",
+    "str": "education=='Bachelors' AND marital-status=='Married-civ-spouse' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11901974525755223,
+   "description": {
+    "repr": "(education=='Bachelors' and marital-status=='Married-civ-spouse' and sex=='Male')",
+    "str": "education=='Bachelors' AND marital-status=='Married-civ-spouse' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11835072906861639,
+   "description": {
+    "repr": "(education-num>=13 and marital-status=='Married-civ-spouse' and occupation=='Prof-specialty')",
+    "str": "education-num>=13 AND marital-status=='Married-civ-spouse' AND occupation=='Prof-specialty'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Prof-specialty"
+      },
+      "repr": "occupation=='Prof-specialty'",
+      "str": "occupation=='Prof-specialty'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11793126897273985,
+   "description": {
+    "repr": "(capital-gain>=594 and marital-status=='Married-civ-spouse')",
+    "str": "capital-gain>=594 AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11793126897273985,
+   "description": {
+    "repr": "(capital-gain>=594 and capital-loss: [0:155[ and marital-status=='Married-civ-spouse')",
+    "str": "capital-gain>=594 AND capital-loss: [0:155[ AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11780044290730965,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and relationship=='Husband' and sex=='Male')",
+    "str": "capital-loss: [0:155[ AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11778998971419083,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and marital-status=='Married-civ-spouse' and relationship=='Husband')",
+    "str": "capital-loss: [0:155[ AND marital-status=='Married-civ-spouse' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1177892821279027,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and relationship=='Husband')",
+    "str": "capital-loss: [0:155[ AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11706543895352775,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and native-country=='United-States' and relationship=='Husband')",
+    "str": "capital-loss: [0:155[ AND native-country=='United-States' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11669748660802341,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and marital-status=='Married-civ-spouse' and sex=='Male')",
+    "str": "capital-loss: [0:155[ AND marital-status=='Married-civ-spouse' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11668734639862079,
+   "description": {
+    "repr": "(hours-per-week>=48 and marital-status=='Married-civ-spouse')",
+    "str": "hours-per-week>=48 AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1166490687340142,
+   "description": {
+    "repr": "(education-num>=13 and native-country=='United-States' and race=='White')",
+    "str": "education-num>=13 AND native-country=='United-States' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11624282458689437,
+   "description": {
+    "repr": "(age: [41:51[ and education-num>=13 and marital-status=='Married-civ-spouse')",
+    "str": "age: [41:51[ AND education-num>=13 AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "age",
+      "lo": {
+       "value": 41,
+       "int": true
+      },
+      "hi": {
+       "value": 51,
+       "int": true
+      },
+      "repr": "age: [41:51[",
+      "str": "age: [41:51["
+     },
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11622452016033051,
+   "description": {
+    "repr": "(education-num>=13 and native-country=='United-States')",
+    "str": "education-num>=13 AND native-country=='United-States'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11612972974102824,
+   "description": {
+    "repr": "(education=='Bachelors' and native-country=='United-States' and relationship=='Husband')",
+    "str": "education=='Bachelors' AND native-country=='United-States' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11605939236886043,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and native-country=='United-States' and occupation=='Exec-managerial')",
+    "str": "marital-status=='Married-civ-spouse' AND native-country=='United-States' AND occupation=='Exec-managerial'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11598607857690743,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and occupation=='Exec-managerial' and race=='White')",
+    "str": "marital-status=='Married-civ-spouse' AND occupation=='Exec-managerial' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1155880718779327,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and occupation=='Prof-specialty' and race=='White')",
+    "str": "marital-status=='Married-civ-spouse' AND occupation=='Prof-specialty' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Prof-specialty"
+      },
+      "repr": "occupation=='Prof-specialty'",
+      "str": "occupation=='Prof-specialty'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1154515547818488,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and education=='Bachelors' and marital-status=='Married-civ-spouse')",
+    "str": "capital-loss: [0:155[ AND education=='Bachelors' AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11526724112706471,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and occupation=='Exec-managerial' and sex=='Male')",
+    "str": "marital-status=='Married-civ-spouse' AND occupation=='Exec-managerial' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11525706467876241,
+   "description": {
+    "repr": "(occupation=='Exec-managerial' and relationship=='Husband')",
+    "str": "occupation=='Exec-managerial' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11525706467876241,
+   "description": {
+    "repr": "(occupation=='Exec-managerial' and relationship=='Husband' and sex=='Male')",
+    "str": "occupation=='Exec-managerial' AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11525706467876241,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and occupation=='Exec-managerial' and relationship=='Husband')",
+    "str": "marital-status=='Married-civ-spouse' AND occupation=='Exec-managerial' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1152185307156143,
+   "description": {
+    "repr": "(capital-loss: [0:155[ and race=='White' and relationship=='Husband')",
+    "str": "capital-loss: [0:155[ AND race=='White' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11511086956712775,
+   "description": {
+    "repr": "(education=='Bachelors' and race=='White' and relationship=='Husband')",
+    "str": "education=='Bachelors' AND race=='White' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "education",
+      "value": {
+       "t": "str",
+       "v": "Bachelors"
+      },
+      "repr": "education=='Bachelors'",
+      "str": "education=='Bachelors'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11432497910820653,
+   "description": {
+    "repr": "(hours-per-week>=48 and marital-status=='Married-civ-spouse' and relationship=='Husband')",
+    "str": "hours-per-week>=48 AND marital-status=='Married-civ-spouse' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11430211334889105,
+   "description": {
+    "repr": "(hours-per-week>=48 and relationship=='Husband')",
+    "str": "hours-per-week>=48 AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11430211334889105,
+   "description": {
+    "repr": "(hours-per-week>=48 and relationship=='Husband' and sex=='Male')",
+    "str": "hours-per-week>=48 AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11414717731275466,
+   "description": {
+    "repr": "(capital-gain>=594 and marital-status=='Married-civ-spouse' and native-country=='United-States')",
+    "str": "capital-gain>=594 AND marital-status=='Married-civ-spouse' AND native-country=='United-States'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11403980290340267,
+   "description": {
+    "repr": "(hours-per-week>=48 and marital-status=='Married-civ-spouse' and sex=='Male')",
+    "str": "hours-per-week>=48 AND marital-status=='Married-civ-spouse' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11350445500773539,
+   "description": {
+    "repr": "(hours-per-week>=48 and marital-status=='Married-civ-spouse' and race=='White')",
+    "str": "hours-per-week>=48 AND marital-status=='Married-civ-spouse' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11305172451849614,
+   "description": {
+    "repr": "(capital-gain>=594 and marital-status=='Married-civ-spouse' and race=='White')",
+    "str": "capital-gain>=594 AND marital-status=='Married-civ-spouse' AND race=='White'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11280351652846703,
+   "description": {
+    "repr": "(marital-status=='Married-civ-spouse' and native-country=='United-States' and occupation=='Prof-specialty')",
+    "str": "marital-status=='Married-civ-spouse' AND native-country=='United-States' AND occupation=='Prof-specialty'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Prof-specialty"
+      },
+      "repr": "occupation=='Prof-specialty'",
+      "str": "occupation=='Prof-specialty'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11250279957490114,
+   "description": {
+    "repr": "(hours-per-week>=48 and marital-status=='Married-civ-spouse' and native-country=='United-States')",
+    "str": "hours-per-week>=48 AND marital-status=='Married-civ-spouse' AND native-country=='United-States'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11215169984105199,
+   "description": {
+    "repr": "(education-num>=13 and hours-per-week>=48 and sex=='Male')",
+    "str": "education-num>=13 AND hours-per-week>=48 AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11180199518570025,
+   "description": {
+    "repr": "(capital-gain>=594 and relationship=='Husband')",
+    "str": "capital-gain>=594 AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11180199518570025,
+   "description": {
+    "repr": "(capital-gain>=594 and relationship=='Husband' and sex=='Male')",
+    "str": "capital-gain>=594 AND relationship=='Husband' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11180199518570025,
+   "description": {
+    "repr": "(capital-gain>=594 and capital-loss: [0:155[ and relationship=='Husband')",
+    "str": "capital-gain>=594 AND capital-loss: [0:155[ AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "interval",
+      "attribute": "capital-loss",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 155,
+       "int": true
+      },
+      "repr": "capital-loss: [0:155[",
+      "str": "capital-loss: [0:155["
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11175484931403144,
+   "description": {
+    "repr": "(capital-gain>=594 and marital-status=='Married-civ-spouse' and relationship=='Husband')",
+    "str": "capital-gain>=594 AND marital-status=='Married-civ-spouse' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11166358151886317,
+   "description": {
+    "repr": "(age: [41:51[ and marital-status=='Married-civ-spouse')",
+    "str": "age: [41:51[ AND marital-status=='Married-civ-spouse'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "age",
+      "lo": {
+       "value": 41,
+       "int": true
+      },
+      "hi": {
+       "value": 51,
+       "int": true
+      },
+      "repr": "age: [41:51[",
+      "str": "age: [41:51["
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11161560262506018,
+   "description": {
+    "repr": "(occupation=='Exec-managerial' and race=='White' and relationship=='Husband')",
+    "str": "occupation=='Exec-managerial' AND race=='White' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11153297353783699,
+   "description": {
+    "repr": "(capital-gain>=594 and marital-status=='Married-civ-spouse' and sex=='Male')",
+    "str": "capital-gain>=594 AND marital-status=='Married-civ-spouse' AND sex=='Male'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "capital-gain",
+      "lo": {
+       "value": 594,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "capital-gain>=594",
+      "str": "capital-gain>=594"
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "sex",
+      "value": {
+       "t": "str",
+       "v": "Male"
+      },
+      "repr": "sex=='Male'",
+      "str": "sex=='Male'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11141273832030571,
+   "description": {
+    "repr": "(native-country=='United-States' and occupation=='Exec-managerial' and relationship=='Husband')",
+    "str": "native-country=='United-States' AND occupation=='Exec-managerial' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "occupation",
+      "value": {
+       "t": "str",
+       "v": "Exec-managerial"
+      },
+      "repr": "occupation=='Exec-managerial'",
+      "str": "occupation=='Exec-managerial'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11104269393372847,
+   "description": {
+    "repr": "(hours-per-week>=48 and race=='White' and relationship=='Husband')",
+    "str": "hours-per-week>=48 AND race=='White' AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     },
+     {
+      "kind": "equality",
+      "attribute": "race",
+      "value": {
+       "t": "str",
+       "v": "White"
+      },
+      "repr": "race=='White'",
+      "str": "race=='White'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11065794638432601,
+   "description": {
+    "repr": "(age: [41:51[ and marital-status=='Married-civ-spouse' and native-country=='United-States')",
+    "str": "age: [41:51[ AND marital-status=='Married-civ-spouse' AND native-country=='United-States'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "age",
+      "lo": {
+       "value": 41,
+       "int": true
+      },
+      "hi": {
+       "value": 51,
+       "int": true
+      },
+      "repr": "age: [41:51[",
+      "str": "age: [41:51["
+     },
+     {
+      "kind": "equality",
+      "attribute": "marital-status",
+      "value": {
+       "t": "str",
+       "v": "Married-civ-spouse"
+      },
+      "repr": "marital-status=='Married-civ-spouse'",
+      "str": "marital-status=='Married-civ-spouse'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "native-country",
+      "value": {
+       "t": "str",
+       "v": "United-States"
+      },
+      "repr": "native-country=='United-States'",
+      "str": "native-country=='United-States'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.11042268093603322,
+   "description": {
+    "repr": "(age: [41:51[ and education-num>=13 and relationship=='Husband')",
+    "str": "age: [41:51[ AND education-num>=13 AND relationship=='Husband'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "age",
+      "lo": {
+       "value": 41,
+       "int": true
+      },
+      "hi": {
+       "value": 51,
+       "int": true
+      },
+      "repr": "age: [41:51[",
+      "str": "age: [41:51["
+     },
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "equality",
+      "attribute": "relationship",
+      "value": {
+       "t": "str",
+       "v": "Husband"
+      },
+      "repr": "relationship=='Husband'",
+      "str": "relationship=='Husband'"
+     }
+    ]
+   }
+  },
+  {
+   "quality": 0.1101683877814708,
+   "description": {
+    "repr": "(education-num>=13 and hours-per-week>=48)",
+    "str": "education-num>=13 AND hours-per-week>=48",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "education-num",
+      "lo": {
+       "value": 13,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "education-num>=13",
+      "str": "education-num>=13"
+     },
+     {
+      "kind": "interval",
+      "attribute": "hours-per-week",
+      "lo": {
+       "value": 48,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "hours-per-week>=48",
+      "str": "hours-per-week>=48"
+     }
+    ]
+   }
+  }
+ ]
+}
