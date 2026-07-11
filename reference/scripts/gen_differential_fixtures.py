@@ -27,18 +27,23 @@ from common import FIXTURES, REPO, dump_json, sha256_file, versions
 
 
 def load_dataset(name):
+    # float_precision="round_trip": pandas' default C-engine xstrtod is not
+    # correctly rounded (1-ulp drift vs the CSV bytes), which shifts
+    # equal-frequency cutpoints off the values subgroup-web parses (JS Number()
+    # is correctly rounded). The CSV bytes are the ground truth both sides
+    # must read identically; DECISIONS.md 2026-07-11.
     csvs = {
         "titanic": os.path.join(os.path.dirname(FIXTURES), "datasets", "titanic.csv"),
         "credit-g": os.path.join(os.path.dirname(FIXTURES), "datasets", "credit-g.csv"),
         "adult": os.path.join(os.path.dirname(FIXTURES), ".cache", "adult.csv"),
     }
     if name in csvs:
-        return pd.read_csv(csvs[name])
+        return pd.read_csv(csvs[name], float_precision="round_trip")
     if name.startswith("synth:"):
         # Synthetic datasets are exported by the TS side (fixture-frozen CSVs
         # under test/fixtures/datasets); the reference reads the same bytes.
         path = os.path.join(REPO, "test", "fixtures", "datasets", name[len("synth:") :] + ".csv")
-        return pd.read_csv(path)
+        return pd.read_csv(path, float_precision="round_trip")
     raise ValueError(f"unknown dataset {name!r}")
 
 

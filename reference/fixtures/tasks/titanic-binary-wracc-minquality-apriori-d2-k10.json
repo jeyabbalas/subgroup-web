@@ -1,7 +1,7 @@
 {
- "id": "titanic-binary-wracc-apriori-d2-k5",
+ "id": "titanic-binary-wracc-minquality-apriori-d2-k10",
  "cell": {
-  "id": "titanic-binary-wracc-apriori-d2-k5",
+  "id": "titanic-binary-wracc-minquality-apriori-d2-k10",
   "dataset": "titanic",
   "target": {
    "type": "binary",
@@ -21,8 +21,8 @@
   },
   "algorithm": "apriori",
   "depth": 2,
-  "k": 5,
-  "minQuality": 0
+  "k": 10,
+  "minQuality": 0.01
  },
  "versions": {
   "pysubgroup": "0.9.0",
@@ -3803,7 +3803,7 @@
    "str": "Fare>=35.50"
   }
  ],
- "elapsed_seconds": 0.00364287500269711,
+ "elapsed_seconds": 0.003679624991491437,
  "results": [
   {
    "quality": 0.13214990138067062,
@@ -4019,6 +4019,245 @@
     "target_share_complement": 0.25210084033613445,
     "target_share_dataset": 0.34615384615384615,
     "lift": 1.873873873873874
+   }
+  },
+  {
+   "quality": 0.05152859960552268,
+   "description": {
+    "repr": "(Sex=='female' and SibSp: [1:2[)",
+    "str": "Sex=='female' AND SibSp: [1:2[",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "SibSp",
+      "lo": {
+       "value": 1,
+       "int": true
+      },
+      "hi": {
+       "value": 2,
+       "int": true
+      },
+      "repr": "SibSp: [1:2[",
+      "str": "SibSp: [1:2["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 23,
+    "size_dataset": 156,
+    "positives_sg": 16,
+    "positives_dataset": 54,
+    "size_complement": 133,
+    "relative_size_sg": 0.14743589743589744,
+    "relative_size_complement": 0.8525641025641025,
+    "coverage_sg": 0.2962962962962963,
+    "coverage_complement": 0.7037037037037037,
+    "target_share_sg": 0.6956521739130435,
+    "target_share_complement": 0.2857142857142857,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.0096618357487923
+   }
+  },
+  {
+   "quality": 0.050542406311637075,
+   "description": {
+    "repr": "(Pclass==3 and Sex=='female')",
+    "str": "Pclass==3 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Pclass",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 3,
+        "int": true
+       }
+      },
+      "repr": "Pclass==3",
+      "str": "Pclass==3"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 35,
+    "size_dataset": 156,
+    "positives_sg": 20,
+    "positives_dataset": 54,
+    "size_complement": 121,
+    "relative_size_sg": 0.22435897435897437,
+    "relative_size_complement": 0.7756410256410257,
+    "coverage_sg": 0.37037037037037035,
+    "coverage_complement": 0.6296296296296297,
+    "target_share_sg": 0.5714285714285714,
+    "target_share_complement": 0.2809917355371901,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 1.6507936507936507
+   }
+  },
+  {
+   "quality": 0.04388560157790927,
+   "description": {
+    "repr": "(Pclass==2 and Sex=='female')",
+    "str": "Pclass==2 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Pclass",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 2,
+        "int": true
+       }
+      },
+      "repr": "Pclass==2",
+      "str": "Pclass==2"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 12,
+    "size_dataset": 156,
+    "positives_sg": 11,
+    "positives_dataset": 54,
+    "size_complement": 144,
+    "relative_size_sg": 0.07692307692307693,
+    "relative_size_complement": 0.9230769230769231,
+    "coverage_sg": 0.2037037037037037,
+    "coverage_complement": 0.7962962962962963,
+    "target_share_sg": 0.9166666666666666,
+    "target_share_complement": 0.2986111111111111,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.648148148148148
+   }
+  },
+  {
+   "quality": 0.04363905325443788,
+   "description": {
+    "repr": "(PassengerId<32 and Sex=='female')",
+    "str": "PassengerId<32 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "PassengerId",
+      "lo": {
+       "value": {
+        "$f": "-inf"
+       },
+       "int": false
+      },
+      "hi": {
+       "value": 32,
+       "int": true
+      },
+      "repr": "PassengerId<32",
+      "str": "PassengerId<32"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 15,
+    "size_dataset": 156,
+    "positives_sg": 12,
+    "positives_dataset": 54,
+    "size_complement": 141,
+    "relative_size_sg": 0.09615384615384616,
+    "relative_size_complement": 0.9038461538461539,
+    "coverage_sg": 0.2222222222222222,
+    "coverage_complement": 0.7777777777777778,
+    "target_share_sg": 0.8,
+    "target_share_complement": 0.2978723404255319,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.3111111111111113
+   }
+  },
+  {
+   "quality": 0.037721893491124266,
+   "description": {
+    "repr": "(Pclass==1 and Sex=='female')",
+    "str": "Pclass==1 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Pclass",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 1,
+        "int": true
+       }
+      },
+      "repr": "Pclass==1",
+      "str": "Pclass==1"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 9,
+    "size_dataset": 156,
+    "positives_sg": 9,
+    "positives_dataset": 54,
+    "size_complement": 147,
+    "relative_size_sg": 0.057692307692307696,
+    "relative_size_complement": 0.9423076923076923,
+    "coverage_sg": 0.16666666666666666,
+    "coverage_complement": 0.8333333333333334,
+    "target_share_sg": 1.0,
+    "target_share_complement": 0.30612244897959184,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.888888888888889
    }
   }
  ]

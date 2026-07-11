@@ -1,0 +1,615 @@
+{
+ "id": "synth-dup-rows-wracc-apriori-d3-k10",
+ "cell": {
+  "id": "synth-dup-rows-wracc-apriori-d3-k10",
+  "dataset": "synth:dup-rows",
+  "target": {
+   "type": "binary",
+   "attribute": "y",
+   "value": 1
+  },
+  "space": {
+   "ignore": [
+    "y"
+   ],
+   "nbins": 5,
+   "intervalsOnly": true,
+   "negations": false
+  },
+  "qf": {
+   "name": "wracc"
+  },
+  "algorithm": "apriori",
+  "depth": 3,
+  "k": 10,
+  "minQuality": 0
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "data_shape": [
+  145,
+  4
+ ],
+ "search_space": [
+  {
+   "kind": "equality",
+   "attribute": "h1",
+   "value": {
+    "t": "str",
+    "v": "s"
+   },
+   "repr": "h1=='s'",
+   "str": "h1=='s'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "h1",
+   "value": {
+    "t": "str",
+    "v": "t"
+   },
+   "repr": "h1=='t'",
+   "str": "h1=='t'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "h1",
+   "value": {
+    "t": "str",
+    "v": "r"
+   },
+   "repr": "h1=='r'",
+   "str": "h1=='r'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "h2",
+   "value": {
+    "t": "str",
+    "v": "k"
+   },
+   "repr": "h2=='k'",
+   "str": "h2=='k'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "h2",
+   "value": {
+    "t": "str",
+    "v": "l"
+   },
+   "repr": "h2=='l'",
+   "str": "h2=='l'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 10,
+     "int": true
+    }
+   },
+   "repr": "x==10",
+   "str": "x==10"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 20,
+     "int": true
+    }
+   },
+   "repr": "x==20",
+   "str": "x==20"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 30,
+     "int": true
+    }
+   },
+   "repr": "x==30",
+   "str": "x==30"
+  }
+ ],
+ "elapsed_seconds": 0.0002698339521884918,
+ "results": [
+  {
+   "quality": 0.08128418549346018,
+   "description": {
+    "repr": "(x==20)",
+    "str": "x==20",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "x",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 20,
+        "int": true
+       }
+      },
+      "repr": "x==20",
+      "str": "x==20"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 62,
+    "size_dataset": 145,
+    "positives_sg": 43,
+    "positives_dataset": 73,
+    "size_complement": 83,
+    "relative_size_sg": 0.42758620689655175,
+    "relative_size_complement": 0.5724137931034483,
+    "coverage_sg": 0.589041095890411,
+    "coverage_complement": 0.410958904109589,
+    "target_share_sg": 0.6935483870967742,
+    "target_share_complement": 0.3614457831325301,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.3775961113566064
+   }
+  },
+  {
+   "quality": 0.0650178359096314,
+   "description": {
+    "repr": "(h1=='s' and x==20)",
+    "str": "h1=='s' AND x==20",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h1",
+      "value": {
+       "t": "str",
+       "v": "s"
+      },
+      "repr": "h1=='s'",
+      "str": "h1=='s'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "x",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 20,
+        "int": true
+       }
+      },
+      "repr": "x==20",
+      "str": "x==20"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 21,
+    "size_dataset": 145,
+    "positives_sg": 20,
+    "positives_dataset": 73,
+    "size_complement": 124,
+    "relative_size_sg": 0.14482758620689656,
+    "relative_size_complement": 0.8551724137931035,
+    "coverage_sg": 0.273972602739726,
+    "coverage_complement": 0.726027397260274,
+    "target_share_sg": 0.9523809523809523,
+    "target_share_complement": 0.4274193548387097,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.8917155903457272
+   }
+  },
+  {
+   "quality": 0.06145065398335315,
+   "description": {
+    "repr": "(h1=='t' and x==20)",
+    "str": "h1=='t' AND x==20",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h1",
+      "value": {
+       "t": "str",
+       "v": "t"
+      },
+      "repr": "h1=='t'",
+      "str": "h1=='t'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "x",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 20,
+        "int": true
+       }
+      },
+      "repr": "x==20",
+      "str": "x==20"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 26,
+    "size_dataset": 145,
+    "positives_sg": 22,
+    "positives_dataset": 73,
+    "size_complement": 119,
+    "relative_size_sg": 0.1793103448275862,
+    "relative_size_complement": 0.8206896551724138,
+    "coverage_sg": 0.3013698630136986,
+    "coverage_complement": 0.6986301369863014,
+    "target_share_sg": 0.8461538461538461,
+    "target_share_complement": 0.42857142857142855,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.6807165437302423
+   }
+  },
+  {
+   "quality": 0.05821640903686088,
+   "description": {
+    "repr": "(h1=='t' and h2=='k' and x==20)",
+    "str": "h1=='t' AND h2=='k' AND x==20",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h1",
+      "value": {
+       "t": "str",
+       "v": "t"
+      },
+      "repr": "h1=='t'",
+      "str": "h1=='t'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "h2",
+      "value": {
+       "t": "str",
+       "v": "k"
+      },
+      "repr": "h2=='k'",
+      "str": "h2=='k'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "x",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 20,
+        "int": true
+       }
+      },
+      "repr": "x==20",
+      "str": "x==20"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 17,
+    "size_dataset": 145,
+    "positives_sg": 17,
+    "positives_dataset": 73,
+    "size_complement": 128,
+    "relative_size_sg": 0.11724137931034483,
+    "relative_size_complement": 0.8827586206896552,
+    "coverage_sg": 0.2328767123287671,
+    "coverage_complement": 0.7671232876712328,
+    "target_share_sg": 1.0,
+    "target_share_complement": 0.4375,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.9863013698630136
+   }
+  },
+  {
+   "quality": 0.05797859690844232,
+   "description": {
+    "repr": "(h2=='k' and x==20)",
+    "str": "h2=='k' AND x==20",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h2",
+      "value": {
+       "t": "str",
+       "v": "k"
+      },
+      "repr": "h2=='k'",
+      "str": "h2=='k'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "x",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 20,
+        "int": true
+       }
+      },
+      "repr": "x==20",
+      "str": "x==20"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 27,
+    "size_dataset": 145,
+    "positives_sg": 22,
+    "positives_dataset": 73,
+    "size_complement": 118,
+    "relative_size_sg": 0.18620689655172415,
+    "relative_size_complement": 0.8137931034482758,
+    "coverage_sg": 0.3013698630136986,
+    "coverage_complement": 0.6986301369863014,
+    "target_share_sg": 0.8148148148148148,
+    "target_share_complement": 0.4322033898305085,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.6184677828513443
+   }
+  },
+  {
+   "quality": 0.05479191438763377,
+   "description": {
+    "repr": "(h1=='s' and h2=='l' and x==20)",
+    "str": "h1=='s' AND h2=='l' AND x==20",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h1",
+      "value": {
+       "t": "str",
+       "v": "s"
+      },
+      "repr": "h1=='s'",
+      "str": "h1=='s'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "h2",
+      "value": {
+       "t": "str",
+       "v": "l"
+      },
+      "repr": "h2=='l'",
+      "str": "h2=='l'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "x",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 20,
+        "int": true
+       }
+      },
+      "repr": "x==20",
+      "str": "x==20"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 16,
+    "size_dataset": 145,
+    "positives_sg": 16,
+    "positives_dataset": 73,
+    "size_complement": 129,
+    "relative_size_sg": 0.1103448275862069,
+    "relative_size_complement": 0.8896551724137931,
+    "coverage_sg": 0.2191780821917808,
+    "coverage_complement": 0.7808219178082192,
+    "target_share_sg": 1.0,
+    "target_share_complement": 0.4418604651162791,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.9863013698630136
+   }
+  },
+  {
+   "quality": 0.04451843043995243,
+   "description": {
+    "repr": "(h1=='r' and x==10)",
+    "str": "h1=='r' AND x==10",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h1",
+      "value": {
+       "t": "str",
+       "v": "r"
+      },
+      "repr": "h1=='r'",
+      "str": "h1=='r'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "x",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 10,
+        "int": true
+       }
+      },
+      "repr": "x==10",
+      "str": "x==10"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 13,
+    "size_dataset": 145,
+    "positives_sg": 13,
+    "positives_dataset": 73,
+    "size_complement": 132,
+    "relative_size_sg": 0.0896551724137931,
+    "relative_size_complement": 0.9103448275862069,
+    "coverage_sg": 0.1780821917808219,
+    "coverage_complement": 0.821917808219178,
+    "target_share_sg": 1.0,
+    "target_share_complement": 0.45454545454545453,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.9863013698630136
+   }
+  },
+  {
+   "quality": 0.04409036860879906,
+   "description": {
+    "repr": "(h1=='s' and h2=='l')",
+    "str": "h1=='s' AND h2=='l'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h1",
+      "value": {
+       "t": "str",
+       "v": "s"
+      },
+      "repr": "h1=='s'",
+      "str": "h1=='s'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "h2",
+      "value": {
+       "t": "str",
+       "v": "l"
+      },
+      "repr": "h2=='l'",
+      "str": "h2=='l'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 31,
+    "size_dataset": 145,
+    "positives_sg": 22,
+    "positives_dataset": 73,
+    "size_complement": 114,
+    "relative_size_sg": 0.21379310344827587,
+    "relative_size_complement": 0.7862068965517242,
+    "coverage_sg": 0.3013698630136986,
+    "coverage_complement": 0.6986301369863014,
+    "target_share_sg": 0.7096774193548387,
+    "target_share_complement": 0.4473684210526316,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.4096332302253647
+   }
+  },
+  {
+   "quality": 0.030820451843043994,
+   "description": {
+    "repr": "(h1=='r' and h2=='l' and x==10)",
+    "str": "h1=='r' AND h2=='l' AND x==10",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h1",
+      "value": {
+       "t": "str",
+       "v": "r"
+      },
+      "repr": "h1=='r'",
+      "str": "h1=='r'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "h2",
+      "value": {
+       "t": "str",
+       "v": "l"
+      },
+      "repr": "h2=='l'",
+      "str": "h2=='l'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "x",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 10,
+        "int": true
+       }
+      },
+      "repr": "x==10",
+      "str": "x==10"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 9,
+    "size_dataset": 145,
+    "positives_sg": 9,
+    "positives_dataset": 73,
+    "size_complement": 136,
+    "relative_size_sg": 0.06206896551724138,
+    "relative_size_complement": 0.9379310344827586,
+    "coverage_sg": 0.1232876712328767,
+    "coverage_complement": 0.8767123287671232,
+    "target_share_sg": 1.0,
+    "target_share_complement": 0.47058823529411764,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.9863013698630136
+   }
+  },
+  {
+   "quality": 0.027205707491082046,
+   "description": {
+    "repr": "(h1=='r' and h2=='k')",
+    "str": "h1=='r' AND h2=='k'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "h1",
+      "value": {
+       "t": "str",
+       "v": "r"
+      },
+      "repr": "h1=='r'",
+      "str": "h1=='r'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "h2",
+      "value": {
+       "t": "str",
+       "v": "k"
+      },
+      "repr": "h2=='k'",
+      "str": "h2=='k'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 16,
+    "size_dataset": 145,
+    "positives_sg": 12,
+    "positives_dataset": 73,
+    "size_complement": 129,
+    "relative_size_sg": 0.1103448275862069,
+    "relative_size_complement": 0.8896551724137931,
+    "coverage_sg": 0.1643835616438356,
+    "coverage_complement": 0.8356164383561644,
+    "target_share_sg": 0.75,
+    "target_share_complement": 0.4728682170542636,
+    "target_share_dataset": 0.503448275862069,
+    "lift": 1.4897260273972603
+   }
+  }
+ ]
+}

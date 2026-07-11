@@ -58,6 +58,38 @@
       "plant": "b1=='u' AND b2=='m'",
       "rows": 500,
       "sha256": "5e0ead60ad50e0a576cf7cce86c7c6682615490fe4025cb3db2c7a12189daf16"
+    },
+    {
+      "name": "tie-stress",
+      "file": "datasets/tie-stress.csv",
+      "kind": "tie",
+      "options": {
+        "blockSize": 12
+      },
+      "rows": 96,
+      "sha256": "d9f7e39b1000dfc2ed5031f7e44ecd3839722b71892ae1ee2068142139429791"
+    },
+    {
+      "name": "na-stress",
+      "file": "datasets/na-stress.csv",
+      "kind": "na",
+      "options": {
+        "n": 240,
+        "seed": 821
+      },
+      "rows": 240,
+      "sha256": "87ae4566fa10b746873ff473cc7c5b87de739ec5d9c217f3eb54367cbba184f1"
+    },
+    {
+      "name": "dup-rows",
+      "file": "datasets/dup-rows.csv",
+      "kind": "dup",
+      "options": {
+        "distinct": 48,
+        "seed": 822
+      },
+      "rows": 145,
+      "sha256": "1c1fd0f30eca52a0d5dfe4b6b08dfcc79625e4e50b17524a997e92158909cc53"
     }
   ]
 }

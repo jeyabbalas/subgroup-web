@@ -6,7 +6,14 @@
 import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
-import { plantedBinary, plantedNumeric, tableToCSV } from "../dist/index.js";
+import {
+  dupRows,
+  naStress,
+  plantedBinary,
+  plantedNumeric,
+  tableToCSV,
+  tieStress,
+} from "../dist/index.js";
 
 const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const OUT = path.join(REPO, "test", "fixtures", "datasets");
@@ -34,13 +41,32 @@ export const RECIPES = [
     kind: "numeric",
     options: { n: 500, seed: 814, shift: 2.5, noiseAttributes: 3 },
   },
+  // Stress fixtures (BRIEF §6.4): engineered ties / NA / duplicated rows.
+  { name: "tie-stress", kind: "tie", options: { blockSize: 12 } },
+  { name: "na-stress", kind: "na", options: { n: 240, seed: 821 } },
+  { name: "dup-rows", kind: "dup", options: { distinct: 48, seed: 822 } },
 ];
+
+function generate(recipe) {
+  switch (recipe.kind) {
+    case "binary":
+      return plantedBinary(recipe.options);
+    case "numeric":
+      return plantedNumeric(recipe.options);
+    case "tie":
+      return { table: tieStress(recipe.options.blockSize), plant: null };
+    case "na":
+      return { table: naStress(recipe.options.n, recipe.options.seed), plant: null };
+    case "dup":
+      return { table: dupRows(recipe.options.distinct, recipe.options.seed), plant: null };
+    default:
+      throw new Error(`unknown recipe kind ${recipe.kind}`);
+  }
+}
 
 const manifest = { generator: "scripts/gen-synth-fixtures.mjs", fixtures: [] };
 for (const recipe of RECIPES) {
-  const { table, plant } = (recipe.kind === "binary" ? plantedBinary : plantedNumeric)(
-    recipe.options,
-  );
+  const { table, plant } = generate(recipe);
   const csv = tableToCSV(table);
   const file = path.join(OUT, `${recipe.name}.csv`);
   fs.writeFileSync(file, csv);
@@ -49,11 +75,13 @@ for (const recipe of RECIPES) {
     file: `datasets/${recipe.name}.csv`,
     kind: recipe.kind,
     options: recipe.options,
-    plant: plant.toString("display"),
+    ...(plant ? { plant: plant.toString("display") } : {}),
     rows: table.nRows,
     sha256: createHash("sha256").update(csv).digest("hex"),
   });
-  console.log(`${recipe.name}: ${table.nRows} rows, plant ${plant.toString("display")}`);
+  console.log(
+    `${recipe.name}: ${table.nRows} rows${plant ? `, plant ${plant.toString("display")}` : ""}`,
+  );
 }
 fs.writeFileSync(
   path.join(REPO, "test", "fixtures", "synth-manifest.json"),

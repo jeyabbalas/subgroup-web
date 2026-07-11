@@ -154,6 +154,184 @@
       "depth": 2,
       "k": 10,
       "minQuality": 0
+    },
+    {
+      "id": "titanic-binary-wracc-minsupport-apriori-d2-k10",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0,
+      "constraints": [{ "type": "minSupport", "count": 30 }]
+    },
+    {
+      "id": "titanic-binary-wracc-minquality-apriori-d2-k10",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0.01
+    },
+    {
+      "id": "titanic-binary-wracc-nbins10-allsel-apriori-d2-k10",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived", "PassengerId", "Name", "Ticket", "Cabin"],
+        "nbins": 10,
+        "intervalsOnly": false,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "creditg-numeric-age-stdnum1-average-apriori-d2-k10",
+      "dataset": "credit-g",
+      "target": {
+        "type": "numeric",
+        "attribute": "age"
+      },
+      "space": {
+        "ignore": ["age", "class"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "standardNumeric",
+        "a": 1.0,
+        "estimator": "average"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "creditg-numeric-age-stdnum1-order-apriori-d2-k10",
+      "dataset": "credit-g",
+      "target": {
+        "type": "numeric",
+        "attribute": "age"
+      },
+      "space": {
+        "ignore": ["age", "class"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "standardNumeric",
+        "a": 1.0,
+        "estimator": "order"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "synth-na-stress-wracc-apriori-d2-k10",
+      "dataset": "synth:na-stress",
+      "target": {
+        "type": "binary",
+        "attribute": "y",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["y"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "synth-dup-rows-wracc-apriori-d3-k10",
+      "dataset": "synth:dup-rows",
+      "target": {
+        "type": "binary",
+        "attribute": "y",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["y"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "apriori",
+      "depth": 3,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "synth-tie-stress-wracc-simple-d3-k10",
+      "dataset": "synth:tie-stress",
+      "target": {
+        "type": "binary",
+        "attribute": "y",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["y"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "simple",
+      "depth": 3,
+      "k": 10
     }
   ]
 }

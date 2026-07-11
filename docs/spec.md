@@ -566,12 +566,77 @@ additionally prune refinements in optimized engines (M4) — never in the
 oracle. A fraction minSupport resolves to `ceil(fraction · N)` rows at task
 preparation.
 
-### 7.4–7.8 (M4–M5) ☐
+### 7.4 Exact optimized engines: shared semantics (M4)
 
-- Exactness classes (binding, BRIEF §5.4); per-algorithm applicability notes
-  (dfsNumeric, BRIEF §22-A5); beamSearch full determinization (expansion,
-  dedup, ties; BRIEF §22-A13); patternTree merge algebra (BRIEF §22-A9);
-  generalizingBFS / generalization-aware caching (BRIEF §22-A10).
+The optimized engines differ from the oracle ONLY in traversal and pruning;
+their observable contract is identical: return §3.3's top-k of C(S, d).
+
+- **Evaluation.** Candidates are evaluated in batches through the
+  BatchEvaluator (BRIEF §10); backends return statistics only. Quality and
+  optimistic estimate are computed centrally in f64 by one shared scorer per
+  task — a candidate's quality is bit-identical across all CPU engines
+  (identical kernels, identical arithmetic). Description-level QFs
+  (generalization-aware, combined) evaluate through the cached mask-path
+  context; the exactness gates cover them identically.
+- **Membership** (§3.3): quality > θ strict, ALL constraints satisfied;
+  additions go through the §3.4 full-comparator top-k.
+- **Pruning** (§3.4): refinements of candidate c may be skipped iff
+  `oe(c) ≤ θ or (full and oe(c) < θ_now)`. Estimate pruning is used ONLY
+  when the QF declares `pruningSafe` (admissibility proven, §6); monotone
+  constraints (minSupport et al.) independently cut refinements of violators.
+  Every engine accepts `pruning: false`, which disables BOTH mechanisms and
+  must reproduce the oracle's result list exactly AND enumerate the entire
+  space — the machine-checked pruning-identity gate (BRIEF §6.2).
+- All engines are async, chunked (yield + abort check every batch), report
+  §5.4 progress, and contain no randomness (§7 BRIEF).
+
+### 7.5 apriori (M4)
+
+Level ℓ holds the surviving ascending selector-id tuples of arity ℓ in
+lexicographic order. Steps per level: (1) batch-evaluate all tuples;
+(2) offer every candidate to the top-k under §3.3; (3) AFTER the whole level
+(θ_now then final — deterministic and maximally tight, independent of
+evaluation order and of worker sharding), mark survivors: monotone
+constraints hold ∧ ¬§3.4-prunable; (4) join: each pair of survivors sharing
+an (ℓ−1)-prefix yields the union tuple, kept iff its other ℓ-subsets (drop
+one prefix position; dropping either of the last two positions gives the
+join parents) all survived. Completeness: a non-generated candidate has a
+culled ℓ-subset, whose refinement it is — §3.4/monotone-skippable.
+
+### 7.6 dfs (M4)
+
+Depth-first over the canonical prefix tree (children of tuple t = t + [e],
+e > max(t)) in ascending id order. At each node all extensions are evaluated
+in one batch against the node's cover (bitset look-ahead: statistics and
+top-k membership of every child land before any descent), then the walk
+descends only into children passing §3.4 + monotone checks at descent time
+(θ_now reflects all previously finished subtrees plus all siblings — the
+DFS advantage: the top-k fills at depth quickly). Covers: one scratch row
+per depth, child cover = parent ∧ row(e) (recompute-over-store,
+BRIEF §22-A12).
+
+### 7.7 bestFirst (M4)
+
+Frontier = binary heap of expandable evaluated nodes ordered by
+**estimate desc → depth asc → tuple lex asc** (a total order over unique
+tuples, so the pop sequence — hence the whole run — is deterministic
+regardless of heap internals). Seed: evaluate all singles (the empty
+prefix's extension batch). Pop the best node; expansion batch-evaluates its
+extensions, offers them to the top-k, and pushes children that pass §3.4 +
+monotone checks at push time. Every candidate is evaluated exactly once (at
+its unique (d−1)-prefix parent). Termination: frontier empty, or — with a
+pruningSafe estimate — the popped node is §3.4-prunable, which prunes the
+ENTIRE remaining frontier (its estimates are ≤ the popped one and the §3.4
+predicate is monotone decreasing in the estimate). Without a pruningSafe
+estimate all estimates are treated as +∞ and the frontier degrades to a
+deterministic full traversal.
+
+### 7.8 (M5) ☐
+
+- beamSearch full determinization (expansion, dedup, ties; BRIEF §22-A13);
+  dfsNumeric applicability (BRIEF §22-A5); patternTree merge algebra
+  (BRIEF §22-A9); generalizingBFS / generalization-aware caching
+  (BRIEF §22-A10).
 
 ## 8. Backends and precision (M6) ☐
 

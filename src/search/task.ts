@@ -134,6 +134,12 @@ export function prepareTask(task: SubgroupTask): PreparedTask {
       "the search space is empty after deduplication; build one with allSelectors(table)",
     );
   }
+  if (selectors.length > 65535) {
+    throw new SearchSpaceError(
+      `search space has ${selectors.length} selectors; the engines index selectors ` +
+        `as Uint16 (max 65535) — reduce bins or split the space`,
+    );
+  }
 
   // Target-leak check (BRIEF §5.5): search-space selectors over target attributes.
   const targetAttrs = new Set(targetAttributes(task.target));

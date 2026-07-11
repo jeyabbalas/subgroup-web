@@ -8,6 +8,7 @@ import {
   binary,
   Conjunction,
   chiSquared,
+  combined,
   count,
   emm,
   emmLikelihood,
@@ -88,6 +89,7 @@ export interface QfSpec {
   x?: string;
   y?: string;
   weight?: number;
+  members?: { qf: QfSpec; weight?: number }[];
 }
 
 /** Map a fixture/matrix QF spec to a subgroup-web QF (spec §6 naming). */
@@ -131,6 +133,12 @@ export function makeQF(spec: QfSpec, maxDepth?: number): QF {
     case "emmLikelihood": {
       if (!spec.x || !spec.y) throw new Error("emmLikelihood spec needs x/y");
       return emmLikelihood(polyRegression(spec.x, spec.y));
+    }
+    case "combined": {
+      if (!spec.members) throw new Error("combined spec needs members");
+      return combined(
+        spec.members.map((m) => ({ qf: makeQF(m.qf, maxDepth), weight: m.weight ?? 1 })),
+      );
     }
     default:
       throw new Error(`unknown qf spec ${JSON.stringify(spec)}`);

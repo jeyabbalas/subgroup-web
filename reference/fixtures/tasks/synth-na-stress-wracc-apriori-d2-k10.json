@@ -1,0 +1,762 @@
+{
+ "id": "synth-na-stress-wracc-apriori-d2-k10",
+ "cell": {
+  "id": "synth-na-stress-wracc-apriori-d2-k10",
+  "dataset": "synth:na-stress",
+  "target": {
+   "type": "binary",
+   "attribute": "y",
+   "value": 1
+  },
+  "space": {
+   "ignore": [
+    "y"
+   ],
+   "nbins": 5,
+   "intervalsOnly": true,
+   "negations": false
+  },
+  "qf": {
+   "name": "wracc"
+  },
+  "algorithm": "apriori",
+  "depth": 2,
+  "k": 10,
+  "minQuality": 0
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "data_shape": [
+  240,
+  6
+ ],
+ "search_space": [
+  {
+   "kind": "equality",
+   "attribute": "g1",
+   "value": {
+    "t": "str",
+    "v": "\u03b3"
+   },
+   "repr": "g1=='\u03b3'",
+   "str": "g1=='\u03b3'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "g1",
+   "value": {
+    "t": "str",
+    "v": "\u03b1"
+   },
+   "repr": "g1=='\u03b1'",
+   "str": "g1=='\u03b1'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "g1",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "g1.isnull()",
+   "str": "g1.isnull()"
+  },
+  {
+   "kind": "equality",
+   "attribute": "g1",
+   "value": {
+    "t": "str",
+    "v": "\u03b2"
+   },
+   "repr": "g1=='\u03b2'",
+   "str": "g1=='\u03b2'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "g2",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "g2.isnull()",
+   "str": "g2.isnull()"
+  },
+  {
+   "kind": "equality",
+   "attribute": "g2",
+   "value": {
+    "t": "str",
+    "v": "lo"
+   },
+   "repr": "g2=='lo'",
+   "str": "g2=='lo'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "g2",
+   "value": {
+    "t": "str",
+    "v": "hi"
+   },
+   "repr": "g2=='hi'",
+   "str": "g2=='hi'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x1",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "x1.isnull()",
+   "str": "x1.isnull()"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x1",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 0.0,
+     "int": false
+    }
+   },
+   "repr": "x1==0.0",
+   "str": "x1==0.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x1",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1.0,
+     "int": false
+    }
+   },
+   "repr": "x1==1.0",
+   "str": "x1==1.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x1",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2.0,
+     "int": false
+    }
+   },
+   "repr": "x1==2.0",
+   "str": "x1==2.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x1",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3.0,
+     "int": false
+    }
+   },
+   "repr": "x1==3.0",
+   "str": "x1==3.0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "x1",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 4.0,
+     "int": false
+    }
+   },
+   "repr": "x1==4.0",
+   "str": "x1==4.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "x2",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": -0.759500450963838,
+    "int": false
+   },
+   "repr": "x2<-0.759500450963838",
+   "str": "x2<-0.76"
+  },
+  {
+   "kind": "interval",
+   "attribute": "x2",
+   "lo": {
+    "value": -0.759500450963838,
+    "int": false
+   },
+   "hi": {
+    "value": -0.19395041234919444,
+    "int": false
+   },
+   "repr": "x2: [-0.759500450963838:-0.19395041234919444[",
+   "str": "x2: [-0.76:-0.19["
+  },
+  {
+   "kind": "interval",
+   "attribute": "x2",
+   "lo": {
+    "value": -0.19395041234919444,
+    "int": false
+   },
+   "hi": {
+    "value": 0.2648433196054011,
+    "int": false
+   },
+   "repr": "x2: [-0.19395041234919444:0.2648433196054011[",
+   "str": "x2: [-0.19:0.26["
+  },
+  {
+   "kind": "interval",
+   "attribute": "x2",
+   "lo": {
+    "value": 0.2648433196054011,
+    "int": false
+   },
+   "hi": {
+    "value": 0.7823856212818237,
+    "int": false
+   },
+   "repr": "x2: [0.2648433196054011:0.7823856212818237[",
+   "str": "x2: [0.26:0.78["
+  },
+  {
+   "kind": "interval",
+   "attribute": "x2",
+   "lo": {
+    "value": 0.7823856212818237,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "x2>=0.7823856212818237",
+   "str": "x2>=0.78"
+  },
+  {
+   "kind": "interval",
+   "attribute": "t",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": -0.6046621397687717,
+    "int": false
+   },
+   "repr": "t<-0.6046621397687717",
+   "str": "t<-0.60"
+  },
+  {
+   "kind": "interval",
+   "attribute": "t",
+   "lo": {
+    "value": -0.6046621397687717,
+    "int": false
+   },
+   "hi": {
+    "value": 0.18305078548498463,
+    "int": false
+   },
+   "repr": "t: [-0.6046621397687717:0.18305078548498463[",
+   "str": "t: [-0.60:0.18["
+  },
+  {
+   "kind": "interval",
+   "attribute": "t",
+   "lo": {
+    "value": 0.18305078548498463,
+    "int": false
+   },
+   "hi": {
+    "value": 0.8419269388757129,
+    "int": false
+   },
+   "repr": "t: [0.18305078548498463:0.8419269388757129[",
+   "str": "t: [0.18:0.84["
+  },
+  {
+   "kind": "interval",
+   "attribute": "t",
+   "lo": {
+    "value": 0.8419269388757129,
+    "int": false
+   },
+   "hi": {
+    "value": 1.4100785548120236,
+    "int": false
+   },
+   "repr": "t: [0.8419269388757129:1.4100785548120236[",
+   "str": "t: [0.84:1.41["
+  },
+  {
+   "kind": "interval",
+   "attribute": "t",
+   "lo": {
+    "value": 1.4100785548120236,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "t>=1.4100785548120236",
+   "str": "t>=1.41"
+  }
+ ],
+ "elapsed_seconds": 0.0012156669981777668,
+ "results": [
+  {
+   "quality": 0.045,
+   "description": {
+    "repr": "(x2: [-0.759500450963838:-0.19395041234919444[)",
+    "str": "x2: [-0.76:-0.19[",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "x2",
+      "lo": {
+       "value": -0.759500450963838,
+       "int": false
+      },
+      "hi": {
+       "value": -0.19395041234919444,
+       "int": false
+      },
+      "repr": "x2: [-0.759500450963838:-0.19395041234919444[",
+      "str": "x2: [-0.76:-0.19["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 48,
+    "size_dataset": 240,
+    "positives_sg": 32,
+    "positives_dataset": 106,
+    "size_complement": 192,
+    "relative_size_sg": 0.2,
+    "relative_size_complement": 0.8,
+    "coverage_sg": 0.3018867924528302,
+    "coverage_complement": 0.6981132075471698,
+    "target_share_sg": 0.6666666666666666,
+    "target_share_complement": 0.3854166666666667,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.5094339622641508
+   }
+  },
+  {
+   "quality": 0.04277777777777778,
+   "description": {
+    "repr": "(g1=='\u03b1')",
+    "str": "g1=='\u03b1'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "g1",
+      "value": {
+       "t": "str",
+       "v": "\u03b1"
+      },
+      "repr": "g1=='\u03b1'",
+      "str": "g1=='\u03b1'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 56,
+    "size_dataset": 240,
+    "positives_sg": 35,
+    "positives_dataset": 106,
+    "size_complement": 184,
+    "relative_size_sg": 0.23333333333333334,
+    "relative_size_complement": 0.7666666666666667,
+    "coverage_sg": 0.330188679245283,
+    "coverage_complement": 0.6698113207547169,
+    "target_share_sg": 0.625,
+    "target_share_complement": 0.3858695652173913,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.4150943396226416
+   }
+  },
+  {
+   "quality": 0.022395833333333337,
+   "description": {
+    "repr": "(g2=='lo' and x2: [-0.759500450963838:-0.19395041234919444[)",
+    "str": "g2=='lo' AND x2: [-0.76:-0.19[",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "g2",
+      "value": {
+       "t": "str",
+       "v": "lo"
+      },
+      "repr": "g2=='lo'",
+      "str": "g2=='lo'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "x2",
+      "lo": {
+       "value": -0.759500450963838,
+       "int": false
+      },
+      "hi": {
+       "value": -0.19395041234919444,
+       "int": false
+      },
+      "repr": "x2: [-0.759500450963838:-0.19395041234919444[",
+      "str": "x2: [-0.76:-0.19["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 15,
+    "size_dataset": 240,
+    "positives_sg": 12,
+    "positives_dataset": 106,
+    "size_complement": 225,
+    "relative_size_sg": 0.0625,
+    "relative_size_complement": 0.9375,
+    "coverage_sg": 0.11320754716981132,
+    "coverage_complement": 0.8867924528301887,
+    "target_share_sg": 0.8,
+    "target_share_complement": 0.4177777777777778,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.8113207547169814
+   }
+  },
+  {
+   "quality": 0.022013888888888885,
+   "description": {
+    "repr": "(g1=='\u03b1' and g2=='lo')",
+    "str": "g1=='\u03b1' AND g2=='lo'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "g1",
+      "value": {
+       "t": "str",
+       "v": "\u03b1"
+      },
+      "repr": "g1=='\u03b1'",
+      "str": "g1=='\u03b1'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "g2",
+      "value": {
+       "t": "str",
+       "v": "lo"
+      },
+      "repr": "g2=='lo'",
+      "str": "g2=='lo'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 22,
+    "size_dataset": 240,
+    "positives_sg": 15,
+    "positives_dataset": 106,
+    "size_complement": 218,
+    "relative_size_sg": 0.09166666666666666,
+    "relative_size_complement": 0.9083333333333333,
+    "coverage_sg": 0.14150943396226415,
+    "coverage_complement": 0.8584905660377359,
+    "target_share_sg": 0.6818181818181818,
+    "target_share_complement": 0.41743119266055045,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.5437392795883362
+   }
+  },
+  {
+   "quality": 0.01774305555555556,
+   "description": {
+    "repr": "(g1=='\u03b1' and t: [0.8419269388757129:1.4100785548120236[)",
+    "str": "g1=='\u03b1' AND t: [0.84:1.41[",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "g1",
+      "value": {
+       "t": "str",
+       "v": "\u03b1"
+      },
+      "repr": "g1=='\u03b1'",
+      "str": "g1=='\u03b1'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "t",
+      "lo": {
+       "value": 0.8419269388757129,
+       "int": false
+      },
+      "hi": {
+       "value": 1.4100785548120236,
+       "int": false
+      },
+      "repr": "t: [0.8419269388757129:1.4100785548120236[",
+      "str": "t: [0.84:1.41["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 13,
+    "size_dataset": 240,
+    "positives_sg": 10,
+    "positives_dataset": 106,
+    "size_complement": 227,
+    "relative_size_sg": 0.05416666666666667,
+    "relative_size_complement": 0.9458333333333333,
+    "coverage_sg": 0.09433962264150944,
+    "coverage_complement": 0.9056603773584906,
+    "target_share_sg": 0.7692307692307693,
+    "target_share_complement": 0.42290748898678415,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.7416545718432512
+   }
+  },
+  {
+   "quality": 0.017013888888888894,
+   "description": {
+    "repr": "(g2=='lo')",
+    "str": "g2=='lo'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "g2",
+      "value": {
+       "t": "str",
+       "v": "lo"
+      },
+      "repr": "g2=='lo'",
+      "str": "g2=='lo'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 70,
+    "size_dataset": 240,
+    "positives_sg": 35,
+    "positives_dataset": 106,
+    "size_complement": 170,
+    "relative_size_sg": 0.2916666666666667,
+    "relative_size_complement": 0.7083333333333334,
+    "coverage_sg": 0.330188679245283,
+    "coverage_complement": 0.6698113207547169,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.4176470588235294,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.1320754716981132
+   }
+  },
+  {
+   "quality": 0.016597222222222225,
+   "description": {
+    "repr": "(x1==3.0)",
+    "str": "x1==3.0",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "x1",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 3.0,
+        "int": false
+       }
+      },
+      "repr": "x1==3.0",
+      "str": "x1==3.0"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 34,
+    "size_dataset": 240,
+    "positives_sg": 19,
+    "positives_dataset": 106,
+    "size_complement": 206,
+    "relative_size_sg": 0.14166666666666666,
+    "relative_size_complement": 0.8583333333333333,
+    "coverage_sg": 0.1792452830188679,
+    "coverage_complement": 0.8207547169811321,
+    "target_share_sg": 0.5588235294117647,
+    "target_share_complement": 0.4223300970873786,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.2652608213096561
+   }
+  },
+  {
+   "quality": 0.01590277777777778,
+   "description": {
+    "repr": "(g1=='\u03b1' and x2: [-0.759500450963838:-0.19395041234919444[)",
+    "str": "g1=='\u03b1' AND x2: [-0.76:-0.19[",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "g1",
+      "value": {
+       "t": "str",
+       "v": "\u03b1"
+      },
+      "repr": "g1=='\u03b1'",
+      "str": "g1=='\u03b1'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "x2",
+      "lo": {
+       "value": -0.759500450963838,
+       "int": false
+      },
+      "hi": {
+       "value": -0.19395041234919444,
+       "int": false
+      },
+      "repr": "x2: [-0.759500450963838:-0.19395041234919444[",
+      "str": "x2: [-0.76:-0.19["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 14,
+    "size_dataset": 240,
+    "positives_sg": 10,
+    "positives_dataset": 106,
+    "size_complement": 226,
+    "relative_size_sg": 0.058333333333333334,
+    "relative_size_complement": 0.9416666666666667,
+    "coverage_sg": 0.09433962264150944,
+    "coverage_complement": 0.9056603773584906,
+    "target_share_sg": 0.7142857142857143,
+    "target_share_complement": 0.4247787610619469,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.6172506738544474
+   }
+  },
+  {
+   "quality": 0.014930555555555558,
+   "description": {
+    "repr": "(g1=='\u03b1' and t: [-0.6046621397687717:0.18305078548498463[)",
+    "str": "g1=='\u03b1' AND t: [-0.60:0.18[",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "g1",
+      "value": {
+       "t": "str",
+       "v": "\u03b1"
+      },
+      "repr": "g1=='\u03b1'",
+      "str": "g1=='\u03b1'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "t",
+      "lo": {
+       "value": -0.6046621397687717,
+       "int": false
+      },
+      "hi": {
+       "value": 0.18305078548498463,
+       "int": false
+      },
+      "repr": "t: [-0.6046621397687717:0.18305078548498463[",
+      "str": "t: [-0.60:0.18["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 10,
+    "size_dataset": 240,
+    "positives_sg": 8,
+    "positives_dataset": 106,
+    "size_complement": 230,
+    "relative_size_sg": 0.041666666666666664,
+    "relative_size_complement": 0.9583333333333334,
+    "coverage_sg": 0.07547169811320754,
+    "coverage_complement": 0.9245283018867925,
+    "target_share_sg": 0.8,
+    "target_share_complement": 0.4260869565217391,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 1.8113207547169814
+   }
+  },
+  {
+   "quality": 0.013958333333333335,
+   "description": {
+    "repr": "(x1==3.0 and x2: [-0.759500450963838:-0.19395041234919444[)",
+    "str": "x1==3.0 AND x2: [-0.76:-0.19[",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "x1",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 3.0,
+        "int": false
+       }
+      },
+      "repr": "x1==3.0",
+      "str": "x1==3.0"
+     },
+     {
+      "kind": "interval",
+      "attribute": "x2",
+      "lo": {
+       "value": -0.759500450963838,
+       "int": false
+      },
+      "hi": {
+       "value": -0.19395041234919444,
+       "int": false
+      },
+      "repr": "x2: [-0.759500450963838:-0.19395041234919444[",
+      "str": "x2: [-0.76:-0.19["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 6,
+    "size_dataset": 240,
+    "positives_sg": 6,
+    "positives_dataset": 106,
+    "size_complement": 234,
+    "relative_size_sg": 0.025,
+    "relative_size_complement": 0.975,
+    "coverage_sg": 0.05660377358490566,
+    "coverage_complement": 0.9433962264150944,
+    "target_share_sg": 1.0,
+    "target_share_complement": 0.42735042735042733,
+    "target_share_dataset": 0.44166666666666665,
+    "lift": 2.2641509433962264
+   }
+  }
+ ]
+}

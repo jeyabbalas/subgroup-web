@@ -1,0 +1,541 @@
+{
+ "id": "synth-tie-stress-wracc-simple-d3-k10",
+ "cell": {
+  "id": "synth-tie-stress-wracc-simple-d3-k10",
+  "dataset": "synth:tie-stress",
+  "target": {
+   "type": "binary",
+   "attribute": "y",
+   "value": 1
+  },
+  "space": {
+   "ignore": [
+    "y"
+   ],
+   "nbins": 5,
+   "intervalsOnly": true,
+   "negations": false
+  },
+  "qf": {
+   "name": "wracc"
+  },
+  "algorithm": "simple",
+  "depth": 3,
+  "k": 10
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "data_shape": [
+  96,
+  5
+ ],
+ "search_space": [
+  {
+   "kind": "equality",
+   "attribute": "c1",
+   "value": {
+    "t": "str",
+    "v": "A0"
+   },
+   "repr": "c1=='A0'",
+   "str": "c1=='A0'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "c1",
+   "value": {
+    "t": "str",
+    "v": "A1"
+   },
+   "repr": "c1=='A1'",
+   "str": "c1=='A1'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "c2",
+   "value": {
+    "t": "str",
+    "v": "B0"
+   },
+   "repr": "c2=='B0'",
+   "str": "c2=='B0'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "c2",
+   "value": {
+    "t": "str",
+    "v": "B1"
+   },
+   "repr": "c2=='B1'",
+   "str": "c2=='B1'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "c3",
+   "value": {
+    "t": "str",
+    "v": "C0"
+   },
+   "repr": "c3=='C0'",
+   "str": "c3=='C0'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "c3",
+   "value": {
+    "t": "str",
+    "v": "C1"
+   },
+   "repr": "c3=='C1'",
+   "str": "c3=='C1'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "d1",
+   "value": {
+    "t": "str",
+    "v": "D0"
+   },
+   "repr": "d1=='D0'",
+   "str": "d1=='D0'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "d1",
+   "value": {
+    "t": "str",
+    "v": "D1"
+   },
+   "repr": "d1=='D1'",
+   "str": "d1=='D1'"
+  }
+ ],
+ "elapsed_seconds": 0.0009363749995827675,
+ "results": [
+  {
+   "quality": 0.0625,
+   "description": {
+    "repr": "(d1=='D0')",
+    "str": "d1=='D0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "d1",
+      "value": {
+       "t": "str",
+       "v": "D0"
+      },
+      "repr": "d1=='D0'",
+      "str": "d1=='D0'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 48,
+    "size_dataset": 96,
+    "positives_sg": 24,
+    "positives_dataset": 36,
+    "size_complement": 48,
+    "relative_size_sg": 0.5,
+    "relative_size_complement": 0.5,
+    "coverage_sg": 0.6666666666666666,
+    "coverage_complement": 0.3333333333333333,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.25,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.0625,
+   "description": {
+    "repr": "(c1=='A0')",
+    "str": "c1=='A0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c1",
+      "value": {
+       "t": "str",
+       "v": "A0"
+      },
+      "repr": "c1=='A0'",
+      "str": "c1=='A0'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 48,
+    "size_dataset": 96,
+    "positives_sg": 24,
+    "positives_dataset": 36,
+    "size_complement": 48,
+    "relative_size_sg": 0.5,
+    "relative_size_complement": 0.5,
+    "coverage_sg": 0.6666666666666666,
+    "coverage_complement": 0.3333333333333333,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.25,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.0625,
+   "description": {
+    "repr": "(c1=='A0' and d1=='D0')",
+    "str": "c1=='A0' AND d1=='D0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c1",
+      "value": {
+       "t": "str",
+       "v": "A0"
+      },
+      "repr": "c1=='A0'",
+      "str": "c1=='A0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "d1",
+      "value": {
+       "t": "str",
+       "v": "D0"
+      },
+      "repr": "d1=='D0'",
+      "str": "d1=='D0'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 48,
+    "size_dataset": 96,
+    "positives_sg": 24,
+    "positives_dataset": 36,
+    "size_complement": 48,
+    "relative_size_sg": 0.5,
+    "relative_size_complement": 0.5,
+    "coverage_sg": 0.6666666666666666,
+    "coverage_complement": 0.3333333333333333,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.25,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.03125,
+   "description": {
+    "repr": "(c3=='C0' and d1=='D0')",
+    "str": "c3=='C0' AND d1=='D0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c3",
+      "value": {
+       "t": "str",
+       "v": "C0"
+      },
+      "repr": "c3=='C0'",
+      "str": "c3=='C0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "d1",
+      "value": {
+       "t": "str",
+       "v": "D0"
+      },
+      "repr": "d1=='D0'",
+      "str": "d1=='D0'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 24,
+    "size_dataset": 96,
+    "positives_sg": 12,
+    "positives_dataset": 36,
+    "size_complement": 72,
+    "relative_size_sg": 0.25,
+    "relative_size_complement": 0.75,
+    "coverage_sg": 0.3333333333333333,
+    "coverage_complement": 0.6666666666666666,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.3333333333333333,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.03125,
+   "description": {
+    "repr": "(c2=='B1' and d1=='D0')",
+    "str": "c2=='B1' AND d1=='D0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c2",
+      "value": {
+       "t": "str",
+       "v": "B1"
+      },
+      "repr": "c2=='B1'",
+      "str": "c2=='B1'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "d1",
+      "value": {
+       "t": "str",
+       "v": "D0"
+      },
+      "repr": "d1=='D0'",
+      "str": "d1=='D0'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 24,
+    "size_dataset": 96,
+    "positives_sg": 12,
+    "positives_dataset": 36,
+    "size_complement": 72,
+    "relative_size_sg": 0.25,
+    "relative_size_complement": 0.75,
+    "coverage_sg": 0.3333333333333333,
+    "coverage_complement": 0.6666666666666666,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.3333333333333333,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.03125,
+   "description": {
+    "repr": "(c2=='B0' and d1=='D0')",
+    "str": "c2=='B0' AND d1=='D0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c2",
+      "value": {
+       "t": "str",
+       "v": "B0"
+      },
+      "repr": "c2=='B0'",
+      "str": "c2=='B0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "d1",
+      "value": {
+       "t": "str",
+       "v": "D0"
+      },
+      "repr": "d1=='D0'",
+      "str": "d1=='D0'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 24,
+    "size_dataset": 96,
+    "positives_sg": 12,
+    "positives_dataset": 36,
+    "size_complement": 72,
+    "relative_size_sg": 0.25,
+    "relative_size_complement": 0.75,
+    "coverage_sg": 0.3333333333333333,
+    "coverage_complement": 0.6666666666666666,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.3333333333333333,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.03125,
+   "description": {
+    "repr": "(c1=='A0' and c3=='C1')",
+    "str": "c1=='A0' AND c3=='C1'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c1",
+      "value": {
+       "t": "str",
+       "v": "A0"
+      },
+      "repr": "c1=='A0'",
+      "str": "c1=='A0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "c3",
+      "value": {
+       "t": "str",
+       "v": "C1"
+      },
+      "repr": "c3=='C1'",
+      "str": "c3=='C1'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 24,
+    "size_dataset": 96,
+    "positives_sg": 12,
+    "positives_dataset": 36,
+    "size_complement": 72,
+    "relative_size_sg": 0.25,
+    "relative_size_complement": 0.75,
+    "coverage_sg": 0.3333333333333333,
+    "coverage_complement": 0.6666666666666666,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.3333333333333333,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.03125,
+   "description": {
+    "repr": "(c1=='A0' and c3=='C0')",
+    "str": "c1=='A0' AND c3=='C0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c1",
+      "value": {
+       "t": "str",
+       "v": "A0"
+      },
+      "repr": "c1=='A0'",
+      "str": "c1=='A0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "c3",
+      "value": {
+       "t": "str",
+       "v": "C0"
+      },
+      "repr": "c3=='C0'",
+      "str": "c3=='C0'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 24,
+    "size_dataset": 96,
+    "positives_sg": 12,
+    "positives_dataset": 36,
+    "size_complement": 72,
+    "relative_size_sg": 0.25,
+    "relative_size_complement": 0.75,
+    "coverage_sg": 0.3333333333333333,
+    "coverage_complement": 0.6666666666666666,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.3333333333333333,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.03125,
+   "description": {
+    "repr": "(c1=='A0' and c2=='B1')",
+    "str": "c1=='A0' AND c2=='B1'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c1",
+      "value": {
+       "t": "str",
+       "v": "A0"
+      },
+      "repr": "c1=='A0'",
+      "str": "c1=='A0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "c2",
+      "value": {
+       "t": "str",
+       "v": "B1"
+      },
+      "repr": "c2=='B1'",
+      "str": "c2=='B1'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 24,
+    "size_dataset": 96,
+    "positives_sg": 12,
+    "positives_dataset": 36,
+    "size_complement": 72,
+    "relative_size_sg": 0.25,
+    "relative_size_complement": 0.75,
+    "coverage_sg": 0.3333333333333333,
+    "coverage_complement": 0.6666666666666666,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.3333333333333333,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  },
+  {
+   "quality": 0.03125,
+   "description": {
+    "repr": "(c1=='A0' and c2=='B0')",
+    "str": "c1=='A0' AND c2=='B0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "c1",
+      "value": {
+       "t": "str",
+       "v": "A0"
+      },
+      "repr": "c1=='A0'",
+      "str": "c1=='A0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "c2",
+      "value": {
+       "t": "str",
+       "v": "B0"
+      },
+      "repr": "c2=='B0'",
+      "str": "c2=='B0'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 24,
+    "size_dataset": 96,
+    "positives_sg": 12,
+    "positives_dataset": 36,
+    "size_complement": 72,
+    "relative_size_sg": 0.25,
+    "relative_size_complement": 0.75,
+    "coverage_sg": 0.3333333333333333,
+    "coverage_complement": 0.6666666666666666,
+    "target_share_sg": 0.5,
+    "target_share_complement": 0.3333333333333333,
+    "target_share_dataset": 0.375,
+    "lift": 1.3333333333333333
+   }
+  }
+ ]
+}

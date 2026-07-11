@@ -9,45 +9,93 @@
  "fixtures": [
   {
    "file": "tasks/titanic-binary-wracc-apriori-d2-k5.json",
-   "sha256": "c89332fcc41e4794b152d88a8b17f95d83041c1717c7f34edc33a00b8859f889",
+   "sha256": "d1e3af71c2b5f0ea1fb40c932f5162cbc67b3e9ba8619e19558c741517cc47a3",
    "results": 5,
-   "elapsed_seconds": 0.0038
+   "elapsed_seconds": 0.0036
   },
   {
    "file": "tasks/titanic-binary-simpleBinomial-apriori-d3-k10-small.json",
-   "sha256": "6c369b1053d1c91866089d2906a90438715e8b97ec6e5b7d3f906db92a2943f7",
+   "sha256": "169c8deb51fbcfdc1a62992a55e6f756b5d92044c75b7a01f0c88f599c996fee",
    "results": 10,
    "elapsed_seconds": 0.0012
   },
   {
    "file": "tasks/titanic-binary-chi2-simple-d2-k10.json",
-   "sha256": "7932f99bbeaad283284bd1e7a6f16f37712da191e17c86132f0e50a5159b58c3",
+   "sha256": "61935f4623020d61b87729f68d84512a5a9ef3fcdd4425524a0d527c591c22c4",
    "results": 10,
-   "elapsed_seconds": 0.5562
+   "elapsed_seconds": 0.5381
   },
   {
    "file": "tasks/creditg-binary-wracc-negations-apriori-d2-k10.json",
-   "sha256": "74d0d8106e74549c7c682bf8c424d571e007240a09b77baed4816ca2dd7f7c71",
+   "sha256": "4b066b3e3edcca5f2854bc2943600e1a52ff4365618483c860c9a52b1e6ff1a3",
    "results": 10,
-   "elapsed_seconds": 0.0217
+   "elapsed_seconds": 0.022
   },
   {
    "file": "tasks/creditg-numeric-age-stdnum1-apriori-d2-k10.json",
-   "sha256": "9cb5f9136d956f1deebdf28ebed2882b93b0715adbdc1a5d18937375cb17254d",
+   "sha256": "b97df070cd774a3bc30f1164551c2d68a070b2ddf4aa94432c16379b2796b134",
    "results": 10,
-   "elapsed_seconds": 0.0189
+   "elapsed_seconds": 0.0191
   },
   {
    "file": "tasks/creditg-fi-count-apriori-d2-k10.json",
-   "sha256": "cc1ff3d2cbeb3c92385eb3260b17b3d29ad2fa0c854e35e61e59593233c552bf",
+   "sha256": "ec9466ca13a51fa6d11caacd1b04c1101294a4bf49e674dff95d8722044ae74d",
    "results": 10,
    "elapsed_seconds": 0.0009
   },
   {
    "file": "tasks/creditg-fi-area-simple-d2-k10.json",
-   "sha256": "a0d0d5efc5a64ae0cf09f4838aa4cbb64c11e6c5d532282d0dca9515dd132ee0",
+   "sha256": "1cdd96162ebc62494ccbe4d854058612b9d8b01483badef1914eab6775e8454e",
    "results": 10,
-   "elapsed_seconds": 0.0435
+   "elapsed_seconds": 0.0428
+  },
+  {
+   "file": "tasks/titanic-binary-wracc-minsupport-apriori-d2-k10.json",
+   "sha256": "15ae0e31fd809b07e06ba01abfc3930a674e4784e57cc1a1e23d309d76351f37",
+   "results": 10,
+   "elapsed_seconds": 0.0026
+  },
+  {
+   "file": "tasks/titanic-binary-wracc-minquality-apriori-d2-k10.json",
+   "sha256": "d1d1be0d9c7999e3303481aee34e1107241c9a008fdb91fef4315b8d276d782c",
+   "results": 10,
+   "elapsed_seconds": 0.0037
+  },
+  {
+   "file": "tasks/titanic-binary-wracc-nbins10-allsel-apriori-d2-k10.json",
+   "sha256": "1b6a1cb0213f6fc7f46d383b35a7d1ba2d76bcc269e24cc79e84191c2d603e59",
+   "results": 10,
+   "elapsed_seconds": 0.0046
+  },
+  {
+   "file": "tasks/creditg-numeric-age-stdnum1-average-apriori-d2-k10.json",
+   "sha256": "03aea78d0b8fa18616b33fe54ce16f3638957f206fdf0dcedcd951fc51c767d3",
+   "results": 10,
+   "elapsed_seconds": 0.0262
+  },
+  {
+   "file": "tasks/creditg-numeric-age-stdnum1-order-apriori-d2-k10.json",
+   "sha256": "a5e492d1fd23252e05f886fe0940861f8e9ce430859dfa884eba0f16057ac9d1",
+   "results": 10,
+   "elapsed_seconds": 0.017
+  },
+  {
+   "file": "tasks/synth-na-stress-wracc-apriori-d2-k10.json",
+   "sha256": "b92be884a10605f870d8b957c4913b9345ab81fb9bcafb6f87bfbb106bd9da02",
+   "results": 10,
+   "elapsed_seconds": 0.0012
+  },
+  {
+   "file": "tasks/synth-dup-rows-wracc-apriori-d3-k10.json",
+   "sha256": "0b2ec47eb5b232cf908929ed775127aa815ed2bae241f1e574df8387cf4ce89c",
+   "results": 10,
+   "elapsed_seconds": 0.0003
+  },
+  {
+   "file": "tasks/synth-tie-stress-wracc-simple-d3-k10.json",
+   "sha256": "e7c6e46451e4b48dbda91886adeea586b7891df09be6d2aa25c99a386bc783f3",
+   "results": 10,
+   "elapsed_seconds": 0.0009
   },
   {
    "file": "qfvalues/titanic-binary-qfvalues.json",

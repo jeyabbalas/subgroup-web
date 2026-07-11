@@ -1,7 +1,7 @@
 {
- "id": "creditg-numeric-age-stdnum1-apriori-d2-k10",
+ "id": "creditg-numeric-age-stdnum1-average-apriori-d2-k10",
  "cell": {
-  "id": "creditg-numeric-age-stdnum1-apriori-d2-k10",
+  "id": "creditg-numeric-age-stdnum1-average-apriori-d2-k10",
   "dataset": "credit-g",
   "target": {
    "type": "numeric",
@@ -18,7 +18,8 @@
   },
   "qf": {
    "name": "standardNumeric",
-   "a": 1.0
+   "a": 1.0,
+   "estimator": "average"
   },
   "algorithm": "apriori",
   "depth": 2,
@@ -907,7 +908,7 @@
    "str": "num_dependents==2.0"
   }
  ],
- "elapsed_seconds": 0.019100707955658436,
+ "elapsed_seconds": 0.026190834119915962,
  "results": [
   {
    "quality": 1791.862000000001,

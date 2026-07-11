@@ -15,6 +15,9 @@
 /** Library version (mirrors package.json). */
 export const VERSION = "0.1.0";
 
+export { CpuEvaluator } from "./backends/cpu/evaluator.js";
+// Backends
+export type { BatchEvaluator, StatsBatch } from "./backends/types.js";
 // Bitsets
 export { buildAtlas, SelectorAtlas } from "./bitset/atlas.js";
 export {
@@ -99,7 +102,6 @@ export {
   standardNumericMedian,
   standardNumericTscore,
 } from "./qf/numeric.js";
-
 // Quality functions
 export type {
   BinaryQF,
@@ -114,9 +116,13 @@ export type {
 // Results
 export type { ResultEntry } from "./results/result.js";
 export { buildResults, SubgroupResults } from "./results/result.js";
+// Search
+export { apriori } from "./search/apriori.js";
+export { bestFirst } from "./search/bestfirst.js";
+export { dfs } from "./search/dfs.js";
+export type { SearchOptions } from "./search/engine.js";
 export type { CrossCheckReport, ExhaustiveOptions } from "./search/exhaustive.js";
 export { candidateSpaceSize, exhaustive } from "./search/exhaustive.js";
-// Search
 export type { Constraint, PreparedTask, SearchProgress, SubgroupTask } from "./search/task.js";
 export { minSupport, prepareTask } from "./search/task.js";
 export { compareItems, TopK, type TopKItem } from "./search/topk.js";
@@ -127,6 +133,7 @@ export type {
   PlantedNumericOptions,
 } from "./synth/planted.js";
 export { plantedBinary, plantedNumeric, tableToCSV } from "./synth/planted.js";
+export { dupRows, naStress, tieStress } from "./synth/stress.js";
 // Table model
 export type {
   BooleanColumn,

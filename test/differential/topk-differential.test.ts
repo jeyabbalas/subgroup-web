@@ -13,49 +13,11 @@
 import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import {
-  allSelectors,
-  Conjunction,
-  CoverEvalContext,
-  exhaustive,
-  negated,
-  nominalSelectors,
-  prepareTarget,
-  type Selector,
-} from "../../src/index.js";
-import { loadDataset } from "../util/datasets.js";
+import { CoverEvalContext, exhaustive, prepareTarget } from "../../src/index.js";
+import { buildTask, type CellSpec } from "../util/cells.js";
 import { FIXTURES_DIR, loadTaskFixture, type TaskFixture } from "../util/fixtures.js";
 import { recordDivergence, recordGateRow } from "../util/gaterow.js";
-import { fixtureConjunction, makeQF, makeTarget, type QfSpec, valuesAgree } from "../util/qf.js";
-
-interface CellSpec {
-  id: string;
-  dataset: string;
-  target: { type: string; attribute?: string; value?: string | number };
-  space: {
-    ignore?: string[];
-    nbins?: number;
-    intervalsOnly?: boolean;
-    negations?: boolean;
-    nominalOnly?: boolean;
-  };
-  qf: QfSpec;
-  algorithm: string;
-  depth: number;
-  k: number;
-  minQuality: number;
-}
-
-function buildSpace(table: ReturnType<typeof loadDataset>, spec: CellSpec["space"]): Selector[] {
-  const base = spec.nominalOnly
-    ? nominalSelectors(table, { ignore: spec.ignore ?? [] })
-    : allSelectors(table, {
-        ignore: spec.ignore ?? [],
-        bins: spec.nbins ?? 5,
-        intervalsOnly: spec.intervalsOnly ?? true,
-      });
-  return spec.negations ? [...base, ...base.map((s) => negated(s))] : base;
-}
+import { fixtureConjunction, makeQF, valuesAgree } from "../util/qf.js";
 
 const cellFiles = fs
   .readdirSync(path.join(FIXTURES_DIR, "tasks"))
@@ -76,20 +38,11 @@ describe("top-k differential vs pysubgroup 0.9.0 (tie-tolerant)", () => {
     const cell = fixture.cell;
 
     it(`${cell.id}: ${fixture.results.length} reference rows`, async () => {
-      const table = loadDataset(cell.dataset);
-      const target = makeTarget(cell.target as never);
-      const space = buildSpace(table, cell.space);
+      const task = buildTask(cell);
+      const { table, target } = task;
       const qf = makeQF(cell.qf, cell.depth);
 
-      const ours = await exhaustive({
-        table,
-        target,
-        searchSpace: space,
-        qf,
-        resultSetSize: cell.k,
-        depth: cell.depth,
-        minQuality: cell.minQuality,
-      });
+      const ours = await exhaustive(task);
       expect(ours.crossCheckReport.mode).toBe("full");
       dualChecked += ours.crossCheckReport.checked;
       dualTotal += ours.crossCheckReport.total;
