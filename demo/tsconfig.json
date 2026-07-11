@@ -9,7 +9,8 @@
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "skipLibCheck": true,
-    "noEmit": true
+    "noEmit": true,
+    "types": ["vite/client", "@webgpu/types"]
   },
   "include": ["src", "vite.config.ts"]
 }

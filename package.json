@@ -8,7 +8,9 @@
   "engines": {
     "node": ">=20"
   },
-  "sideEffects": false,
+  "sideEffects": [
+    "./dist/worker.js"
+  ],
   "files": [
     "dist",
     "README.md",
@@ -25,6 +27,10 @@
     "./webgpu": {
       "types": "./dist/webgpu.d.ts",
       "default": "./dist/webgpu.js"
+    },
+    "./worker": {
+      "types": "./dist/worker.d.ts",
+      "default": "./dist/worker.js"
     }
   },
   "packageManager": "pnpm@10.34.4",
