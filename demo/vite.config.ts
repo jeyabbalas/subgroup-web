@@ -1,4 +1,22 @@
-import { defineConfig } from "vite";
+import { defineConfig, type Plugin } from "vite";
+
+/**
+ * subgroup-web ships `sideEffects: false` (fully tree-shakeable), but its
+ * `./worker` entry works BY side effect (it attaches onmessage at module
+ * scope). Without this override Rollup would tree-shake the worker bundle
+ * to an empty chunk. Consumer bundler config is the right place to say so.
+ */
+function keepWorkerSideEffects(): Plugin {
+  return {
+    name: "subgroup-web-worker-side-effects",
+    enforce: "pre",
+    async resolveId(source, importer, options) {
+      if (source !== "subgroup-web/worker") return null;
+      const resolved = await this.resolve(source, importer, { ...options, skipSelf: true });
+      return resolved && { ...resolved, moduleSideEffects: true };
+    },
+  };
+}
 
 // GitHub Pages constraint (BRIEF §15): base path comes from BASE_PATH
 // (default "/subgroup-web/" for builds, "/" in dev). The local dev server
@@ -30,5 +48,7 @@ export default defineConfig(({ command, isPreview }) => ({
   // The library creates browser workers with { type: "module" } (pool.ts).
   worker: {
     format: "es",
+    plugins: () => [keepWorkerSideEffects()],
   },
+  plugins: [keepWorkerSideEffects()],
 }));

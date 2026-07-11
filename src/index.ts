@@ -138,7 +138,7 @@ export type {
   ResultEntry,
 } from "./results/result.js";
 export { buildResults, SubgroupResults } from "./results/result.js";
-export type { SelectorJSON, SerializedResults } from "./results/serialize.js";
+export type { SelectorJSON, SerializedResults, Tagged } from "./results/serialize.js";
 export {
   deserializeResults,
   selectorFromJSON,
@@ -158,6 +158,7 @@ export type { CrossCheckReport, ExhaustiveOptions } from "./search/exhaustive.js
 export { candidateSpaceSize, exhaustive } from "./search/exhaustive.js";
 export { generalizingBFS } from "./search/generalizingbfs.js";
 export { patternTree } from "./search/patterntree.js";
+export type { BatchScorer } from "./search/scorer.js";
 export type { Constraint, PreparedTask, SearchProgress, SubgroupTask } from "./search/task.js";
 export { minSupport, prepareTask } from "./search/task.js";
 export { compareItems, TopK, type TopKItem } from "./search/topk.js";
@@ -181,7 +182,7 @@ export type {
 } from "./table/column.js";
 export type { FromCSVOptions } from "./table/csv.js";
 export { DEFAULT_NA_TOKENS, fromCSV, parseCsvRecords } from "./table/csv.js";
-export type { CellValue } from "./table/table.js";
+export type { CellValue, ColumnSpec } from "./table/table.js";
 export { DataTable, fromColumns, fromRows } from "./table/table.js";
 export type { EmmCoverStats, EmmFit, EmmSufficientStats } from "./targets/emm.js";
 export {

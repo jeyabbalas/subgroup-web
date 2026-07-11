@@ -15,7 +15,8 @@ import type { DataTable } from "../table/table.js";
 import type { Description, ResultEntry } from "./result.js";
 import { SubgroupResults } from "./result.js";
 
-type Tagged = number | { $f: "nan" | "inf" | "-inf" };
+/** JSON-safe number: non-finite values ride as `{ $f: … }` tags (spec §8.4). */
+export type Tagged = number | { $f: "nan" | "inf" | "-inf" };
 
 function tagNumber(v: number): Tagged {
   if (Number.isNaN(v)) return { $f: "nan" };
