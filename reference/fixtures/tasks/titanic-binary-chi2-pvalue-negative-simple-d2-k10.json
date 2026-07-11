@@ -1,0 +1,926 @@
+{
+ "id": "titanic-binary-chi2-pvalue-negative-simple-d2-k10",
+ "cell": {
+  "id": "titanic-binary-chi2-pvalue-negative-simple-d2-k10",
+  "dataset": "titanic",
+  "target": {
+   "type": "binary",
+   "attribute": "Survived",
+   "value": 1
+  },
+  "space": {
+   "ignore": [
+    "Survived",
+    "PassengerId",
+    "Name",
+    "Ticket",
+    "Cabin"
+   ],
+   "nbins": 5,
+   "intervalsOnly": true,
+   "negations": false
+  },
+  "qf": {
+   "name": "chiSquared",
+   "direction": "negative",
+   "minInstances": 5,
+   "stat": "p"
+  },
+  "algorithm": "simple",
+  "depth": 2,
+  "k": 10,
+  "minQuality": 0
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "data_shape": [
+  156,
+  12
+ ],
+ "search_space": [
+  {
+   "kind": "equality",
+   "attribute": "Sex",
+   "value": {
+    "t": "str",
+    "v": "male"
+   },
+   "repr": "Sex=='male'",
+   "str": "Sex=='male'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Sex",
+   "value": {
+    "t": "str",
+    "v": "female"
+   },
+   "repr": "Sex=='female'",
+   "str": "Sex=='female'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "S"
+   },
+   "repr": "Embarked=='S'",
+   "str": "Embarked=='S'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "C"
+   },
+   "repr": "Embarked=='C'",
+   "str": "Embarked=='C'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "Q"
+   },
+   "repr": "Embarked=='Q'",
+   "str": "Embarked=='Q'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "Embarked.isnull()",
+   "str": "Embarked.isnull()"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Pclass",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1,
+     "int": true
+    }
+   },
+   "repr": "Pclass==1",
+   "str": "Pclass==1"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Pclass",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2,
+     "int": true
+    }
+   },
+   "repr": "Pclass==2",
+   "str": "Pclass==2"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Pclass",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3,
+     "int": true
+    }
+   },
+   "repr": "Pclass==3",
+   "str": "Pclass==3"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Age",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "Age.isnull()",
+   "str": "Age.isnull()"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 18.0,
+    "int": false
+   },
+   "repr": "Age<18.0",
+   "str": "Age<18.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 18.0,
+    "int": false
+   },
+   "hi": {
+    "value": 22.0,
+    "int": false
+   },
+   "repr": "Age: [18.0:22.0[",
+   "str": "Age: [18.0:22.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 22.0,
+    "int": false
+   },
+   "hi": {
+    "value": 29.0,
+    "int": false
+   },
+   "repr": "Age: [22.0:29.0[",
+   "str": "Age: [22.0:29.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 29.0,
+    "int": false
+   },
+   "hi": {
+    "value": 38.0,
+    "int": false
+   },
+   "repr": "Age: [29.0:38.0[",
+   "str": "Age: [29.0:38.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 38.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "Age>=38.0",
+   "str": "Age>=38.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 0,
+    "int": true
+   },
+   "repr": "SibSp<0",
+   "str": "SibSp<0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 0,
+    "int": true
+   },
+   "hi": {
+    "value": 1,
+    "int": true
+   },
+   "repr": "SibSp: [0:1[",
+   "str": "SibSp: [0:1["
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 1,
+    "int": true
+   },
+   "hi": {
+    "value": 2,
+    "int": true
+   },
+   "repr": "SibSp: [1:2[",
+   "str": "SibSp: [1:2["
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 2,
+    "int": true
+   },
+   "hi": {
+    "value": 3,
+    "int": true
+   },
+   "repr": "SibSp: [2:3[",
+   "str": "SibSp: [2:3["
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 3,
+    "int": true
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "SibSp>=3",
+   "str": "SibSp>=3"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 0,
+     "int": true
+    }
+   },
+   "repr": "Parch==0",
+   "str": "Parch==0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1,
+     "int": true
+    }
+   },
+   "repr": "Parch==1",
+   "str": "Parch==1"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2,
+     "int": true
+    }
+   },
+   "repr": "Parch==2",
+   "str": "Parch==2"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3,
+     "int": true
+    }
+   },
+   "repr": "Parch==3",
+   "str": "Parch==3"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 5,
+     "int": true
+    }
+   },
+   "repr": "Parch==5",
+   "str": "Parch==5"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 7.8958,
+    "int": false
+   },
+   "repr": "Fare<7.8958",
+   "str": "Fare<7.90"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 7.8958,
+    "int": false
+   },
+   "hi": {
+    "value": 10.5,
+    "int": false
+   },
+   "repr": "Fare: [7.8958:10.5[",
+   "str": "Fare: [7.90:10.50["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 10.5,
+    "int": false
+   },
+   "hi": {
+    "value": 20.575,
+    "int": false
+   },
+   "repr": "Fare: [10.5:20.575[",
+   "str": "Fare: [10.50:20.57["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 20.575,
+    "int": false
+   },
+   "hi": {
+    "value": 35.5,
+    "int": false
+   },
+   "repr": "Fare: [20.575:35.5[",
+   "str": "Fare: [20.57:35.50["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 35.5,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "Fare>=35.5",
+   "str": "Fare>=35.50"
+  }
+ ],
+ "elapsed_seconds": 0.01982945902273059,
+ "results": [
+  {
+   "quality": 0.9867249627703443,
+   "description": {
+    "repr": "(Age: [22.0:29.0[)",
+    "str": "Age: [22.0:29.0[",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Age",
+      "lo": {
+       "value": 22.0,
+       "int": false
+      },
+      "hi": {
+       "value": 29.0,
+       "int": false
+      },
+      "repr": "Age: [22.0:29.0[",
+      "str": "Age: [22.0:29.0["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 29,
+    "size_dataset": 156,
+    "positives_sg": 10,
+    "positives_dataset": 54,
+    "size_complement": 127,
+    "relative_size_sg": 0.1858974358974359,
+    "relative_size_complement": 0.8141025641025641,
+    "coverage_sg": 0.18518518518518517,
+    "coverage_complement": 0.8148148148148148,
+    "target_share_sg": 0.3448275862068966,
+    "target_share_complement": 0.3464566929133858,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.996168582375479
+   }
+  },
+  {
+   "quality": 0.9463292730326014,
+   "description": {
+    "repr": "(Age>=38.0 and Embarked=='C')",
+    "str": "Age>=38.0 AND Embarked=='C'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Embarked",
+      "value": {
+       "t": "str",
+       "v": "C"
+      },
+      "repr": "Embarked=='C'",
+      "str": "Embarked=='C'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "Age",
+      "lo": {
+       "value": 38.0,
+       "int": false
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Age>=38.0",
+      "str": "Age>=38.0"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 6,
+    "size_dataset": 156,
+    "positives_sg": 2,
+    "positives_dataset": 54,
+    "size_complement": 150,
+    "relative_size_sg": 0.038461538461538464,
+    "relative_size_complement": 0.9615384615384616,
+    "coverage_sg": 0.037037037037037035,
+    "coverage_complement": 0.9629629629629629,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.3466666666666667,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  },
+  {
+   "quality": 0.9463292730326014,
+   "description": {
+    "repr": "(Age: [18.0:22.0[ and Fare<7.8958)",
+    "str": "Age: [18.0:22.0[ AND Fare<7.90",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Age",
+      "lo": {
+       "value": 18.0,
+       "int": false
+      },
+      "hi": {
+       "value": 22.0,
+       "int": false
+      },
+      "repr": "Age: [18.0:22.0[",
+      "str": "Age: [18.0:22.0["
+     },
+     {
+      "kind": "interval",
+      "attribute": "Fare",
+      "lo": {
+       "value": {
+        "$f": "-inf"
+       },
+       "int": false
+      },
+      "hi": {
+       "value": 7.8958,
+       "int": false
+      },
+      "repr": "Fare<7.8958",
+      "str": "Fare<7.90"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 6,
+    "size_dataset": 156,
+    "positives_sg": 2,
+    "positives_dataset": 54,
+    "size_complement": 150,
+    "relative_size_sg": 0.038461538461538464,
+    "relative_size_complement": 0.9615384615384616,
+    "coverage_sg": 0.037037037037037035,
+    "coverage_complement": 0.9629629629629629,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.3466666666666667,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  },
+  {
+   "quality": 0.9336262801765491,
+   "description": {
+    "repr": "(Age>=38.0 and SibSp: [1:2[)",
+    "str": "Age>=38.0 AND SibSp: [1:2[",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Age",
+      "lo": {
+       "value": 38.0,
+       "int": false
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Age>=38.0",
+      "str": "Age>=38.0"
+     },
+     {
+      "kind": "interval",
+      "attribute": "SibSp",
+      "lo": {
+       "value": 1,
+       "int": true
+      },
+      "hi": {
+       "value": 2,
+       "int": true
+      },
+      "repr": "SibSp: [1:2[",
+      "str": "SibSp: [1:2["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 9,
+    "size_dataset": 156,
+    "positives_sg": 3,
+    "positives_dataset": 54,
+    "size_complement": 147,
+    "relative_size_sg": 0.057692307692307696,
+    "relative_size_complement": 0.9423076923076923,
+    "coverage_sg": 0.05555555555555555,
+    "coverage_complement": 0.9444444444444444,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.3469387755102041,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  },
+  {
+   "quality": 0.9225962772615588,
+   "description": {
+    "repr": "(Embarked=='C' and Pclass==1)",
+    "str": "Embarked=='C' AND Pclass==1",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Embarked",
+      "value": {
+       "t": "str",
+       "v": "C"
+      },
+      "repr": "Embarked=='C'",
+      "str": "Embarked=='C'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Pclass",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 1,
+        "int": true
+       }
+      },
+      "repr": "Pclass==1",
+      "str": "Pclass==1"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 12,
+    "size_dataset": 156,
+    "positives_sg": 4,
+    "positives_dataset": 54,
+    "size_complement": 144,
+    "relative_size_sg": 0.07692307692307693,
+    "relative_size_complement": 0.9230769230769231,
+    "coverage_sg": 0.07407407407407407,
+    "coverage_complement": 0.9259259259259259,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.3472222222222222,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  },
+  {
+   "quality": 0.9125822137840915,
+   "description": {
+    "repr": "(Parch==1)",
+    "str": "Parch==1",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Parch",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 1,
+        "int": true
+       }
+      },
+      "repr": "Parch==1",
+      "str": "Parch==1"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 15,
+    "size_dataset": 156,
+    "positives_sg": 5,
+    "positives_dataset": 54,
+    "size_complement": 141,
+    "relative_size_sg": 0.09615384615384616,
+    "relative_size_complement": 0.9038461538461539,
+    "coverage_sg": 0.09259259259259259,
+    "coverage_complement": 0.9074074074074074,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.3475177304964539,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  },
+  {
+   "quality": 0.9125822137840915,
+   "description": {
+    "repr": "(Fare>=35.5 and SibSp: [0:1[)",
+    "str": "Fare>=35.50 AND SibSp: [0:1[",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "SibSp",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 1,
+       "int": true
+      },
+      "repr": "SibSp: [0:1[",
+      "str": "SibSp: [0:1["
+     },
+     {
+      "kind": "interval",
+      "attribute": "Fare",
+      "lo": {
+       "value": 35.5,
+       "int": false
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Fare>=35.5",
+      "str": "Fare>=35.50"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 15,
+    "size_dataset": 156,
+    "positives_sg": 5,
+    "positives_dataset": 54,
+    "size_complement": 141,
+    "relative_size_sg": 0.09615384615384616,
+    "relative_size_complement": 0.9038461538461539,
+    "coverage_sg": 0.09259259259259259,
+    "coverage_complement": 0.9074074074074074,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.3475177304964539,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  },
+  {
+   "quality": 0.9032471952507657,
+   "description": {
+    "repr": "(Pclass==1 and SibSp: [0:1[)",
+    "str": "Pclass==1 AND SibSp: [0:1[",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Pclass",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 1,
+        "int": true
+       }
+      },
+      "repr": "Pclass==1",
+      "str": "Pclass==1"
+     },
+     {
+      "kind": "interval",
+      "attribute": "SibSp",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 1,
+       "int": true
+      },
+      "repr": "SibSp: [0:1[",
+      "str": "SibSp: [0:1["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 18,
+    "size_dataset": 156,
+    "positives_sg": 6,
+    "positives_dataset": 54,
+    "size_complement": 138,
+    "relative_size_sg": 0.11538461538461539,
+    "relative_size_complement": 0.8846153846153846,
+    "coverage_sg": 0.1111111111111111,
+    "coverage_complement": 0.8888888888888888,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.34782608695652173,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  },
+  {
+   "quality": 0.9032471952507657,
+   "description": {
+    "repr": "(Age: [22.0:29.0[ and Pclass==3)",
+    "str": "Age: [22.0:29.0[ AND Pclass==3",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Pclass",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 3,
+        "int": true
+       }
+      },
+      "repr": "Pclass==3",
+      "str": "Pclass==3"
+     },
+     {
+      "kind": "interval",
+      "attribute": "Age",
+      "lo": {
+       "value": 22.0,
+       "int": false
+      },
+      "hi": {
+       "value": 29.0,
+       "int": false
+      },
+      "repr": "Age: [22.0:29.0[",
+      "str": "Age: [22.0:29.0["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 18,
+    "size_dataset": 156,
+    "positives_sg": 6,
+    "positives_dataset": 54,
+    "size_complement": 138,
+    "relative_size_sg": 0.11538461538461539,
+    "relative_size_complement": 0.8846153846153846,
+    "coverage_sg": 0.1111111111111111,
+    "coverage_complement": 0.8888888888888888,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.34782608695652173,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  },
+  {
+   "quality": 0.8858791102867142,
+   "description": {
+    "repr": "(Embarked=='C' and Parch==0)",
+    "str": "Embarked=='C' AND Parch==0",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Embarked",
+      "value": {
+       "t": "str",
+       "v": "C"
+      },
+      "repr": "Embarked=='C'",
+      "str": "Embarked=='C'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Parch",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 0,
+        "int": true
+       }
+      },
+      "repr": "Parch==0",
+      "str": "Parch==0"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 24,
+    "size_dataset": 156,
+    "positives_sg": 8,
+    "positives_dataset": 54,
+    "size_complement": 132,
+    "relative_size_sg": 0.15384615384615385,
+    "relative_size_complement": 0.8461538461538461,
+    "coverage_sg": 0.14814814814814814,
+    "coverage_complement": 0.8518518518518519,
+    "target_share_sg": 0.3333333333333333,
+    "target_share_complement": 0.3484848484848485,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 0.9629629629629629
+   }
+  }
+ ]
+}

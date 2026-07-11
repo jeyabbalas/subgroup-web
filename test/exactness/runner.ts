@@ -14,14 +14,18 @@ import { buildTask, type CellSpec } from "../util/cells.js";
 export const EXACT_ALGORITHMS = { apriori, dfs, bestFirst } as const;
 export type ExactAlgorithmName = keyof typeof EXACT_ALGORITHMS;
 
-function fingerprint(results: SubgroupResults): { key: string; quality: number }[] {
+export function fingerprint(results: SubgroupResults): { key: string; quality: number }[] {
   return results.entries.map((e) => ({
     key: e.description.canonicalKey(),
     quality: e.quality,
   }));
 }
 
-function assertSameResults(label: string, ours: SubgroupResults, oracle: SubgroupResults): void {
+export function assertSameResults(
+  label: string,
+  ours: SubgroupResults,
+  oracle: SubgroupResults,
+): void {
   const a = fingerprint(ours);
   const b = fingerprint(oracle);
   expect(

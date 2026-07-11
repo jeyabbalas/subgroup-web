@@ -49,7 +49,7 @@ const base = {
   depth: 2,
 };
 
-function names(entries: readonly { description: Conjunction }[]): string[] {
+function names(entries: readonly { description: { toString(d?: "display"): string } }[]): string[] {
   return entries.map((e) => e.description.toString("display"));
 }
 

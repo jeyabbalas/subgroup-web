@@ -13,7 +13,7 @@
  */
 
 import type { SelectorAtlas } from "../../bitset/atlas.js";
-import { andInto } from "../../bitset/bitset.js";
+import { andInto, orInto } from "../../bitset/bitset.js";
 import { emmStatsFromBits } from "../../targets/emm.js";
 import type { NumericStatsPlan } from "../../targets/stats.js";
 import { binaryStatsFromBits, numericStatsFromBits, sizeFromBits } from "../../targets/stats.js";
@@ -131,7 +131,11 @@ export class CpuEvaluator implements BatchEvaluator {
     return batch;
   }
 
-  evaluateExtensions(parent: Uint32Array | null, extensions: ArrayLike<number>): StatsBatch {
+  evaluateExtensions(
+    parent: Uint32Array | null,
+    extensions: ArrayLike<number>,
+    op: "and" | "or" = "and",
+  ): StatsBatch {
     const atlas = this.atlas;
     const w = atlas.wordsPerRow;
     const count = extensions.length;
@@ -141,8 +145,10 @@ export class CpuEvaluator implements BatchEvaluator {
       const id = extensions[j] as number;
       if (parent === null) {
         dst.set(atlas.row(id));
-      } else {
+      } else if (op === "and") {
         andInto(dst, 0, parent, 0, atlas.bits, atlas.offset(id), w);
+      } else {
+        orInto(dst, 0, parent, 0, atlas.bits, atlas.offset(id), w);
       }
       this.statsInto(batch, j, dst);
     }

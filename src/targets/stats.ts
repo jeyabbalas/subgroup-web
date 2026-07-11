@@ -144,11 +144,22 @@ function statsFromGathered(
   prep: PreparedNumeric,
   gathered: Float64Array,
   plan: NumericStatsPlan,
+  sumMode: "pairwise" | "streaming" = "pairwise",
 ): NumericCoverStats {
   const n = gathered.length;
   const dir = plan.direction;
   const c0 = centroidOf(prep, plan);
-  const sum = pairwiseSum(gathered);
+  // THE decision `sum` must be arithmetic-identical across every engine
+  // (BRIEF §7): the bitset paths accumulate naively in ascending row order
+  // ('streaming'), the independent row-scan cross-check path uses pairwise
+  // summation (spec §7.2).
+  let sum: number;
+  if (sumMode === "streaming") {
+    sum = 0;
+    for (let i = 0; i < n; i++) sum += gathered[i]!;
+  } else {
+    sum = pairwiseSum(gathered);
+  }
   let std = Number.NaN;
   if (plan.needStd) std = populationStd(gathered);
   let excessSum = 0;
@@ -217,9 +228,11 @@ export function numericStatsFromBits(
   plan: NumericStatsPlan,
 ): NumericCoverStats {
   if (plan.needMedian || plan.needOrder || plan.needStd) {
-    // Sort-based statistics share the gather implementation; the gathered
-    // multiset (ascending row order) is identical on both paths.
-    return statsFromGathered(prep, gatherValuesFromBits(prep, words), plan);
+    // Sort-based statistics gather first; `sum` uses the SAME streaming
+    // ascending-row accumulation as the pure-streaming branch below, so a
+    // candidate's decision statistics are bit-identical no matter which
+    // plan/engine computed them (BRIEF §7).
+    return statsFromGathered(prep, gatherValuesFromBits(prep, words), plan, "streaming");
   }
   const values = prep.values;
   const dir = plan.direction;

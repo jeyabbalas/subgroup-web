@@ -54,6 +54,7 @@ export function standardNumeric(a: number, options: StandardNumericOptions = {})
     kind: "numeric",
     name: `standardNumeric(${a},${estimator}${invert ? ",invert" : ""})`,
     plan,
+    standard: { a, dir },
     // 'sum' and 'average'/'max' proven admissible for a ∈ [0,1]; 'order' for
     // any a ≥ 0 (spec §6.3).
     pruningSafe: estimator === "order" ? a >= 0 : a >= 0 && a <= 1,

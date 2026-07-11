@@ -1,26 +1,30 @@
 {
- "id": "creditg-fi-count-apriori-d2-k10",
+ "id": "creditg-emm-duration-camount-simple-d1-k5",
  "cell": {
-  "id": "creditg-fi-count-apriori-d2-k10",
+  "id": "creditg-emm-duration-camount-simple-d1-k5",
   "dataset": "credit-g",
   "target": {
-   "type": "fi"
+   "type": "emm",
+   "x": "duration",
+   "y": "credit_amount"
   },
   "space": {
    "ignore": [
+    "duration",
+    "credit_amount",
     "class"
    ],
-   "nbins": 5,
-   "intervalsOnly": true,
+   "nominalOnly": true,
    "negations": false
   },
   "qf": {
-   "name": "count"
+   "name": "emmLikelihood",
+   "x": "duration",
+   "y": "credit_amount"
   },
-  "algorithm": "apriori",
-  "depth": 2,
-  "k": 10,
-  "minQuality": 0
+  "algorithm": "simple",
+  "depth": 1,
+  "k": 5
  },
  "versions": {
   "pysubgroup": "0.9.0",
@@ -572,557 +576,104 @@
    },
    "repr": "foreign_worker=='no'",
    "str": "foreign_worker=='no'"
-  },
-  {
-   "kind": "interval",
-   "attribute": "duration",
-   "lo": {
-    "value": {
-     "$f": "-inf"
-    },
-    "int": false
-   },
-   "hi": {
-    "value": 12.0,
-    "int": false
-   },
-   "repr": "duration<12.0",
-   "str": "duration<12.0"
-  },
-  {
-   "kind": "interval",
-   "attribute": "duration",
-   "lo": {
-    "value": 12.0,
-    "int": false
-   },
-   "hi": {
-    "value": 15.0,
-    "int": false
-   },
-   "repr": "duration: [12.0:15.0[",
-   "str": "duration: [12.0:15.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "duration",
-   "lo": {
-    "value": 15.0,
-    "int": false
-   },
-   "hi": {
-    "value": 24.0,
-    "int": false
-   },
-   "repr": "duration: [15.0:24.0[",
-   "str": "duration: [15.0:24.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "duration",
-   "lo": {
-    "value": 24.0,
-    "int": false
-   },
-   "hi": {
-    "value": 30.0,
-    "int": false
-   },
-   "repr": "duration: [24.0:30.0[",
-   "str": "duration: [24.0:30.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "duration",
-   "lo": {
-    "value": 30.0,
-    "int": false
-   },
-   "hi": {
-    "value": {
-     "$f": "inf"
-    },
-    "int": false
-   },
-   "repr": "duration>=30.0",
-   "str": "duration>=30.0"
-  },
-  {
-   "kind": "interval",
-   "attribute": "credit_amount",
-   "lo": {
-    "value": {
-     "$f": "-inf"
-    },
-    "int": false
-   },
-   "hi": {
-    "value": 1262.0,
-    "int": false
-   },
-   "repr": "credit_amount<1262.0",
-   "str": "credit_amount<1262.0"
-  },
-  {
-   "kind": "interval",
-   "attribute": "credit_amount",
-   "lo": {
-    "value": 1262.0,
-    "int": false
-   },
-   "hi": {
-    "value": 1908.0,
-    "int": false
-   },
-   "repr": "credit_amount: [1262.0:1908.0[",
-   "str": "credit_amount: [1262.0:1908.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "credit_amount",
-   "lo": {
-    "value": 1908.0,
-    "int": false
-   },
-   "hi": {
-    "value": 2859.0,
-    "int": false
-   },
-   "repr": "credit_amount: [1908.0:2859.0[",
-   "str": "credit_amount: [1908.0:2859.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "credit_amount",
-   "lo": {
-    "value": 2859.0,
-    "int": false
-   },
-   "hi": {
-    "value": 4736.0,
-    "int": false
-   },
-   "repr": "credit_amount: [2859.0:4736.0[",
-   "str": "credit_amount: [2859.0:4736.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "credit_amount",
-   "lo": {
-    "value": 4736.0,
-    "int": false
-   },
-   "hi": {
-    "value": {
-     "$f": "inf"
-    },
-    "int": false
-   },
-   "repr": "credit_amount>=4736.0",
-   "str": "credit_amount>=4736.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "installment_commitment",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 1.0,
-     "int": false
-    }
-   },
-   "repr": "installment_commitment==1.0",
-   "str": "installment_commitment==1.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "installment_commitment",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 2.0,
-     "int": false
-    }
-   },
-   "repr": "installment_commitment==2.0",
-   "str": "installment_commitment==2.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "installment_commitment",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 3.0,
-     "int": false
-    }
-   },
-   "repr": "installment_commitment==3.0",
-   "str": "installment_commitment==3.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "installment_commitment",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 4.0,
-     "int": false
-    }
-   },
-   "repr": "installment_commitment==4.0",
-   "str": "installment_commitment==4.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "residence_since",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 1.0,
-     "int": false
-    }
-   },
-   "repr": "residence_since==1.0",
-   "str": "residence_since==1.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "residence_since",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 2.0,
-     "int": false
-    }
-   },
-   "repr": "residence_since==2.0",
-   "str": "residence_since==2.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "residence_since",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 3.0,
-     "int": false
-    }
-   },
-   "repr": "residence_since==3.0",
-   "str": "residence_since==3.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "residence_since",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 4.0,
-     "int": false
-    }
-   },
-   "repr": "residence_since==4.0",
-   "str": "residence_since==4.0"
-  },
-  {
-   "kind": "interval",
-   "attribute": "age",
-   "lo": {
-    "value": {
-     "$f": "-inf"
-    },
-    "int": false
-   },
-   "hi": {
-    "value": 26.0,
-    "int": false
-   },
-   "repr": "age<26.0",
-   "str": "age<26.0"
-  },
-  {
-   "kind": "interval",
-   "attribute": "age",
-   "lo": {
-    "value": 26.0,
-    "int": false
-   },
-   "hi": {
-    "value": 30.0,
-    "int": false
-   },
-   "repr": "age: [26.0:30.0[",
-   "str": "age: [26.0:30.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "age",
-   "lo": {
-    "value": 30.0,
-    "int": false
-   },
-   "hi": {
-    "value": 36.0,
-    "int": false
-   },
-   "repr": "age: [30.0:36.0[",
-   "str": "age: [30.0:36.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "age",
-   "lo": {
-    "value": 36.0,
-    "int": false
-   },
-   "hi": {
-    "value": 45.0,
-    "int": false
-   },
-   "repr": "age: [36.0:45.0[",
-   "str": "age: [36.0:45.0["
-  },
-  {
-   "kind": "interval",
-   "attribute": "age",
-   "lo": {
-    "value": 45.0,
-    "int": false
-   },
-   "hi": {
-    "value": {
-     "$f": "inf"
-    },
-    "int": false
-   },
-   "repr": "age>=45.0",
-   "str": "age>=45.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "existing_credits",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 1.0,
-     "int": false
-    }
-   },
-   "repr": "existing_credits==1.0",
-   "str": "existing_credits==1.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "existing_credits",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 2.0,
-     "int": false
-    }
-   },
-   "repr": "existing_credits==2.0",
-   "str": "existing_credits==2.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "existing_credits",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 3.0,
-     "int": false
-    }
-   },
-   "repr": "existing_credits==3.0",
-   "str": "existing_credits==3.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "existing_credits",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 4.0,
-     "int": false
-    }
-   },
-   "repr": "existing_credits==4.0",
-   "str": "existing_credits==4.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "num_dependents",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 1.0,
-     "int": false
-    }
-   },
-   "repr": "num_dependents==1.0",
-   "str": "num_dependents==1.0"
-  },
-  {
-   "kind": "equality",
-   "attribute": "num_dependents",
-   "value": {
-    "t": "num",
-    "v": {
-     "value": 2.0,
-     "int": false
-    }
-   },
-   "repr": "num_dependents==2.0",
-   "str": "num_dependents==2.0"
   }
  ],
- "elapsed_seconds": 0.0009188749827444553,
+ "elapsed_seconds": 0.0037012079264968634,
  "results": [
   {
-   "quality": 963.0,
+   "quality": 0.00825017931068506,
    "description": {
-    "repr": "(foreign_worker=='yes')",
-    "str": "foreign_worker=='yes'",
+    "repr": "(purpose=='retraining')",
+    "str": "purpose=='retraining'",
     "selectors": [
      {
       "kind": "equality",
-      "attribute": "foreign_worker",
+      "attribute": "purpose",
       "value": {
        "t": "str",
-       "v": "yes"
+       "v": "retraining"
       },
-      "repr": "foreign_worker=='yes'",
-      "str": "foreign_worker=='yes'"
+      "repr": "purpose=='retraining'",
+      "str": "purpose=='retraining'"
      }
     ]
    },
    "stats": {
-    "size_sg": 963,
+    "size_sg": 9,
     "size_dataset": 1000
    }
   },
   {
-   "quality": 907.0,
+   "quality": 0.003365464017553928,
    "description": {
-    "repr": "(other_parties=='none')",
-    "str": "other_parties=='none'",
+    "repr": "(credit_history=='no credits/all paid')",
+    "str": "credit_history=='no credits/all paid'",
     "selectors": [
      {
       "kind": "equality",
-      "attribute": "other_parties",
+      "attribute": "credit_history",
       "value": {
        "t": "str",
-       "v": "none"
+       "v": "no credits/all paid"
       },
-      "repr": "other_parties=='none'",
-      "str": "other_parties=='none'"
+      "repr": "credit_history=='no credits/all paid'",
+      "str": "credit_history=='no credits/all paid'"
      }
     ]
    },
    "stats": {
-    "size_sg": 907,
+    "size_sg": 40,
     "size_dataset": 1000
    }
   },
   {
-   "quality": 880.0,
+   "quality": 0.0012690140920815069,
    "description": {
-    "repr": "(foreign_worker=='yes' and other_parties=='none')",
-    "str": "foreign_worker=='yes' AND other_parties=='none'",
+    "repr": "(employment=='4<=X<7')",
+    "str": "employment=='4<=X<7'",
     "selectors": [
      {
       "kind": "equality",
-      "attribute": "foreign_worker",
+      "attribute": "employment",
       "value": {
        "t": "str",
-       "v": "yes"
+       "v": "4<=X<7"
       },
-      "repr": "foreign_worker=='yes'",
-      "str": "foreign_worker=='yes'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "other_parties",
-      "value": {
-       "t": "str",
-       "v": "none"
-      },
-      "repr": "other_parties=='none'",
-      "str": "other_parties=='none'"
+      "repr": "employment=='4<=X<7'",
+      "str": "employment=='4<=X<7'"
      }
     ]
    },
    "stats": {
-    "size_sg": 880,
+    "size_sg": 174,
     "size_dataset": 1000
    }
   },
   {
-   "quality": 845.0,
+   "quality": 0.0006063081018654527,
    "description": {
-    "repr": "(num_dependents==1.0)",
-    "str": "num_dependents==1.0",
+    "repr": "(savings_status=='no known savings')",
+    "str": "savings_status=='no known savings'",
     "selectors": [
      {
       "kind": "equality",
-      "attribute": "num_dependents",
-      "value": {
-       "t": "num",
-       "v": {
-        "value": 1.0,
-        "int": false
-       }
-      },
-      "repr": "num_dependents==1.0",
-      "str": "num_dependents==1.0"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 845,
-    "size_dataset": 1000
-   }
-  },
-  {
-   "quality": 819.0,
-   "description": {
-    "repr": "(foreign_worker=='yes' and num_dependents==1.0)",
-    "str": "foreign_worker=='yes' AND num_dependents==1.0",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "foreign_worker",
+      "attribute": "savings_status",
       "value": {
        "t": "str",
-       "v": "yes"
+       "v": "no known savings"
       },
-      "repr": "foreign_worker=='yes'",
-      "str": "foreign_worker=='yes'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "num_dependents",
-      "value": {
-       "t": "num",
-       "v": {
-        "value": 1.0,
-        "int": false
-       }
-      },
-      "repr": "num_dependents==1.0",
-      "str": "num_dependents==1.0"
+      "repr": "savings_status=='no known savings'",
+      "str": "savings_status=='no known savings'"
      }
     ]
    },
    "stats": {
-    "size_sg": 819,
+    "size_sg": 183,
     "size_dataset": 1000
    }
   },
   {
-   "quality": 814.0,
+   "quality": 0.0004361225086810868,
    "description": {
     "repr": "(other_payment_plans=='none')",
     "str": "other_payment_plans=='none'",
@@ -1141,131 +692,6 @@
    },
    "stats": {
     "size_sg": 814,
-    "size_dataset": 1000
-   }
-  },
-  {
-   "quality": 782.0,
-   "description": {
-    "repr": "(foreign_worker=='yes' and other_payment_plans=='none')",
-    "str": "foreign_worker=='yes' AND other_payment_plans=='none'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "foreign_worker",
-      "value": {
-       "t": "str",
-       "v": "yes"
-      },
-      "repr": "foreign_worker=='yes'",
-      "str": "foreign_worker=='yes'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "other_payment_plans",
-      "value": {
-       "t": "str",
-       "v": "none"
-      },
-      "repr": "other_payment_plans=='none'",
-      "str": "other_payment_plans=='none'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 782,
-    "size_dataset": 1000
-   }
-  },
-  {
-   "quality": 767.0,
-   "description": {
-    "repr": "(num_dependents==1.0 and other_parties=='none')",
-    "str": "num_dependents==1.0 AND other_parties=='none'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "num_dependents",
-      "value": {
-       "t": "num",
-       "v": {
-        "value": 1.0,
-        "int": false
-       }
-      },
-      "repr": "num_dependents==1.0",
-      "str": "num_dependents==1.0"
-     },
-     {
-      "kind": "equality",
-      "attribute": "other_parties",
-      "value": {
-       "t": "str",
-       "v": "none"
-      },
-      "repr": "other_parties=='none'",
-      "str": "other_parties=='none'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 767,
-    "size_dataset": 1000
-   }
-  },
-  {
-   "quality": 742.0,
-   "description": {
-    "repr": "(other_parties=='none' and other_payment_plans=='none')",
-    "str": "other_parties=='none' AND other_payment_plans=='none'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "other_parties",
-      "value": {
-       "t": "str",
-       "v": "none"
-      },
-      "repr": "other_parties=='none'",
-      "str": "other_parties=='none'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "other_payment_plans",
-      "value": {
-       "t": "str",
-       "v": "none"
-      },
-      "repr": "other_payment_plans=='none'",
-      "str": "other_payment_plans=='none'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 742,
-    "size_dataset": 1000
-   }
-  },
-  {
-   "quality": 713.0,
-   "description": {
-    "repr": "(housing=='own')",
-    "str": "housing=='own'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "housing",
-      "value": {
-       "t": "str",
-       "v": "own"
-      },
-      "repr": "housing=='own'",
-      "str": "housing=='own'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 713,
     "size_dataset": 1000
    }
   }

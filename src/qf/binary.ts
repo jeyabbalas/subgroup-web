@@ -22,6 +22,9 @@ export function standard(a: number): BinaryQF {
     name: a === 1 ? "wracc" : a === 0.5 ? "simpleBinomial" : a === 0 ? "lift" : `standard(${a})`,
     // The closed-form bound is proven admissible for a ∈ [0, 1] (spec §6.1).
     pruningSafe: a <= 1,
+    // og = ((n + P − p)/N)^a·(1 − p0) is admissible over cover-growing
+    // refinements for a ∈ [0, 1] (spec §7.11 proof).
+    generalizationPruningSafe: a <= 1,
     evaluate(size, positives, c) {
       if (size === 0) return Number.NaN;
       const pSg = positives / size;

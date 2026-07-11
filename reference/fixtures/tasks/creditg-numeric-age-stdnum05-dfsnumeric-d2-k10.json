@@ -1,7 +1,7 @@
 {
- "id": "creditg-numeric-age-stdnum1-apriori-d2-k10",
+ "id": "creditg-numeric-age-stdnum05-dfsnumeric-d2-k10",
  "cell": {
-  "id": "creditg-numeric-age-stdnum1-apriori-d2-k10",
+  "id": "creditg-numeric-age-stdnum05-dfsnumeric-d2-k10",
   "dataset": "credit-g",
   "target": {
    "type": "numeric",
@@ -18,9 +18,9 @@
   },
   "qf": {
    "name": "standardNumeric",
-   "a": 1.0
+   "a": 0.5
   },
-  "algorithm": "apriori",
+  "algorithm": "dfs_numeric",
   "depth": 2,
   "k": 10,
   "minQuality": 0
@@ -907,183 +907,10 @@
    "str": "num_dependents==2.0"
   }
  ],
- "elapsed_seconds": 0.018445666879415512,
+ "elapsed_seconds": 0.013961041113361716,
  "results": [
   {
-   "quality": 1791.862000000001,
-   "description": {
-    "repr": "(employment=='>=7')",
-    "str": "employment=='>=7'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "employment",
-      "value": {
-       "t": "str",
-       "v": ">=7"
-      },
-      "repr": "employment=='>=7'",
-      "str": "employment=='>=7'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 253,
-    "size_dataset": 1000,
-    "mean_sg": 42.62845849802372,
-    "mean_dataset": 35.546,
-    "std_sg": 11.127552795678374,
-    "std_dataset": 11.36977941738537,
-    "median_sg": 42.0,
-    "median_dataset": 33.0,
-    "max_sg": 74.0,
-    "max_dataset": 75.0,
-    "min_sg": 20.0,
-    "min_dataset": 19.0,
-    "mean_lift": 1.199247693074431,
-    "median_lift": 1.2727272727272727
-   }
-  },
-  {
-   "quality": 1753.592,
-   "description": {
-    "repr": "(employment=='>=7' and foreign_worker=='yes')",
-    "str": "employment=='>=7' AND foreign_worker=='yes'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "employment",
-      "value": {
-       "t": "str",
-       "v": ">=7"
-      },
-      "repr": "employment=='>=7'",
-      "str": "employment=='>=7'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "foreign_worker",
-      "value": {
-       "t": "str",
-       "v": "yes"
-      },
-      "repr": "foreign_worker=='yes'",
-      "str": "foreign_worker=='yes'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 248,
-    "size_dataset": 1000,
-    "mean_sg": 42.61693548387097,
-    "mean_dataset": 35.546,
-    "std_sg": 11.209624477712067,
-    "std_dataset": 11.36977941738537,
-    "median_sg": 41.0,
-    "median_dataset": 33.0,
-    "max_sg": 74.0,
-    "max_dataset": 75.0,
-    "min_sg": 20.0,
-    "min_dataset": 19.0,
-    "mean_lift": 1.198923521180188,
-    "median_lift": 1.2424242424242424
-   }
-  },
-  {
-   "quality": 1665.2360000000008,
-   "description": {
-    "repr": "(employment=='>=7' and other_parties=='none')",
-    "str": "employment=='>=7' AND other_parties=='none'",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "employment",
-      "value": {
-       "t": "str",
-       "v": ">=7"
-      },
-      "repr": "employment=='>=7'",
-      "str": "employment=='>=7'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "other_parties",
-      "value": {
-       "t": "str",
-       "v": "none"
-      },
-      "repr": "other_parties=='none'",
-      "str": "other_parties=='none'"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 234,
-    "size_dataset": 1000,
-    "mean_sg": 42.662393162393165,
-    "mean_dataset": 35.546,
-    "std_sg": 11.235689675222522,
-    "std_dataset": 11.36977941738537,
-    "median_sg": 41.0,
-    "median_dataset": 33.0,
-    "max_sg": 74.0,
-    "max_dataset": 75.0,
-    "min_sg": 20.0,
-    "min_dataset": 19.0,
-    "mean_lift": 1.200202362077116,
-    "median_lift": 1.2424242424242424
-   }
-  },
-  {
-   "quality": 1610.2359999999999,
-   "description": {
-    "repr": "(personal_status=='male single' and residence_since==4.0)",
-    "str": "personal_status=='male single' AND residence_since==4.0",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "personal_status",
-      "value": {
-       "t": "str",
-       "v": "male single"
-      },
-      "repr": "personal_status=='male single'",
-      "str": "personal_status=='male single'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "residence_since",
-      "value": {
-       "t": "num",
-       "v": {
-        "value": 4.0,
-        "int": false
-       }
-      },
-      "repr": "residence_since==4.0",
-      "str": "residence_since==4.0"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 234,
-    "size_dataset": 1000,
-    "mean_sg": 42.427350427350426,
-    "mean_dataset": 35.546,
-    "std_sg": 12.084330632100341,
-    "std_dataset": 11.36977941738537,
-    "median_sg": 40.5,
-    "median_dataset": 33.0,
-    "max_sg": 75.0,
-    "max_dataset": 75.0,
-    "min_sg": 20.0,
-    "min_dataset": 19.0,
-    "mean_lift": 1.1935900080839033,
-    "median_lift": 1.2272727272727273
-   }
-  },
-  {
-   "quality": 1514.088,
+   "quality": 115.44812767887636,
    "description": {
     "repr": "(employment=='>=7' and residence_since==4.0)",
     "str": "employment=='>=7' AND residence_since==4.0",
@@ -1131,7 +958,132 @@
    }
   },
   {
-   "quality": 1512.2540000000004,
+   "quality": 112.6533987467124,
+   "description": {
+    "repr": "(employment=='>=7')",
+    "str": "employment=='>=7'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": ">=7"
+      },
+      "repr": "employment=='>=7'",
+      "str": "employment=='>=7'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 253,
+    "size_dataset": 1000,
+    "mean_sg": 42.62845849802372,
+    "mean_dataset": 35.546,
+    "std_sg": 11.127552795678374,
+    "std_dataset": 11.36977941738537,
+    "median_sg": 42.0,
+    "median_dataset": 33.0,
+    "max_sg": 74.0,
+    "max_dataset": 75.0,
+    "min_sg": 20.0,
+    "min_dataset": 19.0,
+    "mean_lift": 1.199247693074431,
+    "median_lift": 1.2727272727272727
+   }
+  },
+  {
+   "quality": 111.35320335325905,
+   "description": {
+    "repr": "(employment=='>=7' and foreign_worker=='yes')",
+    "str": "employment=='>=7' AND foreign_worker=='yes'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": ">=7"
+      },
+      "repr": "employment=='>=7'",
+      "str": "employment=='>=7'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "foreign_worker",
+      "value": {
+       "t": "str",
+       "v": "yes"
+      },
+      "repr": "foreign_worker=='yes'",
+      "str": "foreign_worker=='yes'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 248,
+    "size_dataset": 1000,
+    "mean_sg": 42.61693548387097,
+    "mean_dataset": 35.546,
+    "std_sg": 11.209624477712067,
+    "std_dataset": 11.36977941738537,
+    "median_sg": 41.0,
+    "median_dataset": 33.0,
+    "max_sg": 74.0,
+    "max_dataset": 75.0,
+    "min_sg": 20.0,
+    "min_dataset": 19.0,
+    "mean_lift": 1.198923521180188,
+    "median_lift": 1.2424242424242424
+   }
+  },
+  {
+   "quality": 108.85988280432306,
+   "description": {
+    "repr": "(employment=='>=7' and other_parties=='none')",
+    "str": "employment=='>=7' AND other_parties=='none'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": ">=7"
+      },
+      "repr": "employment=='>=7'",
+      "str": "employment=='>=7'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "other_parties",
+      "value": {
+       "t": "str",
+       "v": "none"
+      },
+      "repr": "other_parties=='none'",
+      "str": "other_parties=='none'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 234,
+    "size_dataset": 1000,
+    "mean_sg": 42.662393162393165,
+    "mean_dataset": 35.546,
+    "std_sg": 11.235689675222522,
+    "std_dataset": 11.36977941738537,
+    "median_sg": 41.0,
+    "median_dataset": 33.0,
+    "max_sg": 74.0,
+    "max_dataset": 75.0,
+    "min_sg": 20.0,
+    "min_dataset": 19.0,
+    "mean_lift": 1.200202362077116,
+    "median_lift": 1.2424242424242424
+   }
+  },
+  {
+   "quality": 106.6661728964629,
    "description": {
     "repr": "(employment=='>=7' and num_dependents==1.0)",
     "str": "employment=='>=7' AND num_dependents==1.0",
@@ -1179,58 +1131,20 @@
    }
   },
   {
-   "quality": 1417.501999999999,
+   "quality": 105.26442032678962,
    "description": {
-    "repr": "(residence_since==4.0)",
-    "str": "residence_since==4.0",
+    "repr": "(personal_status=='male single' and residence_since==4.0)",
+    "str": "personal_status=='male single' AND residence_since==4.0",
     "selectors": [
      {
       "kind": "equality",
-      "attribute": "residence_since",
-      "value": {
-       "t": "num",
-       "v": {
-        "value": 4.0,
-        "int": false
-       }
-      },
-      "repr": "residence_since==4.0",
-      "str": "residence_since==4.0"
-     }
-    ]
-   },
-   "stats": {
-    "size_sg": 413,
-    "size_dataset": 1000,
-    "mean_sg": 38.97820823244552,
-    "mean_dataset": 35.546,
-    "std_sg": 13.178308161161567,
-    "std_dataset": 11.36977941738537,
-    "median_sg": 37.0,
-    "median_dataset": 33.0,
-    "max_sg": 75.0,
-    "max_dataset": 75.0,
-    "min_sg": 19.0,
-    "min_dataset": 19.0,
-    "mean_lift": 1.0965568061791908,
-    "median_lift": 1.121212121212121
-   }
-  },
-  {
-   "quality": 1389.4160000000015,
-   "description": {
-    "repr": "(foreign_worker=='yes' and residence_since==4.0)",
-    "str": "foreign_worker=='yes' AND residence_since==4.0",
-    "selectors": [
-     {
-      "kind": "equality",
-      "attribute": "foreign_worker",
+      "attribute": "personal_status",
       "value": {
        "t": "str",
-       "v": "yes"
+       "v": "male single"
       },
-      "repr": "foreign_worker=='yes'",
-      "str": "foreign_worker=='yes'"
+      "repr": "personal_status=='male single'",
+      "str": "personal_status=='male single'"
      },
      {
       "kind": "equality",
@@ -1248,24 +1162,72 @@
     ]
    },
    "stats": {
-    "size_sg": 404,
+    "size_sg": 234,
     "size_dataset": 1000,
-    "mean_sg": 38.98514851485149,
+    "mean_sg": 42.427350427350426,
     "mean_dataset": 35.546,
-    "std_sg": 13.277121587573514,
+    "std_sg": 12.084330632100341,
     "std_dataset": 11.36977941738537,
-    "median_sg": 37.0,
+    "median_sg": 40.5,
     "median_dataset": 33.0,
     "max_sg": 75.0,
     "max_dataset": 75.0,
-    "min_sg": 19.0,
+    "min_sg": 20.0,
     "min_dataset": 19.0,
-    "mean_lift": 1.0967520540947362,
-    "median_lift": 1.121212121212121
+    "mean_lift": 1.1935900080839033,
+    "median_lift": 1.2272727272727273
    }
   },
   {
-   "quality": 1381.1740000000007,
+   "quality": 105.07845459260652,
+   "description": {
+    "repr": "(employment=='>=7' and installment_commitment==4.0)",
+    "str": "employment=='>=7' AND installment_commitment==4.0",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": ">=7"
+      },
+      "repr": "employment=='>=7'",
+      "str": "employment=='>=7'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "installment_commitment",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 4.0,
+        "int": false
+       }
+      },
+      "repr": "installment_commitment==4.0",
+      "str": "installment_commitment==4.0"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 149,
+    "size_dataset": 1000,
+    "mean_sg": 44.15436241610738,
+    "mean_dataset": 35.546,
+    "std_sg": 10.849009376862876,
+    "std_dataset": 11.36977941738537,
+    "median_sg": 43.0,
+    "median_dataset": 33.0,
+    "max_sg": 67.0,
+    "max_dataset": 75.0,
+    "min_sg": 20.0,
+    "min_dataset": 19.0,
+    "mean_lift": 1.2421752775588641,
+    "median_lift": 1.303030303030303
+   }
+  },
+  {
+   "quality": 102.66185491487842,
    "description": {
     "repr": "(employment=='>=7' and personal_status=='male single')",
     "str": "employment=='>=7' AND personal_status=='male single'",
@@ -1310,51 +1272,93 @@
    }
   },
   {
-   "quality": 1367.519999999999,
+   "quality": 95.9361543273211,
    "description": {
-    "repr": "(other_parties=='none' and residence_since==4.0)",
-    "str": "other_parties=='none' AND residence_since==4.0",
+    "repr": "(employment=='>=7' and other_payment_plans=='none')",
+    "str": "employment=='>=7' AND other_payment_plans=='none'",
     "selectors": [
      {
       "kind": "equality",
-      "attribute": "other_parties",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": ">=7"
+      },
+      "repr": "employment=='>=7'",
+      "str": "employment=='>=7'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "other_payment_plans",
       "value": {
        "t": "str",
        "v": "none"
       },
-      "repr": "other_parties=='none'",
-      "str": "other_parties=='none'"
-     },
-     {
-      "kind": "equality",
-      "attribute": "residence_since",
-      "value": {
-       "t": "num",
-       "v": {
-        "value": 4.0,
-        "int": false
-       }
-      },
-      "repr": "residence_since==4.0",
-      "str": "residence_since==4.0"
+      "repr": "other_payment_plans=='none'",
+      "str": "other_payment_plans=='none'"
      }
     ]
    },
    "stats": {
-    "size_sg": 380,
+    "size_sg": 199,
     "size_dataset": 1000,
-    "mean_sg": 39.14473684210526,
+    "mean_sg": 42.346733668341706,
     "mean_dataset": 35.546,
-    "std_sg": 13.118993811072496,
+    "std_sg": 11.068329434325484,
     "std_dataset": 11.36977941738537,
-    "median_sg": 38.0,
+    "median_sg": 41.0,
     "median_dataset": 33.0,
-    "max_sg": 75.0,
+    "max_sg": 67.0,
     "max_dataset": 75.0,
-    "min_sg": 19.0,
+    "min_sg": 20.0,
     "min_dataset": 19.0,
-    "mean_lift": 1.1012416823863518,
-    "median_lift": 1.1515151515151516
+    "mean_lift": 1.1913220522236456,
+    "median_lift": 1.2424242424242424
+   }
+  },
+  {
+   "quality": 94.8911073459117,
+   "description": {
+    "repr": "(employment=='>=7' and own_telephone=='yes')",
+    "str": "employment=='>=7' AND own_telephone=='yes'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": ">=7"
+      },
+      "repr": "employment=='>=7'",
+      "str": "employment=='>=7'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "own_telephone",
+      "value": {
+       "t": "str",
+       "v": "yes"
+      },
+      "repr": "own_telephone=='yes'",
+      "str": "own_telephone=='yes'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 120,
+    "size_dataset": 1000,
+    "mean_sg": 44.208333333333336,
+    "mean_dataset": 35.546,
+    "std_sg": 10.774890435122247,
+    "std_dataset": 11.36977941738537,
+    "median_sg": 43.0,
+    "median_dataset": 33.0,
+    "max_sg": 74.0,
+    "max_dataset": 75.0,
+    "min_sg": 20.0,
+    "min_dataset": 19.0,
+    "mean_lift": 1.2436936176597462,
+    "median_lift": 1.303030303030303
    }
   }
  ]

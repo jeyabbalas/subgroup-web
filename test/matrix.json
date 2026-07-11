@@ -1,5 +1,5 @@
 {
-  "comment": "Dataset \u00d7 config differential/exactness matrix (BRIEF \u00a76.4). Grows through M2\u2013M5; consumed by reference/scripts/gen_differential_fixtures.py and the TS differential/exactness runners.",
+  "comment": "Dataset × config differential/exactness matrix (BRIEF §6.4). Grows through M2–M5; consumed by reference/scripts/gen_differential_fixtures.py and the TS differential/exactness runners.",
   "cells": [
     {
       "id": "titanic-binary-wracc-apriori-d2-k5",
@@ -176,7 +176,12 @@
       "depth": 2,
       "k": 10,
       "minQuality": 0,
-      "constraints": [{ "type": "minSupport", "count": 30 }]
+      "constraints": [
+        {
+          "type": "minSupport",
+          "count": 30
+        }
+      ]
     },
     {
       "id": "titanic-binary-wracc-minquality-apriori-d2-k10",
@@ -332,6 +337,142 @@
       "algorithm": "simple",
       "depth": 3,
       "k": 10
+    },
+    {
+      "id": "titanic-binary-chi2-pvalue-negative-simple-d2-k10",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived", "PassengerId", "Name", "Ticket", "Cabin"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "chiSquared",
+        "direction": "negative",
+        "minInstances": 5,
+        "stat": "p"
+      },
+      "algorithm": "simple",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "titanic-binary-gastandard-simple-d2-k8",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived", "PassengerId", "Name", "Ticket", "Cabin"],
+        "nbins": 3,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "gaStandard",
+        "a": 0.5
+      },
+      "algorithm": "simple",
+      "depth": 2,
+      "k": 8,
+      "minQuality": 0
+    },
+    {
+      "id": "creditg-emm-duration-camount-simple-d1-k5",
+      "dataset": "credit-g",
+      "target": {
+        "type": "emm",
+        "x": "duration",
+        "y": "credit_amount"
+      },
+      "space": {
+        "ignore": ["duration", "credit_amount", "class"],
+        "nominalOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "emmLikelihood",
+        "x": "duration",
+        "y": "credit_amount"
+      },
+      "algorithm": "simple",
+      "depth": 1,
+      "k": 5
+    },
+    {
+      "id": "creditg-numeric-age-stdnum05-dfsnumeric-d2-k10",
+      "dataset": "credit-g",
+      "target": {
+        "type": "numeric",
+        "attribute": "age"
+      },
+      "space": {
+        "ignore": ["age", "class"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "standardNumeric",
+        "a": 0.5
+      },
+      "algorithm": "dfs_numeric",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "titanic-binary-wracc-apriori-d1-k1",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "apriori",
+      "depth": 1,
+      "k": 1,
+      "minQuality": 0
+    },
+    {
+      "id": "titanic-binary-wracc-apriori-d2-k100",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived", "PassengerId", "Name", "Ticket", "Cabin"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 100,
+      "minQuality": 0
     }
   ]
 }

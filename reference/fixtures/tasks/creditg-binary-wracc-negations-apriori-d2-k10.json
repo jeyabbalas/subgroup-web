@@ -1387,7 +1387,7 @@
    "str": "NOT foreign_worker=='no'"
   }
  ],
- "elapsed_seconds": 0.022019959054887295,
+ "elapsed_seconds": 0.02170445816591382,
  "results": [
   {
    "quality": 0.0771,

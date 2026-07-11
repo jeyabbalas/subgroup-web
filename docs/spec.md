@@ -631,12 +631,121 @@ predicate is monotone decreasing in the estimate). Without a pruningSafe
 estimate all estimates are treated as +∞ and the frontier degrades to a
 deterministic full traversal.
 
-### 7.8 (M5) ☐
+### 7.8 beamSearch (M5; heuristic, fully specified — BRIEF §22-A13)
 
-- beamSearch full determinization (expansion, dedup, ties; BRIEF §22-A13);
-  dfsNumeric applicability (BRIEF §22-A5); patternTree merge algebra
-  (BRIEF §22-A9); generalizingBFS / generalization-aware caching
-  (BRIEF §22-A10).
+Pinned from algorithms.py:490-573 with §3.2 replacing its heap artifacts:
+
+- Width w = `width` (default 20); `adaptive: true` ⇒ w = k (the reference's
+  `beam_width_adaptive`); w < k errors (reference raises).
+- The beam is a capacity-w §3.2-ordered pool over mixed depths; membership
+  is §3.3 (quality > θ strict, all constraints). The reference seeds its
+  beam with the EMPTY conjunction at quality 0 which can even be returned;
+  our space excludes it (§3.1, ADJ-002) — it is expansion root only.
+- Iteration i = 1..depth: snapshot the beam (§3.2 order); expand every
+  not-yet-expanded snapshot member of depth < task depth (reference
+  `visited` flag ≙ canonical-key set). Expanding M offers M ∪ {s} for every
+  s ∉ M in canonical id order (same-attribute children included — the space
+  is C(S, d)). Each description is evaluated at most once per run
+  (canonical-key dedup; the reference dedups only against current beam
+  content, so displaced descriptions can re-enter and re-expand — a heap
+  artifact deliberately dropped).
+- Stop after `depth` iterations or when an iteration expands nothing.
+- Result = first k of the final beam under §3.2 ≡ first k of all offered
+  candidates (the beam always holds the best w ≥ k offered).
+- Greedy caveat (inherent): expansion proceeds only through beam members; a
+  candidate whose every ancestor fails θ or falls off the beam is never
+  generated. Machine-checked against an independent executable mirror of
+  this section at widths {1, 20, adaptive}, plus the degenerate
+  w ≥ |C(S, d)| ≡ oracle gate.
+
+### 7.9 dfsNumeric (M5; applicability per BRIEF §22-A5)
+
+The reference's DFSNumeric (algorithms.py:773-871) sorts data by target
+descending and, per node, scores every PREFIX of the cover's sorted values —
+computing exactly §6.3's 'order' estimate as its bound and the full-cover
+quality. Applicability: `standardNumeric(a)` (mean centroid) ONLY — the
+reference raises for everything else (median/tscore/non-standard QFs);
+subgroup-web mirrors that with a typed error. subgroup-web's dfsNumeric =
+the §7.6 walk with the QF's plan swapped for the order plan and the order
+estimate as the pruning bound (admissible for a ≥ 0, §6.3; pruning
+disengages for a < 0). `invert` mirrors through working values (ADJ-005:
+the reference ignores it). The reference additionally admits the empty
+conjunction (ADJ-002) and skips size-0 subtrees pre-membership; we keep the
+plain §7.6 walk (refinements of empty covers evaluate NaN and never enter,
+so results agree; full-space enumeration is preserved for the
+pruning-identity gate).
+
+### 7.10 patternTree (M5; exact FP-growth engine — BRIEF §22-A9)
+
+Frequency-ordered prefix tree (f-list: support desc → id asc; support-0
+selectors excluded — every candidate containing one is empty-cover) with
+mergeable integer statistics per node (size; binary positives); mining =
+classic conditional-tree recursion (Han et al. 2000), depth-capped, items
+processed least-frequent-first. Every support > 0 member of C(S, d) is
+enumerated exactly once with statistics equal to direct cover counts
+(integer merges are order-independent ⇒ qualities bit-identical to the
+oracle). §3.4 estimate pruning + monotone constraints cut conditional
+recursion; `pruning: false` mines everything support > 0.
+
+Applicability (typed errors): binary/FI targets with stats-level QFs — the
+reference's gp_* hooks exist for exactly StandardQF/CountQF/AreaQF; numeric
+targets have none, and EMM's gp support materializes cover arrays
+(defeating merging) while f64 tree-order merges would break §7
+bit-identity (DECISIONS 2026-07-11). FI additionally requires
+minQuality ≥ 0 or minSupport ≥ 1 (zero-cover candidates — quality 0,
+eligible under θ < 0 — are never materialized by a frequency tree; binary
+targets need no guard: empty covers are NaN, never members).
+
+### 7.11 generalizingBFS (M5)
+
+Candidate space (normative): D(S, d) = { disjunctions of k distinct
+selectors from S : 1 ≤ k ≤ d } — same index tuples as §3.1 read as
+disjunctions, no empty description; §3.2/§3.3 apply verbatim (canonical key
+over the sorted selector sequence). The reference's GeneralisingBFS
+(algorithms.py:424-489, `pragma: no cover`) explores this space but prunes
+with the SUBSET-cover estimate scaled by 1/1.1^(depth+1) — inadmissible
+over cover-growing refinements — and is replaced (class (b), deliberate):
+subgroup-web's generalizingBFS is the §7.7 best-first walk with OR-covers,
+pruned by `generalizationEstimate` — for standard(a):
+og = ((n + P − p)/N)^a·(1 − P/N) (binary_target.py:567-588).
+
+Admissibility of og over cover-growing refinements (a ∈ [0, 1]): for
+R ⊇ sg, q(R) = (n_R/N)^a·(p_R/n_R − p0). Adding a positive raises both
+factors; adding a negative lowers q: d/dn[n^a(p/n − p0)] =
+n^{a−1}[a(p/n − p0) − p/n] < 0 for a ≤ 1 (a·share − a·p0 − share ≤
+−a·p0 ≤ 0, strict when p0 > 0). Hence the best refinement keeps all rows
+and adds only the remaining positives — exactly og. Pruning engages only
+for `generalizationPruningSafe` QFs; monotone-constraint subtree pruning is
+DISABLED here (constraint monotonicity is defined over conjunction
+refinement — a minSupport violator's disjunction refinements may satisfy
+it); membership gating is unchanged.
+
+**Vacuity note (provable):** for standard(a),
+og = ((n + P − p)/N)^a·(1 − p0) ≥ (P/N)^a·(1 − p0) (since n ≥ p), and the
+right-hand side is the GLOBAL maximum of q over all descriptions (attained
+by a positives-only cover; the same derivative argument). Every achieved
+θ_now is ≤ that maximum, so the §3.4 predicate `og < θ_now` is never true:
+the bound is admissible but cannot prune mid-search. It still terminates
+the frontier instantly when the task's minQuality exceeds the global
+maximum, and exactness never depends on it. (The reference's
+`optimistic_generalisation` has no caller in 0.9.0; its GeneralisingBFS
+prunes with the subset-cover estimate over a 1.1^depth fudge instead —
+inadmissible, replaced here.)
+
+### 7.12 Result post-filters and serialization (M5)
+
+Filters pinned from measures.py:121-176: minimumQualityFilter keeps
+quality ≥ min (inclusive — unlike §3.3's strict membership);
+overlapFilter greedily keeps entries whose cover Jaccard vs every kept
+entry is ≤ level (drop on strictly greater); uniqueAttributes dedups
+attribute tuples (distinct attributes, canonical selector order) with the
+reference's all-categorical exemption; minimum/maximumStatisticFilter
+threshold §5 stats fields (≥ / ≤). unique_attributes and both statistic
+filters CRASH in the reference on its own 0.9.0 results (pre-0.8 API rot —
+**ADJ-011**, repro committed); the pinned semantics are their documented
+intent. Serialization: versioned JSON with structured selectors and
+$f-tagged non-finite floats; deserialization rebuilds results, recomputing
+covers by row-scan when the table is supplied.
 
 ## 8. Backends and precision (M6) ☐
 

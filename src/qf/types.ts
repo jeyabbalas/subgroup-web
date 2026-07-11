@@ -27,6 +27,11 @@ export interface BinaryQF {
   readonly kind: "binary";
   readonly name: string;
   readonly pruningSafe: boolean;
+  /**
+   * `generalizationEstimate` is proven admissible over COVER-GROWING
+   * refinements (the disjunction space of generalizingBFS; spec §7.11 proof).
+   */
+  readonly generalizationPruningSafe?: boolean;
   evaluate(size: number, positives: number, c: PreparedBinary): number;
   optimisticEstimate?(size: number, positives: number, c: PreparedBinary): number;
   /** Reference `optimistic_generalisation` (generalizingBFS; spec §6.1). */
@@ -38,6 +43,12 @@ export interface NumericQF {
   readonly name: string;
   readonly plan: NumericStatsPlan;
   readonly pruningSafe: boolean;
+  /**
+   * Present exactly on the standardNumeric(a) mean-centroid family — the
+   * applicability marker dfsNumeric requires (spec §7.9; the reference's
+   * DFSNumeric raises unless the QF is a StandardQFNumeric).
+   */
+  readonly standard?: { a: number; dir: 1 | -1 };
   evaluate(s: NumericCoverStats, c: PreparedNumeric): number;
   optimisticEstimate?(s: NumericCoverStats, c: PreparedNumeric): number;
 }

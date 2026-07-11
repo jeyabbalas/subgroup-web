@@ -16,9 +16,9 @@
  * stride) plus every retained result.
  */
 
-import { andInto } from "../bitset/bitset.js";
-import { Conjunction } from "../desc/conjunction.js";
-import { conjunctionCover } from "../desc/cover.js";
+import { andInto, orInto } from "../bitset/bitset.js";
+import { Conjunction, Disjunction } from "../desc/conjunction.js";
+import { conjunctionCover, disjunctionCover } from "../desc/cover.js";
 import { AbortedError, ValidationError } from "../errors.js";
 import { CoverEvalContext } from "../qf/context.js";
 import { buildResults, type SubgroupResults } from "../results/result.js";
@@ -43,6 +43,12 @@ export interface ExhaustiveOptions {
   fullCrossCheckLimit?: number;
   /** Candidates per event-loop yield / abort / progress check. */
   batchSize?: number;
+  /**
+   * Description form of the candidate space: index tuples over S read as
+   * conjunctions (default) or as disjunctions — the generalizingBFS space
+   * D(S, d) (spec §7.11). Description-level QFs require 'conjunction'.
+   */
+  form?: "conjunction" | "disjunction";
 }
 
 export interface CrossCheckReport {
@@ -65,7 +71,8 @@ export function candidateSpaceSize(nSelectors: number, depth: number): number {
 interface EvaluatorState {
   readonly task: PreparedTask;
   readonly descCtx: CoverEvalContext;
-  conj: Conjunction | null;
+  readonly form: "conjunction" | "disjunction";
+  conj: Conjunction | Disjunction | null;
 }
 
 /** Evaluate the candidate on the bitset path: [quality, size]. */
@@ -102,7 +109,7 @@ function evaluateBits(
       // Description-level QFs (GA, combined) evaluate through the cached
       // context (mask path); the size still comes from the bitset cover.
       const size = sizeFromBits(coverWords);
-      return [qf.evaluate(state.conj!, state.descCtx), size];
+      return [qf.evaluate(state.conj as Conjunction, state.descCtx), size];
     }
   }
 }
@@ -112,7 +119,10 @@ function evaluateMask(state: EvaluatorState, depth: number): [number, number] {
   const { task } = state;
   const prep = task.prepared;
   const qf = task.qf;
-  const mask = conjunctionCover(task.table, state.conj!.selectors);
+  const mask =
+    state.form === "disjunction"
+      ? disjunctionCover(task.table, state.conj!.selectors)
+      : conjunctionCover(task.table, state.conj!.selectors);
   switch (qf.kind) {
     case "binary": {
       const s = binaryStatsFromMask(prep as never, mask);
@@ -132,19 +142,21 @@ function evaluateMask(state: EvaluatorState, depth: number): [number, number] {
     }
     case "description": {
       // The context itself is mask-based; re-evaluating adds nothing beyond
-      // the size cross-check.
-      return [qf.evaluate(state.conj!, state.descCtx), sizeFromMask(mask)];
+      // the size cross-check. (Description QFs are conjunction-only; the
+      // disjunction form rejects them at task setup.)
+      return [qf.evaluate(state.conj as Conjunction, state.descCtx), sizeFromMask(mask)];
     }
   }
 }
 
 /**
- * Cross-path quality agreement. Counts are integer-exact; binary/FI/EMM and
- * gather-based numeric plans use identical arithmetic on both paths (exact
- * equality); streaming sum-based numeric plans differ from the mask path's
- * pairwise summation by at most ~n·eps on the aggregates (spec §7.2,
- * rel ≤ 1e-12 of the aggregate scale — NOT of the quality, which can be a
- * catastrophically cancelled near-zero).
+ * Cross-path quality agreement. Counts are integer-exact; binary/FI/EMM use
+ * identical arithmetic on both paths (exact equality); numeric plans differ —
+ * the bitset path accumulates `sum` naively in ascending row order (the
+ * shared decision arithmetic, BRIEF §7) while the row-scan path uses pairwise
+ * summation — by at most ~n·eps on the aggregates (spec §7.2, rel ≤ 1e-12 of
+ * the aggregate scale — NOT of the quality, which can be a catastrophically
+ * cancelled near-zero).
  */
 function qualitiesAgree(a: number, b: number, aggScale: number): boolean {
   if (Number.isNaN(a) && Number.isNaN(b)) return true;
@@ -161,6 +173,13 @@ export async function exhaustive(
   options: ExhaustiveOptions = {},
 ): Promise<SubgroupResults & { crossCheckReport: CrossCheckReport }> {
   const task = prepareTask(taskSpec);
+  const form = options.form ?? "conjunction";
+  if (form === "disjunction" && task.qf.kind === "description") {
+    throw new ValidationError(
+      "exhaustive over the disjunction space does not support description-level QFs " +
+        "(generalization semantics are defined over conjunctions; spec §7.11)",
+    );
+  }
   const nSel = task.selectors.length;
   const total = candidateSpaceSize(nSel, task.depth);
   const fullLimit = options.fullCrossCheckLimit ?? 300_000;
@@ -184,7 +203,7 @@ export async function exhaustive(
   }
   const w = task.atlas.wordsPerRow;
   const descCtx = new CoverEvalContext(task.table, task.prepared);
-  const state: EvaluatorState = { task, descCtx, conj: null };
+  const state: EvaluatorState = { task, descCtx, form, conj: null };
   const needConj = task.qf.kind === "description";
 
   // Per-level AND-prefix scratch covers (level i holds the cover of the
@@ -209,10 +228,10 @@ export async function exhaustive(
     }
   };
 
-  const buildConj = (depth: number): Conjunction => {
+  const buildConj = (depth: number): Conjunction | Disjunction => {
     const selectors: import("../desc/selector.js").Selector[] = [];
     for (let i = 0; i < depth; i++) selectors.push(task.selectors[tuple[i]!]!);
-    return new Conjunction(selectors);
+    return form === "disjunction" ? new Disjunction(selectors) : new Conjunction(selectors);
   };
 
   const processCandidate = (depth: number, coverWords: Uint32Array): void => {
@@ -253,10 +272,12 @@ export async function exhaustive(
       continue;
     }
     tuple[level] = i;
-    // cover(level) = cover(level-1) AND row(i)
+    // cover(level) = cover(level−1) ∘ row(i), ∘ per the space form
     const target = scratch[level]!;
     if (level === 0) {
       target.set(task.atlas.row(i));
+    } else if (form === "disjunction") {
+      orInto(target, 0, scratch[level - 1]!, 0, task.atlas.bits, task.atlas.offset(i), w);
     } else {
       andInto(target, 0, scratch[level - 1]!, 0, task.atlas.bits, task.atlas.offset(i), w);
     }
@@ -298,7 +319,7 @@ export async function exhaustive(
     }
   }
 
-  const results = buildResults(task, topk.toArray(), evaluated, 0) as SubgroupResults & {
+  const results = buildResults(task, topk.toArray(), evaluated, 0, form) as SubgroupResults & {
     crossCheckReport: CrossCheckReport;
   };
   results.crossCheckReport = { mode, checked, total: evaluated };

@@ -128,6 +128,12 @@ def make_target(spec):
         return ps.NumericTarget(spec["attribute"])
     if t == "fi":
         return ps.FITarget()
+    if t == "emm":
+        # The reference has no task-level EMM target object: EMM_Likelihood
+        # carries the model; tasks conventionally use FITarget (per-row stats
+        # are then FI's size fields — qualities/descriptions are what the
+        # top-k gate compares).
+        return ps.FITarget()
     raise ValueError(f"unknown target {spec!r}")
 
 
@@ -177,6 +183,12 @@ def make_qf(spec):
         return ps.CountQF()
     if name == "area":
         return ps.AreaQF()
+    if name == "gaStandard":
+        return ps.GeneralizationAware_StandardQF(
+            spec["a"], optimistic_estimate_strategy=spec.get("strategy", "difference")
+        )
+    if name == "emmLikelihood":
+        return ps.EMM_Likelihood(ps.PolyRegression_ModelClass(spec["x"], spec["y"]))
     raise ValueError(f"unknown qf {spec!r}")
 
 
@@ -192,6 +204,8 @@ def make_algorithm(spec):
         return ps.DFS()
     if name == "bestfirst":
         return ps.BestFirstSearch()
+    if name == "dfs_numeric":
+        return ps.DFSNumeric()
     if name == "beam":
         width = spec.get("width", 20) if isinstance(spec, dict) else 20
         return ps.BeamSearch(beam_width=width)

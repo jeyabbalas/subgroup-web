@@ -220,6 +220,39 @@ against the differential runner's divergence records by `scripts/reports.mjs`.
 
 ---
 
+### ADJ-011-result-filters-crash
+
+- **Classification:** (b) reference bug.
+- **Repro:** `reference/repros/adj_011_filters_broken.py`.
+- **Reference behavior:** `unique_attributes`, `minimum_statistic_filter`,
+  and `maximum_statistic_filter` (measures.py:121-157) access
+  `sg.subgroup_description` / `sg.statistics` — the pre-0.8 `Subgroup`
+  object API. 0.9.0 result rows are `(quality, Conjunction)` tuples, so all
+  three raise AttributeError on every 0.9.0 result set.
+  `minimum_quality_filter` (≥ threshold) and `overlap_filter` (greedy
+  Jaccard, drop on strictly > similarity_level) work and pin the semantics.
+- **Spec decision (docs/spec.md §7.12):** subgroup-web implements the
+  documented intent — attribute-tuple dedup with the all-categorical
+  exemption; stats-table thresholds (≥ / ≤) over the §5 tables — and pins
+  the two working filters' semantics exactly.
+
+### ADJ-012-apriori-requires-estimate
+
+- **Classification:** (b) reference bug (crash), no differential rows
+  possible.
+- **Repro:** `reference/repros/adj_012_apriori_requires_estimate.py`.
+- **Reference behavior:** `Apriori.get_next_level_candidates`
+  (algorithms.py:169) and `DFS.search_internal` (algorithms.py:760) call
+  `task.qf.optimistic_estimate` unconditionally; quality functions without
+  one — ChiSquaredQF, EMM_Likelihood, StandardQFNumericTscore — raise
+  AttributeError inside `execute`. Whole algorithm × QF combinations the
+  API implies are unusable; SimpleSearch/SimpleDFS/BeamSearch guard the
+  attribute.
+- **Spec decision (docs/spec.md §7.4):** every subgroup-web engine accepts
+  estimate-free QFs; §3.4 pruning simply disengages (`pruningSafe` gating).
+  Differential cells for these QFs use SimpleSearch on the reference side;
+  the §6.2 exactness gates cover them on every subgroup-web engine.
+
 ## Mapping rules (class (c) representational differences)
 
 ### MAP-001-tie-groups

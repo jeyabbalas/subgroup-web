@@ -114,15 +114,36 @@ export type {
   StatsQF,
 } from "./qf/types.js";
 // Results
-export type { ResultEntry } from "./results/result.js";
+export type { CoverDescription } from "./results/describe.js";
+export { describeStats } from "./results/describe.js";
+export {
+  maximumStatisticFilter,
+  minimumQualityFilter,
+  minimumStatisticFilter,
+  overlapFilter,
+  uniqueAttributes,
+} from "./results/filters.js";
+export type { Description, DescriptionForm, ResultEntry } from "./results/result.js";
 export { buildResults, SubgroupResults } from "./results/result.js";
+export type { SelectorJSON, SerializedResults } from "./results/serialize.js";
+export {
+  deserializeResults,
+  selectorFromJSON,
+  selectorToJSON,
+  serializeResults,
+} from "./results/serialize.js";
 // Search
 export { apriori } from "./search/apriori.js";
+export type { BeamSearchOptions } from "./search/beam.js";
+export { beamSearch } from "./search/beam.js";
 export { bestFirst } from "./search/bestfirst.js";
 export { dfs } from "./search/dfs.js";
+export { dfsNumeric } from "./search/dfsnumeric.js";
 export type { SearchOptions } from "./search/engine.js";
 export type { CrossCheckReport, ExhaustiveOptions } from "./search/exhaustive.js";
 export { candidateSpaceSize, exhaustive } from "./search/exhaustive.js";
+export { generalizingBFS } from "./search/generalizingbfs.js";
+export { patternTree } from "./search/patterntree.js";
 export type { Constraint, PreparedTask, SearchProgress, SubgroupTask } from "./search/task.js";
 export { minSupport, prepareTask } from "./search/task.js";
 export { compareItems, TopK, type TopKItem } from "./search/topk.js";

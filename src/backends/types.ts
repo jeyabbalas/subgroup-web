@@ -83,11 +83,14 @@ export interface BatchEvaluator {
   ): StatsBatch | Promise<StatsBatch>;
   /**
    * Statistics for the extensions of one parent: candidate j covers
-   * parent ∧ selector(extensions[j]). `parent = null` means the full table.
+   * parent ∘ selector(extensions[j]) where ∘ is `op` (default '∧';
+   * '∨' serves the disjunction space of generalizingBFS, spec §7.11).
+   * `parent = null` means the full table for 'and', the empty set for 'or'.
    */
   evaluateExtensions(
     parent: Uint32Array | null,
     extensions: ArrayLike<number>,
+    op?: "and" | "or",
   ): StatsBatch | Promise<StatsBatch>;
   /** Release pooled resources (workers, GPU buffers). Idempotent. */
   dispose(): void;

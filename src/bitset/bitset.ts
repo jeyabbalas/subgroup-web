@@ -48,6 +48,19 @@ export function andInto(
   for (let i = 0; i < len; i++) dst[dstOff + i] = a[aOff + i]! & b[bOff + i]!;
 }
 
+/** dst = a OR b, word-wise (disjunction covers; generalizingBFS §7.11). */
+export function orInto(
+  dst: Uint32Array,
+  dstOff: number,
+  a: Uint32Array,
+  aOff: number,
+  b: Uint32Array,
+  bOff: number,
+  len: number,
+): void {
+  for (let i = 0; i < len; i++) dst[dstOff + i] = a[aOff + i]! | b[bOff + i]!;
+}
+
 /** popcount(a AND b) without materializing the intersection. */
 export function andCount(
   a: Uint32Array,

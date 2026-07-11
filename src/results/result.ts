@@ -5,8 +5,8 @@
  * storage, BRIEF §9). Serialization + post-filters land in M5.
  */
 
-import { Bitset } from "../bitset/bitset.js";
-import { Conjunction } from "../desc/conjunction.js";
+import { Bitset, orInto } from "../bitset/bitset.js";
+import { Conjunction, Disjunction } from "../desc/conjunction.js";
 import { CoverEvalContext } from "../qf/context.js";
 import type { PreparedTask } from "../search/task.js";
 import type { TopKItem } from "../search/topk.js";
@@ -16,12 +16,18 @@ import {
   binaryStatsTable,
   fiStatsTable,
   gatherValuesFromBits,
+  numericStatsFromBits,
   numericStatsTable,
   sizeFromBits,
 } from "../targets/stats.js";
 
+/** Search descriptions: conjunctions everywhere except generalizingBFS. */
+export type Description = Conjunction | Disjunction;
+
+export type DescriptionForm = "conjunction" | "disjunction";
+
 export interface ResultEntry {
-  readonly description: Conjunction;
+  readonly description: Description;
   readonly quality: number;
   /** Full statistic table of the task's target (spec §5). */
   readonly stats: Readonly<Record<string, number>>;
@@ -50,6 +56,21 @@ export class SubgroupResults {
       ...e.stats,
     }));
   }
+
+  /** RFC-4180 CSV of `toRows()` (quality, description, stats columns). */
+  toCSV(): string {
+    const rows = this.toRows();
+    const columns = rows.length > 0 ? Object.keys(rows[0]!) : ["quality", "description"];
+    const escapeField = (v: unknown): string => {
+      const s = String(v);
+      return /[",\n\r]/.test(s) ? `"${s.replaceAll('"', '""')}"` : s;
+    };
+    const lines = [columns.map(escapeField).join(",")];
+    for (const row of rows) {
+      lines.push(columns.map((c) => escapeField(row[c])).join(","));
+    }
+    return `${lines.join("\n")}\n`;
+  }
 }
 
 /** Materialize final entries from retained top-k items (shared by engines). */
@@ -58,15 +79,23 @@ export function buildResults(
   items: readonly TopKItem[],
   evaluated: number,
   pruned: number,
+  form: DescriptionForm = "conjunction",
 ): SubgroupResults {
   const { atlas, prepared, qf } = task;
   const w = atlas.wordsPerRow;
   const descCtx = new CoverEvalContext(task.table, prepared);
   const entries: ResultEntry[] = items.map((item) => {
     const selectors = Array.from(item.tuple, (i) => task.selectors[i]!);
-    const description = new Conjunction(selectors);
+    const description: Description =
+      form === "disjunction" ? new Disjunction(selectors) : new Conjunction(selectors);
     const coverWords = new Uint32Array(w);
-    atlas.coverInto(Array.from(item.tuple), coverWords);
+    if (form === "disjunction") {
+      for (const i of item.tuple) {
+        orInto(coverWords, 0, coverWords, 0, atlas.bits, atlas.offset(i), w);
+      }
+    } else {
+      atlas.coverInto(Array.from(item.tuple), coverWords);
+    }
 
     let stats: Record<string, number>;
     let oe: number | undefined;
@@ -83,7 +112,7 @@ export function buildResults(
         const gathered = gatherValuesFromBits(prepared, coverWords);
         stats = numericStatsTable(prepared, gathered);
         if (qf.kind === "numeric" && qf.optimisticEstimate) {
-          oe = descCtx.optimisticEstimate(qf, description);
+          oe = qf.optimisticEstimate(numericStatsFromBits(prepared, coverWords, qf.plan), prepared);
         }
         break;
       }
@@ -102,7 +131,7 @@ export function buildResults(
         break;
       }
     }
-    if (qf.kind === "description" && qf.optimisticEstimate) {
+    if (qf.kind === "description" && qf.optimisticEstimate && description instanceof Conjunction) {
       oe = qf.optimisticEstimate(description, descCtx);
     }
 
