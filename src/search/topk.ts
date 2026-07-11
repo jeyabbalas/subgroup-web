@@ -70,6 +70,19 @@ export class TopK {
   }
 
   /**
+   * Would `add(quality, tuple)` insert? Exactly add's rejection tests with
+   * no mutation. Monotone in `quality` for a fixed tuple — the property the
+   * §12 screening band relies on: if an UPPER bound on a candidate's quality
+   * cannot admit, its exact quality cannot either (engine.ts admit).
+   */
+  couldAdmit(quality: number, tuple: ArrayLike<number>): boolean {
+    if (!(quality > this.minQuality)) return false;
+    if (!this.full) return true;
+    const worst = this.items[this.items.length - 1]!;
+    return compareItems(quality, tuple, worst.quality, worst.tuple) < 0;
+  }
+
+  /**
    * Offer a candidate. `tuple` may be a scratch buffer — it is copied only
    * when the candidate is retained. Returns true iff retained.
    */

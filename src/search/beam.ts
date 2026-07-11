@@ -34,7 +34,7 @@
 import { ValidationError } from "../errors.js";
 import { buildResults, type SubgroupResults } from "../results/result.js";
 import { type SearchOptions, SearchRun } from "./engine.js";
-import { prepareTask, type SubgroupTask } from "./task.js";
+import { type PreparedTask, prepareTask, type SubgroupTask } from "./task.js";
 import { TopK, type TopKItem } from "./topk.js";
 
 export interface BeamSearchOptions extends SearchOptions {
@@ -65,7 +65,19 @@ export async function beamSearch(
         `raises here too`,
     );
   }
-  const run = new SearchRun(task, options);
+  const run = await SearchRun.create(task, options);
+  try {
+    return await beamRun(task, run, width);
+  } finally {
+    run.dispose();
+  }
+}
+
+async function beamRun(
+  task: PreparedTask,
+  run: SearchRun,
+  width: number,
+): Promise<SubgroupResults> {
   const nSel = task.selectors.length;
   const beam = new TopK(width, task.minQuality);
   const offered = new Set<string>();
@@ -113,7 +125,7 @@ export async function beamSearch(
       run.scorer.scoreBatch(batch, childDepth, (i) => childTuples[start + i]!, quality, null);
       for (let i = 0; i < bCount; i++) {
         if (run.membershipOk(batch.size[i]!)) {
-          beam.add(quality[i]!, childTuples[start + i]!);
+          run.admitInto(beam, quality[i]!, childTuples[start + i]!);
         }
       }
       await run.tick(bCount, childDepth);
@@ -139,6 +151,6 @@ export async function beamSearch(
   // First k of the beam; SearchRun.finish() would rebuild from its own topk,
   // so materialize directly.
   const items = beam.toArray().slice(0, task.k);
-  run.evaluator.dispose();
-  return buildResults(task, items, run.evaluated, run.pruned);
+  run.dispose();
+  return buildResults(task, items, run.evaluated, run.pruned, "conjunction", run.backendInfo());
 }

@@ -43,6 +43,18 @@ export interface StatsBatch {
   emmIntercept: Float64Array | null;
   emmSgLikelihood: Float64Array | null;
   emmComplementLikelihood: Float64Array | null;
+  /**
+   * Present iff the batch's numeric sums are GPU f32 SCREENING values
+   * (BRIEF §12/§22-A7): per-candidate conservative absolute error bounds on
+   * `sum` and `excessSum`. Scoring turns these into quality/estimate UPPER
+   * bounds; decisions near a boundary are re-scored on CPU f64 (engine.ts).
+   * Absent (undefined) on exact batches — every CPU batch, and GPU
+   * binary/FI batches (integer-exact counts).
+   */
+  screening?: {
+    sumEps: Float64Array;
+    excessEps: Float64Array;
+  };
 }
 
 /** View of candidate i's numeric stats as the QF-facing struct. */
@@ -72,6 +84,12 @@ export function emmStatsAt(batch: StatsBatch, i: number): EmmCoverStats {
 
 export interface BatchEvaluator {
   readonly name: string;
+  /**
+   * True when this evaluator's numeric statistics are f32 screening values
+   * needing the §12 exactness band (StatsBatch.screening). CPU evaluators
+   * are always exact (false).
+   */
+  readonly screening: boolean;
   /**
    * Statistics for `count` candidates given as flattened ascending
    * selector-id tuples (`arity` ids each). May resolve synchronously.

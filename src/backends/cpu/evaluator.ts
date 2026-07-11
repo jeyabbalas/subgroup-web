@@ -20,7 +20,7 @@ import { binaryStatsFromBits, numericStatsFromBits, sizeFromBits } from "../../t
 import type { PreparedTarget } from "../../targets/types.js";
 import type { BatchEvaluator, StatsBatch } from "../types.js";
 
-function allocBatch(
+export function allocBatch(
   count: number,
   prepared: PreparedTarget,
   plan: NumericStatsPlan | null,
@@ -47,6 +47,7 @@ function allocBatch(
 
 export class CpuEvaluator implements BatchEvaluator {
   readonly name = "cpu";
+  readonly screening = false;
   private readonly atlas: SelectorAtlas;
   private readonly prepared: PreparedTarget;
   private readonly plan: NumericStatsPlan | null;
@@ -97,6 +98,17 @@ export class CpuEvaluator implements BatchEvaluator {
         break;
       }
     }
+  }
+
+  /**
+   * Statistics of ONE explicit cover (the §12 exactness-band re-scoring
+   * path, and generalizingBFS OR-tuple re-scores). Identical kernels to the
+   * batch paths — the resulting quality is bit-identical to a pure-CPU run.
+   */
+  evaluateCover(cover: Uint32Array): StatsBatch {
+    const batch = allocBatch(1, this.prepared, this.plan);
+    this.statsInto(batch, 0, cover);
+    return batch;
   }
 
   evaluateTuples(tuples: Uint16Array, arity: number, count: number): StatsBatch {

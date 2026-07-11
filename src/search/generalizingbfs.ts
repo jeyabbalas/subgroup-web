@@ -31,7 +31,7 @@ import { ValidationError } from "../errors.js";
 import { buildResults, type SubgroupResults } from "../results/result.js";
 import { type SearchOptions, SearchRun } from "./engine.js";
 import { BinaryHeap } from "./heap.js";
-import { prepareTask, type SubgroupTask } from "./task.js";
+import { type PreparedTask, prepareTask, type SubgroupTask } from "./task.js";
 
 interface GbfsNode {
   oe: number;
@@ -54,14 +54,27 @@ export async function generalizingBFS(
   options: SearchOptions = {},
 ): Promise<SubgroupResults> {
   const task = prepareTask(taskSpec);
-  const qf = task.qf;
-  if (qf.kind === "description") {
+  if (task.qf.kind === "description") {
     throw new ValidationError(
       "generalizingBFS explores disjunctions; description-level QFs (generalization-aware, " +
         "combined) are defined over conjunctions — use apriori()/dfs() (spec §7.11)",
     );
   }
-  const run = new SearchRun(task, options);
+  // Cover composition is DISJUNCTIVE: the §12 re-scoring path must OR.
+  const run = await SearchRun.create(task, options, "or");
+  try {
+    return await gbfsRun(task, run, options);
+  } finally {
+    run.dispose();
+  }
+}
+
+async function gbfsRun(
+  task: PreparedTask,
+  run: SearchRun,
+  options: SearchOptions,
+): Promise<SubgroupResults> {
+  const qf = task.qf;
   const nSel = task.selectors.length;
   const w = task.atlas.wordsPerRow;
   const prep = task.prepared;
@@ -122,7 +135,7 @@ export async function generalizingBFS(
         tupleScratch[prefixLen] = id;
         const tuple = tupleScratch.subarray(0, childDepth);
         if (run.membershipOk(batch.size[i]!)) {
-          run.topk.add(quality[i]!, tuple);
+          run.admit(quality[i]!, tuple);
         }
         if (expandable && id < nSel - 1) {
           let childOe = Number.POSITIVE_INFINITY;
@@ -152,6 +165,13 @@ export async function generalizingBFS(
   }
 
   run.report(task.depth);
-  run.evaluator.dispose();
-  return buildResults(task, run.topk.toArray(), run.evaluated, run.pruned, "disjunction");
+  run.dispose();
+  return buildResults(
+    task,
+    run.topk.toArray(),
+    run.evaluated,
+    run.pruned,
+    "disjunction",
+    run.backendInfo(),
+  );
 }

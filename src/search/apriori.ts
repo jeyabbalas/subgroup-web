@@ -16,7 +16,7 @@
 
 import type { SubgroupResults } from "../results/result.js";
 import { type SearchOptions, SearchRun } from "./engine.js";
-import { prepareTask, type SubgroupTask } from "./task.js";
+import { type PreparedTask, prepareTask, type SubgroupTask } from "./task.js";
 
 function tupleKey(tuples: Uint16Array, base: number, arity: number): string {
   let key = "";
@@ -29,7 +29,15 @@ export async function apriori(
   options: SearchOptions = {},
 ): Promise<SubgroupResults> {
   const task = prepareTask(taskSpec);
-  const run = new SearchRun(task, options);
+  const run = await SearchRun.create(task, options);
+  try {
+    return await aprioriRun(task, run);
+  } finally {
+    run.dispose();
+  }
+}
+
+async function aprioriRun(task: PreparedTask, run: SearchRun): Promise<SubgroupResults> {
   const nSel = task.selectors.length;
 
   let arity = 1;
@@ -58,7 +66,7 @@ export async function apriori(
       for (let i = 0; i < bCount; i++) {
         const gi = start + i;
         if (run.membershipOk(sizes[gi]!)) {
-          run.topk.add(quality[gi]!, tuples.subarray(gi * arity, gi * arity + arity));
+          run.admit(quality[gi]!, tuples.subarray(gi * arity, gi * arity + arity));
         }
       }
       await run.tick(bCount, arity);

@@ -17,7 +17,7 @@
 import type { SubgroupResults } from "../results/result.js";
 import { type SearchOptions, SearchRun } from "./engine.js";
 import { BinaryHeap } from "./heap.js";
-import { prepareTask, type SubgroupTask } from "./task.js";
+import { type PreparedTask, prepareTask, type SubgroupTask } from "./task.js";
 
 interface BfNode {
   oe: number;
@@ -41,7 +41,15 @@ export async function bestFirst(
   options: SearchOptions = {},
 ): Promise<SubgroupResults> {
   const task = prepareTask(taskSpec);
-  const run = new SearchRun(task, options);
+  const run = await SearchRun.create(task, options);
+  try {
+    return await bestFirstRun(task, run);
+  } finally {
+    run.dispose();
+  }
+}
+
+async function bestFirstRun(task: PreparedTask, run: SearchRun): Promise<SubgroupResults> {
   const nSel = task.selectors.length;
   const w = task.atlas.wordsPerRow;
   const frontier = new BinaryHeap<BfNode>(compareNodes);
@@ -93,7 +101,7 @@ export async function bestFirst(
         tupleScratch[prefixLen] = id;
         const tuple = tupleScratch.subarray(0, childDepth);
         if (run.membershipOk(batch.size[i]!)) {
-          run.topk.add(quality[i]!, tuple);
+          run.admit(quality[i]!, tuple);
         }
         if (expandable && id < nSel - 1) {
           const monoOk = run.constraintPrune ? run.monotoneOk(batch.size[i]!) : true;

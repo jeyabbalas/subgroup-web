@@ -36,16 +36,31 @@ export interface ResultEntry {
   cover(): Uint32Array;
 }
 
+/** Which backend evaluated the run, plus §12 band diagnostics (BRIEF §12). */
+export interface ResultBackendInfo {
+  readonly name: string;
+  readonly note: string | null;
+  readonly band: { readonly screened: number; readonly rescored: number } | null;
+}
+
 export class SubgroupResults {
   readonly entries: readonly ResultEntry[];
   /** Search diagnostics for reports/progress consumers. */
   readonly candidatesEvaluated: number;
   readonly candidatesPruned: number;
+  /** Present on runs through the optimized engines (null on the oracle). */
+  readonly backend: ResultBackendInfo | null;
 
-  constructor(entries: readonly ResultEntry[], evaluated: number, pruned: number) {
+  constructor(
+    entries: readonly ResultEntry[],
+    evaluated: number,
+    pruned: number,
+    backend: ResultBackendInfo | null = null,
+  ) {
     this.entries = entries;
     this.candidatesEvaluated = evaluated;
     this.candidatesPruned = pruned;
+    this.backend = backend;
   }
 
   /** Plain-object rows: quality, description string, then all stats fields. */
@@ -80,6 +95,7 @@ export function buildResults(
   evaluated: number,
   pruned: number,
   form: DescriptionForm = "conjunction",
+  backend: ResultBackendInfo | null = null,
 ): SubgroupResults {
   const { atlas, prepared, qf } = task;
   const w = atlas.wordsPerRow;
@@ -146,5 +162,5 @@ export function buildResults(
     };
     return entry;
   });
-  return new SubgroupResults(entries, evaluated, pruned);
+  return new SubgroupResults(entries, evaluated, pruned, backend);
 }

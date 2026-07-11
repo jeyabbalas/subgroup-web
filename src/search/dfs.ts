@@ -17,7 +17,7 @@
 import { andInto } from "../bitset/bitset.js";
 import type { SubgroupResults } from "../results/result.js";
 import { type SearchOptions, SearchRun } from "./engine.js";
-import { prepareTask, type SubgroupTask } from "./task.js";
+import { type PreparedTask, prepareTask, type SubgroupTask } from "./task.js";
 
 interface DfsFrame {
   /** Depth of this frame's children (= prefix length + 1). */
@@ -36,7 +36,15 @@ export async function dfs(
   options: SearchOptions = {},
 ): Promise<SubgroupResults> {
   const task = prepareTask(taskSpec);
-  const run = new SearchRun(task, options);
+  const run = await SearchRun.create(task, options);
+  try {
+    return await dfsRun(task, run);
+  } finally {
+    run.dispose();
+  }
+}
+
+async function dfsRun(task: PreparedTask, run: SearchRun): Promise<SubgroupResults> {
   const nSel = task.selectors.length;
   const w = task.atlas.wordsPerRow;
 
@@ -82,7 +90,7 @@ export async function dfs(
         if (run.membershipOk(sizes[gi]!)) {
           for (let d = 0; d < prefixLen; d++) tupleScratch[d] = path[d]!;
           tupleScratch[prefixLen] = children[gi]!;
-          run.topk.add(quality[gi]!, tupleScratch.subarray(0, childDepth));
+          run.admit(quality[gi]!, tupleScratch.subarray(0, childDepth));
         }
       }
       await run.tick(bCount, childDepth);

@@ -90,11 +90,25 @@ export function makeScorer(task: PreparedTask, ctx: CoverEvalContext): BatchScor
         throw new ValidationError("numeric QF needs a numeric target");
       }
       const oeFn = qf.optimisticEstimate?.bind(qf);
+      const dir = qf.plan.direction;
       return {
         usesContext: false,
         scoreBatch(batch, _arity, _tupleAt, qualityOut, oeOut) {
+          const scr = batch.screening;
           for (let i = 0; i < batch.count; i++) {
             const s = numericStatsAt(batch, i);
+            if (scr !== undefined) {
+              // §12 screening batch: shift the f32-accumulated statistics to
+              // conservative bounds in the QF's favorable direction, making
+              // quality and estimate UPPER bounds. Sound because GPU numeric
+              // applicability is restricted to sum-family plans, where both
+              // are monotone increasing in dir·sum / excessSum
+              // (docs/design.md §GPU exactness band). Admission re-scores on
+              // CPU f64 (engine.ts admit); pruning on an upper bound is
+              // conservative, hence exact.
+              s.sum += dir * scr.sumEps[i]!;
+              s.excessSum += scr.excessEps[i]!;
+            }
             qualityOut[i] = qf.evaluate(s, prepared);
             if (oeOut) oeOut[i] = oeFn ? oeFn(s, prepared) : Number.POSITIVE_INFINITY;
           }

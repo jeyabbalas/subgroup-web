@@ -87,7 +87,13 @@ export async function patternTree(
     );
   }
 
-  const run = new SearchRun(task, options);
+  // CPU-native engine (docs/design.md §backend applicability): the FP-tree's
+  // integer merge algebra IS its evaluator — backend/workers options have no
+  // evaluation surface here and are not forwarded.
+  const run = await SearchRun.create(task, {
+    ...(options.pruning !== undefined ? { pruning: options.pruning } : {}),
+    ...(options.batchSize !== undefined ? { batchSize: options.batchSize } : {}),
+  });
   const nSel = task.selectors.length;
   const atlas = task.atlas;
   const n = task.table.nRows;
@@ -277,6 +283,6 @@ export async function patternTree(
   await mine(rootItems, 0);
 
   run.report(task.depth);
-  run.evaluator.dispose();
+  run.dispose();
   return buildResults(task, run.topk.toArray(), run.evaluated, run.pruned);
 }

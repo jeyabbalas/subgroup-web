@@ -15,7 +15,11 @@
 /** Library version (mirrors package.json). */
 export const VERSION = "0.1.0";
 
-export { CpuEvaluator } from "./backends/cpu/evaluator.js";
+export { allocBatch, CpuEvaluator } from "./backends/cpu/evaluator.js";
+export type { WorkerPoolOptions } from "./backends/cpu/pool.js";
+export { sharedMemoryAvailable, WorkerPoolEvaluator } from "./backends/cpu/pool.js";
+export type { GpuEvaluatorFactory, GpuFactoryRequest } from "./backends/registry.js";
+export { getGpuEvaluatorFactory, registerGpuEvaluatorFactory } from "./backends/registry.js";
 // Backends
 export type { BatchEvaluator, StatsBatch } from "./backends/types.js";
 // Bitsets
@@ -123,7 +127,12 @@ export {
   overlapFilter,
   uniqueAttributes,
 } from "./results/filters.js";
-export type { Description, DescriptionForm, ResultEntry } from "./results/result.js";
+export type {
+  Description,
+  DescriptionForm,
+  ResultBackendInfo,
+  ResultEntry,
+} from "./results/result.js";
 export { buildResults, SubgroupResults } from "./results/result.js";
 export type { SelectorJSON, SerializedResults } from "./results/serialize.js";
 export {
@@ -139,7 +148,8 @@ export { beamSearch } from "./search/beam.js";
 export { bestFirst } from "./search/bestfirst.js";
 export { dfs } from "./search/dfs.js";
 export { dfsNumeric } from "./search/dfsnumeric.js";
-export type { SearchOptions } from "./search/engine.js";
+export type { BackendInfo, SearchOptions } from "./search/engine.js";
+export { SearchRun } from "./search/engine.js";
 export type { CrossCheckReport, ExhaustiveOptions } from "./search/exhaustive.js";
 export { candidateSpaceSize, exhaustive } from "./search/exhaustive.js";
 export { generalizingBFS } from "./search/generalizingbfs.js";
