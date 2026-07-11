@@ -33,9 +33,13 @@ const steps = [
 
 let failedStep = null;
 for (const [name, cmd, args, opts] of steps) {
-  if (name === "test:browser" && cpuOnly === "1") {
+  // The browser project — Playwright GPU exactness (test:browser) and the
+  // Chromium/WebGPU benchmark leg (bench:gates) — cannot run on GitHub's
+  // GPU-less runners. SUBGROUP_WEB_CI_CPU_ONLY=1 is the one sanctioned skip
+  // (BRIEF §16.2); it is never valid for a local acceptance run.
+  if ((name === "test:browser" || name === "bench:gates") && cpuOnly === "1") {
     console.log(
-      `- test:browser SKIPPED (SUBGROUP_WEB_CI_CPU_ONLY=1 — CI-only escape; never valid for acceptance)`,
+      `- ${name} SKIPPED (SUBGROUP_WEB_CI_CPU_ONLY=1 — GPU/browser leg; CI-only escape, never valid for acceptance)`,
     );
     continue;
   }
