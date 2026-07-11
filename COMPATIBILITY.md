@@ -84,3 +84,121 @@ against the differential runner's divergence records by `scripts/reports.mjs`.
   compared through the spec-side semantics; where the reference's top-k
   differs only through NA rows covered by negations, the divergence cites this
   id. NA-stress fixtures exercise the difference explicitly.
+
+### ADJ-004-numeric-empty-quality
+
+- **Classification:** (b) reference bug.
+- **Repro:** `reference/repros/adj_004_numeric_empty_quality.py`.
+- **Reference behavior:** `StandardQFNumeric.calculate_statistics` substitutes
+  centroid 0 for an empty cover (numeric_target.py:335-345), so an empty
+  subgroup evaluates to `0**a * (0 − μ0)`: quality **0.0** for a > 0 and
+  **−μ0** for a = 0 (an arbitrary value that is *positive* whenever the target
+  mean is negative). `StandardQFNumericTscore` returns int 0 through an
+  array-truthiness accident (numeric_target.py:739-752). With the task default
+  `min_quality = −inf`, such empty subgroups **enter result sets** (repro
+  shows `SimpleSearch` returning `c=='a' AND c=='b'`), and the reference's own
+  statistics table then crashes on them (`np.max([])`).
+- **Spec decision (docs/spec.md §5.5):** the mean/median/std of an empty set
+  is undefined; every numeric-family quality of an empty subgroup is **NaN**,
+  which never enters results (§3.3 strict `> θ` is false for NaN). This
+  matches the reference's own binary-target convention
+  (`StandardQF.standard_qf` returns NaN at n = 0).
+- **Differential mapping:** fixture rows whose description has `cover_size: 0`
+  under a numeric target cite this id; reference values 0.0/−μ0/0 vs
+  subgroup-web NaN.
+
+### ADJ-005-invert-ignored
+
+- **Classification:** (b) reference bug (dead parameter).
+- **Repro:** `reference/repros/adj_005_invert_ignored.py`.
+- **Reference behavior:** `StandardQFNumeric(a, invert=True)` stores the flag
+  and never reads it; `utils.conditional_invert` has zero callers in 0.9.0.
+  `invert=True` evaluates identically to `invert=False` (repro asserts
+  equality). Earlier pysubgroup versions negated the quality; the behavior was
+  lost in refactoring.
+- **Spec decision (docs/spec.md §6.3):** `invert: true` evaluates the QF on
+  the negated target: q = n^a · (μ0 − m), with estimator tails mirrored
+  (below-centroid); verified by the metamorphic identity
+  standardNumeric(a, invert) on T ≡ standardNumeric(a) on −T
+  (test/spec/qf-invert-metamorphic.test.ts).
+- **Differential mapping:** every fixture row of an `invert: true` QF block
+  (`adjAllRows`) cites this id where values differ (they differ exactly when
+  the quality is nonzero).
+
+### ADJ-006-emm-degenerate-fit
+
+- **Classification:** (b) reference bug.
+- **Repro:** `reference/repros/adj_006_emm_degenerate_fit.py`.
+- **Reference behavior:** `PolyRegression_ModelClass.fit` guards only
+  n ≤ degree+1 (model_target.py:286-287). For a subgroup with **zero
+  x-variance** (n > 2), `np.polyfit`'s Vandermonde matrix is rank-deficient:
+  numpy emits a RankWarning and returns the minimum-norm least-squares
+  solution — one arbitrary line among infinitely many optima — and
+  `EMM_Likelihood` reports a finite quality for an unidentifiable model
+  (repro: β = [0.625, 1.25], quality ≈ 0.0085 on x ≡ 2).
+- **Spec decision (docs/spec.md §5.4):** the degree-1 fit is undefined when
+  `n·Σxx − (Σx)² = 0`; β = NaN and the quality is NaN (excluded from
+  results), consistent with the reference's own small-sample guard.
+- **Differential mapping:** EMM fixture rows flagged
+  `ADJ-006-emm-degenerate-fit` (generator detects constant x over the cover).
+
+### ADJ-007-max-estimator-overprune
+
+- **Classification:** (b) reference bug (inadmissible optimistic estimate)
+  plus internal inconsistency between the reference's own Apriori paths.
+- **Repro:** `reference/repros/adj_007_max_estimator_overprune.py`.
+- **Reference behavior:** the Max/'average' numeric estimator returns **−inf**
+  when a subgroup has no target value above the dataset centroid
+  (numeric_target.py:505-506). An optimistic estimate must upper-bound every
+  refinement's quality; refinements there have finite qualities (≤ 0), which
+  belong in the result while the top-k is unfilled under the default
+  `min_quality = −inf`. The non-vectorized Apriori prunes them (strict
+  `estimate > min_quality`, algorithms.py:188-194) — the repro shows it
+  dropping `c1==1 AND c2==1` (quality −4.5) — while the vectorized path
+  (`>=`, algorithms.py:233-235) and SimpleSearch keep it: the reference
+  disagrees with itself on the same task.
+- **Spec decision (docs/spec.md §6.3):** the admissible closure oe = 0 when
+  the above-centroid tail is empty (every refinement quality is ≤ 0 there);
+  subgroup-web's exact algorithms prune only with admissible estimates, and
+  the pruning-identity gate (§6.2) proves results unaffected.
+- **Differential mapping:** estimates are not differentially compared; result
+  cells that the reference's over-pruning affects cite this id.
+
+### ADJ-008-combined-not-implemented
+
+- **Classification:** (b) reference bug (feature removed/broken).
+- **Repro:** `reference/repros/adj_008_combined_not_implemented.py`.
+- **Reference behavior:** `CombinedInterestingnessMeasure.__init__` raises
+  `NotImplementedError` unconditionally (measures.py:46-57, "FIX ME: This is
+  currently not working anymore"); the feature is unusable in 0.9.0, so no
+  differential fixture can exist.
+- **Spec decision (docs/spec.md §6.9):** subgroup-web implements the dead
+  code's documented intent: q = Σ wᵢ·qᵢ(sg); optimistic estimate = Σ wᵢ·oeᵢ
+  when every member is estimable and all wᵢ ≥ 0 (a nonnegative combination of
+  admissible bounds is admissible).
+- **Differential mapping:** none possible; correctness rests on micro-fixtures
+  and the §6.2 exactness gates.
+
+### ADJ-009-ga-numeric-order-dependent
+
+- **Classification:** (b) reference bug (same description, different quality).
+- **Repro:** `reference/repros/adj_009_ga_numeric_order.py`.
+- **Reference behavior:**
+  `GeneralizationAware_StandardQFNumeric.aggregate_statistics`
+  (numeric_target.py:813-835) picks the generalization maximizing
+  `max(centroid(agg), centroid(stat))` under strict `>` with seed 0.0, then
+  uses the picked tuple's **own** centroid in the quality. When several
+  generalizations tie (e.g. all their means are below μ0, so each pair ties at
+  μ0 through its aggregate), the first pair in `combinations(selectors, k−1)`
+  order wins — i.e. **construction order** of the conjunction decides the
+  quality: the repro evaluates the same description as [A,B] (−0.2391) and
+  [B,A] (−0.0832). Additionally, when every candidate centroid is ≤ 0 the
+  seed leaves `max_stats = None` and evaluation crashes (AttributeError).
+- **Spec decision (docs/spec.md §6.8):** conjunctions are canonical (§2.3);
+  generalizations iterate in the reference's combinations order over the
+  **canonical** selector sequence (drop-last-first), reproducing the reference
+  wherever its conjunction was built in canonical order and deterministic
+  everywhere; the seed is −inf, which agrees with the reference wherever the
+  reference terminates and picks the true argmax where it would crash.
+- **Differential mapping:** GA-numeric fixture rows whose reference
+  conjunction was constructed in non-canonical order cite this id.

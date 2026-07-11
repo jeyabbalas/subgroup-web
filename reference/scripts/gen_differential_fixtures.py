@@ -264,6 +264,199 @@ def gen_space_fixture(cfg):
     }
 
 
+# --- per-subgroup QF-value fixtures on fixed description lists (M2, §6.3) ---
+#
+# Each config evaluates a battery of reference QFs on a deterministic list of
+# descriptions (depth 1-3, incl. empty-cover, NA-negation, tiny and degenerate
+# covers). Rows whose reference behavior is adjudicated carry `adj` ids so the
+# TS comparator can classify divergences (COMPATIBILITY.md).
+
+
+def _desc(selectors):
+    return ps.Conjunction(list(selectors))
+
+
+def _na_attrs(data):
+    return {c for c in data.columns if data[c].isna().any()}
+
+
+def _has_negation_over_na(sg, na_attrs):
+    return any(
+        isinstance(s, ps.NegatedSelector) and s._selector.attribute_name in na_attrs  # noqa: SLF001
+        for s in sg.selectors
+    )
+
+
+def build_qfvalue_descriptions(data, ignore, extra=()):
+    """Deterministic description list: singles, pairs, triples, empty-cover."""
+    sels = ps.create_selectors(data, nbins=5, intervals_only=True, ignore=ignore)
+    descs = []
+    for s in sels[:8]:
+        descs.append(_desc([s]))
+    n = len(sels)
+    pair_idx = [(0, n // 2), (1, n // 2 + 1), (2, n - 1), (3, n // 3), (5, n // 2 + 3)]
+    for i, j in pair_idx:
+        descs.append(_desc([sels[i], sels[j]]))
+    descs.append(_desc([sels[0], sels[n // 2], sels[n - 1]]))
+    descs.append(_desc([sels[1], sels[n // 3], sels[n // 2 + 2]]))
+    # same-attribute disjoint equalities -> empty cover (ADJ-004 for numeric)
+    eq_attrs = {}
+    for s in sels:
+        if isinstance(s, ps.EqualitySelector) and not (
+            isinstance(s.attribute_value, float) and math.isnan(s.attribute_value)
+        ):
+            eq_attrs.setdefault(s.attribute_name, []).append(s)
+    for attr_sels in eq_attrs.values():
+        if len(attr_sels) >= 2:
+            descs.append(_desc([attr_sels[0], attr_sels[1]]))
+            break
+    descs.extend(extra)
+    return descs
+
+
+def make_qfvalue_qf(spec):
+    name = spec["name"]
+    if name in ("wracc", "lift", "simpleBinomial", "standard", "chiSquared", "count", "area",
+                "standardNumeric"):
+        return make_qf(spec)
+    if name == "standardNumericMedian":
+        return ps.StandardQFNumeric(spec["a"], invert=spec.get("invert", False),
+                                    estimator="max", centroid="median")
+    if name == "standardNumericTscore":
+        return ps.StandardQFNumericTscore(invert=spec.get("invert", False))
+    if name == "generalizationAware":
+        return ps.GeneralizationAwareQF(make_qfvalue_qf(spec["inner"]))
+    if name == "gaStandard":
+        return ps.GeneralizationAware_StandardQF(
+            spec["a"], optimistic_estimate_strategy=spec.get("strategy", "difference"))
+    if name == "gaStandardNumeric":
+        return ps.GeneralizationAware_StandardQFNumeric(spec["a"])
+    if name == "emmLikelihood":
+        return ps.EMM_Likelihood(
+            ps.PolyRegression_ModelClass(x_name=spec["x"], y_name=spec["y"], degree=1))
+    raise ValueError(f"unknown qfvalue qf {spec!r}")
+
+
+QFVALUE_CONFIGS = [
+    {
+        "id": "titanic-binary-qfvalues",
+        "dataset": "titanic",
+        "target": {"type": "binary", "attribute": "Survived", "value": 1},
+        "ignore": ["Survived"],
+        "qfs": [
+            {"name": "wracc"},
+            {"name": "lift"},
+            {"name": "simpleBinomial"},
+            {"name": "standard", "a": 0.3},
+            {"name": "chiSquared", "direction": "both", "minInstances": 5, "stat": "chi2"},
+            {"name": "chiSquared", "direction": "positive", "minInstances": 5, "stat": "chi2"},
+            {"name": "chiSquared", "direction": "negative", "minInstances": 5, "stat": "p"},
+            {"name": "chiSquared", "direction": "both", "minInstances": 1, "stat": "p"},
+            {"name": "generalizationAware", "inner": {"name": "wracc"}},
+            {"name": "gaStandard", "a": 0.5, "strategy": "difference"},
+            {"name": "gaStandard", "a": 1.0, "strategy": "max"},
+        ],
+    },
+    {
+        "id": "titanic-fi-qfvalues",
+        "dataset": "titanic",
+        "target": {"type": "fi"},
+        "ignore": [],
+        "qfs": [{"name": "count"}, {"name": "area"}],
+    },
+    {
+        "id": "creditg-numeric-qfvalues",
+        "dataset": "credit-g",
+        "target": {"type": "numeric", "attribute": "age"},
+        "ignore": ["age", "class"],
+        "qfs": [
+            {"name": "standardNumeric", "a": 1.0},
+            {"name": "standardNumeric", "a": 0.5},
+            {"name": "standardNumeric", "a": 0.0},
+            {"name": "standardNumeric", "a": 1.0, "invert": True,
+             "adjAllRows": "ADJ-005-invert-ignored"},
+            {"name": "standardNumericMedian", "a": 1.0},
+            {"name": "standardNumericTscore"},
+            {"name": "gaStandardNumeric", "a": 1.0},
+        ],
+    },
+    {
+        "id": "creditg-emm-qfvalues",
+        "dataset": "credit-g",
+        "target": {"type": "emm", "x": "age", "y": "credit_amount"},
+        "ignore": ["age", "credit_amount", "class"],
+        "qfs": [{"name": "emmLikelihood", "x": "age", "y": "credit_amount"}],
+    },
+]
+
+
+def gen_qfvalue_fixture(cfg):
+    import warnings
+
+    data = load_dataset(cfg["dataset"])
+    na_attrs = _na_attrs(data)
+    extra = []
+    if cfg["id"] == "creditg-emm-qfvalues":
+        # deliberate degenerate covers: zero x-variance (ADJ-006) and n <= 2
+        extra = [
+            _desc([ps.EqualitySelector("age", 24)]),
+            _desc([ps.EqualitySelector("age", 75)]),
+        ]
+    descs = build_qfvalue_descriptions(data, cfg["ignore"], extra)
+
+    if cfg["target"]["type"] == "binary":
+        target = ps.BinaryTarget(cfg["target"]["attribute"], cfg["target"]["value"])
+    elif cfg["target"]["type"] == "numeric":
+        target = ps.NumericTarget(cfg["target"]["attribute"])
+    elif cfg["target"]["type"] == "fi":
+        target = ps.FITarget()
+    else:
+        target = None  # EMM: the QF ignores the target
+
+    desc_rows = []
+    for sg in descs:
+        cover = sg.covers(data)
+        size = int(np.count_nonzero(cover))
+        row = {
+            "description": conj_to_json(sg),
+            "cover_size": size,
+            "adj": [],
+        }
+        if _has_negation_over_na(sg, na_attrs):
+            row["adj"].append("ADJ-003-negation-covers-na")
+        if size == 0 and cfg["target"]["type"] == "numeric":
+            row["adj"].append("ADJ-004-numeric-empty-quality")
+        if cfg["target"]["type"] == "emm" and size > 2:
+            xv = data[cfg["target"]["x"]].to_numpy()[cover]
+            if np.all(xv == xv[0]):
+                row["adj"].append("ADJ-006-emm-degenerate-fit")
+        desc_rows.append((sg, row))
+
+    qf_blocks = []
+    for spec in cfg["qfs"]:
+        qf = make_qfvalue_qf(spec)
+        qf.calculate_constant_statistics(data, target)
+        values = []
+        for sg, _row in desc_rows:
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore")
+                v = qf.evaluate(sg, target, data)
+            values.append(float(v))
+        clean_spec = {k: v for k, v in spec.items() if k != "adjAllRows"}
+        block = {"qf": clean_spec, "values": values}
+        if "adjAllRows" in spec:
+            block["adjAllRows"] = spec["adjAllRows"]
+        qf_blocks.append(block)
+
+    return {
+        "id": cfg["id"],
+        "config": {k: v for k, v in cfg.items() if k != "qfs"},
+        "versions": versions(),
+        "descriptions": [row for _sg, row in desc_rows],
+        "qfs": qf_blocks,
+    }
+
+
 # --- equal-frequency binning edge fixtures (BRIEF §22-A8) ---
 
 BINNING_CASES = [
@@ -329,6 +522,25 @@ def main():
         )
 
     if not only:
+        qfv_dir = os.path.join(FIXTURES, "qfvalues")
+        os.makedirs(qfv_dir, exist_ok=True)
+        for cfg in QFVALUE_CONFIGS:
+            fixture = gen_qfvalue_fixture(cfg)
+            out_path = os.path.join(qfv_dir, f"{cfg['id']}.json")
+            dump_json(out_path, fixture)
+            manifest_entries.append(
+                {
+                    "file": f"qfvalues/{cfg['id']}.json",
+                    "sha256": sha256_file(out_path),
+                    "descriptions": len(fixture["descriptions"]),
+                    "qfs": len(fixture["qfs"]),
+                }
+            )
+            print(
+                f"qfvalues {cfg['id']}: {len(fixture['descriptions'])} descriptions x "
+                f"{len(fixture['qfs'])} qfs"
+            )
+
         spaces_dir = os.path.join(FIXTURES, "spaces")
         os.makedirs(spaces_dir, exist_ok=True)
         for cfg in SPACE_CONFIGS:

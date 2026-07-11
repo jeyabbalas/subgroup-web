@@ -1,0 +1,954 @@
+{
+ "id": "titanic-binary-qfvalues",
+ "config": {
+  "id": "titanic-binary-qfvalues",
+  "dataset": "titanic",
+  "target": {
+   "type": "binary",
+   "attribute": "Survived",
+   "value": 1
+  },
+  "ignore": [
+   "Survived"
+  ]
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "descriptions": [
+  {
+   "description": {
+    "repr": "(Name=='Braund, Mr. Owen Harris')",
+    "str": "Name=='Braund, Mr. Owen Harris'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Braund, Mr. Owen Harris"
+      },
+      "repr": "Name=='Braund, Mr. Owen Harris'",
+      "str": "Name=='Braund, Mr. Owen Harris'"
+     }
+    ]
+   },
+   "cover_size": 1,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)')",
+    "str": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)"
+      },
+      "repr": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'",
+      "str": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'"
+     }
+    ]
+   },
+   "cover_size": 1,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Heikkinen, Miss. Laina')",
+    "str": "Name=='Heikkinen, Miss. Laina'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Heikkinen, Miss. Laina"
+      },
+      "repr": "Name=='Heikkinen, Miss. Laina'",
+      "str": "Name=='Heikkinen, Miss. Laina'"
+     }
+    ]
+   },
+   "cover_size": 1,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)')",
+    "str": "Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Futrelle, Mrs. Jacques Heath (Lily May Peel)"
+      },
+      "repr": "Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)'",
+      "str": "Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)'"
+     }
+    ]
+   },
+   "cover_size": 1,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Allen, Mr. William Henry')",
+    "str": "Name=='Allen, Mr. William Henry'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Allen, Mr. William Henry"
+      },
+      "repr": "Name=='Allen, Mr. William Henry'",
+      "str": "Name=='Allen, Mr. William Henry'"
+     }
+    ]
+   },
+   "cover_size": 1,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Moran, Mr. James')",
+    "str": "Name=='Moran, Mr. James'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Moran, Mr. James"
+      },
+      "repr": "Name=='Moran, Mr. James'",
+      "str": "Name=='Moran, Mr. James'"
+     }
+    ]
+   },
+   "cover_size": 1,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='McCarthy, Mr. Timothy J')",
+    "str": "Name=='McCarthy, Mr. Timothy J'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "McCarthy, Mr. Timothy J"
+      },
+      "repr": "Name=='McCarthy, Mr. Timothy J'",
+      "str": "Name=='McCarthy, Mr. Timothy J'"
+     }
+    ]
+   },
+   "cover_size": 1,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Palsson, Master. Gosta Leonard')",
+    "str": "Name=='Palsson, Master. Gosta Leonard'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Palsson, Master. Gosta Leonard"
+      },
+      "repr": "Name=='Palsson, Master. Gosta Leonard'",
+      "str": "Name=='Palsson, Master. Gosta Leonard'"
+     }
+    ]
+   },
+   "cover_size": 1,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Braund, Mr. Owen Harris' and Ticket=='347077')",
+    "str": "Name=='Braund, Mr. Owen Harris' AND Ticket=='347077'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Braund, Mr. Owen Harris"
+      },
+      "repr": "Name=='Braund, Mr. Owen Harris'",
+      "str": "Name=='Braund, Mr. Owen Harris'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Ticket",
+      "value": {
+       "t": "str",
+       "v": "347077"
+      },
+      "repr": "Ticket=='347077'",
+      "str": "Ticket=='347077'"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)' and Ticket=='2631')",
+    "str": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)' AND Ticket=='2631'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)"
+      },
+      "repr": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'",
+      "str": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Ticket",
+      "value": {
+       "t": "str",
+       "v": "2631"
+      },
+      "repr": "Ticket=='2631'",
+      "str": "Ticket=='2631'"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Fare>=35.5 and Name=='Heikkinen, Miss. Laina')",
+    "str": "Fare>=35.50 AND Name=='Heikkinen, Miss. Laina'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Heikkinen, Miss. Laina"
+      },
+      "repr": "Name=='Heikkinen, Miss. Laina'",
+      "str": "Name=='Heikkinen, Miss. Laina'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "Fare",
+      "lo": {
+       "value": 35.5,
+       "int": false
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Fare>=35.5",
+      "str": "Fare>=35.50"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)' and Name=='Moore, Mr. Leonard Charles')",
+    "str": "Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)' AND Name=='Moore, Mr. Leonard Charles'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Futrelle, Mrs. Jacques Heath (Lily May Peel)"
+      },
+      "repr": "Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)'",
+      "str": "Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Moore, Mr. Leonard Charles"
+      },
+      "repr": "Name=='Moore, Mr. Leonard Charles'",
+      "str": "Name=='Moore, Mr. Leonard Charles'"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Moran, Mr. James' and Ticket=='330959')",
+    "str": "Name=='Moran, Mr. James' AND Ticket=='330959'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Moran, Mr. James"
+      },
+      "repr": "Name=='Moran, Mr. James'",
+      "str": "Name=='Moran, Mr. James'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Ticket",
+      "value": {
+       "t": "str",
+       "v": "330959"
+      },
+      "repr": "Ticket=='330959'",
+      "str": "Ticket=='330959'"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Fare>=35.5 and Name=='Braund, Mr. Owen Harris' and Ticket=='347077')",
+    "str": "Fare>=35.50 AND Name=='Braund, Mr. Owen Harris' AND Ticket=='347077'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Braund, Mr. Owen Harris"
+      },
+      "repr": "Name=='Braund, Mr. Owen Harris'",
+      "str": "Name=='Braund, Mr. Owen Harris'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Ticket",
+      "value": {
+       "t": "str",
+       "v": "347077"
+      },
+      "repr": "Ticket=='347077'",
+      "str": "Ticket=='347077'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "Fare",
+      "lo": {
+       "value": 35.5,
+       "int": false
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Fare>=35.5",
+      "str": "Fare>=35.50"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)' and Name=='Moore, Mr. Leonard Charles' and Ticket=='19950')",
+    "str": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)' AND Name=='Moore, Mr. Leonard Charles' AND Ticket=='19950'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)"
+      },
+      "repr": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'",
+      "str": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Moore, Mr. Leonard Charles"
+      },
+      "repr": "Name=='Moore, Mr. Leonard Charles'",
+      "str": "Name=='Moore, Mr. Leonard Charles'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Ticket",
+      "value": {
+       "t": "str",
+       "v": "19950"
+      },
+      "repr": "Ticket=='19950'",
+      "str": "Ticket=='19950'"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(Name=='Braund, Mr. Owen Harris' and Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)')",
+    "str": "Name=='Braund, Mr. Owen Harris' AND Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Braund, Mr. Owen Harris"
+      },
+      "repr": "Name=='Braund, Mr. Owen Harris'",
+      "str": "Name=='Braund, Mr. Owen Harris'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Name",
+      "value": {
+       "t": "str",
+       "v": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)"
+      },
+      "repr": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'",
+      "str": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  }
+ ],
+ "qfs": [
+  {
+   "qf": {
+    "name": "wracc"
+   },
+   "values": [
+    -0.0022189349112426036,
+    0.004191321499013806,
+    0.004191321499013806,
+    0.004191321499013806,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "lift"
+   },
+   "values": [
+    -0.34615384615384615,
+    0.6538461538461539,
+    0.6538461538461539,
+    0.6538461538461539,
+    -0.34615384615384615,
+    -0.34615384615384615,
+    -0.34615384615384615,
+    -0.34615384615384615,
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "simpleBinomial"
+   },
+   "values": [
+    -0.027714488158572772,
+    0.05234958874397079,
+    0.05234958874397079,
+    0.05234958874397079,
+    -0.027714488158572772,
+    -0.027714488158572772,
+    -0.027714488158572772,
+    -0.027714488158572772,
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "standard",
+    "a": 0.3
+   },
+   "values": [
+    -0.07609073548444081,
+    0.14372694480394377,
+    0.14372694480394377,
+    0.14372694480394377,
+    -0.07609073548444081,
+    -0.07609073548444081,
+    -0.07609073548444081,
+    -0.07609073548444081,
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "chiSquared",
+    "direction": "both",
+    "minInstances": 5,
+    "stat": "chi2"
+   },
+   "values": [
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "chiSquared",
+    "direction": "positive",
+    "minInstances": 5,
+    "stat": "chi2"
+   },
+   "values": [
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "chiSquared",
+    "direction": "negative",
+    "minInstances": 5,
+    "stat": "p"
+   },
+   "values": [
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "chiSquared",
+    "direction": "both",
+    "minInstances": 1,
+    "stat": "p"
+   },
+   "values": [
+    0.4654206130845804,
+    0.16795801162096924,
+    0.16795801162096924,
+    0.16795801162096924,
+    0.4654206130845804,
+    0.4654206130845804,
+    0.4654206130845804,
+    0.4654206130845804,
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    },
+    {
+     "$f": "-inf"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "generalizationAware",
+    "inner": {
+     "name": "wracc"
+    }
+   },
+   "values": [
+    -0.0022189349112426036,
+    0.004191321499013806,
+    0.004191321499013806,
+    0.004191321499013806,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "gaStandard",
+    "a": 0.5,
+    "strategy": "difference"
+   },
+   "values": [
+    -0.027714488158572772,
+    0.05234958874397079,
+    0.05234958874397079,
+    0.05234958874397079,
+    -0.027714488158572772,
+    -0.027714488158572772,
+    -0.027714488158572772,
+    -0.027714488158572772,
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    }
+   ]
+  },
+  {
+   "qf": {
+    "name": "gaStandard",
+    "a": 1.0,
+    "strategy": "max"
+   },
+   "values": [
+    -0.0022189349112426036,
+    0.004191321499013806,
+    0.004191321499013806,
+    0.004191321499013806,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    -0.0022189349112426036,
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    },
+    {
+     "$f": "nan"
+    }
+   ]
+  }
+ ]
+}

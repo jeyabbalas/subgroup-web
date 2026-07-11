@@ -9,9 +9,33 @@
  "fixtures": [
   {
    "file": "tasks/titanic-binary-wracc-apriori-d2-k5.json",
-   "sha256": "5e5d8fca996cf580c9f92591d443e749a3e8731b5e755d92848652a18a313faa",
+   "sha256": "d774c2618d6f7dce92e62608de4f30a145e3091fad745d0d6ee8def63d89ce2e",
    "results": 5,
-   "elapsed_seconds": 0.0042
+   "elapsed_seconds": 0.0043
+  },
+  {
+   "file": "qfvalues/titanic-binary-qfvalues.json",
+   "sha256": "3513fad0ad3bac94ab2646fc83e10c69f0c7eff4bd511321070a3325b4645694",
+   "descriptions": 16,
+   "qfs": 11
+  },
+  {
+   "file": "qfvalues/titanic-fi-qfvalues.json",
+   "sha256": "85f79726fe71bc4cbf25f9e7588f31ccf1dd004f1589121befa31a479979e032",
+   "descriptions": 16,
+   "qfs": 2
+  },
+  {
+   "file": "qfvalues/creditg-numeric-qfvalues.json",
+   "sha256": "a125251d0939fd57730abbe7ef5ec4eac8b9f2d8420abc5cc1fe0517d4aa7a1d",
+   "descriptions": 16,
+   "qfs": 7
+  },
+  {
+   "file": "qfvalues/creditg-emm-qfvalues.json",
+   "sha256": "f6a28fae76c111c7fcf7b50a7b94fb836aeeaa79fdd58042b8a37646415386af",
+   "descriptions": 18,
+   "qfs": 1
   },
   {
    "file": "spaces/titanic-nb5-iv.json",

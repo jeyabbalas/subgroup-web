@@ -1,0 +1,624 @@
+{
+ "id": "creditg-numeric-qfvalues",
+ "config": {
+  "id": "creditg-numeric-qfvalues",
+  "dataset": "credit-g",
+  "target": {
+   "type": "numeric",
+   "attribute": "age"
+  },
+  "ignore": [
+   "age",
+   "class"
+  ]
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "descriptions": [
+  {
+   "description": {
+    "repr": "(checking_status=='<0')",
+    "str": "checking_status=='<0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "<0"
+      },
+      "repr": "checking_status=='<0'",
+      "str": "checking_status=='<0'"
+     }
+    ]
+   },
+   "cover_size": 274,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='0<=X<200')",
+    "str": "checking_status=='0<=X<200'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "0<=X<200"
+      },
+      "repr": "checking_status=='0<=X<200'",
+      "str": "checking_status=='0<=X<200'"
+     }
+    ]
+   },
+   "cover_size": 269,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='no checking')",
+    "str": "checking_status=='no checking'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "no checking"
+      },
+      "repr": "checking_status=='no checking'",
+      "str": "checking_status=='no checking'"
+     }
+    ]
+   },
+   "cover_size": 394,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='>=200')",
+    "str": "checking_status=='>=200'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": ">=200"
+      },
+      "repr": "checking_status=='>=200'",
+      "str": "checking_status=='>=200'"
+     }
+    ]
+   },
+   "cover_size": 63,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='critical/other existing credit')",
+    "str": "credit_history=='critical/other existing credit'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "critical/other existing credit"
+      },
+      "repr": "credit_history=='critical/other existing credit'",
+      "str": "credit_history=='critical/other existing credit'"
+     }
+    ]
+   },
+   "cover_size": 293,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='existing paid')",
+    "str": "credit_history=='existing paid'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "existing paid"
+      },
+      "repr": "credit_history=='existing paid'",
+      "str": "credit_history=='existing paid'"
+     }
+    ]
+   },
+   "cover_size": 530,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='delayed previously')",
+    "str": "credit_history=='delayed previously'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "delayed previously"
+      },
+      "repr": "credit_history=='delayed previously'",
+      "str": "credit_history=='delayed previously'"
+     }
+    ]
+   },
+   "cover_size": 88,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='no credits/all paid')",
+    "str": "credit_history=='no credits/all paid'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "no credits/all paid"
+      },
+      "repr": "credit_history=='no credits/all paid'",
+      "str": "credit_history=='no credits/all paid'"
+     }
+    ]
+   },
+   "cover_size": 40,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='<0' and property_magnitude=='car')",
+    "str": "checking_status=='<0' AND property_magnitude=='car'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "<0"
+      },
+      "repr": "checking_status=='<0'",
+      "str": "checking_status=='<0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "property_magnitude",
+      "value": {
+       "t": "str",
+       "v": "car"
+      },
+      "repr": "property_magnitude=='car'",
+      "str": "property_magnitude=='car'"
+     }
+    ]
+   },
+   "cover_size": 74,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='0<=X<200' and other_payment_plans=='none')",
+    "str": "checking_status=='0<=X<200' AND other_payment_plans=='none'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "0<=X<200"
+      },
+      "repr": "checking_status=='0<=X<200'",
+      "str": "checking_status=='0<=X<200'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "other_payment_plans",
+      "value": {
+       "t": "str",
+       "v": "none"
+      },
+      "repr": "other_payment_plans=='none'",
+      "str": "other_payment_plans=='none'"
+     }
+    ]
+   },
+   "cover_size": 213,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='no checking' and num_dependents==2.0)",
+    "str": "checking_status=='no checking' AND num_dependents==2.0",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "no checking"
+      },
+      "repr": "checking_status=='no checking'",
+      "str": "checking_status=='no checking'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "num_dependents",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 2.0,
+        "int": false
+       }
+      },
+      "repr": "num_dependents==2.0",
+      "str": "num_dependents==2.0"
+     }
+    ]
+   },
+   "cover_size": 63,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='>=200' and employment=='4<=X<7')",
+    "str": "checking_status=='>=200' AND employment=='4<=X<7'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": ">=200"
+      },
+      "repr": "checking_status=='>=200'",
+      "str": "checking_status=='>=200'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": "4<=X<7"
+      },
+      "repr": "employment=='4<=X<7'",
+      "str": "employment=='4<=X<7'"
+     }
+    ]
+   },
+   "cover_size": 7,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='existing paid' and other_payment_plans=='stores')",
+    "str": "credit_history=='existing paid' AND other_payment_plans=='stores'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "existing paid"
+      },
+      "repr": "credit_history=='existing paid'",
+      "str": "credit_history=='existing paid'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "other_payment_plans",
+      "value": {
+       "t": "str",
+       "v": "stores"
+      },
+      "repr": "other_payment_plans=='stores'",
+      "str": "other_payment_plans=='stores'"
+     }
+    ]
+   },
+   "cover_size": 18,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='<0' and num_dependents==2.0 and property_magnitude=='car')",
+    "str": "checking_status=='<0' AND num_dependents==2.0 AND property_magnitude=='car'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "<0"
+      },
+      "repr": "checking_status=='<0'",
+      "str": "checking_status=='<0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "property_magnitude",
+      "value": {
+       "t": "str",
+       "v": "car"
+      },
+      "repr": "property_magnitude=='car'",
+      "str": "property_magnitude=='car'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "num_dependents",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 2.0,
+        "int": false
+       }
+      },
+      "repr": "num_dependents==2.0",
+      "str": "num_dependents==2.0"
+     }
+    ]
+   },
+   "cover_size": 8,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='0<=X<200' and employment=='4<=X<7' and other_payment_plans=='bank')",
+    "str": "checking_status=='0<=X<200' AND employment=='4<=X<7' AND other_payment_plans=='bank'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "0<=X<200"
+      },
+      "repr": "checking_status=='0<=X<200'",
+      "str": "checking_status=='0<=X<200'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": "4<=X<7"
+      },
+      "repr": "employment=='4<=X<7'",
+      "str": "employment=='4<=X<7'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "other_payment_plans",
+      "value": {
+       "t": "str",
+       "v": "bank"
+      },
+      "repr": "other_payment_plans=='bank'",
+      "str": "other_payment_plans=='bank'"
+     }
+    ]
+   },
+   "cover_size": 8,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='0<=X<200' and checking_status=='<0')",
+    "str": "checking_status=='0<=X<200' AND checking_status=='<0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "<0"
+      },
+      "repr": "checking_status=='<0'",
+      "str": "checking_status=='<0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "0<=X<200"
+      },
+      "repr": "checking_status=='0<=X<200'",
+      "str": "checking_status=='0<=X<200'"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": [
+    "ADJ-004-numeric-empty-quality"
+   ]
+  }
+ ],
+ "qfs": [
+  {
+   "qf": {
+    "name": "standardNumeric",
+    "a": 1.0
+   },
+   "values": [
+    -56.60399999999886,
+    -393.87399999999946,
+    346.8760000000016,
+    103.602,
+    847.022,
+    -884.3799999999992,
+    51.95199999999977,
+    -49.84000000000009,
+    -254.40400000000017,
+    -426.2979999999999,
+    201.6020000000001,
+    -18.822000000000017,
+    -38.828000000000046,
+    12.632000000000005,
+    -20.367999999999995,
+    -0.0
+   ]
+  },
+  {
+   "qf": {
+    "name": "standardNumeric",
+    "a": 0.5
+   },
+   "values": [
+    -3.419572697086065,
+    -24.014921621891144,
+    17.4753604187868,
+    13.052625110900653,
+    49.483553598515954,
+    -38.4150124054803,
+    5.538101808053312,
+    -7.880395929139616,
+    -29.57386428698262,
+    -29.2094576622057,
+    25.39946456253542,
+    -7.114047310979681,
+    -9.1518473666371,
+    4.466086429974236,
+    -7.201175459603799,
+    -0.0
+   ]
+  },
+  {
+   "qf": {
+    "name": "standardNumeric",
+    "a": 0.0
+   },
+   "values": [
+    -0.20658394160583526,
+    -1.4642156133828976,
+    0.8803959390862985,
+    1.6444761904761904,
+    2.8908600682593857,
+    -1.6686415094339608,
+    0.5903636363636338,
+    -1.2460000000000022,
+    -3.437891891891894,
+    -2.0013990610328634,
+    3.2000317460317476,
+    -2.6888571428571453,
+    -2.1571111111111136,
+    1.5790000000000006,
+    -2.5459999999999994,
+    -35.546
+   ]
+  },
+  {
+   "qf": {
+    "name": "standardNumeric",
+    "a": 1.0,
+    "invert": true
+   },
+   "values": [
+    -56.60399999999886,
+    -393.87399999999946,
+    346.8760000000016,
+    103.602,
+    847.022,
+    -884.3799999999992,
+    51.95199999999977,
+    -49.84000000000009,
+    -254.40400000000017,
+    -426.2979999999999,
+    201.6020000000001,
+    -18.822000000000017,
+    -38.828000000000046,
+    12.632000000000005,
+    -20.367999999999995,
+    -0.0
+   ],
+   "adjAllRows": "ADJ-005-invert-ignored"
+  },
+  {
+   "qf": {
+    "name": "standardNumericMedian",
+    "a": 1.0
+   },
+   "values": [
+    -274.0,
+    -538.0,
+    591.0,
+    189.0,
+    879.0,
+    -1060.0,
+    88.0,
+    -40.0,
+    -296.0,
+    -426.0,
+    378.0,
+    -35.0,
+    -9.0,
+    36.0,
+    12.0,
+    -0.0
+   ]
+  },
+  {
+   "qf": {
+    "name": "standardNumericTscore"
+   },
+   "values": [
+    -0.28377501481021283,
+    -2.182330032565607,
+    1.614261111182234,
+    1.0534560221845,
+    4.274505758173877,
+    -3.425590815074243,
+    0.534018819220365,
+    -0.8484833238468987,
+    -2.9440618525776,
+    -2.7435901836991827,
+    3.7566728797610103,
+    -0.8674035346886089,
+    -0.9652026058335849,
+    0.8207530463304334,
+    -1.3489037524350405,
+    0.0
+   ]
+  },
+  {
+   "qf": {
+    "name": "gaStandardNumeric",
+    "a": 1.0
+   },
+   "values": [
+    -0.056603999999998864,
+    -0.3938739999999995,
+    0.3468760000000016,
+    0.103602,
+    0.8470219999999999,
+    -0.8843799999999993,
+    0.05195199999999977,
+    -0.04984000000000009,
+    -0.23911678832116834,
+    -0.1144200743494427,
+    0.003916129032257913,
+    -0.03033333333333335,
+    -0.00879245283018875,
+    -0.013769230769230773,
+    -0.02968888888888887,
+    {
+     "$f": "nan"
+    }
+   ]
+  }
+ ]
+}

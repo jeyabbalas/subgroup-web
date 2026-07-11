@@ -1,0 +1,532 @@
+{
+ "id": "creditg-emm-qfvalues",
+ "config": {
+  "id": "creditg-emm-qfvalues",
+  "dataset": "credit-g",
+  "target": {
+   "type": "emm",
+   "x": "age",
+   "y": "credit_amount"
+  },
+  "ignore": [
+   "age",
+   "credit_amount",
+   "class"
+  ]
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "descriptions": [
+  {
+   "description": {
+    "repr": "(checking_status=='<0')",
+    "str": "checking_status=='<0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "<0"
+      },
+      "repr": "checking_status=='<0'",
+      "str": "checking_status=='<0'"
+     }
+    ]
+   },
+   "cover_size": 274,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='0<=X<200')",
+    "str": "checking_status=='0<=X<200'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "0<=X<200"
+      },
+      "repr": "checking_status=='0<=X<200'",
+      "str": "checking_status=='0<=X<200'"
+     }
+    ]
+   },
+   "cover_size": 269,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='no checking')",
+    "str": "checking_status=='no checking'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "no checking"
+      },
+      "repr": "checking_status=='no checking'",
+      "str": "checking_status=='no checking'"
+     }
+    ]
+   },
+   "cover_size": 394,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='>=200')",
+    "str": "checking_status=='>=200'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": ">=200"
+      },
+      "repr": "checking_status=='>=200'",
+      "str": "checking_status=='>=200'"
+     }
+    ]
+   },
+   "cover_size": 63,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='critical/other existing credit')",
+    "str": "credit_history=='critical/other existing credit'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "critical/other existing credit"
+      },
+      "repr": "credit_history=='critical/other existing credit'",
+      "str": "credit_history=='critical/other existing credit'"
+     }
+    ]
+   },
+   "cover_size": 293,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='existing paid')",
+    "str": "credit_history=='existing paid'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "existing paid"
+      },
+      "repr": "credit_history=='existing paid'",
+      "str": "credit_history=='existing paid'"
+     }
+    ]
+   },
+   "cover_size": 530,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='delayed previously')",
+    "str": "credit_history=='delayed previously'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "delayed previously"
+      },
+      "repr": "credit_history=='delayed previously'",
+      "str": "credit_history=='delayed previously'"
+     }
+    ]
+   },
+   "cover_size": 88,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='no credits/all paid')",
+    "str": "credit_history=='no credits/all paid'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "no credits/all paid"
+      },
+      "repr": "credit_history=='no credits/all paid'",
+      "str": "credit_history=='no credits/all paid'"
+     }
+    ]
+   },
+   "cover_size": 40,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='<0' and property_magnitude=='real estate')",
+    "str": "checking_status=='<0' AND property_magnitude=='real estate'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "<0"
+      },
+      "repr": "checking_status=='<0'",
+      "str": "checking_status=='<0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "property_magnitude",
+      "value": {
+       "t": "str",
+       "v": "real estate"
+      },
+      "repr": "property_magnitude=='real estate'",
+      "str": "property_magnitude=='real estate'"
+     }
+    ]
+   },
+   "cover_size": 70,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='0<=X<200' and property_magnitude=='life insurance')",
+    "str": "checking_status=='0<=X<200' AND property_magnitude=='life insurance'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "0<=X<200"
+      },
+      "repr": "checking_status=='0<=X<200'",
+      "str": "checking_status=='0<=X<200'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "property_magnitude",
+      "value": {
+       "t": "str",
+       "v": "life insurance"
+      },
+      "repr": "property_magnitude=='life insurance'",
+      "str": "property_magnitude=='life insurance'"
+     }
+    ]
+   },
+   "cover_size": 55,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='no checking' and num_dependents==2.0)",
+    "str": "checking_status=='no checking' AND num_dependents==2.0",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "no checking"
+      },
+      "repr": "checking_status=='no checking'",
+      "str": "checking_status=='no checking'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "num_dependents",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 2.0,
+        "int": false
+       }
+      },
+      "repr": "num_dependents==2.0",
+      "str": "num_dependents==2.0"
+     }
+    ]
+   },
+   "cover_size": 63,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='>=200' and employment=='>=7')",
+    "str": "checking_status=='>=200' AND employment=='>=7'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": ">=200"
+      },
+      "repr": "checking_status=='>=200'",
+      "str": "checking_status=='>=200'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": ">=7"
+      },
+      "repr": "employment=='>=7'",
+      "str": "employment=='>=7'"
+     }
+    ]
+   },
+   "cover_size": 17,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(credit_history=='existing paid' and property_magnitude=='car')",
+    "str": "credit_history=='existing paid' AND property_magnitude=='car'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "credit_history",
+      "value": {
+       "t": "str",
+       "v": "existing paid"
+      },
+      "repr": "credit_history=='existing paid'",
+      "str": "credit_history=='existing paid'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "property_magnitude",
+      "value": {
+       "t": "str",
+       "v": "car"
+      },
+      "repr": "property_magnitude=='car'",
+      "str": "property_magnitude=='car'"
+     }
+    ]
+   },
+   "cover_size": 179,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='<0' and num_dependents==2.0 and property_magnitude=='real estate')",
+    "str": "checking_status=='<0' AND num_dependents==2.0 AND property_magnitude=='real estate'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "<0"
+      },
+      "repr": "checking_status=='<0'",
+      "str": "checking_status=='<0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "property_magnitude",
+      "value": {
+       "t": "str",
+       "v": "real estate"
+      },
+      "repr": "property_magnitude=='real estate'",
+      "str": "property_magnitude=='real estate'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "num_dependents",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 2.0,
+        "int": false
+       }
+      },
+      "repr": "num_dependents==2.0",
+      "str": "num_dependents==2.0"
+     }
+    ]
+   },
+   "cover_size": 16,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='0<=X<200' and employment=='>=7' and property_magnitude=='no known property')",
+    "str": "checking_status=='0<=X<200' AND employment=='>=7' AND property_magnitude=='no known property'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "0<=X<200"
+      },
+      "repr": "checking_status=='0<=X<200'",
+      "str": "checking_status=='0<=X<200'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "employment",
+      "value": {
+       "t": "str",
+       "v": ">=7"
+      },
+      "repr": "employment=='>=7'",
+      "str": "employment=='>=7'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "property_magnitude",
+      "value": {
+       "t": "str",
+       "v": "no known property"
+      },
+      "repr": "property_magnitude=='no known property'",
+      "str": "property_magnitude=='no known property'"
+     }
+    ]
+   },
+   "cover_size": 16,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(checking_status=='0<=X<200' and checking_status=='<0')",
+    "str": "checking_status=='0<=X<200' AND checking_status=='<0'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "<0"
+      },
+      "repr": "checking_status=='<0'",
+      "str": "checking_status=='<0'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "checking_status",
+      "value": {
+       "t": "str",
+       "v": "0<=X<200"
+      },
+      "repr": "checking_status=='0<=X<200'",
+      "str": "checking_status=='0<=X<200'"
+     }
+    ]
+   },
+   "cover_size": 0,
+   "adj": []
+  },
+  {
+   "description": {
+    "repr": "(age==24)",
+    "str": "age==24",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "age",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 24,
+        "int": true
+       }
+      },
+      "repr": "age==24",
+      "str": "age==24"
+     }
+    ]
+   },
+   "cover_size": 44,
+   "adj": [
+    "ADJ-006-emm-degenerate-fit"
+   ]
+  },
+  {
+   "description": {
+    "repr": "(age==75)",
+    "str": "age==75",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "age",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 75,
+        "int": true
+       }
+      },
+      "repr": "age==75",
+      "str": "age==75"
+     }
+    ]
+   },
+   "cover_size": 2,
+   "adj": []
+  }
+ ],
+ "qfs": [
+  {
+   "qf": {
+    "name": "emmLikelihood",
+    "x": "age",
+    "y": "credit_amount"
+   },
+   "values": [
+    0.0001233049653485359,
+    -0.00017913288449169555,
+    4.471871279246578e-05,
+    -2.6888913366394465e-06,
+    -1.6593797028688734e-59,
+    0.00041620590518260807,
+    -3.849776588981079e-28,
+    1.0782762890078593e-80,
+    -0.0007939054828053022,
+    -0.00047792997233699975,
+    0.004810023174894452,
+    -0.0004179649054232769,
+    -7.63372479191086e-08,
+    -3.317853135502166e-10,
+    -9.357457313268547e-21,
+    {
+     "$f": "nan"
+    },
+    -5.6991054603890574e-27,
+    {
+     "$f": "nan"
+    }
+   ]
+  }
+ ]
+}
