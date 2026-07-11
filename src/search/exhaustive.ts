@@ -138,9 +138,18 @@ function evaluateMask(state: EvaluatorState, depth: number): [number, number] {
   }
 }
 
-function qualitiesAgree(a: number, b: number): boolean {
+/**
+ * Cross-path quality agreement. Counts are integer-exact; binary/FI/EMM and
+ * gather-based numeric plans use identical arithmetic on both paths (exact
+ * equality); streaming sum-based numeric plans differ from the mask path's
+ * pairwise summation by at most ~n·eps on the aggregates (spec §7.2,
+ * rel ≤ 1e-12 of the aggregate scale — NOT of the quality, which can be a
+ * catastrophically cancelled near-zero).
+ */
+function qualitiesAgree(a: number, b: number, aggScale: number): boolean {
   if (Number.isNaN(a) && Number.isNaN(b)) return true;
-  return a === b;
+  if (a === b) return true;
+  return Math.abs(a - b) <= 1e-12 * aggScale;
 }
 
 /**
@@ -164,6 +173,15 @@ export async function exhaustive(
   const batchSize = options.batchSize ?? 8192;
 
   const topk = new TopK(task.k, task.minQuality);
+  // Aggregate scale for the dual-path tolerance: numeric qualities are
+  // bounded by n^a·(spread) ≤ n·(max|T| + |centroid|); other targets compare
+  // exactly (aggScale 0).
+  let aggScale = 0;
+  if (task.prepared.kind === "numeric") {
+    const prepN = task.prepared;
+    const maxAbs = Math.max(Math.abs(prepN.min), Math.abs(prepN.max));
+    aggScale = prepN.n * (maxAbs + Math.abs(prepN.mean) + Math.abs(prepN.median) + 1);
+  }
   const w = task.atlas.wordsPerRow;
   const descCtx = new CoverEvalContext(task.table, task.prepared);
   const state: EvaluatorState = { task, descCtx, conj: null };
@@ -206,7 +224,7 @@ export async function exhaustive(
     if (doCheck) {
       const [maskQuality, maskSize] = evaluateMask(state, depth);
       checked++;
-      if (maskSize !== size || !qualitiesAgree(maskQuality, quality)) {
+      if (maskSize !== size || !qualitiesAgree(maskQuality, quality, aggScale)) {
         throw new ValidationError(
           `dual-path cross-check failed at ${state.conj!.toString("display")}: ` +
             `bitset (q=${quality}, n=${size}) vs row-scan (q=${maskQuality}, n=${maskSize})`,
@@ -270,7 +288,7 @@ export async function exhaustive(
       state.conj = buildConj(depth);
       const [maskQuality] = evaluateMask(state, depth);
       checked++;
-      if (!qualitiesAgree(maskQuality, item.quality)) {
+      if (!qualitiesAgree(maskQuality, item.quality, aggScale)) {
         throw new ValidationError(
           `dual-path cross-check failed on retained result ` +
             `${state.conj.toString("display")}: bitset q=${item.quality} vs ` +

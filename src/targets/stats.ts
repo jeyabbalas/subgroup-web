@@ -198,12 +198,67 @@ export function numericStatsFromMask(
   return statsFromGathered(prep, gatherValuesFromMask(prep, cover), plan);
 }
 
+/**
+ * THE shared decision kernel (BRIEF §7 determinism): every engine and backend
+ * computes decision-relevant numeric statistics through this exact function,
+ * so qualities are bit-identical across exhaustive/apriori/dfs/bestFirst/
+ * beam and across CPU single-thread, workers, and GPU-rescored paths.
+ *
+ * sum/excess/tail accumulate in one streaming pass in ascending row order
+ * (naive f64 accumulation: deterministic; worst-case linear error bound
+ * n·eps ≈ 2e-10 relative at n = 2M — within every gate tolerance). The
+ * row-scan path (numericStatsFromMask) uses independent pairwise-summation
+ * arithmetic; the oracle cross-checks the two at rel ≤ 1e-12 (spec §7.2).
+ * median/order plans gather (deterministic sort) like the mask path.
+ */
 export function numericStatsFromBits(
   prep: PreparedNumeric,
   words: Uint32Array,
   plan: NumericStatsPlan,
 ): NumericCoverStats {
-  return statsFromGathered(prep, gatherValuesFromBits(prep, words), plan);
+  if (plan.needMedian || plan.needOrder || plan.needStd) {
+    // Sort-based statistics share the gather implementation; the gathered
+    // multiset (ascending row order) is identical on both paths.
+    return statsFromGathered(prep, gatherValuesFromBits(prep, words), plan);
+  }
+  const values = prep.values;
+  const dir = plan.direction;
+  const c0 = plan.centroid === "mean" ? prep.mean : prep.median;
+  const needTails = plan.needExcess || plan.needTail;
+  let size = 0;
+  let sum = 0;
+  let excessSum = 0;
+  let tailCount = 0;
+  let tailExtreme = Number.NEGATIVE_INFINITY;
+  for (let w = 0; w < words.length; w++) {
+    let x = words[w]!;
+    const base = w << 5;
+    while (x !== 0) {
+      const isolated = x & -x;
+      const v = values[base + (31 - Math.clz32(isolated))]!;
+      x ^= isolated;
+      size++;
+      sum += v;
+      if (needTails) {
+        const excess = dir * (v - c0);
+        if (excess > 0) {
+          excessSum += excess;
+          tailCount++;
+          if (excess > tailExtreme) tailExtreme = excess;
+        }
+      }
+    }
+  }
+  return {
+    size,
+    sum,
+    std: Number.NaN,
+    median: Number.NaN,
+    excessSum,
+    tailCount,
+    tailExtreme,
+    orderEstimate: Number.NEGATIVE_INFINITY,
+  };
 }
 
 /** The reference's 14-field numeric statistics table (spec §5.2). */
