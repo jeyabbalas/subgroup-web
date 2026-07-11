@@ -91,6 +91,12 @@ export interface BatchEvaluator {
    */
   readonly screening: boolean;
   /**
+   * Preferred engine batch size (candidates per evaluate call). GPU
+   * evaluators pay one host sync per call, so they prefer large batches;
+   * used when SearchOptions.batchSize is not set.
+   */
+  readonly preferredBatchSize?: number;
+  /**
    * Statistics for `count` candidates given as flattened ascending
    * selector-id tuples (`arity` ids each). May resolve synchronously.
    */

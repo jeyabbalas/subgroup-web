@@ -98,7 +98,9 @@ export function synth2MNumeric(options: Synth2MOptions = {}): PlantedDataset {
   const { names, columns, pocket, rng } = generateCore(opts);
   const t = new Float64Array(opts.rows);
   for (let r = 0; r < opts.rows; r++) {
-    t[r] = rng.nextGaussian() + (pocket[r] === 1 ? 2.0 : 0);
+    // Portable gaussian: byte-identical across Node and Chromium (the two
+    // environments that regenerate this dataset against one hash pin).
+    t[r] = rng.nextGaussianPortable() + (pocket[r] === 1 ? 2.0 : 0);
   }
   names.push("t");
   columns.push({ kind: "numeric", values: t, integerLike: false } satisfies NumericColumn);

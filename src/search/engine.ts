@@ -162,7 +162,7 @@ export class SearchRun {
     this.descriptionOp = descriptionOp;
     this.scorer = makeScorer(task, this.ctx);
     this.topk = new TopK(task.k, task.minQuality);
-    this.batchSize = options.batchSize ?? 4096;
+    this.batchSize = options.batchSize ?? evaluator.preferredBatchSize ?? 4096;
     const pruningOn = options.pruning !== false;
     this.canPrune =
       pruningOn &&

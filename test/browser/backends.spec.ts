@@ -331,12 +331,35 @@ test("GPU pruning-identity and forced atlas chunking", async ({ page }) => {
       `${cell.id}: forced chunking must split the atlas (got ${chunked.backend?.name})`,
     ).toBe(true);
     if (sameFp(chunked.fingerprint, oracle)) ok++;
+
+    // Forced multi-GROUP dispatches (A14 word budget): a tiny budget splits
+    // each batch into many dispatch groups, exercising the candBase-offset
+    // writes of the shared out buffer (single readback per call).
+    const grouped = (await page.evaluate(
+      async ([c]) => {
+        const h = (
+          globalThis as never as {
+            subgroupWebHarness: {
+              registerWebGpu(o: unknown): void;
+              runCell(c: unknown, a: unknown, o: unknown): Promise<unknown>;
+            };
+          }
+        ).subgroupWebHarness;
+        h.registerWebGpu({ evaluator: { maxWordsPerDispatch: 4096 } });
+        const out = await h.runCell(c, "apriori", { backend: "webgpu" });
+        h.registerWebGpu({});
+        return out;
+      },
+      [cell] as const,
+    )) as PageRun;
+    total++;
+    if (sameFp(grouped.fingerprint, oracle)) ok++;
   }
   expect(ok).toBe(total);
   recordGateRow({
     id: "m6-gpu-pruning-chunking",
     cell: "titanic-wracc + creditg-stdnum",
-    check: "GPU pruning on/off == oracle; forced multi-chunk atlas == oracle",
+    check: "GPU pruning on/off == oracle; forced atlas chunking + dispatch grouping == oracle",
     value: `${ok}/${total} identical`,
     expected: `${total}/${total}`,
     gate: true,

@@ -56,6 +56,27 @@ import {
 const F32_U = 2 ** -24;
 const EPS_SAFETY = 4;
 
+/** Compiled-pipeline cache per device (shader compiles cost ~5–20 ms). */
+const pipelineCache = new WeakMap<GPUDevice, Map<string, GPUComputePipeline>>();
+
+function getPipeline(device: GPUDevice, code: string, label: string): GPUComputePipeline {
+  let byCode = pipelineCache.get(device);
+  if (byCode === undefined) {
+    byCode = new Map();
+    pipelineCache.set(device, byCode);
+  }
+  let pipeline = byCode.get(code);
+  if (pipeline === undefined) {
+    pipeline = device.createComputePipeline({
+      label,
+      layout: "auto",
+      compute: { module: device.createShaderModule({ code, label }), entryPoint: "main" },
+    });
+    byCode.set(code, pipeline);
+  }
+  return pipeline;
+}
+
 export interface WebGpuEvaluatorOptions {
   /** Cap on candidates × words × arity per dispatch (A14 pacing). */
   maxWordsPerDispatch?: number;
@@ -73,11 +94,41 @@ export function gpuApplicable(prepared: PreparedTarget, plan: NumericStatsPlan |
 }
 
 interface CodesPlan {
-  /** u8 codes packed into u32 words, column-major with padded stride. */
-  codes: Uint32Array;
+  /** Dictionary-code columns, one per attribute slot (packed at upload). */
+  slotCodes: Int32Array[];
   colStrideWords: number;
   /** Per selector: colSlot << 16 | code (0xff = the NA sentinel, unused). */
   selMeta: Uint32Array;
+}
+
+/**
+ * Pack the plan's i32 dictionary codes as u8 (4 rows per u32 word,
+ * column-major with padded stride) directly into `target` — in practice the
+ * codes buffer's mapped-at-creation range, so the pack IS the upload.
+ */
+function packCodesInto(plan: CodesPlan, target: ArrayBuffer): void {
+  const packed = new Uint32Array(target);
+  const bytes = new Uint8Array(target);
+  const { slotCodes, colStrideWords } = plan;
+  for (let s = 0; s < slotCodes.length; s++) {
+    const codes = slotCodes[s]!;
+    const nRows = codes.length;
+    const wordBase = s * colStrideWords;
+    // Branchless: code & 0xff maps −1 → 255, the NA sentinel (codes are
+    // ≤ 254 by the cardinality guard in planCodesMode). 4 rows per write.
+    const quads = nRows >> 2;
+    for (let q = 0; q < quads; q++) {
+      const r = q << 2;
+      packed[wordBase + q] =
+        (codes[r]! & 0xff) |
+        ((codes[r + 1]! & 0xff) << 8) |
+        ((codes[r + 2]! & 0xff) << 16) |
+        ((codes[r + 3]! & 0xff) << 24);
+    }
+    for (let r = quads << 2; r < nRows; r++) {
+      bytes[wordBase * 4 + r] = codes[r]! & 0xff;
+    }
+  }
 }
 
 /**
@@ -114,32 +165,14 @@ function planCodesMode(task: PreparedTask): CodesPlan | null {
     // Absent value → a code no row carries (empty cover, still < 255).
     selMeta[i] = (slot << 16) | (code >= 0 ? code : col.categories.length);
   }
-  const packed = new Uint32Array(slotCodes.length * colStrideWords);
-  const bytes = new Uint8Array(packed.buffer);
-  for (let s = 0; s < slotCodes.length; s++) {
-    const codes = slotCodes[s]!;
-    const wordBase = s * colStrideWords;
-    // Branchless: code & 0xff maps −1 → 255, the NA sentinel (codes are
-    // ≤ 254 by the cardinality guard above). Pack 4 rows per u32 write.
-    const quads = nRows >> 2;
-    for (let q = 0; q < quads; q++) {
-      const r = q << 2;
-      packed[wordBase + q] =
-        (codes[r]! & 0xff) |
-        ((codes[r + 1]! & 0xff) << 8) |
-        ((codes[r + 2]! & 0xff) << 16) |
-        ((codes[r + 3]! & 0xff) << 24);
-    }
-    for (let r = quads << 2; r < nRows; r++) {
-      bytes[wordBase * 4 + r] = codes[r]! & 0xff;
-    }
-  }
-  return { codes: packed, colStrideWords, selMeta };
+  return { slotCodes, colStrideWords, selMeta };
 }
 
 export class WebGpuEvaluator implements BatchEvaluator {
   readonly name: string;
   readonly screening: boolean;
+  /** One host sync per evaluate call — prefer large engine batches. */
+  readonly preferredBatchSize = 32768;
   private readonly device: GPUDevice;
   private readonly task: PreparedTask;
   private readonly prepared: PreparedTarget;
@@ -235,12 +268,7 @@ export class WebGpuEvaluator implements BatchEvaluator {
     const withPositives = this.prepared.kind === "binary";
     this.usesAux = withPositives || this.screening;
     const code = this.screening ? numericKernel(chunks) : countsKernel(chunks, withPositives);
-    const module = device.createShaderModule({ code, label: "subgroup-web-kernel" });
-    this.pipeline = device.createComputePipeline({
-      label: "subgroup-web-pipeline",
-      layout: "auto",
-      compute: { module, entryPoint: "main" },
-    });
+    this.pipeline = getPipeline(device, code, "subgroup-web-kernel");
 
     // --- static buffers
     const track = (b: GPUBuffer): GPUBuffer => {
@@ -377,21 +405,15 @@ export class WebGpuEvaluator implements BatchEvaluator {
   /** Build all atlas chunks on-device from the packed code matrix. */
   private buildAtlasOnGpu(plan: CodesPlan): void {
     const device = this.device;
-    const module = device.createShaderModule({
-      code: atlasBuildKernel(),
-      label: "subgroup-web-atlas-build",
-    });
-    const pipeline = device.createComputePipeline({
-      label: "subgroup-web-atlas-build",
-      layout: "auto",
-      compute: { module, entryPoint: "main" },
-    });
+    const pipeline = getPipeline(device, atlasBuildKernel(), "subgroup-web-atlas-build");
     const codesBuf = device.createBuffer({
       label: "codes-u8",
-      size: plan.codes.byteLength,
-      usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST,
+      size: plan.slotCodes.length * plan.colStrideWords * 4,
+      usage: GPUBufferUsage.STORAGE,
+      mappedAtCreation: true,
     });
-    device.queue.writeBuffer(codesBuf, 0, plan.codes.buffer, 0, plan.codes.byteLength);
+    packCodesInto(plan, codesBuf.getMappedRange());
+    codesBuf.unmap();
     const metaBuf = device.createBuffer({
       label: "sel-meta",
       size: Math.max(4, plan.selMeta.byteLength),
@@ -511,15 +533,11 @@ export class WebGpuEvaluator implements BatchEvaluator {
 
   private getPairsPipeline(): GPUComputePipeline {
     if (this.pairsPipeline === null) {
-      const module = this.device.createShaderModule({
-        code: countsPairsKernel(this.chunks, this.prepared.kind === "binary"),
-        label: "subgroup-web-pairs",
-      });
-      this.pairsPipeline = this.device.createComputePipeline({
-        label: "subgroup-web-pairs",
-        layout: "auto",
-        compute: { module, entryPoint: "main" },
-      });
+      this.pairsPipeline = getPipeline(
+        this.device,
+        countsPairsKernel(this.chunks, this.prepared.kind === "binary"),
+        "subgroup-web-pairs",
+      );
     }
     return this.pairsPipeline;
   }
@@ -621,7 +639,13 @@ export class WebGpuEvaluator implements BatchEvaluator {
     this.device.queue.writeBuffer(this.paramsBuffer, 0, params.buffer, 0, params.byteLength);
   }
 
-  /** Sequential paced dispatches over the candidate range (A14). */
+  /**
+   * Dispatch over the candidate range. Each dispatch is capped by the A14
+   * word budget (bounded per-submit GPU time); all groups of one call are
+   * SUBMITTED back-to-back (queue-ordered uniform rewrites between them)
+   * with a single staging copy + mapAsync at the end — one host sync per
+   * evaluator call.
+   */
   private async run(
     mode: number,
     arity: number,
@@ -638,6 +662,7 @@ export class WebGpuEvaluator implements BatchEvaluator {
     }
     if (count === 0) return batch;
     this.ensureCandCapacity(ids.length);
+    this.ensureOutCapacity(count);
     this.device.queue.writeBuffer(this.candBuffer, 0, ids.buffer, ids.byteOffset, ids.byteLength);
 
     const wordsPerCand = this.wordsPerRow * Math.max(1, arity);
@@ -647,7 +672,6 @@ export class WebGpuEvaluator implements BatchEvaluator {
     );
     for (let start = 0; start < count; start += groupCap) {
       const dCount = Math.min(groupCap, count - start);
-      this.ensureOutCapacity(dCount);
       this.writeParams(mode, arity, dCount, start);
       const encoder = this.device.createCommandEncoder();
       const pass = encoder.beginComputePass();
@@ -655,29 +679,29 @@ export class WebGpuEvaluator implements BatchEvaluator {
       pass.setBindGroup(0, this.bindGroup);
       pass.dispatchWorkgroups(dCount);
       pass.end();
-      encoder.copyBufferToBuffer(
-        this.outBuffer,
-        0,
-        this.stagingBuffer,
-        0,
-        dCount * this.stride * 4,
-      );
       this.device.queue.submit([encoder.finish()]);
-      try {
-        await this.stagingBuffer.mapAsync(GPUMapMode.READ, 0, dCount * this.stride * 4);
-      } catch (err) {
-        this.checkAlive();
-        throw new BackendError(
-          `webgpu readback failed: ${err instanceof Error ? err.message : String(err)}`,
-        );
-      }
-      const mapped = new Uint32Array(
-        this.stagingBuffer.getMappedRange(0, dCount * this.stride * 4),
-      );
-      this.readInto(batch, mapped, start, dCount);
-      this.stagingBuffer.unmap();
-      this.checkAlive();
     }
+    const copyEncoder = this.device.createCommandEncoder();
+    copyEncoder.copyBufferToBuffer(
+      this.outBuffer,
+      0,
+      this.stagingBuffer,
+      0,
+      count * this.stride * 4,
+    );
+    this.device.queue.submit([copyEncoder.finish()]);
+    try {
+      await this.stagingBuffer.mapAsync(GPUMapMode.READ, 0, count * this.stride * 4);
+    } catch (err) {
+      this.checkAlive();
+      throw new BackendError(
+        `webgpu readback failed: ${err instanceof Error ? err.message : String(err)}`,
+      );
+    }
+    const mapped = new Uint32Array(this.stagingBuffer.getMappedRange(0, count * this.stride * 4));
+    this.readInto(batch, mapped, 0, count);
+    this.stagingBuffer.unmap();
+    this.checkAlive();
     return batch;
   }
 

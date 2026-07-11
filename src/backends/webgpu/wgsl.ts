@@ -156,8 +156,11 @@ fn main(@builtin(workgroup_id) wg: vec3<u32>, @builtin(local_invocation_id) lid:
     if (s == 0u) { break; }
   }
   if (lid.x == 0u && c < P.count) {
-    out[c * 2u] = wgSize[0];
-    out[c * 2u + 1u] = wgPos[0];
+    // Global out index: dispatch groups of one call share the out buffer
+    // (single readback at the end — evaluator.ts run()).
+    let o = (c + P.candBase) * 2u;
+    out[o] = wgSize[0];
+    out[o + 1u] = wgPos[0];
   }
 }
 `;
@@ -324,7 +327,7 @@ fn main(@builtin(workgroup_id) wg: vec3<u32>, @builtin(local_invocation_id) lid:
     if (s == 0u) { break; }
   }
   if (lid.x == 0u && c < P.count) {
-    let o = c * 4u;
+    let o = (c + P.candBase) * 4u;
     out[o] = wgSize[0];
     out[o + 1u] = bitcast<u32>(wgSum[0]);
     out[o + 2u] = bitcast<u32>(wgAbs[0]);

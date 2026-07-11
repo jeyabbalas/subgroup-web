@@ -137,3 +137,80 @@ const SQRT_2PI = 2.5066282746310002; // f64(√(2π)), the constant scipy's norm
 export function normPdf(r: number): number {
   return Math.exp(-0.5 * r * r) / SQRT_2PI;
 }
+
+// ---------------------------------------------------------------------------
+// Portable transcendentals (cross-engine determinism)
+//
+// JS pins +, −, ×, ÷ and Math.sqrt to correctly-rounded IEEE-754 results,
+// but Math.log / Math.cos are implementation-approximated — V8 versions
+// (Node vs Chromium) disagree by an ulp on sparse inputs. Generators whose
+// output must be BYTE-IDENTICAL across environments (the never-committed
+// synth-2M datasets, hash-pinned in test/fixtures/synth2m-manifest.json)
+// therefore use these pure-arithmetic implementations: deterministic
+// everywhere, accurate to ~1 ulp (which is all determinism needs).
+
+const LOG_VIEW = new DataView(new ArrayBuffer(8));
+
+/** Deterministic ln(x) for x > 0 (exponent split + atanh series). */
+export function portableLog(x: number): number {
+  LOG_VIEW.setFloat64(0, x);
+  const hi = LOG_VIEW.getUint32(0);
+  let e = ((hi >>> 20) & 0x7ff) - 1023;
+  LOG_VIEW.setUint32(0, (hi & 0x800fffff) | (1023 << 20));
+  let m = LOG_VIEW.getFloat64(0);
+  if (m > 1.4142135623730951) {
+    m *= 0.5;
+    e += 1;
+  }
+  const t = (m - 1) / (m + 1);
+  const t2 = t * t;
+  let s = 0;
+  for (let k = 12; k >= 0; k--) s = s * t2 + 1 / (2 * k + 1);
+  return e * 0.6931471805599453 + 2 * t * s;
+}
+
+const COS_C = [
+  1,
+  -1 / 2,
+  1 / 24,
+  -1 / 720,
+  1 / 40320,
+  -1 / 3628800,
+  1 / 479001600,
+  -1 / 87178291200,
+  1 / 20922789888000,
+];
+const SIN_C = [
+  1,
+  -1 / 6,
+  1 / 120,
+  -1 / 5040,
+  1 / 362880,
+  -1 / 39916800,
+  1 / 6227020800,
+  -1 / 1307674368000,
+];
+
+/** Deterministic cos(y) for y ∈ [0, 2π) (quadrant reduction + Taylor). */
+export function portableCos(y: number): number {
+  const halfPiHi = 1.5707963267948966;
+  const halfPiLo = 6.123233995736766e-17;
+  const k = Math.round(y / halfPiHi);
+  const r = y - k * halfPiHi - k * halfPiLo;
+  const r2 = r * r;
+  let c = 0;
+  for (let i = COS_C.length - 1; i >= 0; i--) c = c * r2 + COS_C[i]!;
+  let s = 0;
+  for (let i = SIN_C.length - 1; i >= 0; i--) s = s * r2 + SIN_C[i]!;
+  s *= r;
+  switch (((k % 4) + 4) % 4) {
+    case 0:
+      return c;
+    case 1:
+      return -s;
+    case 2:
+      return -c;
+    default:
+      return s;
+  }
+}

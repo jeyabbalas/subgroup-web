@@ -1,0 +1,12 @@
+{
+  "generator": "src/synth/big.ts (synth2MBinary/synth2MNumeric)",
+  "seed": 20260711,
+  "rows": 2000000,
+  "attributes": 32,
+  "cardinality": 8,
+  "hash": "FNV-1a 64-bit, sampled (datasetContentHash)",
+  "binaryHash": "e0412c3aae997a15",
+  "numericHash": "fa57b3860c6cc2f3",
+  "plant": "c00==k0 AND c01==k0",
+  "gaussian": "nextGaussianPortable (portableLog/portableCos — cross-engine deterministic)"
+}

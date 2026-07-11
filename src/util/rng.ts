@@ -8,6 +8,8 @@
  * Statistically Good Algorithms for Random Number Generation" (2014).
  * Variant: PCG-XSH-RR 64/32 (LCG multiplier 6364136223846793005).
  */
+import { portableCos, portableLog } from "./math.js";
+
 export class Pcg32 {
   private state: bigint;
   private readonly inc: bigint;
@@ -55,5 +57,19 @@ export class Pcg32 {
     if (u1 === 0) u1 = 2.3283064365386963e-10; // 2^-32: avoid log(0)
     const u2 = this.nextFloat();
     return Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+  }
+
+  /**
+   * Standard normal via Box–Muller over PORTABLE transcendentals
+   * (util/math.ts): byte-identical output across JS engines. Used by
+   * generators whose output is hash-pinned and regenerated per environment
+   * (synth-2M, BRIEF §6.4/§21). `nextGaussian` keeps the native-Math form
+   * because the small planted fixtures were frozen with it.
+   */
+  nextGaussianPortable(): number {
+    let u1 = this.nextFloat();
+    if (u1 === 0) u1 = 2.3283064365386963e-10;
+    const u2 = this.nextFloat();
+    return Math.sqrt(-2 * portableLog(u1)) * portableCos(2 * Math.PI * u2);
   }
 }
