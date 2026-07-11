@@ -202,3 +202,34 @@ against the differential runner's divergence records by `scripts/reports.mjs`.
   reference terminates and picks the true argmax where it would crash.
 - **Differential mapping:** GA-numeric fixture rows whose reference
   conjunction was constructed in non-canonical order cite this id.
+
+### ADJ-010-negated-interval-str-crash
+
+- **Classification:** (b) reference bug.
+- **Repro:** `reference/repros/adj_010_negated_interval_str.py`.
+- **Reference behavior:** `NegatedSelector.__str__` forwards
+  `(open_brackets, closing_brackets)` to the inner selector's `__str__`
+  (subgroup_description.py:338-340), but `IntervalSelector.__str__` accepts no
+  arguments → TypeError. `str()` of NOT-over-interval crashes: the reference's
+  display dialect cannot express negated intervals, and any result printing or
+  fixture export containing one dies.
+- **Spec decision (docs/spec.md §2.4):** subgroup-web prints `NOT <str>`
+  uniformly. No differential mapping is possible (the reference raises instead
+  of producing a string); negation differential cells restrict to nominal
+  selectors.
+
+---
+
+## Mapping rules (class (c) representational differences)
+
+### MAP-001-tie-groups
+
+The reference's result order and boundary-tie cuts are heap artifacts
+(`add_if_required` on `(quality, subgroup)` tuples; BRIEF §22-A1); subgroup-web
+uses the canonical total order (spec §3.2). Differential top-k comparisons
+therefore compare **quality groups**: every complete group must match as a set
+of canonical descriptions with qualities within rel 1e-9 (spec §6.11); the
+final (possibly cut) group must match in size and group quality, and every
+reference member of it must re-evaluate (under subgroup-web semantics) to
+exactly the group quality — proving both sides return a valid top-k modulo
+tie order. Implemented in test/differential/topk-differential.test.ts.

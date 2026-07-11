@@ -111,6 +111,22 @@ export type {
   QF,
   StatsQF,
 } from "./qf/types.js";
+// Results
+export type { ResultEntry } from "./results/result.js";
+export { buildResults, SubgroupResults } from "./results/result.js";
+export type { CrossCheckReport, ExhaustiveOptions } from "./search/exhaustive.js";
+export { candidateSpaceSize, exhaustive } from "./search/exhaustive.js";
+// Search
+export type { Constraint, PreparedTask, SearchProgress, SubgroupTask } from "./search/task.js";
+export { minSupport, prepareTask } from "./search/task.js";
+export { compareItems, TopK, type TopKItem } from "./search/topk.js";
+// Synthetic data
+export type {
+  PlantedBinaryOptions,
+  PlantedDataset,
+  PlantedNumericOptions,
+} from "./synth/planted.js";
+export { plantedBinary, plantedNumeric, tableToCSV } from "./synth/planted.js";
 // Table model
 export type {
   BooleanColumn,

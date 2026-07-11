@@ -1,15 +1,158 @@
 {
-  "comment": "Dataset × config differential/exactness matrix (BRIEF §6.4). Grows through M2–M5; consumed by reference/scripts/gen_differential_fixtures.py and the TS differential/exactness runners.",
+  "comment": "Dataset \u00d7 config differential/exactness matrix (BRIEF \u00a76.4). Grows through M2\u2013M5; consumed by reference/scripts/gen_differential_fixtures.py and the TS differential/exactness runners.",
   "cells": [
     {
       "id": "titanic-binary-wracc-apriori-d2-k5",
       "dataset": "titanic",
-      "target": { "type": "binary", "attribute": "Survived", "value": 1 },
-      "space": { "ignore": ["Survived"], "nbins": 5, "intervalsOnly": true, "negations": false },
-      "qf": { "name": "wracc" },
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "wracc"
+      },
       "algorithm": "apriori",
       "depth": 2,
       "k": 5,
+      "minQuality": 0
+    },
+    {
+      "id": "titanic-binary-simpleBinomial-apriori-d3-k10-small",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived", "PassengerId", "Name", "Ticket", "Cabin"],
+        "nbins": 2,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "simpleBinomial"
+      },
+      "algorithm": "apriori",
+      "depth": 3,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "titanic-binary-chi2-simple-d2-k10",
+      "dataset": "titanic",
+      "target": {
+        "type": "binary",
+        "attribute": "Survived",
+        "value": 1
+      },
+      "space": {
+        "ignore": ["Survived"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "chiSquared",
+        "direction": "both",
+        "minInstances": 5,
+        "stat": "chi2"
+      },
+      "algorithm": "simple",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "creditg-binary-wracc-negations-apriori-d2-k10",
+      "dataset": "credit-g",
+      "target": {
+        "type": "binary",
+        "attribute": "class",
+        "value": "bad"
+      },
+      "space": {
+        "ignore": ["class"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": true,
+        "nominalOnly": true
+      },
+      "qf": {
+        "name": "wracc"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "creditg-numeric-age-stdnum1-apriori-d2-k10",
+      "dataset": "credit-g",
+      "target": {
+        "type": "numeric",
+        "attribute": "age"
+      },
+      "space": {
+        "ignore": ["age", "class"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "standardNumeric",
+        "a": 1.0
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "creditg-fi-count-apriori-d2-k10",
+      "dataset": "credit-g",
+      "target": {
+        "type": "fi"
+      },
+      "space": {
+        "ignore": ["class"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "count"
+      },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 10,
+      "minQuality": 0
+    },
+    {
+      "id": "creditg-fi-area-simple-d2-k10",
+      "dataset": "credit-g",
+      "target": {
+        "type": "fi"
+      },
+      "space": {
+        "ignore": ["class"],
+        "nbins": 5,
+        "intervalsOnly": true,
+        "negations": false
+      },
+      "qf": {
+        "name": "area"
+      },
+      "algorithm": "simple",
+      "depth": 2,
+      "k": 10,
       "minQuality": 0
     }
   ]

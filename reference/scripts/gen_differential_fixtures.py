@@ -132,12 +132,17 @@ def decode_plain(v):
 
 
 def make_space(data, spec, target):
-    sels = ps.create_selectors(
-        data,
-        nbins=spec.get("nbins", 5),
-        intervals_only=spec.get("intervalsOnly", True),
-        ignore=spec.get("ignore", []),
-    )
+    if spec.get("nominalOnly"):
+        # NOT-interval strings crash in the reference (ADJ-010); negation
+        # cells therefore restrict to nominal selectors.
+        sels = ps.create_nominal_selectors(data, ignore=spec.get("ignore", []))
+    else:
+        sels = ps.create_selectors(
+            data,
+            nbins=spec.get("nbins", 5),
+            intervals_only=spec.get("intervalsOnly", True),
+            ignore=spec.get("ignore", []),
+        )
     if spec.get("negations"):
         sels = sels + [ps.NegatedSelector(s) for s in sels]
     return sels

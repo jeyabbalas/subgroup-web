@@ -107,3 +107,19 @@ Spec §6.11: values agree iff both NaN, same infinity, rel ≤ 1e-9, or
 qualities and ~1e-21 EMM likelihood differences, where relative comparison is
 meaningless). Defined before the first QF-value comparison ran; the floor is
 15 orders below any decision-relevant quality in the matrix.
+
+## 2026-07-11 — Spec §3.4 revised: full-comparator replacement, strict-< pruning (M3)
+
+The M1 §3.4 text's parenthetical ("strict > for replacement") contradicted
+§3.3's binding definition (result = first k under the §3.2 total order): with
+quality-strict replacement, a boundary tie that outranks the k-th element by
+depth/key would be kept or dropped depending on evaluation order — exactly
+the reference's add_if_required heap artifact (BRIEF §22-A1) that §3.2 exists
+to eliminate, and fatal to cross-algorithm exactness gates (DFS meets deep
+candidates first). Revision: top-k replacement uses the full §3.2 comparator;
+the pruning rule becomes `oe ≤ θ or (full and oe < θ_now)` (strict at θ_now,
+since a tie at θ_now can still displace by order; proof in §3.4). Revised
+before any pruning algorithm or pruning gate exists (ratchet-compliant:
+consistency fix, not a response to a failing gate). Alternative (keep
+quality-strict replacement, reference parity) rejected: makes §3.3 undefined
+as a set and results evaluation-order-dependent.

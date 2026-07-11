@@ -168,12 +168,29 @@ mapping.
 
 ### 3.4 Pruning threshold semantics (used from M4 on)
 
-An optimistic estimate oe(c) may prune candidate c (and in level-wise/DFS
-settings its refinements) iff `oe(c) <= θ_now`, where θ_now is the current
-k-th best quality (or θ while fewer than k results). Soundness given §3.3:
-a pruned candidate's refinements can at best TIE θ_now, and ties never enter
-the result (strict > for replacement and > θ for membership). The reference
-uses the same strict comparisons (algorithms.py:189-194, 685, 763).
+The result set is §3.3's *first k under the §3.2 order* — so a candidate
+tying the current k-th quality can still enter (displacing on depth/key), and
+replacement inside top-k structures MUST use the full §3.2 comparator, not
+quality alone. (Revised in M3 for internal consistency: the M1 text's
+"strict > for replacement" parenthetical contradicted §3.3's definition and
+would have made results depend on evaluation order across algorithms —
+DECISIONS.md 2026-07-11. The reference's quality-strict `add_if_required`
+heap is exactly such an evaluation-order artifact, BRIEF §22-A1; differential
+comparisons stay tie-tolerant.)
+
+Pruning rule: an optimistic estimate oe(c) may prune candidate c's
+refinements iff
+
+  oe(c) ≤ θ  or  (result full and oe(c) < θ_now)
+
+where θ = task minQuality and θ_now = the k-th result's quality. Soundness:
+refinement qualities are ≤ oe(c); membership requires quality > θ (strict,
+§3.3), so oe ≤ θ excludes them; when full, a refinement can only displace if
+its quality ≥ θ_now, i.e. pruning strictly below θ_now is safe — a tie AT
+θ_now may displace by order, hence strict `<` (deliberately weaker than the
+reference's `oe > θ_now` keep-rule, which over-prunes order-displacing ties
+under its own heap semantics and is inconsistent between its Apriori paths,
+ADJ-007).
 
 ## 4. Space builders (M1)
 
@@ -513,7 +530,43 @@ where relative comparison is meaningless — e.g. tie qualities and
 near-cancelling likelihood differences of order 1e-21). Fixed before any
 comparison gate ran (ratchet rule §21 of the BRIEF).
 
-## 7. Algorithms (M3–M5) ☐
+## 7. Algorithms (M3–M5)
+
+### 7.1 Canonical candidate enumeration (M3)
+
+The task's selector list is deduplicated (predicate identity §2.3) and sorted
+by the §2.2 order once; candidates are ascending index tuples (i₁ < … < i_k)
+over that sorted list, k = 1..d. The **canonical candidate order** is depth
+ascending, then lexicographic ascending tuples; engines may traverse C(S, d)
+in any order (the oracle uses prefix-DFS) because §3.3's result is
+order-invariant, realized by the full-comparator top-k structure (§3.4).
+Index-tuple lex order equals canonical-key lex order over the sorted list, so
+tuples serve as comparison keys everywhere.
+
+### 7.2 The exhaustive oracle (M3)
+
+`exhaustive()` evaluates every candidate of C(S, d) with **no pruning** and
+returns §3.3's top-k. Statistics per candidate come from two independent
+paths — (1) row-scan masks over columns (src/desc/cover.ts semantics) and
+(2) word-wise AND over the selector-bitset atlas — cross-checked per run
+(BRIEF §6.1): sizes/positives must match exactly; f64 aggregates to
+rel ≤ 1e-12 (summation-order difference only). Cross-check coverage is
+`full` (every candidate) on fixtures ≤ `fullCrossCheckLimit` candidates, else
+every result-set member plus every 64th candidate (deterministic stride,
+documented in the gate row). The oracle is async, chunked (yields every
+protocol batch), abortable, and reports progress like every §5.4 engine.
+
+### 7.3 Constraints (M3)
+
+`minSupport(count | fraction)` (monotone: cover size is anti-monotone under
+refinement), `minQuality` (task field, §3.3), custom
+`{ isSatisfied, isMonotone }`. Constraints gate result membership (the
+reference checks them inside `add_if_required`); monotone constraints may
+additionally prune refinements in optimized engines (M4) — never in the
+oracle. A fraction minSupport resolves to `ceil(fraction · N)` rows at task
+preparation.
+
+### 7.4–7.8 (M4–M5) ☐
 
 - Exactness classes (binding, BRIEF §5.4); per-algorithm applicability notes
   (dfsNumeric, BRIEF §22-A5); beamSearch full determinization (expansion,

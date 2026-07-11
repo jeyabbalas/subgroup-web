@@ -1,0 +1,832 @@
+{
+ "id": "titanic-binary-simpleBinomial-apriori-d3-k10-small",
+ "cell": {
+  "id": "titanic-binary-simpleBinomial-apriori-d3-k10-small",
+  "dataset": "titanic",
+  "target": {
+   "type": "binary",
+   "attribute": "Survived",
+   "value": 1
+  },
+  "space": {
+   "ignore": [
+    "Survived",
+    "PassengerId",
+    "Name",
+    "Ticket",
+    "Cabin"
+   ],
+   "nbins": 2,
+   "intervalsOnly": true,
+   "negations": false
+  },
+  "qf": {
+   "name": "simpleBinomial"
+  },
+  "algorithm": "apriori",
+  "depth": 3,
+  "k": 10,
+  "minQuality": 0
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "data_shape": [
+  156,
+  12
+ ],
+ "search_space": [
+  {
+   "kind": "equality",
+   "attribute": "Sex",
+   "value": {
+    "t": "str",
+    "v": "male"
+   },
+   "repr": "Sex=='male'",
+   "str": "Sex=='male'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Sex",
+   "value": {
+    "t": "str",
+    "v": "female"
+   },
+   "repr": "Sex=='female'",
+   "str": "Sex=='female'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "S"
+   },
+   "repr": "Embarked=='S'",
+   "str": "Embarked=='S'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "C"
+   },
+   "repr": "Embarked=='C'",
+   "str": "Embarked=='C'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "Q"
+   },
+   "repr": "Embarked=='Q'",
+   "str": "Embarked=='Q'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "Embarked.isnull()",
+   "str": "Embarked.isnull()"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Pclass",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 3,
+    "int": true
+   },
+   "repr": "Pclass<3",
+   "str": "Pclass<3"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Pclass",
+   "lo": {
+    "value": 3,
+    "int": true
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "Pclass>=3",
+   "str": "Pclass>=3"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Age",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "Age.isnull()",
+   "str": "Age.isnull()"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 26.0,
+    "int": false
+   },
+   "repr": "Age<26.0",
+   "str": "Age<26.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 26.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "Age>=26.0",
+   "str": "Age>=26.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 0,
+    "int": true
+   },
+   "repr": "SibSp<0",
+   "str": "SibSp<0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 0,
+    "int": true
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "SibSp>=0",
+   "str": "SibSp>=0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Parch",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 0,
+    "int": true
+   },
+   "repr": "Parch<0",
+   "str": "Parch<0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Parch",
+   "lo": {
+    "value": 0,
+    "int": true
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "Parch>=0",
+   "str": "Parch>=0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 14.4542,
+    "int": false
+   },
+   "repr": "Fare<14.4542",
+   "str": "Fare<14.45"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 14.4542,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "Fare>=14.4542",
+   "str": "Fare>=14.45"
+  }
+ ],
+ "elapsed_seconds": 0.0011989579070359468,
+ "results": [
+  {
+   "quality": 0.22242453907368903,
+   "description": {
+    "repr": "(Pclass<3 and Sex=='female')",
+    "str": "Pclass<3 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Pclass",
+      "lo": {
+       "value": {
+        "$f": "-inf"
+       },
+       "int": false
+      },
+      "hi": {
+       "value": 3,
+       "int": true
+      },
+      "repr": "Pclass<3",
+      "str": "Pclass<3"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 21,
+    "size_dataset": 156,
+    "positives_sg": 20,
+    "positives_dataset": 54,
+    "size_complement": 135,
+    "relative_size_sg": 0.1346153846153846,
+    "relative_size_complement": 0.8653846153846154,
+    "coverage_sg": 0.37037037037037035,
+    "coverage_complement": 0.6296296296296297,
+    "target_share_sg": 0.9523809523809523,
+    "target_share_complement": 0.2518518518518518,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.751322751322751
+   }
+  },
+  {
+   "quality": 0.22242453907368903,
+   "description": {
+    "repr": "(Pclass<3 and Sex=='female' and SibSp>=0)",
+    "str": "Pclass<3 AND Sex=='female' AND SibSp>=0",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Pclass",
+      "lo": {
+       "value": {
+        "$f": "-inf"
+       },
+       "int": false
+      },
+      "hi": {
+       "value": 3,
+       "int": true
+      },
+      "repr": "Pclass<3",
+      "str": "Pclass<3"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "SibSp",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "SibSp>=0",
+      "str": "SibSp>=0"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 21,
+    "size_dataset": 156,
+    "positives_sg": 20,
+    "positives_dataset": 54,
+    "size_complement": 135,
+    "relative_size_sg": 0.1346153846153846,
+    "relative_size_complement": 0.8653846153846154,
+    "coverage_sg": 0.37037037037037035,
+    "coverage_complement": 0.6296296296296297,
+    "target_share_sg": 0.9523809523809523,
+    "target_share_complement": 0.2518518518518518,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.751322751322751
+   }
+  },
+  {
+   "quality": 0.22242453907368903,
+   "description": {
+    "repr": "(Parch>=0 and Pclass<3 and Sex=='female')",
+    "str": "Parch>=0 AND Pclass<3 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Parch",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Parch>=0",
+      "str": "Parch>=0"
+     },
+     {
+      "kind": "interval",
+      "attribute": "Pclass",
+      "lo": {
+       "value": {
+        "$f": "-inf"
+       },
+       "int": false
+      },
+      "hi": {
+       "value": 3,
+       "int": true
+      },
+      "repr": "Pclass<3",
+      "str": "Pclass<3"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 21,
+    "size_dataset": 156,
+    "positives_sg": 20,
+    "positives_dataset": 54,
+    "size_complement": 135,
+    "relative_size_sg": 0.1346153846153846,
+    "relative_size_complement": 0.8653846153846154,
+    "coverage_sg": 0.37037037037037035,
+    "coverage_complement": 0.6296296296296297,
+    "target_share_sg": 0.9523809523809523,
+    "target_share_complement": 0.2518518518518518,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.751322751322751
+   }
+  },
+  {
+   "quality": 0.22056425383254744,
+   "description": {
+    "repr": "(Sex=='female')",
+    "str": "Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 56,
+    "size_dataset": 156,
+    "positives_sg": 40,
+    "positives_dataset": 54,
+    "size_complement": 100,
+    "relative_size_sg": 0.358974358974359,
+    "relative_size_complement": 0.6410256410256411,
+    "coverage_sg": 0.7407407407407407,
+    "coverage_complement": 0.25925925925925924,
+    "target_share_sg": 0.7142857142857143,
+    "target_share_complement": 0.14,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.0634920634920637
+   }
+  },
+  {
+   "quality": 0.22056425383254744,
+   "description": {
+    "repr": "(Sex=='female' and SibSp>=0)",
+    "str": "Sex=='female' AND SibSp>=0",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "SibSp",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "SibSp>=0",
+      "str": "SibSp>=0"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 56,
+    "size_dataset": 156,
+    "positives_sg": 40,
+    "positives_dataset": 54,
+    "size_complement": 100,
+    "relative_size_sg": 0.358974358974359,
+    "relative_size_complement": 0.6410256410256411,
+    "coverage_sg": 0.7407407407407407,
+    "coverage_complement": 0.25925925925925924,
+    "target_share_sg": 0.7142857142857143,
+    "target_share_complement": 0.14,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.0634920634920637
+   }
+  },
+  {
+   "quality": 0.22056425383254744,
+   "description": {
+    "repr": "(Parch>=0 and Sex=='female')",
+    "str": "Parch>=0 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Parch",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Parch>=0",
+      "str": "Parch>=0"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 56,
+    "size_dataset": 156,
+    "positives_sg": 40,
+    "positives_dataset": 54,
+    "size_complement": 100,
+    "relative_size_sg": 0.358974358974359,
+    "relative_size_complement": 0.6410256410256411,
+    "coverage_sg": 0.7407407407407407,
+    "coverage_complement": 0.25925925925925924,
+    "target_share_sg": 0.7142857142857143,
+    "target_share_complement": 0.14,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.0634920634920637
+   }
+  },
+  {
+   "quality": 0.22056425383254744,
+   "description": {
+    "repr": "(Parch>=0 and Sex=='female' and SibSp>=0)",
+    "str": "Parch>=0 AND Sex=='female' AND SibSp>=0",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Parch",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Parch>=0",
+      "str": "Parch>=0"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "SibSp",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "SibSp>=0",
+      "str": "SibSp>=0"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 56,
+    "size_dataset": 156,
+    "positives_sg": 40,
+    "positives_dataset": 54,
+    "size_complement": 100,
+    "relative_size_sg": 0.358974358974359,
+    "relative_size_complement": 0.6410256410256411,
+    "coverage_sg": 0.7407407407407407,
+    "coverage_complement": 0.25925925925925924,
+    "target_share_sg": 0.7142857142857143,
+    "target_share_complement": 0.14,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.0634920634920637
+   }
+  },
+  {
+   "quality": 0.1964244929145215,
+   "description": {
+    "repr": "(Fare>=14.4542 and Pclass<3 and Sex=='female')",
+    "str": "Fare>=14.45 AND Pclass<3 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Fare",
+      "lo": {
+       "value": 14.4542,
+       "int": false
+      },
+      "hi": {
+       "value": {
+        "$f": "inf"
+       },
+       "int": false
+      },
+      "repr": "Fare>=14.4542",
+      "str": "Fare>=14.45"
+     },
+     {
+      "kind": "interval",
+      "attribute": "Pclass",
+      "lo": {
+       "value": {
+        "$f": "-inf"
+       },
+       "int": false
+      },
+      "hi": {
+       "value": 3,
+       "int": true
+      },
+      "repr": "Pclass<3",
+      "str": "Pclass<3"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 17,
+    "size_dataset": 156,
+    "positives_sg": 16,
+    "positives_dataset": 54,
+    "size_complement": 139,
+    "relative_size_sg": 0.10897435897435898,
+    "relative_size_complement": 0.8910256410256411,
+    "coverage_sg": 0.2962962962962963,
+    "coverage_complement": 0.7037037037037037,
+    "target_share_sg": 0.9411764705882353,
+    "target_share_complement": 0.2733812949640288,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.718954248366013
+   }
+  },
+  {
+   "quality": 0.18207662962133808,
+   "description": {
+    "repr": "(Embarked=='S' and Pclass<3 and Sex=='female')",
+    "str": "Embarked=='S' AND Pclass<3 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Embarked",
+      "value": {
+       "t": "str",
+       "v": "S"
+      },
+      "repr": "Embarked=='S'",
+      "str": "Embarked=='S'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "Pclass",
+      "lo": {
+       "value": {
+        "$f": "-inf"
+       },
+       "int": false
+      },
+      "hi": {
+       "value": 3,
+       "int": true
+      },
+      "repr": "Pclass<3",
+      "str": "Pclass<3"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 15,
+    "size_dataset": 156,
+    "positives_sg": 14,
+    "positives_dataset": 54,
+    "size_complement": 141,
+    "relative_size_sg": 0.09615384615384616,
+    "relative_size_complement": 0.9038461538461539,
+    "coverage_sg": 0.25925925925925924,
+    "coverage_complement": 0.7407407407407407,
+    "target_share_sg": 0.9333333333333333,
+    "target_share_complement": 0.28368794326241137,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.696296296296296
+   }
+  },
+  {
+   "quality": 0.17726246186510397,
+   "description": {
+    "repr": "(Fare<14.4542 and Sex=='female')",
+    "str": "Fare<14.45 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "interval",
+      "attribute": "Fare",
+      "lo": {
+       "value": {
+        "$f": "-inf"
+       },
+       "int": false
+      },
+      "hi": {
+       "value": 14.4542,
+       "int": false
+      },
+      "repr": "Fare<14.4542",
+      "str": "Fare<14.45"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 22,
+    "size_dataset": 156,
+    "positives_sg": 18,
+    "positives_dataset": 54,
+    "size_complement": 134,
+    "relative_size_sg": 0.14102564102564102,
+    "relative_size_complement": 0.8589743589743589,
+    "coverage_sg": 0.3333333333333333,
+    "coverage_complement": 0.6666666666666666,
+    "target_share_sg": 0.8181818181818182,
+    "target_share_complement": 0.26865671641791045,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.3636363636363638
+   }
+  }
+ ]
+}

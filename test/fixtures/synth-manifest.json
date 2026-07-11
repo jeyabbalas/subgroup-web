@@ -1,0 +1,63 @@
+{
+  "generator": "scripts/gen-synth-fixtures.mjs",
+  "fixtures": [
+    {
+      "name": "planted-binary-3k",
+      "file": "datasets/planted-binary-3k.csv",
+      "kind": "binary",
+      "options": {
+        "n": 3000,
+        "seed": 811,
+        "pocketProb": 0.95,
+        "baseProb": 0.25,
+        "noiseAttributes": 4
+      },
+      "plant": "a1=='p' AND a2=='x'",
+      "rows": 3000,
+      "sha256": "fe3d049c1d68751de18da94dd92576236ffd78cd91f4ef92de19d3104094340e"
+    },
+    {
+      "name": "planted-binary-500",
+      "file": "datasets/planted-binary-500.csv",
+      "kind": "binary",
+      "options": {
+        "n": 500,
+        "seed": 812,
+        "pocketProb": 0.97,
+        "baseProb": 0.2,
+        "noiseAttributes": 3
+      },
+      "plant": "a1=='p' AND a2=='x'",
+      "rows": 500,
+      "sha256": "ffcbe11a8c9ea93a7fc464e09d851e8161b9a569c1953875a632e279bcfd99d3"
+    },
+    {
+      "name": "planted-numeric-3k",
+      "file": "datasets/planted-numeric-3k.csv",
+      "kind": "numeric",
+      "options": {
+        "n": 3000,
+        "seed": 813,
+        "shift": 2,
+        "noiseAttributes": 4
+      },
+      "plant": "b1=='u' AND b2=='m'",
+      "rows": 3000,
+      "sha256": "7c5528188b076dcfe50a31d2d319410e144044d61e996cc4bcf030f0f92d2816"
+    },
+    {
+      "name": "planted-numeric-500",
+      "file": "datasets/planted-numeric-500.csv",
+      "kind": "numeric",
+      "options": {
+        "n": 500,
+        "seed": 814,
+        "shift": 2.5,
+        "noiseAttributes": 3
+      },
+      "plant": "b1=='u' AND b2=='m'",
+      "rows": 500,
+      "sha256": "5e0ead60ad50e0a576cf7cce86c7c6682615490fe4025cb3db2c7a12189daf16"
+    }
+  ]
+}

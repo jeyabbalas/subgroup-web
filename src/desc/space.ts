@@ -21,6 +21,7 @@
 
 import { ValidationError } from "../errors.js";
 import type { DataTable } from "../table/table.js";
+import { type Target, targetAttributes as targetAttributesOf } from "../targets/types.js";
 import {
   equality,
   interval,
@@ -260,12 +261,13 @@ export function allSelectors(table: DataTable, options: AllSelectorsOptions = {}
 /** Drop selectors on any of the given attributes (mirrors remove_target_attributes). */
 export function removeTargetAttributes(
   selectors: readonly Selector[],
-  targetAttributes: readonly string[] | { attributes: readonly string[] },
+  target: readonly string[] | { attributes: readonly string[] } | Target,
 ): Selector[] {
-  const list =
-    "attributes" in targetAttributes
-      ? targetAttributes.attributes
-      : (targetAttributes as readonly string[]);
+  let list: readonly string[];
+  if (Array.isArray(target)) list = target as readonly string[];
+  else if ("attributes" in (target as object)) {
+    list = (target as { attributes: readonly string[] }).attributes;
+  } else list = targetAttributesOf(target as Target);
   const attrs = new Set(list);
   return selectors.filter((s) => !attrs.has(selectorAttribute(s)));
 }
