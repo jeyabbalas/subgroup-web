@@ -1,0 +1,16 @@
+{
+  "comment": "Dataset × config differential/exactness matrix (BRIEF §6.4). Grows through M2–M5; consumed by reference/scripts/gen_differential_fixtures.py and the TS differential/exactness runners.",
+  "cells": [
+    {
+      "id": "titanic-binary-wracc-apriori-d2-k5",
+      "dataset": "titanic",
+      "target": { "type": "binary", "attribute": "Survived", "value": 1 },
+      "space": { "ignore": ["Survived"], "nbins": 5, "intervalsOnly": true, "negations": false },
+      "qf": { "name": "wracc" },
+      "algorithm": "apriori",
+      "depth": 2,
+      "k": 5,
+      "minQuality": 0
+    }
+  ]
+}

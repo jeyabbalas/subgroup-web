@@ -1,0 +1,17 @@
+{
+ "generator": "reference/scripts/gen_differential_fixtures.py",
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "fixtures": [
+  {
+   "file": "tasks/titanic-binary-wracc-apriori-d2-k5.json",
+   "sha256": "21390ec68f7dd07de5f7c25a9978bdc1f8d5f3967a030f6d71dd7f485ea260c9",
+   "results": 5,
+   "elapsed_seconds": 0.004
+  }
+ ]
+}

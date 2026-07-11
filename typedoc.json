@@ -1,0 +1,12 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts", "src/webgpu.ts"],
+  "out": "docs-api",
+  "includeVersion": true,
+  "excludeInternal": true,
+  "treatWarningsAsErrors": true,
+  "navigationLinks": {
+    "Demo": "../",
+    "GitHub": "https://github.com/jeyabbalas/subgroup-web"
+  }
+}

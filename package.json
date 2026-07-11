@@ -1,0 +1,64 @@
+{
+  "name": "subgroup-web",
+  "version": "0.1.0",
+  "description": "Privacy-preserving subgroup discovery and exceptional model mining for browsers and Node — a spec-first TypeScript implementation of the pysubgroup 0.9.0 feature set with bitset kernels, worker parallelism, and WebGPU acceleration.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Jeya Balaji Balasubramanian",
+  "engines": {
+    "node": ">=20"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./webgpu": {
+      "types": "./dist/webgpu.d.ts",
+      "default": "./dist/webgpu.js"
+    }
+  },
+  "packageManager": "pnpm@10.34.4",
+  "scripts": {
+    "fixtures": "cd reference && uv run python scripts/export_datasets.py && uv run python scripts/gen_differential_fixtures.py",
+    "ref:bench": "cd reference && uv run python scripts/bench_reference.py",
+    "build": "tsdown",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "test": "vitest run",
+    "test:browser": "playwright test",
+    "bench": "node scripts/bench.mjs",
+    "bench:gates": "node scripts/bench.mjs --gates",
+    "demo:dev": "pnpm -C demo dev",
+    "demo:build": "pnpm build && pnpm -C demo build",
+    "demo:preview": "pnpm -C demo preview",
+    "docs": "typedoc",
+    "pack:test": "node scripts/pack-test.mjs",
+    "check:deps": "node scripts/check-deps.mjs",
+    "check:noskip": "node scripts/check-noskip.mjs",
+    "gate": "node scripts/gate.mjs",
+    "gate:quick": "node scripts/gate-quick.mjs"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.3",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.1.1",
+    "@webgpu/types": "^0.1.71",
+    "fast-check": "^4.9.0",
+    "playwright": "^1.61.1",
+    "tsdown": "^0.22.4",
+    "typedoc": "^0.28.20",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  }
+}

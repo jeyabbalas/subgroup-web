@@ -1,0 +1,25 @@
+node_modules/
+dist/
+dist-pages/
+.logs/
+.gate/
+test-results/
+playwright-report/
+coverage/
+*.tsbuildinfo
+.DS_Store
+.idea/
+.vscode/
+
+# reference harness
+reference/.venv/
+reference/.cache/
+__pycache__/
+
+# demo
+demo/dist/
+demo/node_modules/
+
+# npm pack smoke test artifacts
+*.tgz
+docs-api/

@@ -1,0 +1,51 @@
+# GitHub Pages deploy: library build → demo (BASE_PATH=/subgroup-web/) →
+# TypeDoc under /api → deploy (BRIEF §15). Best-effort; acceptance is local.
+name: pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - run: BASE_PATH=/subgroup-web/ pnpm -C demo build
+      - run: pnpm docs
+      - name: Assemble pages artifact
+        run: |
+          rm -rf dist-pages
+          mkdir -p dist-pages
+          cp -R demo/dist/* dist-pages/
+          mkdir -p dist-pages/api
+          cp -R docs-api/* dist-pages/api/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist-pages
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

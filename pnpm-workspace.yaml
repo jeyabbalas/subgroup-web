@@ -1,0 +1,10 @@
+packages:
+  - "."
+  - "demo"
+
+onlyBuiltDependencies:
+  - "@biomejs/biome"
+  - esbuild
+  - rolldown
+  - unrs-resolver
+

@@ -1,0 +1,10 @@
+{
+ "file": ".cache/adult.csv (git-ignored)",
+ "sha256": "ce5feb731adaef81b15c3dc42dbe982fec8f47700711d60760bc752b4079bf9e",
+ "rows": 48842,
+ "cols": 15,
+ "raw_sha256": {
+  "adult.data": "5b00264637dbfec36bdeaab5676b0b309ff9eb788d63554ca0a249491c86603d",
+  "adult.test": "a2a9044bc167a35b2361efbabec64e89d69ce82d9790d2980119aac5fd7e9c05"
+ }
+}

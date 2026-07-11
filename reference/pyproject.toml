@@ -1,0 +1,15 @@
+[project]
+name = "subgroup-web-reference"
+version = "0.1.0"
+description = "Pinned pysubgroup 0.9.0 reference harness for subgroup-web differential testing"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pysubgroup==0.9.0",
+    "pandas>=2.0,<3",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "setuptools>=69,<81",
+]
+
+[tool.uv]
+package = false

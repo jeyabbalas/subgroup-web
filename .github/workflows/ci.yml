@@ -1,0 +1,24 @@
+# CPU-only CI (best-effort; not part of local acceptance — BRIEF §16.2).
+# GitHub's ubuntu runners have no GPU: SUBGROUP_WEB_CI_CPU_ONLY=1 is the only
+# sanctioned skip of the browser project and must NEVER be set locally for
+# acceptance runs.
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gate-cpu:
+    runs-on: ubuntu-latest
+    env:
+      SUBGROUP_WEB_CI_CPU_ONLY: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm gate

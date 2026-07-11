@@ -1,0 +1,8 @@
+language js
+
+`Math.random($...)` where {
+  register_diagnostic(
+    span = $match,
+    message = "Math.random is banned (determinism contract §7): use the seeded PCG32 from src/util/rng.ts"
+  )
+}

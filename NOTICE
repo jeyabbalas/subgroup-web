@@ -1,0 +1,14 @@
+subgroup-web
+Copyright 2026 Jeya Balaji Balasubramanian
+
+This product is an independent TypeScript implementation of subgroup discovery
+and exceptional model mining. Its semantics were developed against, and are
+differentially tested against, the pysubgroup library, version 0.9.0
+(https://github.com/flemmerich/pysubgroup), licensed under the Apache License
+2.0, Copyright Florian Lemmerich and contributors. No pysubgroup source code
+is included in this product beyond short attributed snippets documenting
+semantic decisions (see COMPATIBILITY.md and docs/spec.md).
+
+Academic users should cite:
+  Lemmerich, F., & Becker, M. (2018). pysubgroup: Easy-to-Use Subgroup
+  Discovery in Python. In ECML-PKDD 2018 (Demo Track).

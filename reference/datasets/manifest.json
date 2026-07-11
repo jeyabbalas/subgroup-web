@@ -1,0 +1,159 @@
+{
+ "generator": "reference/scripts/export_datasets.py",
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "datasets": [
+  {
+   "file": "titanic.csv",
+   "sha256": "b530da397d2435971320ff90d5afa737b62726fd67199cc8061506ec3edc2713",
+   "rows": 156,
+   "cols": 12,
+   "columns": [
+    {
+     "name": "PassengerId",
+     "dtype": "int64"
+    },
+    {
+     "name": "Survived",
+     "dtype": "int64"
+    },
+    {
+     "name": "Pclass",
+     "dtype": "int64"
+    },
+    {
+     "name": "Name",
+     "dtype": "object"
+    },
+    {
+     "name": "Sex",
+     "dtype": "object"
+    },
+    {
+     "name": "Age",
+     "dtype": "float64"
+    },
+    {
+     "name": "SibSp",
+     "dtype": "int64"
+    },
+    {
+     "name": "Parch",
+     "dtype": "int64"
+    },
+    {
+     "name": "Ticket",
+     "dtype": "object"
+    },
+    {
+     "name": "Fare",
+     "dtype": "float64"
+    },
+    {
+     "name": "Cabin",
+     "dtype": "object"
+    },
+    {
+     "name": "Embarked",
+     "dtype": "object"
+    }
+   ]
+  },
+  {
+   "file": "credit-g.csv",
+   "sha256": "d0baf9fddd41e5a6af0ba84e6037a415f11384dd40c494186563a2d3b68f5c25",
+   "rows": 1000,
+   "cols": 21,
+   "columns": [
+    {
+     "name": "checking_status",
+     "dtype": "object"
+    },
+    {
+     "name": "duration",
+     "dtype": "float64"
+    },
+    {
+     "name": "credit_history",
+     "dtype": "object"
+    },
+    {
+     "name": "purpose",
+     "dtype": "object"
+    },
+    {
+     "name": "credit_amount",
+     "dtype": "float64"
+    },
+    {
+     "name": "savings_status",
+     "dtype": "object"
+    },
+    {
+     "name": "employment",
+     "dtype": "object"
+    },
+    {
+     "name": "installment_commitment",
+     "dtype": "float64"
+    },
+    {
+     "name": "personal_status",
+     "dtype": "object"
+    },
+    {
+     "name": "other_parties",
+     "dtype": "object"
+    },
+    {
+     "name": "residence_since",
+     "dtype": "float64"
+    },
+    {
+     "name": "property_magnitude",
+     "dtype": "object"
+    },
+    {
+     "name": "age",
+     "dtype": "float64"
+    },
+    {
+     "name": "other_payment_plans",
+     "dtype": "object"
+    },
+    {
+     "name": "housing",
+     "dtype": "object"
+    },
+    {
+     "name": "existing_credits",
+     "dtype": "float64"
+    },
+    {
+     "name": "job",
+     "dtype": "object"
+    },
+    {
+     "name": "num_dependents",
+     "dtype": "float64"
+    },
+    {
+     "name": "own_telephone",
+     "dtype": "object"
+    },
+    {
+     "name": "foreign_worker",
+     "dtype": "object"
+    },
+    {
+     "name": "class",
+     "dtype": "object"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,4025 @@
+{
+ "id": "titanic-binary-wracc-apriori-d2-k5",
+ "cell": {
+  "id": "titanic-binary-wracc-apriori-d2-k5",
+  "dataset": "titanic",
+  "target": {
+   "type": "binary",
+   "attribute": "Survived",
+   "value": 1
+  },
+  "space": {
+   "ignore": [
+    "Survived"
+   ],
+   "nbins": 5,
+   "intervalsOnly": true,
+   "negations": false
+  },
+  "qf": {
+   "name": "wracc"
+  },
+  "algorithm": "apriori",
+  "depth": 2,
+  "k": 5,
+  "minQuality": 0
+ },
+ "versions": {
+  "pysubgroup": "0.9.0",
+  "pandas": "2.3.3",
+  "numpy": "1.26.4",
+  "scipy": "1.17.1"
+ },
+ "data_shape": [
+  156,
+  12
+ ],
+ "search_space": [
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Braund, Mr. Owen Harris"
+   },
+   "repr": "Name=='Braund, Mr. Owen Harris'",
+   "str": "Name=='Braund, Mr. Owen Harris'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Cumings, Mrs. John Bradley (Florence Briggs Thayer)"
+   },
+   "repr": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'",
+   "str": "Name=='Cumings, Mrs. John Bradley (Florence Briggs Thayer)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Heikkinen, Miss. Laina"
+   },
+   "repr": "Name=='Heikkinen, Miss. Laina'",
+   "str": "Name=='Heikkinen, Miss. Laina'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Futrelle, Mrs. Jacques Heath (Lily May Peel)"
+   },
+   "repr": "Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)'",
+   "str": "Name=='Futrelle, Mrs. Jacques Heath (Lily May Peel)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Allen, Mr. William Henry"
+   },
+   "repr": "Name=='Allen, Mr. William Henry'",
+   "str": "Name=='Allen, Mr. William Henry'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Moran, Mr. James"
+   },
+   "repr": "Name=='Moran, Mr. James'",
+   "str": "Name=='Moran, Mr. James'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "McCarthy, Mr. Timothy J"
+   },
+   "repr": "Name=='McCarthy, Mr. Timothy J'",
+   "str": "Name=='McCarthy, Mr. Timothy J'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Palsson, Master. Gosta Leonard"
+   },
+   "repr": "Name=='Palsson, Master. Gosta Leonard'",
+   "str": "Name=='Palsson, Master. Gosta Leonard'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)"
+   },
+   "repr": "Name=='Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)'",
+   "str": "Name=='Johnson, Mrs. Oscar W (Elisabeth Vilhelmina Berg)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Nasser, Mrs. Nicholas (Adele Achem)"
+   },
+   "repr": "Name=='Nasser, Mrs. Nicholas (Adele Achem)'",
+   "str": "Name=='Nasser, Mrs. Nicholas (Adele Achem)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Sandstrom, Miss. Marguerite Rut"
+   },
+   "repr": "Name=='Sandstrom, Miss. Marguerite Rut'",
+   "str": "Name=='Sandstrom, Miss. Marguerite Rut'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Bonnell, Miss. Elizabeth"
+   },
+   "repr": "Name=='Bonnell, Miss. Elizabeth'",
+   "str": "Name=='Bonnell, Miss. Elizabeth'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Saundercock, Mr. William Henry"
+   },
+   "repr": "Name=='Saundercock, Mr. William Henry'",
+   "str": "Name=='Saundercock, Mr. William Henry'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Andersson, Mr. Anders Johan"
+   },
+   "repr": "Name=='Andersson, Mr. Anders Johan'",
+   "str": "Name=='Andersson, Mr. Anders Johan'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Vestrom, Miss. Hulda Amanda Adolfina"
+   },
+   "repr": "Name=='Vestrom, Miss. Hulda Amanda Adolfina'",
+   "str": "Name=='Vestrom, Miss. Hulda Amanda Adolfina'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Hewlett, Mrs. (Mary D Kingcome) "
+   },
+   "repr": "Name=='Hewlett, Mrs. (Mary D Kingcome) '",
+   "str": "Name=='Hewlett, Mrs. (Mary D Kingcome) '"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Rice, Master. Eugene"
+   },
+   "repr": "Name=='Rice, Master. Eugene'",
+   "str": "Name=='Rice, Master. Eugene'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Williams, Mr. Charles Eugene"
+   },
+   "repr": "Name=='Williams, Mr. Charles Eugene'",
+   "str": "Name=='Williams, Mr. Charles Eugene'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Vander Planke, Mrs. Julius (Emelia Maria Vandemoortele)"
+   },
+   "repr": "Name=='Vander Planke, Mrs. Julius (Emelia Maria Vandemoortele)'",
+   "str": "Name=='Vander Planke, Mrs. Julius (Emelia Maria Vandemoortele)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Masselmani, Mrs. Fatima"
+   },
+   "repr": "Name=='Masselmani, Mrs. Fatima'",
+   "str": "Name=='Masselmani, Mrs. Fatima'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Fynney, Mr. Joseph J"
+   },
+   "repr": "Name=='Fynney, Mr. Joseph J'",
+   "str": "Name=='Fynney, Mr. Joseph J'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Beesley, Mr. Lawrence"
+   },
+   "repr": "Name=='Beesley, Mr. Lawrence'",
+   "str": "Name=='Beesley, Mr. Lawrence'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "McGowan, Miss. Anna \"Annie\""
+   },
+   "repr": "Name=='McGowan, Miss. Anna \"Annie\"'",
+   "str": "Name=='McGowan, Miss. Anna \"Annie\"'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Sloper, Mr. William Thompson"
+   },
+   "repr": "Name=='Sloper, Mr. William Thompson'",
+   "str": "Name=='Sloper, Mr. William Thompson'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Palsson, Miss. Torborg Danira"
+   },
+   "repr": "Name=='Palsson, Miss. Torborg Danira'",
+   "str": "Name=='Palsson, Miss. Torborg Danira'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Asplund, Mrs. Carl Oscar (Selma Augusta Emilia Johansson)"
+   },
+   "repr": "Name=='Asplund, Mrs. Carl Oscar (Selma Augusta Emilia Johansson)'",
+   "str": "Name=='Asplund, Mrs. Carl Oscar (Selma Augusta Emilia Johansson)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Emir, Mr. Farred Chehab"
+   },
+   "repr": "Name=='Emir, Mr. Farred Chehab'",
+   "str": "Name=='Emir, Mr. Farred Chehab'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Fortune, Mr. Charles Alexander"
+   },
+   "repr": "Name=='Fortune, Mr. Charles Alexander'",
+   "str": "Name=='Fortune, Mr. Charles Alexander'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "O'Dwyer, Miss. Ellen \"Nellie\""
+   },
+   "repr": "Name=='O'Dwyer, Miss. Ellen \"Nellie\"'",
+   "str": "Name=='O'Dwyer, Miss. Ellen \"Nellie\"'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Todoroff, Mr. Lalio"
+   },
+   "repr": "Name=='Todoroff, Mr. Lalio'",
+   "str": "Name=='Todoroff, Mr. Lalio'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Uruchurtu, Don. Manuel E"
+   },
+   "repr": "Name=='Uruchurtu, Don. Manuel E'",
+   "str": "Name=='Uruchurtu, Don. Manuel E'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Spencer, Mrs. William Augustus (Marie Eugenie)"
+   },
+   "repr": "Name=='Spencer, Mrs. William Augustus (Marie Eugenie)'",
+   "str": "Name=='Spencer, Mrs. William Augustus (Marie Eugenie)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Glynn, Miss. Mary Agatha"
+   },
+   "repr": "Name=='Glynn, Miss. Mary Agatha'",
+   "str": "Name=='Glynn, Miss. Mary Agatha'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Wheadon, Mr. Edward H"
+   },
+   "repr": "Name=='Wheadon, Mr. Edward H'",
+   "str": "Name=='Wheadon, Mr. Edward H'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Meyer, Mr. Edgar Joseph"
+   },
+   "repr": "Name=='Meyer, Mr. Edgar Joseph'",
+   "str": "Name=='Meyer, Mr. Edgar Joseph'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Holverson, Mr. Alexander Oskar"
+   },
+   "repr": "Name=='Holverson, Mr. Alexander Oskar'",
+   "str": "Name=='Holverson, Mr. Alexander Oskar'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Mamee, Mr. Hanna"
+   },
+   "repr": "Name=='Mamee, Mr. Hanna'",
+   "str": "Name=='Mamee, Mr. Hanna'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Cann, Mr. Ernest Charles"
+   },
+   "repr": "Name=='Cann, Mr. Ernest Charles'",
+   "str": "Name=='Cann, Mr. Ernest Charles'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Vander Planke, Miss. Augusta Maria"
+   },
+   "repr": "Name=='Vander Planke, Miss. Augusta Maria'",
+   "str": "Name=='Vander Planke, Miss. Augusta Maria'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Nicola-Yarred, Miss. Jamila"
+   },
+   "repr": "Name=='Nicola-Yarred, Miss. Jamila'",
+   "str": "Name=='Nicola-Yarred, Miss. Jamila'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Ahlin, Mrs. Johan (Johanna Persdotter Larsson)"
+   },
+   "repr": "Name=='Ahlin, Mrs. Johan (Johanna Persdotter Larsson)'",
+   "str": "Name=='Ahlin, Mrs. Johan (Johanna Persdotter Larsson)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Turpin, Mrs. William John Robert (Dorothy Ann Wonnacott)"
+   },
+   "repr": "Name=='Turpin, Mrs. William John Robert (Dorothy Ann Wonnacott)'",
+   "str": "Name=='Turpin, Mrs. William John Robert (Dorothy Ann Wonnacott)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Kraeff, Mr. Theodor"
+   },
+   "repr": "Name=='Kraeff, Mr. Theodor'",
+   "str": "Name=='Kraeff, Mr. Theodor'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Laroche, Miss. Simonne Marie Anne Andree"
+   },
+   "repr": "Name=='Laroche, Miss. Simonne Marie Anne Andree'",
+   "str": "Name=='Laroche, Miss. Simonne Marie Anne Andree'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Devaney, Miss. Margaret Delia"
+   },
+   "repr": "Name=='Devaney, Miss. Margaret Delia'",
+   "str": "Name=='Devaney, Miss. Margaret Delia'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Rogers, Mr. William John"
+   },
+   "repr": "Name=='Rogers, Mr. William John'",
+   "str": "Name=='Rogers, Mr. William John'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Lennon, Mr. Denis"
+   },
+   "repr": "Name=='Lennon, Mr. Denis'",
+   "str": "Name=='Lennon, Mr. Denis'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "O'Driscoll, Miss. Bridget"
+   },
+   "repr": "Name=='O'Driscoll, Miss. Bridget'",
+   "str": "Name=='O'Driscoll, Miss. Bridget'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Samaan, Mr. Youssef"
+   },
+   "repr": "Name=='Samaan, Mr. Youssef'",
+   "str": "Name=='Samaan, Mr. Youssef'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Arnold-Franchi, Mrs. Josef (Josefine Franchi)"
+   },
+   "repr": "Name=='Arnold-Franchi, Mrs. Josef (Josefine Franchi)'",
+   "str": "Name=='Arnold-Franchi, Mrs. Josef (Josefine Franchi)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Panula, Master. Juha Niilo"
+   },
+   "repr": "Name=='Panula, Master. Juha Niilo'",
+   "str": "Name=='Panula, Master. Juha Niilo'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Nosworthy, Mr. Richard Cater"
+   },
+   "repr": "Name=='Nosworthy, Mr. Richard Cater'",
+   "str": "Name=='Nosworthy, Mr. Richard Cater'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Harper, Mrs. Henry Sleeper (Myna Haxtun)"
+   },
+   "repr": "Name=='Harper, Mrs. Henry Sleeper (Myna Haxtun)'",
+   "str": "Name=='Harper, Mrs. Henry Sleeper (Myna Haxtun)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Faunthorpe, Mrs. Lizzie (Elizabeth Anne Wilkinson)"
+   },
+   "repr": "Name=='Faunthorpe, Mrs. Lizzie (Elizabeth Anne Wilkinson)'",
+   "str": "Name=='Faunthorpe, Mrs. Lizzie (Elizabeth Anne Wilkinson)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Ostby, Mr. Engelhart Cornelius"
+   },
+   "repr": "Name=='Ostby, Mr. Engelhart Cornelius'",
+   "str": "Name=='Ostby, Mr. Engelhart Cornelius'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Woolner, Mr. Hugh"
+   },
+   "repr": "Name=='Woolner, Mr. Hugh'",
+   "str": "Name=='Woolner, Mr. Hugh'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Rugg, Miss. Emily"
+   },
+   "repr": "Name=='Rugg, Miss. Emily'",
+   "str": "Name=='Rugg, Miss. Emily'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Novel, Mr. Mansouer"
+   },
+   "repr": "Name=='Novel, Mr. Mansouer'",
+   "str": "Name=='Novel, Mr. Mansouer'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "West, Miss. Constance Mirium"
+   },
+   "repr": "Name=='West, Miss. Constance Mirium'",
+   "str": "Name=='West, Miss. Constance Mirium'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Goodwin, Master. William Frederick"
+   },
+   "repr": "Name=='Goodwin, Master. William Frederick'",
+   "str": "Name=='Goodwin, Master. William Frederick'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Sirayanian, Mr. Orsen"
+   },
+   "repr": "Name=='Sirayanian, Mr. Orsen'",
+   "str": "Name=='Sirayanian, Mr. Orsen'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Icard, Miss. Amelie"
+   },
+   "repr": "Name=='Icard, Miss. Amelie'",
+   "str": "Name=='Icard, Miss. Amelie'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Harris, Mr. Henry Birkhardt"
+   },
+   "repr": "Name=='Harris, Mr. Henry Birkhardt'",
+   "str": "Name=='Harris, Mr. Henry Birkhardt'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Skoog, Master. Harald"
+   },
+   "repr": "Name=='Skoog, Master. Harald'",
+   "str": "Name=='Skoog, Master. Harald'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Stewart, Mr. Albert A"
+   },
+   "repr": "Name=='Stewart, Mr. Albert A'",
+   "str": "Name=='Stewart, Mr. Albert A'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Moubarek, Master. Gerios"
+   },
+   "repr": "Name=='Moubarek, Master. Gerios'",
+   "str": "Name=='Moubarek, Master. Gerios'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Nye, Mrs. (Elizabeth Ramell)"
+   },
+   "repr": "Name=='Nye, Mrs. (Elizabeth Ramell)'",
+   "str": "Name=='Nye, Mrs. (Elizabeth Ramell)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Crease, Mr. Ernest James"
+   },
+   "repr": "Name=='Crease, Mr. Ernest James'",
+   "str": "Name=='Crease, Mr. Ernest James'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Andersson, Miss. Erna Alexandra"
+   },
+   "repr": "Name=='Andersson, Miss. Erna Alexandra'",
+   "str": "Name=='Andersson, Miss. Erna Alexandra'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Kink, Mr. Vincenz"
+   },
+   "repr": "Name=='Kink, Mr. Vincenz'",
+   "str": "Name=='Kink, Mr. Vincenz'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Jenkin, Mr. Stephen Curnow"
+   },
+   "repr": "Name=='Jenkin, Mr. Stephen Curnow'",
+   "str": "Name=='Jenkin, Mr. Stephen Curnow'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Goodwin, Miss. Lillian Amy"
+   },
+   "repr": "Name=='Goodwin, Miss. Lillian Amy'",
+   "str": "Name=='Goodwin, Miss. Lillian Amy'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Hood, Mr. Ambrose Jr"
+   },
+   "repr": "Name=='Hood, Mr. Ambrose Jr'",
+   "str": "Name=='Hood, Mr. Ambrose Jr'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Chronopoulos, Mr. Apostolos"
+   },
+   "repr": "Name=='Chronopoulos, Mr. Apostolos'",
+   "str": "Name=='Chronopoulos, Mr. Apostolos'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Bing, Mr. Lee"
+   },
+   "repr": "Name=='Bing, Mr. Lee'",
+   "str": "Name=='Bing, Mr. Lee'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Moen, Mr. Sigurd Hansen"
+   },
+   "repr": "Name=='Moen, Mr. Sigurd Hansen'",
+   "str": "Name=='Moen, Mr. Sigurd Hansen'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Staneff, Mr. Ivan"
+   },
+   "repr": "Name=='Staneff, Mr. Ivan'",
+   "str": "Name=='Staneff, Mr. Ivan'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Moutal, Mr. Rahamin Haim"
+   },
+   "repr": "Name=='Moutal, Mr. Rahamin Haim'",
+   "str": "Name=='Moutal, Mr. Rahamin Haim'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Caldwell, Master. Alden Gates"
+   },
+   "repr": "Name=='Caldwell, Master. Alden Gates'",
+   "str": "Name=='Caldwell, Master. Alden Gates'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Dowdell, Miss. Elizabeth"
+   },
+   "repr": "Name=='Dowdell, Miss. Elizabeth'",
+   "str": "Name=='Dowdell, Miss. Elizabeth'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Waelens, Mr. Achille"
+   },
+   "repr": "Name=='Waelens, Mr. Achille'",
+   "str": "Name=='Waelens, Mr. Achille'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Sheerlinck, Mr. Jan Baptist"
+   },
+   "repr": "Name=='Sheerlinck, Mr. Jan Baptist'",
+   "str": "Name=='Sheerlinck, Mr. Jan Baptist'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "McDermott, Miss. Brigdet Delia"
+   },
+   "repr": "Name=='McDermott, Miss. Brigdet Delia'",
+   "str": "Name=='McDermott, Miss. Brigdet Delia'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Carrau, Mr. Francisco M"
+   },
+   "repr": "Name=='Carrau, Mr. Francisco M'",
+   "str": "Name=='Carrau, Mr. Francisco M'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Ilett, Miss. Bertha"
+   },
+   "repr": "Name=='Ilett, Miss. Bertha'",
+   "str": "Name=='Ilett, Miss. Bertha'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Backstrom, Mrs. Karl Alfred (Maria Mathilda Gustafsson)"
+   },
+   "repr": "Name=='Backstrom, Mrs. Karl Alfred (Maria Mathilda Gustafsson)'",
+   "str": "Name=='Backstrom, Mrs. Karl Alfred (Maria Mathilda Gustafsson)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Ford, Mr. William Neal"
+   },
+   "repr": "Name=='Ford, Mr. William Neal'",
+   "str": "Name=='Ford, Mr. William Neal'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Slocovski, Mr. Selman Francis"
+   },
+   "repr": "Name=='Slocovski, Mr. Selman Francis'",
+   "str": "Name=='Slocovski, Mr. Selman Francis'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Fortune, Miss. Mabel Helen"
+   },
+   "repr": "Name=='Fortune, Miss. Mabel Helen'",
+   "str": "Name=='Fortune, Miss. Mabel Helen'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Celotti, Mr. Francesco"
+   },
+   "repr": "Name=='Celotti, Mr. Francesco'",
+   "str": "Name=='Celotti, Mr. Francesco'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Christmann, Mr. Emil"
+   },
+   "repr": "Name=='Christmann, Mr. Emil'",
+   "str": "Name=='Christmann, Mr. Emil'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Andreasson, Mr. Paul Edvin"
+   },
+   "repr": "Name=='Andreasson, Mr. Paul Edvin'",
+   "str": "Name=='Andreasson, Mr. Paul Edvin'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Chaffee, Mr. Herbert Fuller"
+   },
+   "repr": "Name=='Chaffee, Mr. Herbert Fuller'",
+   "str": "Name=='Chaffee, Mr. Herbert Fuller'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Dean, Mr. Bertram Frank"
+   },
+   "repr": "Name=='Dean, Mr. Bertram Frank'",
+   "str": "Name=='Dean, Mr. Bertram Frank'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Coxon, Mr. Daniel"
+   },
+   "repr": "Name=='Coxon, Mr. Daniel'",
+   "str": "Name=='Coxon, Mr. Daniel'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Shorney, Mr. Charles Joseph"
+   },
+   "repr": "Name=='Shorney, Mr. Charles Joseph'",
+   "str": "Name=='Shorney, Mr. Charles Joseph'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Goldschmidt, Mr. George B"
+   },
+   "repr": "Name=='Goldschmidt, Mr. George B'",
+   "str": "Name=='Goldschmidt, Mr. George B'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Greenfield, Mr. William Bertram"
+   },
+   "repr": "Name=='Greenfield, Mr. William Bertram'",
+   "str": "Name=='Greenfield, Mr. William Bertram'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Doling, Mrs. John T (Ada Julia Bone)"
+   },
+   "repr": "Name=='Doling, Mrs. John T (Ada Julia Bone)'",
+   "str": "Name=='Doling, Mrs. John T (Ada Julia Bone)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Kantor, Mr. Sinai"
+   },
+   "repr": "Name=='Kantor, Mr. Sinai'",
+   "str": "Name=='Kantor, Mr. Sinai'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Petranec, Miss. Matilda"
+   },
+   "repr": "Name=='Petranec, Miss. Matilda'",
+   "str": "Name=='Petranec, Miss. Matilda'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Petroff, Mr. Pastcho (\"Pentcho\")"
+   },
+   "repr": "Name=='Petroff, Mr. Pastcho (\"Pentcho\")'",
+   "str": "Name=='Petroff, Mr. Pastcho (\"Pentcho\")'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "White, Mr. Richard Frasar"
+   },
+   "repr": "Name=='White, Mr. Richard Frasar'",
+   "str": "Name=='White, Mr. Richard Frasar'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Johansson, Mr. Gustaf Joel"
+   },
+   "repr": "Name=='Johansson, Mr. Gustaf Joel'",
+   "str": "Name=='Johansson, Mr. Gustaf Joel'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Gustafsson, Mr. Anders Vilhelm"
+   },
+   "repr": "Name=='Gustafsson, Mr. Anders Vilhelm'",
+   "str": "Name=='Gustafsson, Mr. Anders Vilhelm'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Mionoff, Mr. Stoytcho"
+   },
+   "repr": "Name=='Mionoff, Mr. Stoytcho'",
+   "str": "Name=='Mionoff, Mr. Stoytcho'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Salkjelsvik, Miss. Anna Kristine"
+   },
+   "repr": "Name=='Salkjelsvik, Miss. Anna Kristine'",
+   "str": "Name=='Salkjelsvik, Miss. Anna Kristine'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Moss, Mr. Albert Johan"
+   },
+   "repr": "Name=='Moss, Mr. Albert Johan'",
+   "str": "Name=='Moss, Mr. Albert Johan'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Rekic, Mr. Tido"
+   },
+   "repr": "Name=='Rekic, Mr. Tido'",
+   "str": "Name=='Rekic, Mr. Tido'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Moran, Miss. Bertha"
+   },
+   "repr": "Name=='Moran, Miss. Bertha'",
+   "str": "Name=='Moran, Miss. Bertha'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Porter, Mr. Walter Chamberlain"
+   },
+   "repr": "Name=='Porter, Mr. Walter Chamberlain'",
+   "str": "Name=='Porter, Mr. Walter Chamberlain'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Zabour, Miss. Hileni"
+   },
+   "repr": "Name=='Zabour, Miss. Hileni'",
+   "str": "Name=='Zabour, Miss. Hileni'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Barton, Mr. David John"
+   },
+   "repr": "Name=='Barton, Mr. David John'",
+   "str": "Name=='Barton, Mr. David John'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Jussila, Miss. Katriina"
+   },
+   "repr": "Name=='Jussila, Miss. Katriina'",
+   "str": "Name=='Jussila, Miss. Katriina'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Attalah, Miss. Malake"
+   },
+   "repr": "Name=='Attalah, Miss. Malake'",
+   "str": "Name=='Attalah, Miss. Malake'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Pekoniemi, Mr. Edvard"
+   },
+   "repr": "Name=='Pekoniemi, Mr. Edvard'",
+   "str": "Name=='Pekoniemi, Mr. Edvard'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Connors, Mr. Patrick"
+   },
+   "repr": "Name=='Connors, Mr. Patrick'",
+   "str": "Name=='Connors, Mr. Patrick'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Turpin, Mr. William John Robert"
+   },
+   "repr": "Name=='Turpin, Mr. William John Robert'",
+   "str": "Name=='Turpin, Mr. William John Robert'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Baxter, Mr. Quigg Edmond"
+   },
+   "repr": "Name=='Baxter, Mr. Quigg Edmond'",
+   "str": "Name=='Baxter, Mr. Quigg Edmond'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Andersson, Miss. Ellis Anna Maria"
+   },
+   "repr": "Name=='Andersson, Miss. Ellis Anna Maria'",
+   "str": "Name=='Andersson, Miss. Ellis Anna Maria'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Hickman, Mr. Stanley George"
+   },
+   "repr": "Name=='Hickman, Mr. Stanley George'",
+   "str": "Name=='Hickman, Mr. Stanley George'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Moore, Mr. Leonard Charles"
+   },
+   "repr": "Name=='Moore, Mr. Leonard Charles'",
+   "str": "Name=='Moore, Mr. Leonard Charles'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Nasser, Mr. Nicholas"
+   },
+   "repr": "Name=='Nasser, Mr. Nicholas'",
+   "str": "Name=='Nasser, Mr. Nicholas'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Webber, Miss. Susan"
+   },
+   "repr": "Name=='Webber, Miss. Susan'",
+   "str": "Name=='Webber, Miss. Susan'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "White, Mr. Percival Wayland"
+   },
+   "repr": "Name=='White, Mr. Percival Wayland'",
+   "str": "Name=='White, Mr. Percival Wayland'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Nicola-Yarred, Master. Elias"
+   },
+   "repr": "Name=='Nicola-Yarred, Master. Elias'",
+   "str": "Name=='Nicola-Yarred, Master. Elias'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "McMahon, Mr. Martin"
+   },
+   "repr": "Name=='McMahon, Mr. Martin'",
+   "str": "Name=='McMahon, Mr. Martin'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Madsen, Mr. Fridtjof Arne"
+   },
+   "repr": "Name=='Madsen, Mr. Fridtjof Arne'",
+   "str": "Name=='Madsen, Mr. Fridtjof Arne'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Peter, Miss. Anna"
+   },
+   "repr": "Name=='Peter, Miss. Anna'",
+   "str": "Name=='Peter, Miss. Anna'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Ekstrom, Mr. Johan"
+   },
+   "repr": "Name=='Ekstrom, Mr. Johan'",
+   "str": "Name=='Ekstrom, Mr. Johan'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Drazenoic, Mr. Jozef"
+   },
+   "repr": "Name=='Drazenoic, Mr. Jozef'",
+   "str": "Name=='Drazenoic, Mr. Jozef'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Coelho, Mr. Domingos Fernandeo"
+   },
+   "repr": "Name=='Coelho, Mr. Domingos Fernandeo'",
+   "str": "Name=='Coelho, Mr. Domingos Fernandeo'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Robins, Mrs. Alexander A (Grace Charity Laury)"
+   },
+   "repr": "Name=='Robins, Mrs. Alexander A (Grace Charity Laury)'",
+   "str": "Name=='Robins, Mrs. Alexander A (Grace Charity Laury)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Weisz, Mrs. Leopold (Mathilde Francoise Pede)"
+   },
+   "repr": "Name=='Weisz, Mrs. Leopold (Mathilde Francoise Pede)'",
+   "str": "Name=='Weisz, Mrs. Leopold (Mathilde Francoise Pede)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Sobey, Mr. Samuel James Hayden"
+   },
+   "repr": "Name=='Sobey, Mr. Samuel James Hayden'",
+   "str": "Name=='Sobey, Mr. Samuel James Hayden'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Richard, Mr. Emile"
+   },
+   "repr": "Name=='Richard, Mr. Emile'",
+   "str": "Name=='Richard, Mr. Emile'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Newsom, Miss. Helen Monypeny"
+   },
+   "repr": "Name=='Newsom, Miss. Helen Monypeny'",
+   "str": "Name=='Newsom, Miss. Helen Monypeny'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Futrelle, Mr. Jacques Heath"
+   },
+   "repr": "Name=='Futrelle, Mr. Jacques Heath'",
+   "str": "Name=='Futrelle, Mr. Jacques Heath'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Osen, Mr. Olaf Elon"
+   },
+   "repr": "Name=='Osen, Mr. Olaf Elon'",
+   "str": "Name=='Osen, Mr. Olaf Elon'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Giglio, Mr. Victor"
+   },
+   "repr": "Name=='Giglio, Mr. Victor'",
+   "str": "Name=='Giglio, Mr. Victor'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Boulos, Mrs. Joseph (Sultana)"
+   },
+   "repr": "Name=='Boulos, Mrs. Joseph (Sultana)'",
+   "str": "Name=='Boulos, Mrs. Joseph (Sultana)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Nysten, Miss. Anna Sofia"
+   },
+   "repr": "Name=='Nysten, Miss. Anna Sofia'",
+   "str": "Name=='Nysten, Miss. Anna Sofia'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Hakkarainen, Mrs. Pekka Pietari (Elin Matilda Dolck)"
+   },
+   "repr": "Name=='Hakkarainen, Mrs. Pekka Pietari (Elin Matilda Dolck)'",
+   "str": "Name=='Hakkarainen, Mrs. Pekka Pietari (Elin Matilda Dolck)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Burke, Mr. Jeremiah"
+   },
+   "repr": "Name=='Burke, Mr. Jeremiah'",
+   "str": "Name=='Burke, Mr. Jeremiah'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Andrew, Mr. Edgardo Samuel"
+   },
+   "repr": "Name=='Andrew, Mr. Edgardo Samuel'",
+   "str": "Name=='Andrew, Mr. Edgardo Samuel'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Nicholls, Mr. Joseph Charles"
+   },
+   "repr": "Name=='Nicholls, Mr. Joseph Charles'",
+   "str": "Name=='Nicholls, Mr. Joseph Charles'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Andersson, Mr. August Edvard (\"Wennerstrom\")"
+   },
+   "repr": "Name=='Andersson, Mr. August Edvard (\"Wennerstrom\")'",
+   "str": "Name=='Andersson, Mr. August Edvard (\"Wennerstrom\")'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Ford, Miss. Robina Maggie \"Ruby\""
+   },
+   "repr": "Name=='Ford, Miss. Robina Maggie \"Ruby\"'",
+   "str": "Name=='Ford, Miss. Robina Maggie \"Ruby\"'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Navratil, Mr. Michel (\"Louis M Hoffman\")"
+   },
+   "repr": "Name=='Navratil, Mr. Michel (\"Louis M Hoffman\")'",
+   "str": "Name=='Navratil, Mr. Michel (\"Louis M Hoffman\")'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Byles, Rev. Thomas Roussel Davids"
+   },
+   "repr": "Name=='Byles, Rev. Thomas Roussel Davids'",
+   "str": "Name=='Byles, Rev. Thomas Roussel Davids'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Bateman, Rev. Robert James"
+   },
+   "repr": "Name=='Bateman, Rev. Robert James'",
+   "str": "Name=='Bateman, Rev. Robert James'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Pears, Mrs. Thomas (Edith Wearne)"
+   },
+   "repr": "Name=='Pears, Mrs. Thomas (Edith Wearne)'",
+   "str": "Name=='Pears, Mrs. Thomas (Edith Wearne)'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Meo, Mr. Alfonzo"
+   },
+   "repr": "Name=='Meo, Mr. Alfonzo'",
+   "str": "Name=='Meo, Mr. Alfonzo'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "van Billiard, Mr. Austin Blyler"
+   },
+   "repr": "Name=='van Billiard, Mr. Austin Blyler'",
+   "str": "Name=='van Billiard, Mr. Austin Blyler'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Olsen, Mr. Ole Martin"
+   },
+   "repr": "Name=='Olsen, Mr. Ole Martin'",
+   "str": "Name=='Olsen, Mr. Ole Martin'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Name",
+   "value": {
+    "t": "str",
+    "v": "Williams, Mr. Charles Duane"
+   },
+   "repr": "Name=='Williams, Mr. Charles Duane'",
+   "str": "Name=='Williams, Mr. Charles Duane'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Sex",
+   "value": {
+    "t": "str",
+    "v": "male"
+   },
+   "repr": "Sex=='male'",
+   "str": "Sex=='male'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Sex",
+   "value": {
+    "t": "str",
+    "v": "female"
+   },
+   "repr": "Sex=='female'",
+   "str": "Sex=='female'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "A/5 21171"
+   },
+   "repr": "Ticket=='A/5 21171'",
+   "str": "Ticket=='A/5 21171'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17599"
+   },
+   "repr": "Ticket=='PC 17599'",
+   "str": "Ticket=='PC 17599'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "STON/O2. 3101282"
+   },
+   "repr": "Ticket=='STON/O2. 3101282'",
+   "str": "Ticket=='STON/O2. 3101282'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "113803"
+   },
+   "repr": "Ticket=='113803'",
+   "str": "Ticket=='113803'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "373450"
+   },
+   "repr": "Ticket=='373450'",
+   "str": "Ticket=='373450'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "330877"
+   },
+   "repr": "Ticket=='330877'",
+   "str": "Ticket=='330877'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "17463"
+   },
+   "repr": "Ticket=='17463'",
+   "str": "Ticket=='17463'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349909"
+   },
+   "repr": "Ticket=='349909'",
+   "str": "Ticket=='349909'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "347742"
+   },
+   "repr": "Ticket=='347742'",
+   "str": "Ticket=='347742'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "237736"
+   },
+   "repr": "Ticket=='237736'",
+   "str": "Ticket=='237736'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PP 9549"
+   },
+   "repr": "Ticket=='PP 9549'",
+   "str": "Ticket=='PP 9549'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "113783"
+   },
+   "repr": "Ticket=='113783'",
+   "str": "Ticket=='113783'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "A/5. 2151"
+   },
+   "repr": "Ticket=='A/5. 2151'",
+   "str": "Ticket=='A/5. 2151'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "347082"
+   },
+   "repr": "Ticket=='347082'",
+   "str": "Ticket=='347082'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "350406"
+   },
+   "repr": "Ticket=='350406'",
+   "str": "Ticket=='350406'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "248706"
+   },
+   "repr": "Ticket=='248706'",
+   "str": "Ticket=='248706'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "382652"
+   },
+   "repr": "Ticket=='382652'",
+   "str": "Ticket=='382652'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "244373"
+   },
+   "repr": "Ticket=='244373'",
+   "str": "Ticket=='244373'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "345763"
+   },
+   "repr": "Ticket=='345763'",
+   "str": "Ticket=='345763'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2649"
+   },
+   "repr": "Ticket=='2649'",
+   "str": "Ticket=='2649'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "239865"
+   },
+   "repr": "Ticket=='239865'",
+   "str": "Ticket=='239865'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "248698"
+   },
+   "repr": "Ticket=='248698'",
+   "str": "Ticket=='248698'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "330923"
+   },
+   "repr": "Ticket=='330923'",
+   "str": "Ticket=='330923'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "113788"
+   },
+   "repr": "Ticket=='113788'",
+   "str": "Ticket=='113788'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "347077"
+   },
+   "repr": "Ticket=='347077'",
+   "str": "Ticket=='347077'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2631"
+   },
+   "repr": "Ticket=='2631'",
+   "str": "Ticket=='2631'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "19950"
+   },
+   "repr": "Ticket=='19950'",
+   "str": "Ticket=='19950'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "330959"
+   },
+   "repr": "Ticket=='330959'",
+   "str": "Ticket=='330959'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349216"
+   },
+   "repr": "Ticket=='349216'",
+   "str": "Ticket=='349216'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17601"
+   },
+   "repr": "Ticket=='PC 17601'",
+   "str": "Ticket=='PC 17601'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17569"
+   },
+   "repr": "Ticket=='PC 17569'",
+   "str": "Ticket=='PC 17569'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "335677"
+   },
+   "repr": "Ticket=='335677'",
+   "str": "Ticket=='335677'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C.A. 24579"
+   },
+   "repr": "Ticket=='C.A. 24579'",
+   "str": "Ticket=='C.A. 24579'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17604"
+   },
+   "repr": "Ticket=='PC 17604'",
+   "str": "Ticket=='PC 17604'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "113789"
+   },
+   "repr": "Ticket=='113789'",
+   "str": "Ticket=='113789'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2677"
+   },
+   "repr": "Ticket=='2677'",
+   "str": "Ticket=='2677'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "A./5. 2152"
+   },
+   "repr": "Ticket=='A./5. 2152'",
+   "str": "Ticket=='A./5. 2152'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "345764"
+   },
+   "repr": "Ticket=='345764'",
+   "str": "Ticket=='345764'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2651"
+   },
+   "repr": "Ticket=='2651'",
+   "str": "Ticket=='2651'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "7546"
+   },
+   "repr": "Ticket=='7546'",
+   "str": "Ticket=='7546'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "11668"
+   },
+   "repr": "Ticket=='11668'",
+   "str": "Ticket=='11668'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349253"
+   },
+   "repr": "Ticket=='349253'",
+   "str": "Ticket=='349253'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "SC/Paris 2123"
+   },
+   "repr": "Ticket=='SC/Paris 2123'",
+   "str": "Ticket=='SC/Paris 2123'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "330958"
+   },
+   "repr": "Ticket=='330958'",
+   "str": "Ticket=='330958'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "S.C./A.4. 23567"
+   },
+   "repr": "Ticket=='S.C./A.4. 23567'",
+   "str": "Ticket=='S.C./A.4. 23567'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "370371"
+   },
+   "repr": "Ticket=='370371'",
+   "str": "Ticket=='370371'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "14311"
+   },
+   "repr": "Ticket=='14311'",
+   "str": "Ticket=='14311'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2662"
+   },
+   "repr": "Ticket=='2662'",
+   "str": "Ticket=='2662'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349237"
+   },
+   "repr": "Ticket=='349237'",
+   "str": "Ticket=='349237'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "3101295"
+   },
+   "repr": "Ticket=='3101295'",
+   "str": "Ticket=='3101295'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "A/4. 39886"
+   },
+   "repr": "Ticket=='A/4. 39886'",
+   "str": "Ticket=='A/4. 39886'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17572"
+   },
+   "repr": "Ticket=='PC 17572'",
+   "str": "Ticket=='PC 17572'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2926"
+   },
+   "repr": "Ticket=='2926'",
+   "str": "Ticket=='2926'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "113509"
+   },
+   "repr": "Ticket=='113509'",
+   "str": "Ticket=='113509'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "19947"
+   },
+   "repr": "Ticket=='19947'",
+   "str": "Ticket=='19947'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C.A. 31026"
+   },
+   "repr": "Ticket=='C.A. 31026'",
+   "str": "Ticket=='C.A. 31026'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2697"
+   },
+   "repr": "Ticket=='2697'",
+   "str": "Ticket=='2697'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C.A. 34651"
+   },
+   "repr": "Ticket=='C.A. 34651'",
+   "str": "Ticket=='C.A. 34651'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "CA 2144"
+   },
+   "repr": "Ticket=='CA 2144'",
+   "str": "Ticket=='CA 2144'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2669"
+   },
+   "repr": "Ticket=='2669'",
+   "str": "Ticket=='2669'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "113572"
+   },
+   "repr": "Ticket=='113572'",
+   "str": "Ticket=='113572'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "36973"
+   },
+   "repr": "Ticket=='36973'",
+   "str": "Ticket=='36973'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "347088"
+   },
+   "repr": "Ticket=='347088'",
+   "str": "Ticket=='347088'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17605"
+   },
+   "repr": "Ticket=='PC 17605'",
+   "str": "Ticket=='PC 17605'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2661"
+   },
+   "repr": "Ticket=='2661'",
+   "str": "Ticket=='2661'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C.A. 29395"
+   },
+   "repr": "Ticket=='C.A. 29395'",
+   "str": "Ticket=='C.A. 29395'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "S.P. 3464"
+   },
+   "repr": "Ticket=='S.P. 3464'",
+   "str": "Ticket=='S.P. 3464'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "3101281"
+   },
+   "repr": "Ticket=='3101281'",
+   "str": "Ticket=='3101281'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "315151"
+   },
+   "repr": "Ticket=='315151'",
+   "str": "Ticket=='315151'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C.A. 33111"
+   },
+   "repr": "Ticket=='C.A. 33111'",
+   "str": "Ticket=='C.A. 33111'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "S.O.C. 14879"
+   },
+   "repr": "Ticket=='S.O.C. 14879'",
+   "str": "Ticket=='S.O.C. 14879'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2680"
+   },
+   "repr": "Ticket=='2680'",
+   "str": "Ticket=='2680'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "1601"
+   },
+   "repr": "Ticket=='1601'",
+   "str": "Ticket=='1601'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "348123"
+   },
+   "repr": "Ticket=='348123'",
+   "str": "Ticket=='348123'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349208"
+   },
+   "repr": "Ticket=='349208'",
+   "str": "Ticket=='349208'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "374746"
+   },
+   "repr": "Ticket=='374746'",
+   "str": "Ticket=='374746'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "248738"
+   },
+   "repr": "Ticket=='248738'",
+   "str": "Ticket=='248738'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "364516"
+   },
+   "repr": "Ticket=='364516'",
+   "str": "Ticket=='364516'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "345767"
+   },
+   "repr": "Ticket=='345767'",
+   "str": "Ticket=='345767'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "345779"
+   },
+   "repr": "Ticket=='345779'",
+   "str": "Ticket=='345779'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "330932"
+   },
+   "repr": "Ticket=='330932'",
+   "str": "Ticket=='330932'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "113059"
+   },
+   "repr": "Ticket=='113059'",
+   "str": "Ticket=='113059'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "SO/C 14885"
+   },
+   "repr": "Ticket=='SO/C 14885'",
+   "str": "Ticket=='SO/C 14885'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "3101278"
+   },
+   "repr": "Ticket=='3101278'",
+   "str": "Ticket=='3101278'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "W./C. 6608"
+   },
+   "repr": "Ticket=='W./C. 6608'",
+   "str": "Ticket=='W./C. 6608'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "SOTON/OQ 392086"
+   },
+   "repr": "Ticket=='SOTON/OQ 392086'",
+   "str": "Ticket=='SOTON/OQ 392086'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "343275"
+   },
+   "repr": "Ticket=='343275'",
+   "str": "Ticket=='343275'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "343276"
+   },
+   "repr": "Ticket=='343276'",
+   "str": "Ticket=='343276'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "347466"
+   },
+   "repr": "Ticket=='347466'",
+   "str": "Ticket=='347466'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "W.E.P. 5734"
+   },
+   "repr": "Ticket=='W.E.P. 5734'",
+   "str": "Ticket=='W.E.P. 5734'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C.A. 2315"
+   },
+   "repr": "Ticket=='C.A. 2315'",
+   "str": "Ticket=='C.A. 2315'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "364500"
+   },
+   "repr": "Ticket=='364500'",
+   "str": "Ticket=='364500'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "374910"
+   },
+   "repr": "Ticket=='374910'",
+   "str": "Ticket=='374910'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17754"
+   },
+   "repr": "Ticket=='PC 17754'",
+   "str": "Ticket=='PC 17754'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17759"
+   },
+   "repr": "Ticket=='PC 17759'",
+   "str": "Ticket=='PC 17759'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "231919"
+   },
+   "repr": "Ticket=='231919'",
+   "str": "Ticket=='231919'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "244367"
+   },
+   "repr": "Ticket=='244367'",
+   "str": "Ticket=='244367'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349245"
+   },
+   "repr": "Ticket=='349245'",
+   "str": "Ticket=='349245'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349215"
+   },
+   "repr": "Ticket=='349215'",
+   "str": "Ticket=='349215'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "35281"
+   },
+   "repr": "Ticket=='35281'",
+   "str": "Ticket=='35281'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "7540"
+   },
+   "repr": "Ticket=='7540'",
+   "str": "Ticket=='7540'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "3101276"
+   },
+   "repr": "Ticket=='3101276'",
+   "str": "Ticket=='3101276'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349207"
+   },
+   "repr": "Ticket=='349207'",
+   "str": "Ticket=='349207'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "343120"
+   },
+   "repr": "Ticket=='343120'",
+   "str": "Ticket=='343120'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "312991"
+   },
+   "repr": "Ticket=='312991'",
+   "str": "Ticket=='312991'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349249"
+   },
+   "repr": "Ticket=='349249'",
+   "str": "Ticket=='349249'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "371110"
+   },
+   "repr": "Ticket=='371110'",
+   "str": "Ticket=='371110'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "110465"
+   },
+   "repr": "Ticket=='110465'",
+   "str": "Ticket=='110465'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2665"
+   },
+   "repr": "Ticket=='2665'",
+   "str": "Ticket=='2665'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "324669"
+   },
+   "repr": "Ticket=='324669'",
+   "str": "Ticket=='324669'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "4136"
+   },
+   "repr": "Ticket=='4136'",
+   "str": "Ticket=='4136'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2627"
+   },
+   "repr": "Ticket=='2627'",
+   "str": "Ticket=='2627'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "STON/O 2. 3101294"
+   },
+   "repr": "Ticket=='STON/O 2. 3101294'",
+   "str": "Ticket=='STON/O 2. 3101294'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "370369"
+   },
+   "repr": "Ticket=='370369'",
+   "str": "Ticket=='370369'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17558"
+   },
+   "repr": "Ticket=='PC 17558'",
+   "str": "Ticket=='PC 17558'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "A4. 54510"
+   },
+   "repr": "Ticket=='A4. 54510'",
+   "str": "Ticket=='A4. 54510'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "27267"
+   },
+   "repr": "Ticket=='27267'",
+   "str": "Ticket=='27267'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "370372"
+   },
+   "repr": "Ticket=='370372'",
+   "str": "Ticket=='370372'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C 17369"
+   },
+   "repr": "Ticket=='C 17369'",
+   "str": "Ticket=='C 17369'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2668"
+   },
+   "repr": "Ticket=='2668'",
+   "str": "Ticket=='2668'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "347061"
+   },
+   "repr": "Ticket=='347061'",
+   "str": "Ticket=='347061'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "349241"
+   },
+   "repr": "Ticket=='349241'",
+   "str": "Ticket=='349241'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "SOTON/O.Q. 3101307"
+   },
+   "repr": "Ticket=='SOTON/O.Q. 3101307'",
+   "str": "Ticket=='SOTON/O.Q. 3101307'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "A/5. 3337"
+   },
+   "repr": "Ticket=='A/5. 3337'",
+   "str": "Ticket=='A/5. 3337'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "228414"
+   },
+   "repr": "Ticket=='228414'",
+   "str": "Ticket=='228414'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C.A. 29178"
+   },
+   "repr": "Ticket=='C.A. 29178'",
+   "str": "Ticket=='C.A. 29178'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "SC/PARIS 2133"
+   },
+   "repr": "Ticket=='SC/PARIS 2133'",
+   "str": "Ticket=='SC/PARIS 2133'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "11752"
+   },
+   "repr": "Ticket=='11752'",
+   "str": "Ticket=='11752'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "7534"
+   },
+   "repr": "Ticket=='7534'",
+   "str": "Ticket=='7534'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17593"
+   },
+   "repr": "Ticket=='PC 17593'",
+   "str": "Ticket=='PC 17593'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "2678"
+   },
+   "repr": "Ticket=='2678'",
+   "str": "Ticket=='2678'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "347081"
+   },
+   "repr": "Ticket=='347081'",
+   "str": "Ticket=='347081'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "STON/O2. 3101279"
+   },
+   "repr": "Ticket=='STON/O2. 3101279'",
+   "str": "Ticket=='STON/O2. 3101279'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "365222"
+   },
+   "repr": "Ticket=='365222'",
+   "str": "Ticket=='365222'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "231945"
+   },
+   "repr": "Ticket=='231945'",
+   "str": "Ticket=='231945'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "C.A. 33112"
+   },
+   "repr": "Ticket=='C.A. 33112'",
+   "str": "Ticket=='C.A. 33112'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "350043"
+   },
+   "repr": "Ticket=='350043'",
+   "str": "Ticket=='350043'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "230080"
+   },
+   "repr": "Ticket=='230080'",
+   "str": "Ticket=='230080'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "244310"
+   },
+   "repr": "Ticket=='244310'",
+   "str": "Ticket=='244310'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "S.O.P. 1166"
+   },
+   "repr": "Ticket=='S.O.P. 1166'",
+   "str": "Ticket=='S.O.P. 1166'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "113776"
+   },
+   "repr": "Ticket=='113776'",
+   "str": "Ticket=='113776'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "A.5. 11206"
+   },
+   "repr": "Ticket=='A.5. 11206'",
+   "str": "Ticket=='A.5. 11206'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "A/5. 851"
+   },
+   "repr": "Ticket=='A/5. 851'",
+   "str": "Ticket=='A/5. 851'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "Fa 265302"
+   },
+   "repr": "Ticket=='Fa 265302'",
+   "str": "Ticket=='Fa 265302'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Ticket",
+   "value": {
+    "t": "str",
+    "v": "PC 17597"
+   },
+   "repr": "Ticket=='PC 17597'",
+   "str": "Ticket=='PC 17597'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "Cabin.isnull()",
+   "str": "Cabin.isnull()"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "C85"
+   },
+   "repr": "Cabin=='C85'",
+   "str": "Cabin=='C85'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "C123"
+   },
+   "repr": "Cabin=='C123'",
+   "str": "Cabin=='C123'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "E46"
+   },
+   "repr": "Cabin=='E46'",
+   "str": "Cabin=='E46'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "G6"
+   },
+   "repr": "Cabin=='G6'",
+   "str": "Cabin=='G6'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "C103"
+   },
+   "repr": "Cabin=='C103'",
+   "str": "Cabin=='C103'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "D56"
+   },
+   "repr": "Cabin=='D56'",
+   "str": "Cabin=='D56'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "A6"
+   },
+   "repr": "Cabin=='A6'",
+   "str": "Cabin=='A6'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "C23 C25 C27"
+   },
+   "repr": "Cabin=='C23 C25 C27'",
+   "str": "Cabin=='C23 C25 C27'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "B78"
+   },
+   "repr": "Cabin=='B78'",
+   "str": "Cabin=='B78'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "D33"
+   },
+   "repr": "Cabin=='D33'",
+   "str": "Cabin=='D33'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "B30"
+   },
+   "repr": "Cabin=='B30'",
+   "str": "Cabin=='B30'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "C52"
+   },
+   "repr": "Cabin=='C52'",
+   "str": "Cabin=='C52'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "B28"
+   },
+   "repr": "Cabin=='B28'",
+   "str": "Cabin=='B28'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "C83"
+   },
+   "repr": "Cabin=='C83'",
+   "str": "Cabin=='C83'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "F33"
+   },
+   "repr": "Cabin=='F33'",
+   "str": "Cabin=='F33'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "F G73"
+   },
+   "repr": "Cabin=='F G73'",
+   "str": "Cabin=='F G73'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "E31"
+   },
+   "repr": "Cabin=='E31'",
+   "str": "Cabin=='E31'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "A5"
+   },
+   "repr": "Cabin=='A5'",
+   "str": "Cabin=='A5'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "D10 D12"
+   },
+   "repr": "Cabin=='D10 D12'",
+   "str": "Cabin=='D10 D12'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "D26"
+   },
+   "repr": "Cabin=='D26'",
+   "str": "Cabin=='D26'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "C110"
+   },
+   "repr": "Cabin=='C110'",
+   "str": "Cabin=='C110'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "B58 B60"
+   },
+   "repr": "Cabin=='B58 B60'",
+   "str": "Cabin=='B58 B60'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "E101"
+   },
+   "repr": "Cabin=='E101'",
+   "str": "Cabin=='E101'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "F E69"
+   },
+   "repr": "Cabin=='F E69'",
+   "str": "Cabin=='F E69'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "D47"
+   },
+   "repr": "Cabin=='D47'",
+   "str": "Cabin=='D47'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "B86"
+   },
+   "repr": "Cabin=='B86'",
+   "str": "Cabin=='B86'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "F2"
+   },
+   "repr": "Cabin=='F2'",
+   "str": "Cabin=='F2'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Cabin",
+   "value": {
+    "t": "str",
+    "v": "C2"
+   },
+   "repr": "Cabin=='C2'",
+   "str": "Cabin=='C2'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "S"
+   },
+   "repr": "Embarked=='S'",
+   "str": "Embarked=='S'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "C"
+   },
+   "repr": "Embarked=='C'",
+   "str": "Embarked=='C'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "str",
+    "v": "Q"
+   },
+   "repr": "Embarked=='Q'",
+   "str": "Embarked=='Q'"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Embarked",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "Embarked.isnull()",
+   "str": "Embarked.isnull()"
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 32,
+    "int": true
+   },
+   "repr": "PassengerId<32",
+   "str": "PassengerId<32"
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 32,
+    "int": true
+   },
+   "hi": {
+    "value": 63,
+    "int": true
+   },
+   "repr": "PassengerId: [32:63[",
+   "str": "PassengerId: [32:63["
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 63,
+    "int": true
+   },
+   "hi": {
+    "value": 94,
+    "int": true
+   },
+   "repr": "PassengerId: [63:94[",
+   "str": "PassengerId: [63:94["
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 94,
+    "int": true
+   },
+   "hi": {
+    "value": 125,
+    "int": true
+   },
+   "repr": "PassengerId: [94:125[",
+   "str": "PassengerId: [94:125["
+  },
+  {
+   "kind": "interval",
+   "attribute": "PassengerId",
+   "lo": {
+    "value": 125,
+    "int": true
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "PassengerId>=125",
+   "str": "PassengerId>=125"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Pclass",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1,
+     "int": true
+    }
+   },
+   "repr": "Pclass==1",
+   "str": "Pclass==1"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Pclass",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2,
+     "int": true
+    }
+   },
+   "repr": "Pclass==2",
+   "str": "Pclass==2"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Pclass",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3,
+     "int": true
+    }
+   },
+   "repr": "Pclass==3",
+   "str": "Pclass==3"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Age",
+   "value": {
+    "t": "nan"
+   },
+   "repr": "Age.isnull()",
+   "str": "Age.isnull()"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 18.0,
+    "int": false
+   },
+   "repr": "Age<18.0",
+   "str": "Age<18.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 18.0,
+    "int": false
+   },
+   "hi": {
+    "value": 22.0,
+    "int": false
+   },
+   "repr": "Age: [18.0:22.0[",
+   "str": "Age: [18.0:22.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 22.0,
+    "int": false
+   },
+   "hi": {
+    "value": 29.0,
+    "int": false
+   },
+   "repr": "Age: [22.0:29.0[",
+   "str": "Age: [22.0:29.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 29.0,
+    "int": false
+   },
+   "hi": {
+    "value": 38.0,
+    "int": false
+   },
+   "repr": "Age: [29.0:38.0[",
+   "str": "Age: [29.0:38.0["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Age",
+   "lo": {
+    "value": 38.0,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "Age>=38.0",
+   "str": "Age>=38.0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 0,
+    "int": true
+   },
+   "repr": "SibSp<0",
+   "str": "SibSp<0"
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 0,
+    "int": true
+   },
+   "hi": {
+    "value": 1,
+    "int": true
+   },
+   "repr": "SibSp: [0:1[",
+   "str": "SibSp: [0:1["
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 1,
+    "int": true
+   },
+   "hi": {
+    "value": 2,
+    "int": true
+   },
+   "repr": "SibSp: [1:2[",
+   "str": "SibSp: [1:2["
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 2,
+    "int": true
+   },
+   "hi": {
+    "value": 3,
+    "int": true
+   },
+   "repr": "SibSp: [2:3[",
+   "str": "SibSp: [2:3["
+  },
+  {
+   "kind": "interval",
+   "attribute": "SibSp",
+   "lo": {
+    "value": 3,
+    "int": true
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "SibSp>=3",
+   "str": "SibSp>=3"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 0,
+     "int": true
+    }
+   },
+   "repr": "Parch==0",
+   "str": "Parch==0"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 1,
+     "int": true
+    }
+   },
+   "repr": "Parch==1",
+   "str": "Parch==1"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 2,
+     "int": true
+    }
+   },
+   "repr": "Parch==2",
+   "str": "Parch==2"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 3,
+     "int": true
+    }
+   },
+   "repr": "Parch==3",
+   "str": "Parch==3"
+  },
+  {
+   "kind": "equality",
+   "attribute": "Parch",
+   "value": {
+    "t": "num",
+    "v": {
+     "value": 5,
+     "int": true
+    }
+   },
+   "repr": "Parch==5",
+   "str": "Parch==5"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": {
+     "$f": "-inf"
+    },
+    "int": false
+   },
+   "hi": {
+    "value": 7.8958,
+    "int": false
+   },
+   "repr": "Fare<7.8958",
+   "str": "Fare<7.90"
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 7.8958,
+    "int": false
+   },
+   "hi": {
+    "value": 10.5,
+    "int": false
+   },
+   "repr": "Fare: [7.8958:10.5[",
+   "str": "Fare: [7.90:10.50["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 10.5,
+    "int": false
+   },
+   "hi": {
+    "value": 20.575,
+    "int": false
+   },
+   "repr": "Fare: [10.5:20.575[",
+   "str": "Fare: [10.50:20.57["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 20.575,
+    "int": false
+   },
+   "hi": {
+    "value": 35.5,
+    "int": false
+   },
+   "repr": "Fare: [20.575:35.5[",
+   "str": "Fare: [20.57:35.50["
+  },
+  {
+   "kind": "interval",
+   "attribute": "Fare",
+   "lo": {
+    "value": 35.5,
+    "int": false
+   },
+   "hi": {
+    "value": {
+     "$f": "inf"
+    },
+    "int": false
+   },
+   "repr": "Fare>=35.5",
+   "str": "Fare>=35.50"
+  }
+ ],
+ "elapsed_seconds": 0.003985624993219972,
+ "results": [
+  {
+   "quality": 0.13214990138067062,
+   "description": {
+    "repr": "(Sex=='female')",
+    "str": "Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 56,
+    "size_dataset": 156,
+    "positives_sg": 40,
+    "positives_dataset": 54,
+    "size_complement": 100,
+    "relative_size_sg": 0.358974358974359,
+    "relative_size_complement": 0.6410256410256411,
+    "coverage_sg": 0.7407407407407407,
+    "coverage_complement": 0.25925925925925924,
+    "target_share_sg": 0.7142857142857143,
+    "target_share_complement": 0.14,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.0634920634920637
+   }
+  },
+  {
+   "quality": 0.10133136094674557,
+   "description": {
+    "repr": "(Parch==0 and Sex=='female')",
+    "str": "Parch==0 AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Parch",
+      "value": {
+       "t": "num",
+       "v": {
+        "value": 0,
+        "int": true
+       }
+      },
+      "repr": "Parch==0",
+      "str": "Parch==0"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 41,
+    "size_dataset": 156,
+    "positives_sg": 30,
+    "positives_dataset": 54,
+    "size_complement": 115,
+    "relative_size_sg": 0.26282051282051283,
+    "relative_size_complement": 0.7371794871794872,
+    "coverage_sg": 0.5555555555555556,
+    "coverage_complement": 0.4444444444444444,
+    "target_share_sg": 0.7317073170731707,
+    "target_share_complement": 0.20869565217391303,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.113821138211382
+   }
+  },
+  {
+   "quality": 0.07914201183431953,
+   "description": {
+    "repr": "(Sex=='female' and SibSp: [0:1[)",
+    "str": "Sex=='female' AND SibSp: [0:1[",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     },
+     {
+      "kind": "interval",
+      "attribute": "SibSp",
+      "lo": {
+       "value": 0,
+       "int": true
+      },
+      "hi": {
+       "value": 1,
+       "int": true
+      },
+      "repr": "SibSp: [0:1[",
+      "str": "SibSp: [0:1["
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 25,
+    "size_dataset": 156,
+    "positives_sg": 21,
+    "positives_dataset": 54,
+    "size_complement": 131,
+    "relative_size_sg": 0.16025641025641027,
+    "relative_size_complement": 0.8397435897435898,
+    "coverage_sg": 0.3888888888888889,
+    "coverage_complement": 0.6111111111111112,
+    "target_share_sg": 0.84,
+    "target_share_complement": 0.25190839694656486,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 2.4266666666666667
+   }
+  },
+  {
+   "quality": 0.07766272189349113,
+   "description": {
+    "repr": "(Cabin.isnull() and Sex=='female')",
+    "str": "Cabin.isnull() AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Cabin",
+      "value": {
+       "t": "nan"
+      },
+      "repr": "Cabin.isnull()",
+      "str": "Cabin.isnull()"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 43,
+    "size_dataset": 156,
+    "positives_sg": 27,
+    "positives_dataset": 54,
+    "size_complement": 113,
+    "relative_size_sg": 0.27564102564102566,
+    "relative_size_complement": 0.7243589743589743,
+    "coverage_sg": 0.5,
+    "coverage_complement": 0.5,
+    "target_share_sg": 0.627906976744186,
+    "target_share_complement": 0.23893805309734514,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 1.8139534883720931
+   }
+  },
+  {
+   "quality": 0.07174556213017752,
+   "description": {
+    "repr": "(Embarked=='S' and Sex=='female')",
+    "str": "Embarked=='S' AND Sex=='female'",
+    "selectors": [
+     {
+      "kind": "equality",
+      "attribute": "Embarked",
+      "value": {
+       "t": "str",
+       "v": "S"
+      },
+      "repr": "Embarked=='S'",
+      "str": "Embarked=='S'"
+     },
+     {
+      "kind": "equality",
+      "attribute": "Sex",
+      "value": {
+       "t": "str",
+       "v": "female"
+      },
+      "repr": "Sex=='female'",
+      "str": "Sex=='female'"
+     }
+    ]
+   },
+   "stats": {
+    "size_sg": 37,
+    "size_dataset": 156,
+    "positives_sg": 24,
+    "positives_dataset": 54,
+    "size_complement": 119,
+    "relative_size_sg": 0.23717948717948717,
+    "relative_size_complement": 0.7628205128205128,
+    "coverage_sg": 0.4444444444444444,
+    "coverage_complement": 0.5555555555555556,
+    "target_share_sg": 0.6486486486486487,
+    "target_share_complement": 0.25210084033613445,
+    "target_share_dataset": 0.34615384615384615,
+    "lift": 1.873873873873874
+   }
+  }
+ ]
+}
