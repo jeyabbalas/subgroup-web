@@ -100,7 +100,7 @@ async function beamRun(
     const extIds: number[] = [];
     const childTuples: Uint16Array[] = [];
     for (let s = 0; s < nSel; s++) {
-      if (prefix !== null && prefix.includes(s)) continue;
+      if (prefix?.includes(s)) continue;
       // Sorted-insert s into the prefix.
       let w = 0;
       for (let d = 0; d < prefixLen; d++) {

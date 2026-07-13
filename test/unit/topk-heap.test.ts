@@ -40,9 +40,15 @@ describe("TopK canonical order (spec §3.2)", () => {
     };
     const baseline = canonical(items.map((_, i) => i));
     fc.assert(
-      fc.property(fc.shuffledSubarray(items.map((_, i) => i), { minLength: items.length }), (order) => {
-        expect(canonical(order)).toBe(baseline);
-      }),
+      fc.property(
+        fc.shuffledSubarray(
+          items.map((_, i) => i),
+          { minLength: items.length },
+        ),
+        (order) => {
+          expect(canonical(order)).toBe(baseline);
+        },
+      ),
     );
   });
 

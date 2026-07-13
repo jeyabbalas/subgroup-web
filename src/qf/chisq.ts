@@ -16,7 +16,6 @@
  */
 
 import { ValidationError } from "../errors.js";
-import type { PreparedBinary } from "../targets/types.js";
 import { chi2TailProbability } from "../util/math.js";
 import type { BinaryQF } from "./types.js";
 

@@ -44,9 +44,7 @@ describe("chiSquared degenerate-target validation at task setup (spec §6.2)", (
   });
 
   it("the engine path rejects before any candidate is evaluated", async () => {
-    await expect(apriori(taskFor(degenerate))).rejects.toThrowError(
-      /both positives and negatives/,
-    );
+    await expect(apriori(taskFor(degenerate))).rejects.toThrowError(/both positives and negatives/);
   });
 
   it("evaluate() keeps the per-candidate backstop for direct callers", () => {

@@ -12,7 +12,6 @@
  */
 
 import { ValidationError } from "../errors.js";
-import type { PreparedBinary } from "../targets/types.js";
 import type { BinaryQF } from "./types.js";
 
 export function standard(a: number): BinaryQF {
@@ -31,7 +30,7 @@ export function standard(a: number): BinaryQF {
       const p0 = c.positives / c.n;
       return (size / c.n) ** a * (pSg - p0);
     },
-    optimisticEstimate(size, positives, c) {
+    optimisticEstimate(_size, positives, c) {
       // Reference passes (p, p) through the same formula; p = 0 gives
       // NaN there (n = 0 branch) — spec: the bound is 0 (only empty/negative
       // refinements remain). Both behaviors never admit a candidate wrongly;

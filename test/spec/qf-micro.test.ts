@@ -41,9 +41,6 @@ import {
   wracc,
 } from "../../src/index.js";
 
-const conj = (...sels: Parameters<typeof equality>[]) =>
-  new Conjunction(sels.map(([a, v]) => equality(a, v)));
-
 // ---------------------------------------------------------------------------
 // Table A — binary target, 10 rows, N=10, P=5, p0 = 0.5
 //   sex: M M M M F F F F M F

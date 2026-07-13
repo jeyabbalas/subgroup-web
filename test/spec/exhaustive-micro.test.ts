@@ -20,15 +20,7 @@
  *   group, then lex tuples: (0,3) < (1,2).
  */
 import { describe, expect, it } from "vitest";
-import {
-  binary,
-  type Conjunction,
-  equality,
-  exhaustive,
-  fromColumns,
-  minSupport,
-  wracc,
-} from "../../src/index.js";
+import { binary, equality, exhaustive, fromColumns, minSupport, wracc } from "../../src/index.js";
 
 const tableA = fromColumns({
   sex: ["M", "M", "M", "M", "F", "F", "F", "F", "M", "F"],

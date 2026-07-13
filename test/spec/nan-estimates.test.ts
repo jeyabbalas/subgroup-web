@@ -9,9 +9,9 @@
  */
 import { describe, expect, it } from "vitest";
 import {
+  type BinaryQF,
   bestFirst,
   binary,
-  type BinaryQF,
   fromColumns,
   generalizingBFS,
   nominalSelectors,

@@ -15,8 +15,7 @@
  */
 
 import { ValidationError } from "../errors.js";
-import type { NumericCoverStats, NumericStatsPlan } from "../targets/stats.js";
-import type { PreparedNumeric } from "../targets/types.js";
+import type { NumericStatsPlan } from "../targets/stats.js";
 import type { NumericQF } from "./types.js";
 
 export type NumericEstimator = "sum" | "average" | "max" | "order";
@@ -24,10 +23,6 @@ export type NumericEstimator = "sum" | "average" | "max" | "order";
 export interface StandardNumericOptions {
   invert?: boolean;
   estimator?: NumericEstimator;
-}
-
-function centroid0(c: PreparedNumeric, which: "mean" | "median"): number {
-  return which === "mean" ? c.mean : c.median;
 }
 
 export function standardNumeric(a: number, options: StandardNumericOptions = {}): NumericQF {
@@ -63,7 +58,7 @@ export function standardNumeric(a: number, options: StandardNumericOptions = {})
       const m = s.sum / s.size;
       return s.size ** a * (dir * (m - c.mean));
     },
-    optimisticEstimate(s, c) {
+    optimisticEstimate(s, _c) {
       if (s.size === 0) return 0;
       switch (estimator) {
         case "sum":

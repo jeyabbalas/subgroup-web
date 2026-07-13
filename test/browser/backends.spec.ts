@@ -13,8 +13,6 @@
  * Band statistics (screened/rescored admissions; empirical |GPU−f64| vs the
  * derived bounds) are printed for the M6 acceptance record.
  */
-import fs from "node:fs";
-import path from "node:path";
 import type { Page } from "@playwright/test";
 import { expect, test } from "@playwright/test";
 import {

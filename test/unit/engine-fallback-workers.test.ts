@@ -78,8 +78,6 @@ describe("auto's workers tier degrades to cpu (mocked pool)", () => {
   });
 
   it("explicit workers propagate the mocked failure", async () => {
-    await expect(apriori(task(), { workers: true })).rejects.toThrow(
-      /mock: worker spawn failed/,
-    );
+    await expect(apriori(task(), { workers: true })).rejects.toThrow(/mock: worker spawn failed/);
   });
 });

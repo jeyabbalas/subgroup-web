@@ -70,9 +70,9 @@ describe("abort mid-search (BRIEF §5.4)", () => {
     const controller = new AbortController();
     controller.abort();
     const { task } = abortingTask(Number.POSITIVE_INFINITY);
-    await expect(
-      apriori({ ...task, signal: controller.signal }, { batchSize: 1 }),
-    ).rejects.toThrow(AbortedError);
+    await expect(apriori({ ...task, signal: controller.signal }, { batchSize: 1 })).rejects.toThrow(
+      AbortedError,
+    );
   });
 
   it("a follow-up search succeeds after an abort (clean disposal)", async () => {

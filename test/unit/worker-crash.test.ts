@@ -36,12 +36,12 @@ describe("worker crash poisons the pool (BRIEF §11)", () => {
   it("in-flight call rejects with BackendError; later calls reject immediately", async () => {
     const pool = await crashPool();
     try {
-      await expect(
-        pool.evaluateTuples(Uint16Array.from([0, 1, 2]), 1, 3),
-      ).rejects.toThrow(BackendError);
-      await expect(
-        pool.evaluateTuples(Uint16Array.from([0, 1, 2]), 1, 3),
-      ).rejects.toThrow(/crash-worker: simulated kernel failure/);
+      await expect(pool.evaluateTuples(Uint16Array.from([0, 1, 2]), 1, 3)).rejects.toThrow(
+        BackendError,
+      );
+      await expect(pool.evaluateTuples(Uint16Array.from([0, 1, 2]), 1, 3)).rejects.toThrow(
+        /crash-worker: simulated kernel failure/,
+      );
       await expect(pool.evaluateExtensions(null, [0, 1])).rejects.toThrow(BackendError);
     } finally {
       pool.dispose();
@@ -50,9 +50,7 @@ describe("worker crash poisons the pool (BRIEF §11)", () => {
 
   it("dispose is idempotent on a dead pool and terminates its workers", async () => {
     const pool = await crashPool();
-    await expect(pool.evaluateTuples(Uint16Array.from([0, 1]), 1, 2)).rejects.toThrow(
-      BackendError,
-    );
+    await expect(pool.evaluateTuples(Uint16Array.from([0, 1]), 1, 2)).rejects.toThrow(BackendError);
     pool.dispose();
     pool.dispose(); // second call is a no-op
     // The pool stays dead after disposal too.

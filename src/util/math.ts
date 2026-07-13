@@ -158,6 +158,7 @@ export function portableLog(x: number): number {
   let e = ((hi >>> 20) & 0x7ff) - 1023;
   LOG_VIEW.setUint32(0, (hi & 0x800fffff) | (1023 << 20));
   let m = LOG_VIEW.getFloat64(0);
+  // biome-ignore lint/suspicious/noApproximativeNumericConstant: ES pins Math.SQRT2 only "approximately"; this literal's exact bit pattern feeds the hash-pinned synth-2M fixtures — do not substitute.
   if (m > 1.4142135623730951) {
     m *= 0.5;
     e += 1;
@@ -166,6 +167,7 @@ export function portableLog(x: number): number {
   const t2 = t * t;
   let s = 0;
   for (let k = 12; k >= 0; k--) s = s * t2 + 1 / (2 * k + 1);
+  // biome-ignore lint/suspicious/noApproximativeNumericConstant: ES pins Math.LN2 only "approximately"; this literal's exact bit pattern feeds the hash-pinned synth-2M fixtures — do not substitute.
   return e * 0.6931471805599453 + 2 * t * s;
 }
 
