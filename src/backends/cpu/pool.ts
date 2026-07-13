@@ -259,7 +259,15 @@ export class WorkerPoolEvaluator implements BatchEvaluator {
       while (handles.length < count && idle.length > 0) handles.push(idle.pop()!);
       workerCache.set(scriptKey, idle);
     }
-    while (handles.length < count) handles.push(await spawnWorker(script));
+    try {
+      while (handles.length < count) handles.push(await spawnWorker(script));
+    } catch (err) {
+      // Spawn failed mid-loop: terminate what was already acquired instead
+      // of leaking it — and never re-cache workers from a failing
+      // environment.
+      for (const h of handles) h.terminate();
+      throw err;
+    }
 
     let bits = atlas.bits;
     let wire = toWireTarget(prepared);
