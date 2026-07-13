@@ -4,8 +4,14 @@
  *
  * Grammar: comma-separated fields; LF or CRLF record breaks; fields may be
  * double-quoted, with `""` escaping a quote; quoted fields may contain
- * commas, quotes, and newlines. A bare `"` inside an unquoted field, or a
- * dangling quote at EOF, is a CsvError.
+ * commas, quotes, and newlines; text after a closing quote concatenates
+ * onto the field (`"x"y` → `xy`, matching pandas). A quote opening after
+ * field content (`x"y`), or a dangling quote at EOF, is a CsvError.
+ *
+ * Blank records — exactly one empty UNQUOTED field — are skipped, matching
+ * pandas skip_blank_lines=True (its default). A quoted `""` line is a real
+ * single-field record; whitespace-only lines are NOT blank (exact-match, no
+ * trimming — documented divergence, spec §1.3).
  *
  * NA tokens (unquoted or quoted, exact match after no trimming) default to
  * the pandas `read_csv` default set, because the canonical gate datasets are
@@ -92,6 +98,9 @@ export function parseCsvRecords(text: string, delimiter = ","): string[][] {
     fieldWasQuoted = false;
   };
   const endRecord = () => {
+    // Blank record (exactly one empty unquoted field): skip, like pandas
+    // skip_blank_lines. Quoted "" is a real record; "   " is not blank.
+    if (row.length === 0 && field === "" && !fieldWasQuoted) return;
     endField();
     rows.push(row);
     row = [];
@@ -148,8 +157,8 @@ export function parseCsvRecords(text: string, delimiter = ","): string[][] {
     i++;
   }
   if (inQuotes) throw new CsvError(`line ${line}: unterminated quoted field at end of input`);
-  // Final record unless the text ended with a newline (trailing empty line ignored).
-  if (field !== "" || fieldWasQuoted || row.length > 0) endRecord();
+  // Final record; a trailing newline leaves a blank record, which endRecord skips.
+  endRecord();
   return rows;
 }
 

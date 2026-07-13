@@ -52,19 +52,29 @@ observed values (BRIEF §5.1 pins this policy).
 
 Strict RFC-4180 subset: `,`-separated; LF/CRLF record breaks; `"`-quoted
 fields with `""` escapes; quoted fields may contain commas, quotes, newlines;
-ragged rows, stray quotes, bare CR are errors. No header-less mode. NA
-tokens: exact-match against the pandas `read_csv` default NA set (documented
-in `src/table/csv.ts`; overridable) — the canonical gate datasets are read by
-pandas on the reference side and by this parser here, and both sides must
-agree on missingness.
+ragged rows, stray quotes, bare CR are errors. Text after a closing quote
+concatenates onto the field (`"x"y` → `xy`; pandas C-parser parity); a quote
+opening after field content (`x"y`) is an error. Blank records — exactly one
+empty unquoted field — are skipped before rectangularity checks, matching
+pandas `skip_blank_lines=True` (its default; a file of only blank lines has
+no header). A quoted `""` line stays a real single-field record (one NA
+value), as in pandas. No header-less mode. NA tokens: exact-match against
+the pandas `read_csv` default NA set (documented in `src/table/csv.ts`;
+overridable) — the canonical gate datasets are read by pandas on the
+reference side and by this parser here, and both sides must agree on
+missingness.
 
 Type inference per column, in order: (1) all non-NA fields match
 `/^[+-]?\d+$/` → numeric, `integerLike` iff no NA (pandas int64→float64
 promotion); (2) all parse as finite decimal floats (incl. exponents) →
 numeric; (3) all in {True,TRUE,true,False,FALSE,false} → boolean; (4) else
-categorical. Per-column overrides may force a kind. Divergence from pandas
-(documented): pandas additionally trims padded whitespace in numeric fields;
-this parser is exact-match — the gate datasets contain no padded numerics.
+categorical. Per-column overrides may force a kind. Divergences from pandas
+(documented, same exact-match rationale): pandas additionally trims padded
+whitespace in numeric fields, and skips whitespace-only lines as blank; this
+parser is exact-match with no trimming — whitespace-only lines are
+single-field records (data in single-column files, ragged-row errors
+otherwise). The gate datasets contain no padded numerics, no blank lines and
+no whitespace-only lines.
 
 ## 2. Selectors and descriptions (M1)
 

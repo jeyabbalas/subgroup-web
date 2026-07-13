@@ -213,3 +213,19 @@ is deliberately dropped. Result = first k of the final beam ≡ first k of
 all offered candidates (beam holds the best w ≥ k offered, same order).
 Machine-checked against an independent executable mirror of §7.8 at widths
 {1, 20, adaptive} plus the w ≥ |C(S,d)| ≡ oracle degenerate gate.
+
+## 2026-07-13 — fromCSV skips blank records like pandas skip_blank_lines (post-M7)
+
+Spec §1.3 previously made blank interior lines ragged-row errors; pandas
+2.3.3 (the pinned reference reader) skips them everywhere — before the
+header, between rows, consecutively, and under CRLF (verified against
+reference/.venv). Since both harness sides must agree on what a CSV
+contains, the parser now skips records that are exactly one empty UNQUOTED
+field at endRecord time; a quoted `""` line stays a real single-field
+record (one NA value), also pandas behavior. Deliberate divergence kept:
+whitespace-only lines are NOT blank here (pandas skips those too) — this
+parser trims nothing, the same exact-match rationale as the padded-numeric
+divergence. Gate CSVs contain no blank or whitespace-only lines, so frozen
+fixtures are byte-unaffected. Alternative (keep erroring) rejected:
+pandas-written CSVs with trailing/interior blank lines are common in the
+wild and previously failed to load at all.
