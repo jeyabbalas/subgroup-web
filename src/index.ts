@@ -15,7 +15,7 @@
 /** Library version (mirrors package.json). */
 export const VERSION = "0.1.0";
 
-export { allocBatch, CpuEvaluator } from "./backends/cpu/evaluator.js";
+export { CpuEvaluator } from "./backends/cpu/evaluator.js";
 export type { WorkerPoolOptions } from "./backends/cpu/pool.js";
 export {
   sharedMemoryAvailable,
@@ -26,20 +26,10 @@ export type { GpuEvaluatorFactory, GpuFactoryRequest } from "./backends/registry
 export { getGpuEvaluatorFactory, registerGpuEvaluatorFactory } from "./backends/registry.js";
 // Backends
 export type { BatchEvaluator, StatsBatch } from "./backends/types.js";
-// Bitsets
+// Bitsets (the word-level kernel internals — Bitset, popcount32, wordsFor,
+// maskTail, gatherSum, andCount3 — are module exports but not public API)
 export { buildAtlas, SelectorAtlas } from "./bitset/atlas.js";
-export {
-  andCount,
-  andCount3,
-  andInto,
-  Bitset,
-  countRange,
-  forEachSetBit,
-  gatherSum,
-  maskTail,
-  popcount32,
-  wordsFor,
-} from "./bitset/bitset.js";
+export { andCount, andInto, countRange, forEachSetBit } from "./bitset/bitset.js";
 // Descriptions
 export { Conjunction, canonicalSelectors, Disjunction, DNF } from "./desc/conjunction.js";
 export {
@@ -161,7 +151,7 @@ export { patternTree } from "./search/patterntree.js";
 export type { BatchScorer } from "./search/scorer.js";
 export type { Constraint, PreparedTask, SearchProgress, SubgroupTask } from "./search/task.js";
 export { minSupport, prepareTask } from "./search/task.js";
-export { compareItems, TopK, type TopKItem } from "./search/topk.js";
+export { TopK, type TopKItem } from "./search/topk.js";
 export type { Synth2MOptions } from "./synth/big.js";
 export { datasetContentHash, headRows, synth2MBinary, synth2MNumeric } from "./synth/big.js";
 // Synthetic data
@@ -187,7 +177,6 @@ export { DataTable, fromColumns, fromRows } from "./table/table.js";
 export type { EmmCoverStats, EmmFit, EmmSufficientStats } from "./targets/emm.js";
 export {
   emmFit,
-  emmMerge,
   emmStatsFromBits,
   emmStatsFromMask,
   emmStatsTable,
@@ -239,16 +228,8 @@ export type {
 } from "./targets/types.js";
 export { targetAttributes } from "./targets/types.js";
 
-// Utilities
-export {
-  chi2TailProbability,
-  logGamma,
-  mean,
-  medianInPlace,
-  normPdf,
-  pairwiseSum,
-  populationStd,
-  upperIncompleteGammaRegularized,
-} from "./util/math.js";
+// Utilities (spec-documented numerics; the gamma/median internals are
+// module exports but not public API)
+export { chi2TailProbability, mean, normPdf, pairwiseSum, populationStd } from "./util/math.js";
 export { pyFloatRepr, pyFormatFixed } from "./util/pyfloat.js";
 export { Pcg32 } from "./util/rng.js";

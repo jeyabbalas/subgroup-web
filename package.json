@@ -8,7 +8,9 @@
   "engines": {
     "node": ">=20"
   },
-  "sideEffects": ["./dist/worker.js"],
+  "sideEffects": [
+    "./dist/worker.js"
+  ],
   "files": [
     "dist",
     "README.md",

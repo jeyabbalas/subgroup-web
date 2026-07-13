@@ -5,6 +5,7 @@
  * test, arithmetic shared so qualities are comparable bit-for-bit). Used by
  * the "beam matches its own spec at widths {1, 20}" M5 gate.
  */
+import { wordsFor } from "../../src/bitset/bitset.js";
 import {
   binaryStatsFromBits,
   Conjunction,
@@ -15,7 +16,6 @@ import {
   prepareTask,
   type SubgroupTask,
   sizeFromBits,
-  wordsFor,
 } from "../../src/index.js";
 
 interface MirrorEntry {

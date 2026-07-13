@@ -4,6 +4,8 @@
  */
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
+// Kernel internals under test import via deep paths; only andCount,
+// countRange, forEachSetBit remain on the public barrel.
 import {
   andCount,
   Bitset,
@@ -12,7 +14,7 @@ import {
   gatherSum,
   popcount32,
   wordsFor,
-} from "../../src/index.js";
+} from "../../src/bitset/bitset.js";
 
 const maskArb = fc
   .integer({ min: 1, max: 300 })
