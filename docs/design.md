@@ -47,6 +47,18 @@ Consequences:
   tuple batches and stitches `StatsBatch`es back in candidate order; the GPU
   evaluator returns one `StatsBatch` per dispatch group. Neither ranks.
 
+**Backend resolution** (src/search/engine.ts `resolveEvaluator`): explicit
+requests are binding — `backend: "webgpu"` throws when no factory is
+registered or the GPU fails (it falls back to CPU, with a note, only for
+the documented applicability declines), and an explicit `workers` option
+propagates pool spawn failures. `backend: "auto"` is a degradation ladder:
+WebGPU when a factory is registered, the task is heavy (rows × selectors ≥
+2²⁴) and applicable → CPU worker pool (heavy tasks; skipped under
+`workers: false`, the single-thread spelling) → single-thread CPU. Every
+'auto' tier failure is caught and its reason accumulated into
+`results.backend.note` (joined with "; ") — an 'auto' search never dies on
+a missing/broken accelerator, and the note says what degraded and why.
+
 ## 3. CPU backend
 
 The atlas (src/bitset/atlas.ts) is one selector-major `Uint32Array` — 32

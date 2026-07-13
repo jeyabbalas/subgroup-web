@@ -32,13 +32,21 @@ export interface SearchOptions {
   /**
    * Evaluation backend. 'cpu' (default) runs single-thread unless `workers`
    * is set; 'webgpu' requires `registerWebGpu()` from `subgroup-web/webgpu`
-   * (falls back to CPU with a note when the task is outside GPU
-   * applicability, docs/design.md §GPU); 'auto' picks WebGPU when registered
-   * and applicable on large tasks, else CPU with workers on large tasks.
-   * Results are bit-identical across all backends (BRIEF §6.2/§7).
+   * (throws when no factory is registered or the GPU fails; falls back to
+   * CPU with a note only when the task is outside GPU applicability,
+   * docs/design.md §2); 'auto' is a degradation ladder — WebGPU when
+   * registered and applicable on large tasks, else CPU workers on large
+   * tasks, else single-thread CPU — catching per-tier failures and
+   * recording the reasons in `results.backend.note`. Results are
+   * bit-identical across all backends (BRIEF §6.2/§7).
    */
   backend?: "auto" | "cpu" | "webgpu";
-  /** Worker-pool parallel CPU evaluation (BRIEF §11). */
+  /**
+   * Worker-pool parallel CPU evaluation (BRIEF §11). Explicit settings are
+   * binding: a truthy value requests the pool (spawn failures throw);
+   * `false` is the single-thread spelling and opts out of 'auto''s workers
+   * tier.
+   */
   workers?: boolean | number | WorkerPoolOptions;
   /** Injected GPUDevice (browser-managed or Node Dawn; BRIEF §13). */
   device?: GPUDevice;
@@ -56,14 +64,27 @@ export interface BackendInfo {
   band: { screened: number; rescored: number } | null;
 }
 
+function errorMessage(err: unknown): string {
+  return err instanceof Error ? err.message : String(err);
+}
+
+/**
+ * Explicit requests are binding: `backend: "webgpu"` and a truthy `workers`
+ * option propagate their failures. `backend: "auto"` is a degradation
+ * ladder — webgpu (registered + heavy + applicable) → workers (heavy,
+ * unless `workers: false`) → single-thread CPU — where every tier failure
+ * is caught and its reason accumulated into the result's backend note.
+ */
 async function resolveEvaluator(
   task: PreparedTask,
   options: SearchOptions,
 ): Promise<{ evaluator: BatchEvaluator; note: string | null }> {
   const requested = options.backend ?? "cpu";
   const heavy = task.table.nRows * task.selectors.length >= AUTO_HEAVY_CELLS;
+  const notes: string[] = [];
+  const note = (): string | null => (notes.length > 0 ? notes.join("; ") : null);
 
-  if (requested === "webgpu" || requested === "auto") {
+  if (requested === "webgpu" || (requested === "auto" && heavy)) {
     const factory = getGpuEvaluatorFactory();
     if (factory === null) {
       if (requested === "webgpu") {
@@ -72,39 +93,47 @@ async function resolveEvaluator(
             "import { registerWebGpu } from 'subgroup-web/webgpu' and call it first",
         );
       }
-    } else if (requested === "webgpu" || heavy) {
+      // 'auto' with nothing registered: silently use the CPU tiers.
+    } else {
       const req: Parameters<typeof factory>[0] = { task };
       if (options.device !== undefined) req.device = options.device;
-      const gpu = await factory(req);
-      if (gpu !== null) return { evaluator: gpu, note: null };
-      if (requested === "webgpu") {
-        return {
-          evaluator: await cpuEvaluator(task, options),
-          note: "webgpu requested but task outside GPU applicability — CPU fallback (design.md)",
-        };
+      try {
+        const gpu = await factory(req);
+        if (gpu !== null) return { evaluator: gpu, note: null };
+        // The factory declined: task outside GPU applicability. Silent
+        // under 'auto' (expected routing); noted for explicit 'webgpu'.
+        if (requested === "webgpu") {
+          notes.push(
+            "webgpu requested but task outside GPU applicability — CPU fallback (design.md)",
+          );
+        }
+      } catch (err) {
+        if (requested === "webgpu") throw err;
+        notes.push(`auto: webgpu unavailable (${errorMessage(err)})`);
       }
     }
   }
 
-  const wantWorkers =
-    options.workers !== undefined && options.workers !== false
-      ? true
-      : requested === "auto" && heavy;
-  if (wantWorkers) {
-    return { evaluator: await workerEvaluator(task, options), note: null };
+  const explicitWorkers = options.workers !== undefined && options.workers !== false;
+  if (explicitWorkers) {
+    return { evaluator: await workerEvaluator(task, options), note: note() };
   }
-  return { evaluator: await cpuEvaluator(task, options), note: null };
-}
+  if (requested === "auto" && heavy && options.workers !== false) {
+    try {
+      return { evaluator: await workerEvaluator(task, options), note: note() };
+    } catch (err) {
+      notes.push(`auto: workers unavailable (${errorMessage(err)})`);
+    }
+  }
 
-async function cpuEvaluator(task: PreparedTask, options: SearchOptions): Promise<BatchEvaluator> {
-  if (options.workers !== undefined && options.workers !== false) {
-    return workerEvaluator(task, options);
-  }
-  return new CpuEvaluator(
-    task.atlas,
-    task.prepared,
-    task.qf.kind === "numeric" ? task.qf.plan : null,
-  );
+  return {
+    evaluator: new CpuEvaluator(
+      task.atlas,
+      task.prepared,
+      task.qf.kind === "numeric" ? task.qf.plan : null,
+    ),
+    note: note(),
+  };
 }
 
 async function workerEvaluator(
