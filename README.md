@@ -122,9 +122,9 @@ machine):
 
 | task | subgroup-web | reference | speedup |
 |---|---|---|---|
-| adult (48842×15), apriori, standard(0.5), depth 3, k=100 | **0.018 s** (workers) | 0.316 s | **17.7×** |
-| synthetic 2M×256 selectors, binary, apriori depth 2 | 0.608 s CPU pool / **0.097 s** WebGPU | — | GPU 6.2× over CPU pool |
-| synthetic 2M numeric, standardNumeric(1, sum), beam(50), depth 3 | 1.686 s CPU pool / **0.952 s** WebGPU | — | — |
+| adult (48842×15), apriori, standard(0.5), depth 3, k=100 | **0.017 s** (workers) | 0.316 s | **18.8×** |
+| synthetic 2M×256 selectors, binary, apriori depth 2 | 0.609 s CPU pool / **0.095 s** WebGPU | — | GPU 6.4× over CPU pool |
+| synthetic 2M numeric, standardNumeric(1, sum), beam(50), depth 3 | 1.722 s CPU pool / **0.936 s** WebGPU | — | — |
 
 Memory stays O(atlas + batch): the 2M-row search above allocates 64 MB of
 selector bitsets (98.8 % of search allocations) and never materializes
