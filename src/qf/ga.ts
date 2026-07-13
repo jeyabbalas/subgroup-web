@@ -53,7 +53,9 @@ export function generalizationAware(inner: QF): DescriptionQF {
     const hit = cache.get(key);
     if (hit !== undefined) return hit;
     const q = ctx.evaluate(inner, desc);
-    // Reference: max_q seeded at 0 (measures.py:232).
+    // Reference: max_q genuinely seeded at 0 and folded with 3-arg max
+    // (measures.py:231-241) — folding from 0 IS the CPython semantics here,
+    // unlike the difference aggregate below which seeds from the first pair.
     let prevMax = 0;
     if (desc.selectors.length > 0) {
       for (const gen of immediateGeneralizations(desc)) {
@@ -119,10 +121,16 @@ export function gaStandard(a: number, strategy: GaStandardStrategy = "difference
     } else {
       const pairs = immediateGeneralizations(desc).map((g) => entryFor(g, ctx));
       const sgNegatives = stats.size - stats.positives;
-      let minImmediateNegatives = Number.POSITIVE_INFINITY;
-      let minImmediateDelta = Number.POSITIVE_INFINITY;
-      let maxP = Number.NEGATIVE_INFINITY;
-      for (const pair of pairs) {
+      // CPython max()/min() over the pairs generator seed from the FIRST
+      // element (binary_target.py difference_based_agg_function): a NaN
+      // maxP from pairs[0] (empty-cover generalization) is sticky, which a
+      // −Infinity-seeded fold would eat. pairs is non-empty here.
+      const first = pairs[0]!;
+      let minImmediateNegatives = first.n - first.p;
+      let minImmediateDelta = first.agg.minDeltaNegatives;
+      let maxP = pyMax2(pp(first.n, first.p), first.agg.maxP);
+      for (let i = 1; i < pairs.length; i++) {
+        const pair = pairs[i]!;
         minImmediateNegatives = Math.min(minImmediateNegatives, pair.n - pair.p);
         minImmediateDelta = Math.min(minImmediateDelta, pair.agg.minDeltaNegatives);
         // CPython max over max(pp(stats), agg.maxP) per pair

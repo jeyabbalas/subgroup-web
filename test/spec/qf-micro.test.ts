@@ -432,6 +432,20 @@ describe("generalizationAware / gaStandard on Table A (spec §6.8)", () => {
     // -> picked stats have share 0.6; q = 0.2 * (1 - 0.6) = 0.08
     expect(ctxA.evaluate(gaStandard(1, "max"), FandA)).toBeCloseTo(0.08, 15);
   });
+  it("gaStandard difference aggregate: CPython max is first-element sticky (spec §6.8)", () => {
+    // cls=='zzz' (empty cover) sorts canonically first, so the FIRST
+    // immediate generalization of (cls=='zzz' AND sex=='F') — drop-last —
+    // is the empty-cover {cls=='zzz'} whose NaN positives-share seeds the
+    // aggregate max. CPython max() seeds from the first element, so the
+    // NaN sticks (reference agg tuple verified: max_p=nan,
+    // min_delta_negatives=0). Quality is NaN (empty cover); the difference
+    // estimate hits tau_diff = 0/0 — the reference raises
+    // ZeroDivisionError there; ours stays NaN (the documented
+    // agrees-where-the-reference-terminates relaxation).
+    const dead = new Conjunction([equality("cls", "zzz"), equality("sex", "F")]);
+    expect(ctxA.evaluate(gaStandard(1), dead)).toBeNaN();
+    expect(ctxA.optimisticEstimate(gaStandard(1), dead)).toBeNaN();
+  });
 });
 
 describe("gaStandardNumeric on Table C (spec §6.8)", () => {
