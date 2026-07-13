@@ -72,7 +72,7 @@ const results = await apriori(task, { workers: true });
 | target | quality functions |
 |---|---|
 | `binary({attribute, value})` | `standard(a)` (`wracc` = a·1, `simpleBinomial` = a·0.5, `lift` = a·0), `chiSquared({stat, direction})`, `generalizationAware(qf)`, `gaStandard(a)` |
-| `numeric(attribute)` | `standardNumeric(a, {estimator: "sum"\|"average"\|"max"\|"order", invert})`, `standardNumericMedian(a)`, `gaStandardNumeric(a)` |
+| `numeric(attribute)` | `standardNumeric(a, {estimator: "sum"\|"average"\|"max"\|"order", invert})`, `standardNumericMedian(a)`, `standardNumericTscore()`, `gaStandardNumeric(a)` |
 | `frequentItemset()` | `count()`, `area(maxDepth?)` |
 | `emm(polyRegression(x, y, degree))` | `emmLikelihood()` |
 | any | `combined([{qf, weight}, …])` |
@@ -172,8 +172,10 @@ import version; print(version('pysubgroup'))"` prints `0.9.0`.
 
 Instance weights (excluded from parity scope, spec §2), a WASM SIMD
 evaluator between CPU and WebGPU, Roaring-style compressed bitmaps for sparse
-selectors, and tighter numeric optimistic estimates (KDD-style bounds) with
-measured node reduction.
+selectors, tighter numeric optimistic estimates (KDD-style bounds) with
+measured node reduction, and adopting the tight generalization bound
+((n+P−p)/N)^a·(P/(n+P−p)−P/N) for generalizingBFS (spec §6.1 currently ships
+a looser admissible closed form).
 
 ## License
 

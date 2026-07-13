@@ -366,10 +366,13 @@ noting the quality is ≤ 0 otherwise while oe ≥ 0). Empty subgroup: oe = 0
 when p = 0 — still admissible (all refinements are empty → NaN, never enter
 results).
 
-Generalization estimate (used by generalizingBFS, reference
-`optimistic_generalisation`, binary_target.py:567-588):
+Generalization estimate (used by generalizingBFS):
 og = ((n + (P − p))/N)^a · (1 − P/N) — grow the subgroup by all remaining
-positives.
+positives, share bounded by 1. This is a deliberately LOOSER admissible
+closed form than the reference's (uncalled) `optimistic_generalisation`
+(binary_target.py:567-588), which computes the tight
+((n + P − p)/N)^a · (P/(n + P − p) − P/N) for the same grown cover;
+adopting the tight bound is a roadmap item (README).
 
 ### 6.2 chiSquared({direction, minInstances = 5, stat})
 
@@ -719,7 +722,8 @@ with the SUBSET-cover estimate scaled by 1/1.1^(depth+1) — inadmissible
 over cover-growing refinements — and is replaced (class (b), deliberate):
 subgroup-web's generalizingBFS is the §7.7 best-first walk with OR-covers,
 pruned by `generalizationEstimate` — for standard(a):
-og = ((n + P − p)/N)^a·(1 − P/N) (binary_target.py:567-588).
+og = ((n + P − p)/N)^a·(1 − P/N) (the §6.1 looser-than-reference closed
+form).
 
 Admissibility of og over cover-growing refinements (a ∈ [0, 1]): for
 R ⊇ sg, q(R) = (n_R/N)^a·(p_R/n_R − p0). Adding a positive raises both
@@ -760,10 +764,36 @@ intent. Serialization: versioned JSON with structured selectors and
 $f-tagged non-finite floats; deserialization rebuilds results, recomputing
 covers by row-scan when the table is supplied.
 
-## 8. Backends and precision (M6) ☐
+## 8. Backends and precision (M6)
 
-- CPU f64 statistics policy; pairwise summation; GPU f32 screening bands and
-  CPU re-scoring (BRIEF §12/§22-A7).
+Normative rules; the architecture behind them is docs/design.md §§2-5.
+
+- **Backends return statistics only.** A backend (`BatchEvaluator`) may
+  count, sum, and gather — it never computes a quality, an estimate, or a
+  ranking decision. Sizes and positives are integers everywhere (exact on
+  every backend by construction).
+- **Scoring is central and f64.** Statistics become qualities in one code
+  path (src/search/scorer.ts) through the task's QF in IEEE-754 f64, so a
+  given candidate's quality is bit-identical regardless of which backend
+  produced its statistics. Cross-backend result identity — equal
+  (canonicalKey, quality-bits) sequences, not approximate agreement — is
+  gated (§6.2; m6-backend-identity).
+- **CPU numeric aggregates** accumulate in f64; where the spec pins a
+  reference-shaped reduction the shared kernels ARE the decision arithmetic
+  (BRIEF §7); dataset-level constants use pairwise summation (§6.10, §7.2).
+- **GPU f32 sums are screening values, never decisions.** Numeric GPU
+  batches carry conservative per-candidate error bounds; the band is
+  consumed centrally: pruning compares against an UPPER bound (conservative,
+  hence exact) and any candidate whose upper bound could enter the top-k is
+  re-scored on CPU f64 through the identical kernel + QF path before any
+  retained decision (design.md §4, BRIEF §12). GPU applicability is static
+  per task (binary/FI always; numeric sum-family plans; EMM never).
+- **Backend selection degrades, never dies.** `backend: "auto"` is the
+  ladder webgpu (registered + heavy + applicable) → workers (heavy, unless
+  `workers: false`) → single-thread CPU; every tier failure is caught and
+  its reason recorded in `results.backend.note`. Explicit `backend:
+  "webgpu"` / truthy `workers` are binding and throw (§7.4 options;
+  design.md §2).
 
 ## References
 

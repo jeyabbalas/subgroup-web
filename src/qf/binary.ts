@@ -7,8 +7,11 @@
  *
  * Optimistic estimate (tight): (p/N)^a · (1 − P/N) — keep only the positives
  * (binary_target.py:545-565); admissible for a ∈ [0, 1] (spec §6.1 proof).
- * Generalization estimate: ((n + P − p)/N)^a · (1 − P/N)
- * (binary_target.py:567-588).
+ * Generalization estimate: ((n + P − p)/N)^a · (1 − P/N) — a deliberately
+ * LOOSER admissible closed form than the reference's (uncalled)
+ * optimistic_generalisation (binary_target.py:567-588), which computes the
+ * tight ((n + P − p)/N)^a · (P/(n + P − p) − P/N); adopting the tight bound
+ * is a roadmap item (README).
  */
 
 import { ValidationError } from "../errors.js";

@@ -41,7 +41,11 @@ export interface BinaryQF {
   validateTarget?(c: PreparedBinary): void;
   evaluate(size: number, positives: number, c: PreparedBinary): number;
   optimisticEstimate?(size: number, positives: number, c: PreparedBinary): number;
-  /** Reference `optimistic_generalisation` (generalizingBFS; spec §6.1). */
+  /**
+   * Admissible bound over cover-growing refinements (generalizingBFS;
+   * spec §6.1 — cf. the reference's uncalled `optimistic_generalisation`,
+   * whose tight form is a roadmap item).
+   */
   generalizationEstimate?(size: number, positives: number, c: PreparedBinary): number;
 }
 

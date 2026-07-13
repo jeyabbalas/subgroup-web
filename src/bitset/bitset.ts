@@ -122,8 +122,9 @@ export function orCount(
 
 /**
  * Fused binary-target counts in ONE pass, no cover materialization
- * (BRIEF §11 hot path): m = a op b per word; counts[0] += popcount(m),
- * counts[1] += popcount(m ∧ pos). Pass a = null for the single-row case
+ * (BRIEF §11 hot path): m = a op b per word; ASSIGNS counts[0] =
+ * popcount(m), counts[1] = popcount(m ∧ pos) — prior contents are
+ * overwritten, not accumulated. Pass a = null for the single-row case
  * (m = b). Counts are integers — identical to the materialize-then-count
  * path by associativity of popcount over words.
  */
@@ -188,7 +189,9 @@ export function fusedBinaryCounts(
 }
 
 /**
- * Iterate set bits of words[off, off+len), calling fn(rowIndex).
+ * Iterate set bits of words[off, off+len), calling fn(position) with bit
+ * positions RELATIVE to `off` (position 0 = bit 0 of words[off]; callers
+ * passing a mid-array offset get window-local indices, not absolute rows).
  * ctz(x) = 31 - clz32(x & -x) on the isolated lowest set bit.
  */
 export function forEachSetBit(
@@ -208,7 +211,11 @@ export function forEachSetBit(
   }
 }
 
-/** Gather-sum of values at set-bit rows (f64 accumulator; used by numeric targets). */
+/**
+ * Gather-sum of values at set-bit positions (f64 accumulator; numeric
+ * targets). Like forEachSetBit, positions are RELATIVE to `off`: `values`
+ * must be aligned with the window starting at words[off].
+ */
 export function gatherSum(
   words: Uint32Array,
   off: number,
