@@ -629,7 +629,9 @@ pruningSafe estimate — the popped node is §3.4-prunable, which prunes the
 ENTIRE remaining frontier (its estimates are ≤ the popped one and the §3.4
 predicate is monotone decreasing in the estimate). Without a pruningSafe
 estimate all estimates are treated as +∞ and the frontier degrades to a
-deterministic full traversal.
+deterministic full traversal. A NaN estimate carries no information and is
+treated as +∞ at push time — NaN must never enter the frontier (it would
+break the comparator's total order and could falsely fire the early stop).
 
 ### 7.8 beamSearch (M5; heuristic, fully specified — BRIEF §22-A13)
 
@@ -727,7 +729,8 @@ by a positives-only cover; the same derivative argument). Every achieved
 θ_now is ≤ that maximum, so the §3.4 predicate `og < θ_now` is never true:
 the bound is admissible but cannot prune mid-search. It still terminates
 the frontier instantly when the task's minQuality exceeds the global
-maximum, and exactness never depends on it. (The reference's
+maximum, and exactness never depends on it. NaN estimates are treated as
++∞ at push time (§7.7). (The reference's
 `optimistic_generalisation` has no caller in 0.9.0; its GeneralisingBFS
 prunes with the subset-cover estimate over a 1.1^depth fudge instead —
 inadmissible, replaced here.)

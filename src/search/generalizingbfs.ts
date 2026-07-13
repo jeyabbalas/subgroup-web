@@ -141,6 +141,10 @@ async function gbfsRun(
           let childOe = Number.POSITIVE_INFINITY;
           if (canPrune && qf.kind === "binary" && prep.kind === "binary") {
             childOe = qf.generalizationEstimate!(batch.size[i]!, batch.positives![i]!, prep);
+            // NaN estimates carry no information → +∞ (spec §7.11 via
+            // §7.7): NaN would break compareNodes' total order and could
+            // falsely fire the frontier early stop.
+            if (Number.isNaN(childOe)) childOe = Number.POSITIVE_INFINITY;
           }
           if (!(canPrune && run.topk.shouldPrune(childOe))) {
             frontier.push({ oe: childOe, tuple: Uint16Array.from(tuple) });

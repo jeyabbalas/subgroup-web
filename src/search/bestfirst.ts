@@ -105,7 +105,11 @@ async function bestFirstRun(task: PreparedTask, run: SearchRun): Promise<Subgrou
         }
         if (expandable && id < nSel - 1) {
           const monoOk = run.constraintPrune ? run.monotoneOk(batch.size[i]!) : true;
-          const childOe = oe ? oe[i]! : Number.POSITIVE_INFINITY;
+          // NaN estimates carry no information → +∞ (spec §7.7). NaN must
+          // never enter the frontier: it breaks compareNodes' total order
+          // and could falsely fire the early stop below.
+          let childOe = oe ? oe[i]! : Number.POSITIVE_INFINITY;
+          if (Number.isNaN(childOe)) childOe = Number.POSITIVE_INFINITY;
           if (monoOk && !(run.canPrune && run.topk.shouldPrune(childOe))) {
             frontier.push({ oe: childOe, tuple: Uint16Array.from(tuple) });
           } else {
