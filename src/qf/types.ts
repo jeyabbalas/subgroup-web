@@ -32,6 +32,13 @@ export interface BinaryQF {
    * refinements (the disjunction space of generalizingBFS; spec §7.11 proof).
    */
   readonly generalizationPruningSafe?: boolean;
+  /**
+   * Reject targets this QF cannot score (throw a ValidationError) — called
+   * once by prepareTask right after target preparation, so degenerate tasks
+   * fail at setup instead of mid-search (spec §6.2: chiSquared needs
+   * 0 < P < N).
+   */
+  validateTarget?(c: PreparedBinary): void;
   evaluate(size: number, positives: number, c: PreparedBinary): number;
   optimisticEstimate?(size: number, positives: number, c: PreparedBinary): number;
   /** Reference `optimistic_generalisation` (generalizingBFS; spec §6.1). */
@@ -49,6 +56,8 @@ export interface NumericQF {
    * DFSNumeric raises unless the QF is a StandardQFNumeric).
    */
   readonly standard?: { a: number; dir: 1 | -1 };
+  /** Task-setup target validation (see BinaryQF.validateTarget). */
+  validateTarget?(c: PreparedNumeric): void;
   evaluate(s: NumericCoverStats, c: PreparedNumeric): number;
   optimisticEstimate?(s: NumericCoverStats, c: PreparedNumeric): number;
 }
@@ -57,6 +66,8 @@ export interface FiQF {
   readonly kind: "fi";
   readonly name: string;
   readonly pruningSafe: boolean;
+  /** Task-setup target validation (see BinaryQF.validateTarget). */
+  validateTarget?(c: PreparedFI): void;
   evaluate(s: FiCoverStats, c: PreparedFI): number;
   optimisticEstimate?(s: FiCoverStats, c: PreparedFI): number;
 }
@@ -65,6 +76,8 @@ export interface EmmQF {
   readonly kind: "emm";
   readonly name: string;
   readonly pruningSafe: boolean;
+  /** Task-setup target validation (see BinaryQF.validateTarget). */
+  validateTarget?(c: PreparedEMM): void;
   evaluate(s: EmmCoverStats, c: PreparedEMM): number;
 }
 

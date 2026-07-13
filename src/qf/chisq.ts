@@ -26,6 +26,16 @@ export interface ChiSquaredOptions {
   stat?: "chi2" | "pValue";
 }
 
+/** 0 < P < N or the 2×2 table is degenerate (spec §6.2 task-setup rule). */
+function assertNonDegenerate(P: number, N: number): void {
+  if (P <= 0 || P >= N) {
+    throw new ValidationError(
+      "chiSquared: the dataset must contain both positives and negatives " +
+        `(P = ${P}, N = ${N}); the 2×2 table is degenerate otherwise`,
+    );
+  }
+}
+
 export function chiSquared(options: ChiSquaredOptions = {}): BinaryQF {
   const direction = options.direction ?? "both";
   const minInstances = options.minInstances ?? 5;
@@ -40,15 +50,15 @@ export function chiSquared(options: ChiSquaredOptions = {}): BinaryQF {
     kind: "binary",
     name: `chiSquared(${direction},${minInstances},${stat})`,
     pruningSafe: false, // no optimistic estimate (reference TODO agrees)
+    validateTarget(c) {
+      assertNonDegenerate(c.positives, c.n);
+    },
     evaluate(size, positives, c) {
       const N = c.n;
       const P = c.positives;
-      if (P <= 0 || P >= N) {
-        throw new ValidationError(
-          "chiSquared: the dataset must contain both positives and negatives " +
-            `(P = ${P}, N = ${N}); the 2×2 table is degenerate otherwise`,
-        );
-      }
+      // Backstop for direct evaluate() callers; prepareTask rejects
+      // degenerate targets before any search starts.
+      assertNonDegenerate(P, N);
       if (size < minInstances || N - size < minInstances) return Number.NEGATIVE_INFINITY;
       if (size === 0 || size === N) return Number.NEGATIVE_INFINITY;
 

@@ -161,6 +161,12 @@ export function prepareTask(task: SubgroupTask): PreparedTask {
   }
 
   const prepared = prepareTarget(table, task.target);
+  // Stats-QF task-setup validation (spec §6.2: e.g. chiSquared requires
+  // 0 < P < N). The kind guard makes the cast sound; a QF/target kind
+  // mismatch itself is rejected later by the scorer.
+  if (task.qf.kind !== "description" && task.qf.kind === prepared.kind) {
+    (task.qf.validateTarget as ((p: PreparedTarget) => void) | undefined)?.(prepared);
+  }
   const constraints = task.constraints ?? [];
   let minSupportRows = 0;
   for (const c of constraints) {
