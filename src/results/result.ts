@@ -7,6 +7,7 @@
 
 import { Bitset, orInto, wordsFor } from "../bitset/bitset.js";
 import { Conjunction, Disjunction } from "../desc/conjunction.js";
+import type { Selector } from "../desc/selector.js";
 import { CoverEvalContext } from "../qf/context.js";
 import type { PreparedTask } from "../search/task.js";
 import type { TopKItem } from "../search/topk.js";
@@ -25,6 +26,19 @@ import {
 export type Description = Conjunction | Disjunction;
 
 export type DescriptionForm = "conjunction" | "disjunction";
+
+/**
+ * Materialize an index tuple over the task's canonical selector list as its
+ * Description (shared by result building and progress reporting).
+ */
+export function tupleDescription(
+  selectors: readonly Selector[],
+  tuple: ArrayLike<number>,
+  form: DescriptionForm,
+): Description {
+  const sels = Array.from(tuple as ArrayLike<number>, (i) => selectors[i]!);
+  return form === "disjunction" ? new Disjunction(sels) : new Conjunction(sels);
+}
 
 export interface ResultEntry {
   readonly description: Description;
@@ -108,9 +122,7 @@ export function buildResults(
   const w = wordsFor(task.table.nRows);
   const descCtx = new CoverEvalContext(task.table, prepared);
   const entries: ResultEntry[] = items.map((item) => {
-    const selectors = Array.from(item.tuple, (i) => task.selectors[i]!);
-    const description: Description =
-      form === "disjunction" ? new Disjunction(selectors) : new Conjunction(selectors);
+    const description: Description = tupleDescription(task.selectors, item.tuple, form);
     let coverWords: Uint32Array | null = null;
     const ensureCover = (): Uint32Array => {
       if (coverWords === null) {

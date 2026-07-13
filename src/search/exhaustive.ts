@@ -21,7 +21,7 @@ import { Conjunction, Disjunction } from "../desc/conjunction.js";
 import { conjunctionCover, disjunctionCover } from "../desc/cover.js";
 import { AbortedError, ValidationError } from "../errors.js";
 import { CoverEvalContext } from "../qf/context.js";
-import { buildResults, type SubgroupResults } from "../results/result.js";
+import { buildResults, type SubgroupResults, tupleDescription } from "../results/result.js";
 import { emmStatsFromBits, emmStatsFromMask } from "../targets/emm.js";
 import {
   binaryStatsFromBits,
@@ -218,12 +218,16 @@ export async function exhaustive(
 
   const maybeReport = (layerDepth: number): void => {
     if (task.onProgress) {
+      const best = topk.toArray()[0];
       task.onProgress({
         layer: layerDepth,
         candidatesEvaluated: evaluated,
         candidatesPruned: 0,
         bestQuality: topk.bestQuality(),
-        bestDescription: null,
+        bestDescription:
+          best === undefined
+            ? null
+            : tupleDescription(task.selectors, best.tuple, form).toString("display"),
       });
     }
   };

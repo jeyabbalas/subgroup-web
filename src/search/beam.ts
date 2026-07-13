@@ -80,6 +80,8 @@ async function beamRun(
 ): Promise<SubgroupResults> {
   const nSel = task.selectors.length;
   const beam = new TopK(width, task.minQuality);
+  // Progress reads best-so-far from the beam — run.topk stays empty here.
+  run.progressTopk = beam;
   const offered = new Set<string>();
   const expanded = new Set<string>();
   const coverScratch = new Uint32Array(task.atlas.wordsPerRow);

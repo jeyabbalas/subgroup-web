@@ -14,7 +14,7 @@ import type { BatchEvaluator } from "../backends/types.js";
 import { orInto } from "../bitset/bitset.js";
 import { AbortedError, BackendError } from "../errors.js";
 import { CoverEvalContext } from "../qf/context.js";
-import { buildResults, type SubgroupResults } from "../results/result.js";
+import { buildResults, type SubgroupResults, tupleDescription } from "../results/result.js";
 import { type BatchScorer, makeScorer } from "./scorer.js";
 import type { PreparedTask } from "./task.js";
 import { TopK, type TopKItem } from "./topk.js";
@@ -157,6 +157,11 @@ export class SearchRun {
   readonly scorer: BatchScorer;
   readonly ctx: CoverEvalContext;
   readonly topk: TopK;
+  /**
+   * The pool progress reports read best-so-far from. Defaults to `topk`;
+   * beamSearch points it at its width-w beam (which run.topk never sees).
+   */
+  progressTopk: TopK;
   readonly batchSize: number;
   /** Estimate-based pruning active (option + admissible estimate present). */
   readonly canPrune: boolean;
@@ -191,6 +196,7 @@ export class SearchRun {
     this.descriptionOp = descriptionOp;
     this.scorer = makeScorer(task, this.ctx);
     this.topk = new TopK(task.k, task.minQuality);
+    this.progressTopk = this.topk;
     this.batchSize = options.batchSize ?? evaluator.preferredBatchSize ?? 4096;
     const pruningOn = options.pruning !== false;
     this.canPrune =
@@ -320,12 +326,20 @@ export class SearchRun {
 
   report(layer: number): void {
     if (this.task.onProgress) {
+      const best = this.progressTopk.toArray()[0];
       this.task.onProgress({
         layer,
         candidatesEvaluated: this.evaluated,
         candidatesPruned: this.pruned,
-        bestQuality: this.topk.bestQuality(),
-        bestDescription: null,
+        bestQuality: this.progressTopk.bestQuality(),
+        bestDescription:
+          best === undefined
+            ? null
+            : tupleDescription(
+                this.task.selectors,
+                best.tuple,
+                this.descriptionOp === "or" ? "disjunction" : "conjunction",
+              ).toString("display"),
       });
     }
   }
