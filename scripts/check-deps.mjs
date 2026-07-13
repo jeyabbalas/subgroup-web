@@ -22,11 +22,16 @@ if (pkg.optionalDependencies && Object.keys(pkg.optionalDependencies).length > 0
 }
 if (pkg.type !== "module")
   problems.push(`"type" must be "module", got ${JSON.stringify(pkg.type)}`);
-if (pkg.sideEffects !== false) problems.push(`"sideEffects" must be false`);
+// index/webgpu stay tree-shakeable; dist/worker.js works BY side effect
+// (installs onmessage at module scope) and must be allowlisted or consumer
+// bundlers emit an empty worker chunk (BRIEF §16.1 as amended, DECISIONS).
+if (JSON.stringify(pkg.sideEffects) !== JSON.stringify(["./dist/worker.js"])) {
+  problems.push(`"sideEffects" must be exactly ["./dist/worker.js"]`);
+}
 if (!pkg.engines || !/>=\s*20/.test(pkg.engines.node ?? "")) {
   problems.push(`"engines.node" must require >= 20`);
 }
-for (const entry of [".", "./webgpu"]) {
+for (const entry of [".", "./webgpu", "./worker"]) {
   if (!pkg.exports?.[entry]) problems.push(`missing exports entry "${entry}"`);
 }
 
@@ -36,5 +41,6 @@ if (problems.length > 0) {
   process.exit(1);
 }
 console.log(
-  "check:deps OK — zero runtime dependencies; ESM-only; engines/node >=20; exports intact",
+  "check:deps OK — zero runtime dependencies; ESM-only; engines/node >=20; exports intact; " +
+    "sideEffects allowlists dist/worker.js only",
 );

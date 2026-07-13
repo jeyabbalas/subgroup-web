@@ -229,3 +229,18 @@ divergence. Gate CSVs contain no blank or whitespace-only lines, so frozen
 fixtures are byte-unaffected. Alternative (keep erroring) rejected:
 pandas-written CSVs with trailing/interior blank lines are common in the
 wild and previously failed to load at all.
+
+## 2026-07-13 — sideEffects allowlists dist/worker.js (BRIEF §16.1 amendment, post-M7)
+
+BRIEF §16.1 pinned `sideEffects: false` before the `./worker` export
+existed. dist/worker.js works BY side effect — it installs onmessage at
+module scope — so under a blanket `false`, consumer bundlers tree-shake
+`import "subgroup-web/worker"` to an empty chunk and browser pools spawn
+dead workers; only the demo's custom Vite plugin hid this. package.json
+now ships `"sideEffects": ["./dist/worker.js"]` (index/webgpu stay fully
+tree-shakeable), check:deps pins the exact array plus the `./worker`
+export, and the demo drops its keepWorkerSideEffects plugin (keeping the
+standard `?worker&url` consumer pattern) so the m7 demo smoke exercises
+the real unpatched consumer path. Alternative (document the plugin as
+required consumer config) rejected: bundler-specific boilerplate for
+every consumer to work around our own metadata.
