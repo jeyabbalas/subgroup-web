@@ -80,6 +80,12 @@ function getPipeline(device: GPUDevice, code: string, label: string): GPUCompute
 export interface WebGpuEvaluatorOptions {
   /** Cap on candidates × words × arity per dispatch (A14 pacing). */
   maxWordsPerDispatch?: number;
+  /**
+   * Cap on grouped-pair runs per dispatch (the Y workgroup dimension is
+   * limited to 65535, the default; batchSize is public so runs can exceed
+   * it). Also a test hook, mirroring maxWordsPerDispatch.
+   */
+  maxRunsPerDispatch?: number;
   /** Test hook: force small atlas chunks to exercise the multi-binding path. */
   forceChunkBytes?: number;
   /** Test hook: disable the codes-mode GPU atlas build (upload instead). */
@@ -185,6 +191,7 @@ export class WebGpuEvaluator implements BatchEvaluator {
   private readonly stride: number;
   private readonly rowsPerChunk: number;
   private readonly maxWordsPerDispatch: number;
+  private readonly maxRunsPerDispatch: number;
   private readonly buffers: GPUBuffer[] = [];
   private readonly atlasChunks: GPUBuffer[];
   private readonly auxBuffer: GPUBuffer | null;
@@ -225,6 +232,7 @@ export class WebGpuEvaluator implements BatchEvaluator {
     this.screening = this.prepared.kind === "numeric";
     this.stride = this.screening ? 4 : 2;
     this.maxWordsPerDispatch = options.maxWordsPerDispatch ?? 1 << 30;
+    this.maxRunsPerDispatch = options.maxRunsPerDispatch ?? 65535;
     this.perThreadTerms = Math.ceil(this.wordsPerRow / 256) * 32;
 
     const limits = device.limits;
@@ -586,22 +594,43 @@ export class WebGpuEvaluator implements BatchEvaluator {
     }
     const runCount = runs.length / 4;
     this.ensureCandCapacity(ids.length);
-    this.ensureRunsCapacity(runCount);
+    // Chunk the Y dimension to the 65535 workgroups/dimension limit
+    // (batchSize is public, so runCount can exceed it). Out indices are
+    // absolute (run.extStart), so chunking is output-invariant; runsBuffer
+    // rewrites between submits are queue-ordered. Sized to the largest
+    // chunk so the buffer is never destroyed mid-loop.
+    this.ensureRunsCapacity(Math.min(runCount, this.maxRunsPerDispatch));
     const runsArr = Uint32Array.from(runs);
     this.device.queue.writeBuffer(this.candBuffer, 0, ids.buffer, ids.byteOffset, ids.byteLength);
-    this.device.queue.writeBuffer(this.runsBuffer!, 0, runsArr.buffer, 0, runsArr.byteLength);
     this.ensureOutCapacity(count);
     this.writeParams(3, 2, count, 0);
     const tiles = Math.ceil(this.wordsPerRow / PAIRS_TILE);
-    const encoder = this.device.createCommandEncoder();
-    encoder.clearBuffer(this.outBuffer, 0, count * 2 * 4);
-    const pass = encoder.beginComputePass();
-    pass.setPipeline(this.getPairsPipeline());
-    pass.setBindGroup(0, this.getPairsBindGroup());
-    pass.dispatchWorkgroups(tiles, runCount);
-    pass.end();
-    encoder.copyBufferToBuffer(this.outBuffer, 0, this.stagingBuffer, 0, count * 2 * 4);
-    this.device.queue.submit([encoder.finish()]);
+    // The kernel accumulates atomically: clear once up front, then every
+    // chunk adds into its own disjoint candidate range.
+    const clearEncoder = this.device.createCommandEncoder();
+    clearEncoder.clearBuffer(this.outBuffer, 0, count * 2 * 4);
+    this.device.queue.submit([clearEncoder.finish()]);
+    for (let base = 0; base < runCount; base += this.maxRunsPerDispatch) {
+      const dRuns = Math.min(this.maxRunsPerDispatch, runCount - base);
+      const view = runsArr.subarray(base * 4, (base + dRuns) * 4);
+      this.device.queue.writeBuffer(
+        this.runsBuffer!,
+        0,
+        view.buffer,
+        view.byteOffset,
+        view.byteLength,
+      );
+      const encoder = this.device.createCommandEncoder();
+      const pass = encoder.beginComputePass();
+      pass.setPipeline(this.getPairsPipeline());
+      pass.setBindGroup(0, this.getPairsBindGroup());
+      pass.dispatchWorkgroups(tiles, dRuns);
+      pass.end();
+      this.device.queue.submit([encoder.finish()]);
+    }
+    const copyEncoder = this.device.createCommandEncoder();
+    copyEncoder.copyBufferToBuffer(this.outBuffer, 0, this.stagingBuffer, 0, count * 2 * 4);
+    this.device.queue.submit([copyEncoder.finish()]);
     try {
       await this.stagingBuffer.mapAsync(GPUMapMode.READ, 0, count * 2 * 4);
     } catch (err) {

@@ -354,12 +354,39 @@ test("GPU pruning-identity and forced atlas chunking", async ({ page }) => {
     )) as PageRun;
     total++;
     if (sameFp(grouped.fingerprint, oracle)) ok++;
+
+    // Forced pair-RUN chunking (Y workgroups/dimension ≤ 65535): a tiny
+    // maxRunsPerDispatch splits the grouped arity-2 counts dispatches into
+    // many queue-ordered submits over one cleared out buffer (absolute
+    // indices). Only counts targets route through runPairs; the numeric
+    // cell exercises the option being inert there.
+    const runsChunked = (await page.evaluate(
+      async ([c]) => {
+        const h = (
+          globalThis as never as {
+            subgroupWebHarness: {
+              registerWebGpu(o: unknown): void;
+              runCell(c: unknown, a: unknown, o: unknown): Promise<unknown>;
+            };
+          }
+        ).subgroupWebHarness;
+        h.registerWebGpu({ evaluator: { maxRunsPerDispatch: 3 } });
+        const out = await h.runCell(c, "apriori", { backend: "webgpu" });
+        h.registerWebGpu({});
+        return out;
+      },
+      [cell] as const,
+    )) as PageRun;
+    total++;
+    if (sameFp(runsChunked.fingerprint, oracle)) ok++;
   }
   expect(ok).toBe(total);
   recordGateRow({
     id: "m6-gpu-pruning-chunking",
     cell: "titanic-wracc + creditg-stdnum",
-    check: "GPU pruning on/off == oracle; forced atlas chunking + dispatch grouping == oracle",
+    check:
+      "GPU pruning on/off == oracle; forced atlas chunking + dispatch grouping + " +
+      "pair-run chunking == oracle",
     value: `${ok}/${total} identical`,
     expected: `${total}/${total}`,
     gate: true,
