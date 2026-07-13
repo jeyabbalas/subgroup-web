@@ -16,6 +16,11 @@ const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "subgroup-web-pack-"));
 try {
   const packOut = sh(`npm pack --pack-destination ${JSON.stringify(tmp)} --json`, { cwd: REPO });
   const [info] = JSON.parse(packOut);
+  // The worker entry must ship: it is the one side-effect module
+  // (sideEffects allowlist) and browser pools address it by URL.
+  if (!info.files.some((f) => f.path === "dist/worker.js")) {
+    throw new Error("packed tarball is missing dist/worker.js");
+  }
   const tarball = path.join(tmp, info.filename);
   fs.writeFileSync(
     path.join(tmp, "package.json"),
